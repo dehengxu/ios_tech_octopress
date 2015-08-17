@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Java | My Octopress Blog]]></title>
+  <link href="http://xudeheng.github.io/ios_tech_octopress/blog/categories/java/atom.xml" rel="self"/>
+  <link href="http://xudeheng.github.io/ios_tech_octopress/"/>
+  <updated>2015-08-17T23:04:56+08:00</updated>
+  <id>http://xudeheng.github.io/ios_tech_octopress/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Config Java Envir on OSX]]></title>
+    <link href="http://xudeheng.github.io/ios_tech_octopress/blog/2014/08/30/config-java-envir-on-osx/"/>
+    <updated>2014-08-30T14:45:49+08:00</updated>
+    <id>http://xudeheng.github.io/ios_tech_octopress/blog/2014/08/30/config-java-envir-on-osx</id>
+    <content type="html"><![CDATA[<p>Error message:</p>
+
+<blockquote><p>/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/bin: No such file or directory</p></blockquote>
+
+<p>Reason:</p>
+
+<blockquote><p>JAVA_HOME environment variable incorrect, It should be below.</p></blockquote>
+
+<p>Add line into file <code>~/.profile</code>.</p>
+
+<pre><code>export PATH="$PATH:/usr"
+</code></pre>
+
+<p>路径根据实际情况来定，有的系统可能是<code>/usr/local/java</code></p>
+
+<p>我的路径布局是 <code>/usr/bin</code></p>
+]]></content>
+  </entry>
+  
+</feed>

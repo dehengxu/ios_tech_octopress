@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Ruby | My Octopress Blog]]></title>
+  <link href="http://xudeheng.github.io/ios_tech_octopress/blog/categories/ruby/atom.xml" rel="self"/>
+  <link href="http://xudeheng.github.io/ios_tech_octopress/"/>
+  <updated>2015-08-17T23:04:56+08:00</updated>
+  <id>http://xudeheng.github.io/ios_tech_octopress/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Rake Usage]]></title>
+    <link href="http://xudeheng.github.io/ios_tech_octopress/blog/2014/08/29/rake-usage/"/>
+    <updated>2014-08-29T14:42:06+08:00</updated>
+    <id>http://xudeheng.github.io/ios_tech_octopress/blog/2014/08/29/rake-usage</id>
+    <content type="html"><![CDATA[<h2>What is rake</h2>
+
+<p>Rake is a ruby build tool likes ant, make&hellip;</p>
+
+<p>In ant, it composed with <code>taget</code>s, but in rake it composed with <code>task</code></p>
+
+<h2>Add your task</h2>
+
+<h3>Normal task</h3>
+
+<p>Define your own task</p>
+
+<p><div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">task</span> <span class="ss">:taskName</span> <span class="k">do</span>
+    <span class="c1">#Your task code in ruby syntax.</span>
+<span class="k">end</span></code></pre></div></p>
+
+<h3>Task with params.</h3>
+
+<pre><code>task :taskName, :param1 do |t, params|
+    #Here params is an hash table object.
+end
+</code></pre>
+
+<blockquote><p><a href="http://jasonseifer.com/2010/04/06/rake-tutorial">http://jasonseifer.com/2010/04/06/rake-tutorial</a></p></blockquote>
+]]></content>
+  </entry>
+  
+</feed>

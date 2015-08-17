@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Jekyll, | My Octopress Blog]]></title>
+  <link href="http://xudeheng.github.io/ios_tech_octopress/blog/categories/jekyll/atom.xml" rel="self"/>
+  <link href="http://xudeheng.github.io/ios_tech_octopress/"/>
+  <updated>2015-08-17T23:04:56+08:00</updated>
+  <id>http://xudeheng.github.io/ios_tech_octopress/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Keys for Using Jekyll on github.com]]></title>
+    <link href="http://xudeheng.github.io/ios_tech_octopress/blog/2014/08/31/keys-for-using-jekyll-on-github-dot-com/"/>
+    <updated>2014-08-31T11:48:21+08:00</updated>
+    <id>http://xudeheng.github.io/ios_tech_octopress/blog/2014/08/31/keys-for-using-jekyll-on-github-dot-com</id>
+    <content type="html"><![CDATA[<h2>Why choose jekyll?</h2>
+
+<ol>
+<li>First, it&rsquo;s an static blog system, so it can response huge accessing.</li>
+<li>You don&rsquo;t need configure your http server, sql server, and blog system, you can host your own blog site only depend <code>rvm</code>.</li>
+<li>If you don&rsquo;t wanna maintance your own server, you can use github&rsquo;s : )</li>
+</ol>
+
+
+<h2>How to install all of jekyll.</h2>
+
+<h4>Install rvm a ruby version management tool.</h4>
+
+<pre><code></code></pre>
+
+<h4>Install jekyll gem.</h4>
+
+<pre><code>    gem install jekyll
+</code></pre>
+
+<h4>Install depended gems</h4>
+
+<pre><code>    gem install bundle
+
+    bundle install
+</code></pre>
+
+<p>All done, you can take rest.</p>
+
+<h2>How to use jekyll with github.com</h2>
+
+<p>You can find some tips on this page:<br/>
+<a href="https://help.github.com/articles/using-jekyll-with-pages">https://help.github.com/articles/using-jekyll-with-pages</a>.</p>
+
+<h2>Why your blog looks poorly.</h2>
+
+<p>Follow this link <a href="http://jekyllrb.com/docs/github-pages/">http://jekyllrb.com/docs/github-pages/</a></p>
+
+<blockquote><p>It figure out you should modify _config.yml, filed <code>base_url</code> value to <code>/your_repository_name</code>, the slash must be there.</p></blockquote>
+
+<h2>Use your own domain</h2>
+
+<p>Add CNAME file to your repostory root dirctory. Writre your domain in one line.</p>
+
+<h2>Final</h2>
+
+<p>That&rsquo;s all, just go writing valuable articles.</p>
+]]></content>
+  </entry>
+  
+</feed>

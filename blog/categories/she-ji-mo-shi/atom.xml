@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 设计模式 | My Octopress Blog]]></title>
+  <link href="http://xudeheng.github.io/ios_tech_octopress/blog/categories/she-ji-mo-shi/atom.xml" rel="self"/>
+  <link href="http://xudeheng.github.io/ios_tech_octopress/"/>
+  <updated>2015-08-17T23:04:56+08:00</updated>
+  <id>http://xudeheng.github.io/ios_tech_octopress/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Design Pattern-解释器]]></title>
+    <link href="http://xudeheng.github.io/ios_tech_octopress/blog/2015/08/16/design-pattern-interpreter/"/>
+    <updated>2015-08-16T09:03:22+08:00</updated>
+    <id>http://xudeheng.github.io/ios_tech_octopress/blog/2015/08/16/design-pattern-interpreter</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Design Pattern-外观模式]]></title>
+    <link href="http://xudeheng.github.io/ios_tech_octopress/blog/2015/08/16/design-pattern-facade/"/>
+    <updated>2015-08-16T09:01:03+08:00</updated>
+    <id>http://xudeheng.github.io/ios_tech_octopress/blog/2015/08/16/design-pattern-facade</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Design Pattern-责任链模式]]></title>
+    <link href="http://xudeheng.github.io/ios_tech_octopress/blog/2015/08/16/design-pattern-chain-of-responsibility/"/>
+    <updated>2015-08-16T09:00:34+08:00</updated>
+    <id>http://xudeheng.github.io/ios_tech_octopress/blog/2015/08/16/design-pattern-chain-of-responsibility</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Design Pattern-原型模式]]></title>
+    <link href="http://xudeheng.github.io/ios_tech_octopress/blog/2015/08/16/design-pattern-prototype/"/>
+    <updated>2015-08-16T08:54:28+08:00</updated>
+    <id>http://xudeheng.github.io/ios_tech_octopress/blog/2015/08/16/design-pattern-prototype</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Design Pattern-工厂模式]]></title>
+    <link href="http://xudeheng.github.io/ios_tech_octopress/blog/2015/08/16/design-pattern-factory/"/>
+    <updated>2015-08-16T08:54:21+08:00</updated>
+    <id>http://xudeheng.github.io/ios_tech_octopress/blog/2015/08/16/design-pattern-factory</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
+  
+</feed>
