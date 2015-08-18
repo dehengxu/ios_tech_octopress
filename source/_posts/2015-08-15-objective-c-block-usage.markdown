@@ -8,8 +8,6 @@ categories: Objective-C, block
 
 ## Block syntax
 
-<a href="http://clang.llvm.org/docs/Block-ABI-Apple.html" target="_blank">block 官方文档</a>
-
 > Block description
 
 ### 1. Use block as callback

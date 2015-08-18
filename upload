@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+git add --all
+git commit -m "Update octopress blogs."
+git push origin master
