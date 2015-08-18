@@ -145,5 +145,47 @@ void __block_dispose_foo(struct __block_literal_5 *src) {
 }
 ```
 
+### 导入 `__block` 标记的变量
+
+#### 有`__block`标记的变量的布局
+
+编译器必须将 `__block` 标记的变量放置到一个特殊的结构体中:
+
+```
+struct _block_byref_foo {
+    void *isa;
+    struct Block_byref *forwarding;
+    int flags;   //refcount;
+    int size;
+    typeof(marked_variable) marked_variable;
+};
+```
+
+当对一个 Block 引用进行 `Block_copy()` 和  `Block_release()` 操作的时候， 某种类型的变量会需要用到工具函数。在“C”级别只有`Block`类型的变量，或者 `__attribute__((NSObject))` 修饰的变量需要工具函数。在 Objective-C 中的对象 和 C++ 中栈上的对象也需要工具函数。需要工具函数的变量使用这种形式:
+
+```
+struct _block_byref_foo {
+    void *isa;
+    struct _block_byref_foo *forwarding;
+    int flags;   //refcount;
+    int size;
+    // helper functions called via Block_copy() and Block_release()
+    void (*byref_keep)(void  *dst, void *src);
+    void (*byref_dispose)(void *);
+    typeof(marked_variable) marked_variable;
+};
+```
+
+结构体会像这样初始化:
+
+> a. `forwarding` 指针指向外围结构体的开头。
+> b. `size` 域被初始化为外围结构体的总大小。
+> c. `flags` 域当没有工具函数的时候设置为0，反之被设置成 (1<<25)。
+> d. 工具函数被初始化（如果是当前）。
+> e. 变量自身呗设置为初始值。
+> f. `isa` 域被设置为 `NULL`。
+
+
+
 
 <a href="http://clang.llvm.org/docs/Block-ABI-Apple.html" target="_blank">block底层实现的官方文档</a>
