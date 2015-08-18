@@ -5,7 +5,10 @@ date: 2015-08-15 14:43:40 +0800
 comments: true
 categories: Objective-C, block
 ---
+
 ## Block syntax
+
+<a href="http://clang.llvm.org/docs/Block-ABI-Apple.html" target="_blank">block 官方文档</a>
 
 > Block description
 
