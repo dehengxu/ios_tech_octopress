@@ -4,7 +4,7 @@
   <title><![CDATA[逆风@{iOS}]]></title>
   <link href="http://xudeheng.github.io/ios_tech_octopress/atom.xml" rel="self"/>
   <link href="http://xudeheng.github.io/ios_tech_octopress/"/>
-  <updated>2015-08-19T06:54:25+08:00</updated>
+  <updated>2015-08-19T06:54:50+08:00</updated>
   <id>http://xudeheng.github.io/ios_tech_octopress/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
@@ -12,15 +12,6 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
-  <entry>
-    <title type="html"><![CDATA[动态规划算法]]></title>
-    <link href="http://xudeheng.github.io/ios_tech_octopress/blog/2015/08/19/dong-tai-gui-hua-suan-fa/"/>
-    <updated>2015-08-19T06:21:52+08:00</updated>
-    <id>http://xudeheng.github.io/ios_tech_octopress/blog/2015/08/19/dong-tai-gui-hua-suan-fa</id>
-    <content type="html"><![CDATA[<p><a href="http://www.cnblogs.com/rond/archive/2012/06/28/2566534.html" target="_blank"> 动态规划算法 </a></p>
-]]></content>
-  </entry>
   
   <entry>
     <title type="html"><![CDATA[Block在Clang中的实现]]></title>
