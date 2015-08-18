@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Update | My Octopress Blog]]></title>
+  <title><![CDATA[Category: Update | 逆风@{iOS}]]></title>
   <link href="http://xudeheng.github.io/ios_tech_octopress/blog/categories/update/atom.xml" rel="self"/>
   <link href="http://xudeheng.github.io/ios_tech_octopress/"/>
-  <updated>2015-08-17T23:13:43+08:00</updated>
+  <updated>2015-08-18T08:19:53+08:00</updated>
   <id>http://xudeheng.github.io/ios_tech_octopress/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
