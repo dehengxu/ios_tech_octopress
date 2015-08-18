@@ -37,15 +37,16 @@ NSLog(@"max is %d", maxBlock(89, 22));
 ### 3. Use block in recurcive callback
 
 ```
-// It looks well.
-int(^fibonacci)(int) = ^(int n) {
-	if (n <= 1) return n;
+void testFunc() {
+	// It looks well.
+	int(^fibonacci)(int) = ^(int n) {
+		if (n <= 1) return n;
 
-	return fibonacci(n - 1) + fibonacci(n - 2);
+		return fibonacci(n - 1) + fibonacci(n - 2);
+	}
+
+	fibonacci(10);
 }
-
-fibonacci(10);
-
 //It raise exception in runtme.
 //CompositeTests testExample]_block_invoke(.block_descriptor=0x00007fe0da577710, folder=0x00007fe0da575c50) + 766 at CompositeTests.m:49, queue = 'com.apple.main-thread', stop reason = EXC_BAD_ACCESS (code=1, address=0x10)
 
