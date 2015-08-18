@@ -4,7 +4,7 @@
   <title><![CDATA[逆风@{iOS}]]></title>
   <link href="http://xudeheng.github.io/ios_tech_octopress/atom.xml" rel="self"/>
   <link href="http://xudeheng.github.io/ios_tech_octopress/"/>
-  <updated>2015-08-19T06:52:41+08:00</updated>
+  <updated>2015-08-19T06:54:25+08:00</updated>
   <id>http://xudeheng.github.io/ios_tech_octopress/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
@@ -243,7 +243,7 @@
 </span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
 
 
-
+<p><a href="http://clang.llvm.org/docs/Block-ABI-Apple.html" target="_blank">block底层实现的官方文档</a></p>
 ]]></content>
   </entry>
   
@@ -851,8 +851,6 @@ return _dispatch_get_root_queue(qos, flags &amp; DISPATCH_QUEUE_OVERCOMMIT);
     <updated>2015-08-15T14:43:40+08:00</updated>
     <id>http://xudeheng.github.io/ios_tech_octopress/blog/2015/08/15/objective-c-block-usage</id>
     <content type="html"><![CDATA[<h2>Block syntax</h2>
-
-<p><a href="http://clang.llvm.org/docs/Block-ABI-Apple.html" target="_blank">block 官方文档</a></p>
 
 <blockquote><p>Block description</p></blockquote>
 
