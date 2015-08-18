@@ -144,15 +144,17 @@ maxBlock = ^(int a, int b) { return a &gt; &hellip;">
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
 <span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>// It looks well.
-</span><span class='line'>int(^fibonacci)(int) = ^(int n) {
-</span><span class='line'>  if (n &lt;= 1) return n;
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>void testFunc() {
+</span><span class='line'>  // It looks well.
+</span><span class='line'>  int(^fibonacci)(int) = ^(int n) {
+</span><span class='line'>      if (n &lt;= 1) return n;
 </span><span class='line'>
-</span><span class='line'>  return fibonacci(n - 1) + fibonacci(n - 2);
+</span><span class='line'>      return fibonacci(n - 1) + fibonacci(n - 2);
+</span><span class='line'>  }
+</span><span class='line'>
+</span><span class='line'>  fibonacci(10);
 </span><span class='line'>}
-</span><span class='line'>
-</span><span class='line'>fibonacci(10);
-</span><span class='line'>
 </span><span class='line'>//It raise exception in runtme.
 </span><span class='line'>//CompositeTests testExample]_block_invoke(.block_descriptor=0x00007fe0da577710, folder=0x00007fe0da575c50) + 766 at CompositeTests.m:49, queue = 'com.apple.main-thread', stop reason = EXC_BAD_ACCESS (code=1, address=0x10)
 </span></code></pre></td></tr></table></div></figure>

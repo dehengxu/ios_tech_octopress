@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Objective-c, | 逆风@{iOS}]]></title>
   <link href="http://xudeheng.github.io/ios_tech_octopress/blog/categories/objective-c/atom.xml" rel="self"/>
   <link href="http://xudeheng.github.io/ios_tech_octopress/"/>
-  <updated>2015-08-18T23:08:40+08:00</updated>
+  <updated>2015-08-18T23:10:55+08:00</updated>
   <id>http://xudeheng.github.io/ios_tech_octopress/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
@@ -45,15 +45,16 @@ NSLog(@"max is %d", maxBlock(89, 22));
 
 <h3>3. Use block in recurcive callback</h3>
 
-<pre><code>// It looks well.
-int(^fibonacci)(int) = ^(int n) {
-    if (n &lt;= 1) return n;
+<pre><code>void testFunc() {
+    // It looks well.
+    int(^fibonacci)(int) = ^(int n) {
+        if (n &lt;= 1) return n;
 
-    return fibonacci(n - 1) + fibonacci(n - 2);
+        return fibonacci(n - 1) + fibonacci(n - 2);
+    }
+
+    fibonacci(10);
 }
-
-fibonacci(10);
-
 //It raise exception in runtme.
 //CompositeTests testExample]_block_invoke(.block_descriptor=0x00007fe0da577710, folder=0x00007fe0da575c50) + 766 at CompositeTests.m:49, queue = 'com.apple.main-thread', stop reason = EXC_BAD_ACCESS (code=1, address=0x10)
 </code></pre>
