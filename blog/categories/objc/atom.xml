@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Objc | 逆风@{iOS}]]></title>
+  <link href="http://xudeheng.github.io/ios_tech_octopress/blog/categories/objc/atom.xml" rel="self"/>
+  <link href="http://xudeheng.github.io/ios_tech_octopress/"/>
+  <updated>2015-08-18T12:26:53+08:00</updated>
+  <id>http://xudeheng.github.io/ios_tech_octopress/</id>
+  <author>
+    <name><![CDATA[Deheng Xu]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Autorelease方法的源码分析]]></title>
+    <link href="http://xudeheng.github.io/ios_tech_octopress/blog/2015/08/18/autoreleasefang-fa-deyuan-ma-fen-xi/"/>
+    <updated>2015-08-18T10:51:06+08:00</updated>
+    <id>http://xudeheng.github.io/ios_tech_octopress/blog/2015/08/18/autoreleasefang-fa-deyuan-ma-fen-xi</id>
+    <content type="html"><![CDATA[<pre><code>    static inline id autorelease(id obj)
+    {
+        assert(obj);
+        assert(!obj-&gt;isTaggedPointer());
+        id *dest __unused = autoreleaseFast(obj);
+        assert(!dest  ||  *dest == obj);
+        return obj;
+    }
+</code></pre>
+
+<p>如果指针没有被标记，则进行 autoreleaseFast 处理过程</p>
+
+<pre><code>    static inline id *autoreleaseFast(id obj)
+    {
+        AutoreleasePoolPage *page = hotPage();
+        if (page &amp;&amp; !page-&gt;full()) {
+            return page-&gt;add(obj);
+        } else if (page) {
+            return autoreleaseFullPage(obj, page);
+        } else {
+            return autoreleaseNoPage(obj);
+        }
+    }
+</code></pre>
+
+<pre><code>    static __attribute__((noinline))
+    id *autoreleaseFullPage(id obj, AutoreleasePoolPage *page)
+    {
+        // The hot page is full. 
+        // Step to the next non-full page, adding a new page if necessary.
+        // Then add the object to that page.
+        assert(page == hotPage()  &amp;&amp;  page-&gt;full());
+
+        do {
+            if (page-&gt;child) page = page-&gt;child;
+            else page = new AutoreleasePoolPage(page);
+        } while (page-&gt;full());
+
+        setHotPage(page);
+        return page-&gt;add(obj);
+    }
+</code></pre>
+
+<pre><code>    static __attribute__((noinline))
+    id *autoreleaseNoPage(id obj)
+    {
+        // No pool in place.
+        assert(!hotPage());
+
+        if (obj != POOL_SENTINEL  &amp;&amp;  DebugMissingPools) {
+            // We are pushing an object with no pool in place, 
+            // and no-pool debugging was requested by environment.
+            _objc_inform("MISSING POOLS: Object %p of class %s "
+                         "autoreleased with no pool in place - "
+                         "just leaking - break on "
+                         "objc_autoreleaseNoPool() to debug", 
+                         (void*)obj, object_getClassName(obj));
+            objc_autoreleaseNoPool(obj);
+            return nil;
+        }
+
+        // Install the first page.
+        AutoreleasePoolPage *page = new AutoreleasePoolPage(nil);
+        setHotPage(page);
+
+        // Push an autorelease pool boundary if it wasn't already requested.
+        if (obj != POOL_SENTINEL) {
+            page-&gt;add(POOL_SENTINEL);
+        }
+
+        // Push the requested object.
+        return page-&gt;add(obj);
+    }
+</code></pre>
+
+<p>每个 page  的大小是 4096 ，指的是能存储 4096 个对象地址。</p>
+
+<p>如果 <code>page-&gt;full()</code> 已满，则(通过 <code>autoreleaseFullPage(obj, page);</code>)自动从子节点中寻找一个未满的 page 添加新的对象，如果所有子节点都满了，就会创建一个新的page 并让 hotPage 指向这个新的 page，最后添加进新的对象。</p>
+
+<p>如果没有任何的 page，则创建第一个 page，并添加一个 POOL_SENTINEL 作为边界，然后添加这个新的 obj 对象。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Libdispatch 源码分析]]></title>
+    <link href="http://xudeheng.github.io/ios_tech_octopress/blog/2015/08/18/libdispatch-yuan-ma-fen-xi/"/>
+    <updated>2015-08-18T08:57:37+08:00</updated>
+    <id>http://xudeheng.github.io/ios_tech_octopress/blog/2015/08/18/libdispatch-yuan-ma-fen-xi</id>
+    <content type="html"><![CDATA[<p>GCD 是苹果的多线程框架，提供了大量便捷的特性，允许用户利用多核 cpu 技术 ，使用中，最常接触的是</p>
+
+<pre><code>dispatch_queue_t dispatch_get_global_queue()
+
+dispatch_queue_t dispatch_queue_create()
+
+void dispatch_async()
+
+dispatch_semaphore_t dispatch_semaphor_create()
+</code></pre>
+
+<h3>关键词</h3>
+
+<p>后面的描述中会用到一下几个关键词:</p>
+
+<p><code>dq</code>: dispatch_queue 的简写</p>
+
+<p><code>qos</code>: quality of service 的简写</p>
+
+<p>GCD 虽然好用，但对于 GCD 的底层实现我们却知之甚少，好在苹果开源了 GCD 的源码项目 libdispatch，我们可以在这里下载目前最新的版本 <a href="http://opensource.apple.com/tarballs/libdispatch/libdispatch-442.1.4.tar.gz">libdispatch</a></p>
+
+<h3>dispatch_queue_create() 函数</h3>
+
+<p>我们来看看 dispatch_queue_create 函数的定义</p>
+
+<pre><code>dispatch_queue_t
+dispatch_queue_create(const char *label, dispatch_queue_attr_t attr)
+{
+    return dispatch_queue_create_with_target(label, attr,
+            DISPATCH_TARGET_QUEUE_DEFAULT);
+}
+</code></pre>
+
+<p>可以看到，其实 dispatch_queue_create 调用了私有函数 dispatch_queue_create_with_target ，移步到源码</p>
+
+<pre><code>// skip zero
+// 1 - main_q
+// 2 - mgr_q
+// 3 - mgr_root_q
+// 4,5,6,7,8,9,10,11,12,13,14,15 - global queues
+// we use 'xadd' on Intel, so the initial value == next assigned
+unsigned long volatile _dispatch_queue_serial_numbers = 16;
+
+dispatch_queue_t
+dispatch_queue_create_with_target(const char *label, dispatch_queue_attr_t dqa,
+        dispatch_queue_t tq)
+{
+#if DISPATCH_USE_NOQOS_WORKQUEUE_FALLBACK
+    // Be sure the root queue priorities are set
+    dispatch_once_f(&amp;_dispatch_root_queues_pred, NULL,
+            _dispatch_root_queues_init);
+#endif
+    bool disallow_tq = (slowpath(dqa) &amp;&amp; dqa != DISPATCH_QUEUE_CONCURRENT);
+    if (!slowpath(dqa)) {
+        dqa = _dispatch_get_queue_attr(0, 0, false, false);
+    } else if (dqa-&gt;do_vtable != DISPATCH_VTABLE(queue_attr)) {
+        DISPATCH_CLIENT_CRASH("Invalid queue attribute");
+    }
+    dispatch_queue_t dq = _dispatch_alloc(DISPATCH_VTABLE(queue),
+            sizeof(struct dispatch_queue_s) - DISPATCH_QUEUE_CACHELINE_PAD);
+    _dispatch_queue_init(dq);
+    if (label) {
+        dq-&gt;dq_label = strdup(label);
+    }
+    qos_class_t qos = dqa-&gt;dqa_qos_class;
+    bool overcommit = dqa-&gt;dqa_overcommit;
+#if HAVE_PTHREAD_WORKQUEUE_QOS
+    dq-&gt;dq_priority = _pthread_qos_class_encode(qos, dqa-&gt;dqa_relative_priority,
+            overcommit);
+#endif
+    if (dqa-&gt;dqa_concurrent) {
+        dq-&gt;dq_width = DISPATCH_QUEUE_WIDTH_MAX;
+    } else {
+        // Default serial queue target queue is overcommit!
+        overcommit = true;
+    }
+    if (!tq) {
+        if (qos == _DISPATCH_QOS_CLASS_UNSPECIFIED) {
+            qos = _DISPATCH_QOS_CLASS_DEFAULT;
+        }
+#if DISPATCH_USE_NOQOS_WORKQUEUE_FALLBACK
+        if (qos == _DISPATCH_QOS_CLASS_USER_INTERACTIVE &amp;&amp;
+                !_dispatch_root_queues[
+                DISPATCH_ROOT_QUEUE_IDX_USER_INTERACTIVE_QOS].dq_priority) {
+            qos = _DISPATCH_QOS_CLASS_USER_INITIATED;
+        }
+#endif
+        bool maintenance_fallback = false;
+#if DISPATCH_USE_NOQOS_WORKQUEUE_FALLBACK
+        maintenance_fallback = true;
+#endif // DISPATCH_USE_NOQOS_WORKQUEUE_FALLBACK
+        if (maintenance_fallback) {
+            if (qos == _DISPATCH_QOS_CLASS_MAINTENANCE &amp;&amp;
+                    !_dispatch_root_queues[
+                    DISPATCH_ROOT_QUEUE_IDX_MAINTENANCE_QOS].dq_priority) {
+                qos = _DISPATCH_QOS_CLASS_BACKGROUND;
+            }
+        }
+
+        tq = _dispatch_get_root_queue(qos, overcommit);
+        if (slowpath(!tq)) {
+            DISPATCH_CLIENT_CRASH("Invalid queue attribute");
+        }
+    } else {
+        _dispatch_retain(tq);
+        if (disallow_tq) {
+            // TODO: override target queue's qos/overcommit ?
+            DISPATCH_CLIENT_CRASH("Invalid combination of target queue &amp; "
+                    "queue attribute");
+        }
+        _dispatch_queue_priority_inherit_from_target(dq, tq);
+    }
+    _dispatch_queue_set_override_priority(dq);
+    dq-&gt;do_targetq = tq;
+    _dispatch_object_debug(dq, "%s", __func__);
+    return _dispatch_introspection_queue_create(dq);
+}
+</code></pre>
+
+<p>看几个关键的地方</p>
+
+<p><code>_dispatch_queue_init(dq);</code></p>
+
+<p><code>dq-&gt;dq_width = DISPATCH_QUEUE_WIDTH_MAX;</code></p>
+
+<h3>dispatch_async()</h3>
+
+<p><code>dispatch_async()</code> 会调用 <code>_dispatch_async_f()</code> 完成真正的异步派发任务的操作。</p>
+
+<p>_dispatch_async_f() 中</p>
+
+<pre><code>    if (dq-&gt;dq_width == 1 || flags &amp; DISPATCH_BLOCK_BARRIER) {
+        return _dispatch_barrier_async_f(dq, ctxt, func, pp, flags);
+    }
+</code></pre>
+
+<p>说明当队列宽度为1 的时候，会自动通过 <code>_dispatch_barrier_async_f</code> 加入到等待队列中。</p>
+
+<pre><code>    dc = fastpath(_dispatch_continuation_alloc_cacheonly());
+    if (!dc) {
+        return _dispatch_async_f_slow(dq, ctxt, func, pp, flags);
+    }
+</code></pre>
+
+<p>从缓存中获取继续运行的队列如果没有，就通过 _dispatch_async_f_slow 从堆上面创建一个队列</p>
+
+<h3>dispatch_sync</h3>
+
+<h3>dispatch_get_global_queue</h3>
+
+<p><code>
+return _dispatch_get_root_queue(qos, flags &amp; DISPATCH_QUEUE_OVERCOMMIT);
+</code></p>
+
+<p>通过全局 dq 的优先级别设置好 qos 属性，在从队列池 <code>_dispatch_root_queues[]</code> 中，取出一个 dq 出来，类似于这样:</p>
+
+<pre><code>return &amp;_dispatch_root_queues[
+                DISPATCH_ROOT_QUEUE_IDX_MAINTENANCE_QOS_OVERCOMMIT];
+</code></pre>
+
+<p>得到的队列底层代码信息:</p>
+
+<pre><code>[DISPATCH_ROOT_QUEUE_IDX_MAINTENANCE_QOS_OVERCOMMIT] = {
+        .do_vtable = DISPATCH_VTABLE(queue_root),
+        .do_ref_cnt = DISPATCH_OBJECT_GLOBAL_REFCNT,
+        .do_xref_cnt = DISPATCH_OBJECT_GLOBAL_REFCNT,
+        .do_suspend_cnt = DISPATCH_OBJECT_SUSPEND_LOCK,
+        .do_ctxt = &amp;_dispatch_root_queue_contexts[
+                DISPATCH_ROOT_QUEUE_IDX_MAINTENANCE_QOS_OVERCOMMIT],
+        .dq_label = "com.apple.root.maintenance-qos.overcommit",
+        .dq_running = 2,
+        .dq_width = DISPATCH_QUEUE_WIDTH_MAX,
+        .dq_serialnum = 5,
+    }
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>
