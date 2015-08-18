@@ -1,0 +1,412 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Block在Clang中的实现 - 逆风@{iOS}</title>
+  <meta name="author" content="Deheng Xu">
+
+  
+  <meta name="description" content="被导入的变量 被导入成 const copy 变量 未被 __block 标记的自变量会被导入成 const 拷贝。 这个例子就导入了一个 int 类型变量: 1
+2
+3
+4
+int x = 10;
+void (^vv)(void) = ^{ printf("x is %d\n", x); }
+x &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://xudeheng.github.io/ios_tech_octopress/blog/2015/08/19/blockzai-clangzhong-de-shi-xian/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="逆风@{iOS}" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">逆风@{iOS}</a></h1>
+  
+    <h2>A blog focus on iOS techs.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="xudeheng.github.io/ios_tech_octopress">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Block在Clang中的实现</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-08-19T06:00:02+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>19</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>6:00 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h3>被导入的变量</h3>
+
+<h4>被导入成 const copy 变量</h4>
+
+<p>未被 <code>__block</code> 标记的自变量会被导入成 <code>const</code> 拷贝。</p>
+
+<p>这个例子就导入了一个 <code>int</code> 类型变量:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>int x = 10;
+</span><span class='line'>void (^vv)(void) = ^{ printf("x is %d\n", x); }
+</span><span class='line'>x = 11;
+</span><span class='line'>vv();</span></code></pre></td></tr></table></div></figure>
+
+
+<p>上面这段代码将会被编译成下面这2段内容:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>struct __block_literal_2 {
+</span><span class='line'>    void *isa;
+</span><span class='line'>    int flags;
+</span><span class='line'>    int reserved;
+</span><span class='line'>    void (*invoke)(struct __block_literal_2 *);
+</span><span class='line'>    struct __block_descriptor_2 *descriptor;
+</span><span class='line'>    const int x;
+</span><span class='line'>};
+</span><span class='line'>
+</span><span class='line'>void __block_invoke_2(struct __block_literal_2 *_block) {
+</span><span class='line'>    printf("x is %d\n", _block-&gt;x);
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>static struct __block_descriptor_2 {
+</span><span class='line'>    unsigned long int reserved;
+</span><span class='line'>    unsigned long int Block_size;
+</span><span class='line'>} __block_descriptor_2 = { 0, sizeof(struct __block_literal_2) };</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>struct __block_literal_2 __block_literal_2 = {
+</span><span class='line'>      &_NSConcreteStackBlock,
+</span><span class='line'>      (1&lt;&lt;29), &lt;uninitialized&gt;,
+</span><span class='line'>      __block_invoke_2,
+</span><span class='line'>      &__block_descriptor_2,
+</span><span class='line'>      x
+</span><span class='line'> };</span></code></pre></td></tr></table></div></figure>
+
+
+<p>概括来说，标量(应该是指 int, float 这类值类型)，结构体，联合体 和 函数指针通常会被导入成 <code>const</code> 拷贝。</p>
+
+<h4>将 Block 引用导入成 <code>const</code> 拷贝</h4>
+
+<p>第一种情况，当一个 <code>Block</code> 自身被导入的时候，copy 和 dispose 工具函数会使用到。这种情况下会需要用到一个 <code>copy_helper</code> 函数和一个 <code>dispose_helper</code> 函数。<code>copy_helper</code> 函数被传入当前栈的基指针和指向新的堆版本的指针，并被回调到运行时在 <code>Block</code> 中对被导入的域执行拷贝操作。运行时函数在这里有描述<a href="http://clang.llvm.org/docs/Block-ABI-Apple.html#runtimehelperfunctions">Runtime Helper Functions</a>.</p>
+
+<p>简单的例子:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>void (^existingBlock)(void) = ...;
+</span><span class='line'>void (^vv)(void) = ^{ existingBlock(); }
+</span><span class='line'>vv();
+</span><span class='line'>
+</span><span class='line'>struct __block_literal_3 {
+</span><span class='line'>   ...; // existing block
+</span><span class='line'>};
+</span><span class='line'>
+</span><span class='line'>struct __block_literal_4 {
+</span><span class='line'>    void *isa;
+</span><span class='line'>    int flags;
+</span><span class='line'>    int reserved;
+</span><span class='line'>    void (*invoke)(struct __block_literal_4 *);
+</span><span class='line'>    struct __block_literal_3 *const existingBlock;
+</span><span class='line'>};
+</span><span class='line'>
+</span><span class='line'>void __block_invoke_4(struct __block_literal_2 *_block) {
+</span><span class='line'>   __block-&gt;existingBlock-&gt;invoke(__block-&gt;existingBlock);
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>void __block_copy_4(struct __block_literal_4 *dst, struct __block_literal_4 *src) {
+</span><span class='line'>     //_Block_copy_assign(&dst-&gt;existingBlock, src-&gt;existingBlock, 0);
+</span><span class='line'>     _Block_object_assign(&dst-&gt;existingBlock, src-&gt;existingBlock, BLOCK_FIELD_IS_BLOCK);
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>void __block_dispose_4(struct __block_literal_4 *src) {
+</span><span class='line'>     // was _Block_destroy
+</span><span class='line'>     _Block_object_dispose(src-&gt;existingBlock, BLOCK_FIELD_IS_BLOCK);
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>static struct __block_descriptor_4 {
+</span><span class='line'>    unsigned long int reserved;
+</span><span class='line'>    unsigned long int Block_size;
+</span><span class='line'>    void (*copy_helper)(struct __block_literal_4 *dst, struct __block_literal_4 *src);
+</span><span class='line'>    void (*dispose_helper)(struct __block_literal_4 *);
+</span><span class='line'>} __block_descriptor_4 = {
+</span><span class='line'>    0,
+</span><span class='line'>    sizeof(struct __block_literal_4),
+</span><span class='line'>    __block_copy_4,
+</span><span class='line'>    __block_dispose_4,
+</span><span class='line'>};</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这里描述了 Block 如何被使用:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>struct __block_literal_4 _block_literal = {
+</span><span class='line'>      &_NSConcreteStackBlock,
+</span><span class='line'>      (1&lt;&lt;25)|(1&lt;&lt;29), &lt;uninitialized&gt;
+</span><span class='line'>      __block_invoke_4,
+</span><span class='line'>      & __block_descriptor_4
+</span><span class='line'>      existingBlock,
+</span><span class='line'>};</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>导入 <strong>attribute</strong>((NSObject)) 变量</h4>
+
+<p>GCC 在结构指针里引入饿了 <code>__attribute__((NSObject))</code> 概念，表示 “这是一个对象”。它很有用，因为很多低级别的数据结构被声明为透明的结构指针，例如<code>CFStringRef</code>, <code>CFArrayRef</code>, 等等。当在 C 里面使用的时候，仍然会有真实的对象存在，并且在第二种情况会请求拷贝，生成工具函数。编译器生成的贝工具函数需要使用运行时工具函数 <code>_Block_object_assign</code> ，并且在调用工具函数的时候，运行时函数 <code>_Block_object_dispose</code> 会被调用。</p>
+
+<p>举个例子，下面的<code>Block</code> foo:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>struct Opaque *__attribute__((NSObject)) objectPointer = ...;
+</span><span class='line'>...
+</span><span class='line'>void (^foo)(void) = ^{  CFPrint(objectPointer); };</span></code></pre></td></tr></table></div></figure>
+
+
+<p>会生成下面的工具函数:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>void __block_copy_foo(struct __block_literal_5 *dst, struct __block_literal_5 *src) {
+</span><span class='line'>     _Block_object_assign(&dst-&gt;objectPointer, src-&gt; objectPointer, BLOCK_FIELD_IS_OBJECT);
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>void __block_dispose_foo(struct __block_literal_5 *src) {
+</span><span class='line'>     _Block_object_dispose(src-&gt;objectPointer, BLOCK_FIELD_IS_OBJECT);
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Deheng Xu</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2015-08-19T06:00:02+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>19</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>6:00 am</span></time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/08/18/autoreleasefang-fa-deyuan-ma-fen-xi/" title="Previous Post: autorelease方法的源码分析">&laquo; autorelease方法的源码分析</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2015/08/19/dong-tai-gui-hua-suan-fa/" title="Next Post: 动态规划算法">动态规划算法 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/08/19/dong-tai-gui-hua-suan-fa/">动态规划算法</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/08/19/blockzai-clangzhong-de-shi-xian/">Block在Clang中的实现</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/08/18/autoreleasefang-fa-deyuan-ma-fen-xi/">Autorelease方法的源码分析</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/08/18/libdispatch-yuan-ma-fen-xi/">Libdispatch 源码分析</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/08/17/apple-open-source/">Apple Open Source</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Deheng Xu -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+  <span class="credit"><a href="https://github.com/xudeheng" target="_blank">@github</a></span>
+  <span class="credit"><a href="https://github.com/xudeheng/ios_tech_octopress" target="_blank">source</a></span>
+  <span class="credit"><a href="http://www.dehengxu.com/" target="_blank">MyBase</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
