@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Objc | 逆风@{iOS}]]></title>
-  <link href="http://xudeheng.github.io/ios_tech_octopress/blog/categories/objc/atom.xml" rel="self"/>
-  <link href="http://xudeheng.github.io/ios_tech_octopress/"/>
-  <updated>2015-08-19T15:50:22+08:00</updated>
-  <id>http://xudeheng.github.io/ios_tech_octopress/</id>
+  <link href="http://ios.dehengxu.com/blog/categories/objc/atom.xml" rel="self"/>
+  <link href="http://ios.dehengxu.com/"/>
+  <updated>2015-08-19T17:07:40+08:00</updated>
+  <id>http://ios.dehengxu.com/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Autorelease方法的源码分析]]></title>
-    <link href="http://xudeheng.github.io/ios_tech_octopress/blog/2015/08/18/autoreleasefang-fa-deyuan-ma-fen-xi/"/>
+    <link href="http://ios.dehengxu.com/blog/2015/08/18/autoreleasefang-fa-deyuan-ma-fen-xi/"/>
     <updated>2015-08-18T10:51:06+08:00</updated>
-    <id>http://xudeheng.github.io/ios_tech_octopress/blog/2015/08/18/autoreleasefang-fa-deyuan-ma-fen-xi</id>
+    <id>http://ios.dehengxu.com/blog/2015/08/18/autoreleasefang-fa-deyuan-ma-fen-xi</id>
     <content type="html"><![CDATA[<pre><code>    static inline id autorelease(id obj)
     {
         assert(obj);
@@ -103,9 +103,9 @@
   
   <entry>
     <title type="html"><![CDATA[Libdispatch 源码分析]]></title>
-    <link href="http://xudeheng.github.io/ios_tech_octopress/blog/2015/08/18/libdispatch-yuan-ma-fen-xi/"/>
+    <link href="http://ios.dehengxu.com/blog/2015/08/18/libdispatch-yuan-ma-fen-xi/"/>
     <updated>2015-08-18T08:57:37+08:00</updated>
-    <id>http://xudeheng.github.io/ios_tech_octopress/blog/2015/08/18/libdispatch-yuan-ma-fen-xi</id>
+    <id>http://ios.dehengxu.com/blog/2015/08/18/libdispatch-yuan-ma-fen-xi</id>
     <content type="html"><![CDATA[<p>GCD 是苹果的多线程框架，提供了大量便捷的特性，允许用户利用多核 cpu 技术 ，使用中，最常接触的是</p>
 
 <pre><code>dispatch_queue_t dispatch_get_global_queue()

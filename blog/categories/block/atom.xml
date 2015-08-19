@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Block | 逆风@{iOS}]]></title>
-  <link href="http://xudeheng.github.io/ios_tech_octopress/blog/categories/block/atom.xml" rel="self"/>
-  <link href="http://xudeheng.github.io/ios_tech_octopress/"/>
-  <updated>2015-08-19T15:50:22+08:00</updated>
-  <id>http://xudeheng.github.io/ios_tech_octopress/</id>
+  <link href="http://ios.dehengxu.com/blog/categories/block/atom.xml" rel="self"/>
+  <link href="http://ios.dehengxu.com/"/>
+  <updated>2015-08-19T17:07:40+08:00</updated>
+  <id>http://ios.dehengxu.com/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Objective-C Block Usage]]></title>
-    <link href="http://xudeheng.github.io/ios_tech_octopress/blog/2015/08/15/objective-c-block-usage/"/>
+    <link href="http://ios.dehengxu.com/blog/2015/08/15/objective-c-block-usage/"/>
     <updated>2015-08-15T14:43:40+08:00</updated>
-    <id>http://xudeheng.github.io/ios_tech_octopress/blog/2015/08/15/objective-c-block-usage</id>
+    <id>http://ios.dehengxu.com/blog/2015/08/15/objective-c-block-usage</id>
     <content type="html"><![CDATA[<h2>Block syntax</h2>
 
 <blockquote><p>Block description</p></blockquote>

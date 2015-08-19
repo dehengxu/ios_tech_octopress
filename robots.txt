@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: http://xudeheng.github.io/ios_tech_octopress/sitemap.xml 
+Sitemap: http://ios.dehengxu.com/sitemap.xml 
