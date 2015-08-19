@@ -5,6 +5,7 @@
   {% endif %}
 </ul>
   {% if site.simple_search %}
+  
 <form action="{{ site.simple_search }}" method="get">
   <fieldset role="search">
     <input type="hidden" name="sitesearch" value="{{ site.url | shorthand_url }}">

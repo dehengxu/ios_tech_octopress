@@ -2,7 +2,7 @@
 #      Main Configs       #
 # ----------------------- #
 
-url: http://xudeheng.github.io/ios_tech_octopress
+url: http://ios.dehengxu.com
 title: 逆风@{iOS}
 subtitle: A blog focus on iOS techs.
 author: Deheng Xu
@@ -61,6 +61,8 @@ default_asides: [asides/recent_posts.html, asides/github.html, custom/asides/abo
 
 full_rebuild: false
 limit_posts: 0
+
+# gems: ['jekyll-lunr-js-search']
 
 # ----------------------- #
 #   3rd Party Settings    #
