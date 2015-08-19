@@ -60,7 +60,7 @@ struct __block_literal_2 __block_literal_2 = {
 
 #### 将 Block 引用导入成 `const` 拷贝
 
-第一种情况，当一个 `Block` 自身被导入的时候，copy 和 dispose 工具函数会使用到。这种情况下会需要用到一个 `copy_helper` 函数和一个 `dispose_helper` 函数。`copy_helper` 函数被传入当前栈的基指针和指向新的堆版本的指针，并被回调到运行时在 `Block` 中对被导入的域执行拷贝操作。运行时函数在这里有描述[Runtime Helper Functions](http://clang.llvm.org/docs/Block-ABI-Apple.html#runtimehelperfunctions).
+第一种情况，当一个 `Block` 自身被导入的时候，copy 和 dispose 工具函数会使用到。这种情况下会需要用到一个 `copy_helper` 函数和一个 `dispose_helper` 函数。`copy_helper` 函数被传入当前栈的基指针和指向新的堆版本的指针，并被回调到运行时在 `Block` 中对被导入的域执行拷贝操作。运行时函数在这里有描述<a href="http://clang.llvm.org/docs/Block-ABI-Apple.html#runtimehelperfunctions" target="__blank">Runtime Helper Functions</a>.
 
 
 简单的例子:
