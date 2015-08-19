@@ -4,7 +4,7 @@
   <title><![CDATA[逆风@{iOS}]]></title>
   <link href="http://ios.dehengxu.com/atom.xml" rel="self"/>
   <link href="http://ios.dehengxu.com/"/>
-  <updated>2015-08-19T17:16:12+08:00</updated>
+  <updated>2015-08-19T17:18:22+08:00</updated>
   <id>http://ios.dehengxu.com/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
@@ -299,7 +299,7 @@
 
 <h4>将 Block 引用导入成 <code>const</code> 拷贝</h4>
 
-<p>第一种情况，当一个 <code>Block</code> 自身被导入的时候，copy 和 dispose 工具函数会使用到。这种情况下会需要用到一个 <code>copy_helper</code> 函数和一个 <code>dispose_helper</code> 函数。<code>copy_helper</code> 函数被传入当前栈的基指针和指向新的堆版本的指针，并被回调到运行时在 <code>Block</code> 中对被导入的域执行拷贝操作。运行时函数在这里有描述<a href="http://clang.llvm.org/docs/Block-ABI-Apple.html#runtimehelperfunctions">Runtime Helper Functions</a>.</p>
+<p>第一种情况，当一个 <code>Block</code> 自身被导入的时候，copy 和 dispose 工具函数会使用到。这种情况下会需要用到一个 <code>copy_helper</code> 函数和一个 <code>dispose_helper</code> 函数。<code>copy_helper</code> 函数被传入当前栈的基指针和指向新的堆版本的指针，并被回调到运行时在 <code>Block</code> 中对被导入的域执行拷贝操作。运行时函数在这里有描述<a href="http://clang.llvm.org/docs/Block-ABI-Apple.html#runtimehelperfunctions" target="__blank">Runtime Helper Functions</a>.</p>
 
 <p>简单的例子:</p>
 
