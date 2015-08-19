@@ -13,7 +13,7 @@ categories:
 
 #### 被导入成 const copy 变量
 
-未被 `__block` 标记的自变量会被导入成 `const` 拷贝。
+未被 `__block` 修饰的自变量会被导入成 `const` 拷贝。
 
 这个例子就导入了一个 `int` 类型变量:
 
@@ -145,11 +145,11 @@ void __block_dispose_foo(struct __block_literal_5 *src) {
 }
 ```
 
-### 导入 `__block` 标记的变量
+### 导入 `__block` 修饰的变量
 
-#### 有`__block`标记的变量的布局
+#### `__block`修饰的变量的布局
 
-编译器必须将 `__block` 标记的变量放置到一个特殊的结构体中:
+编译器必须将 `__block` 修饰的变量放置到一个特殊的结构体中:
 
 ```
 struct _block_byref_foo {
