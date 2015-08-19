@@ -59,6 +59,9 @@ default_asides: [asides/recent_posts.html, asides/github.html, custom/asides/abo
 # post_asides:
 # page_asides:
 
+full_rebuild: false
+limit_posts: 0
+
 # ----------------------- #
 #   3rd Party Settings    #
 # ----------------------- #
