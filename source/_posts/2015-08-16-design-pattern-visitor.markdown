@@ -23,4 +23,4 @@ categories: 设计模式
 当学校外面的人需要访问 `Teacher` 的时候，不需要直接与 `Teacher` 交流，而是去找 `ConcreteVisitor` 通过它与 `Teacher` 进行交流。
 
 
-[Objective-c源码](git@github.com:xudeheng/ObjcDesignPatterns.git)
+[Objective-c源码](https://github.com/xudeheng/ObjcDesignPatterns)
