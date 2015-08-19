@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Autorelease方法的源码分析 - 逆风@{iOS}</title>
+  <title>Jekyll Configuration Fileds - 逆风@{iOS}</title>
   <meta name="author" content="Deheng Xu">
 
   
-  <meta name="description" content="1
+  <meta name="description" content="This is Jekyll configuration source file: For configurating _config.yml use. 1
 2
 3
 4
@@ -17,8 +17,25 @@
 6
 7
 8
-static inline id autorelease(id obj)
-{ assert(obj); assert(!obj-&gt;isTaggedPointer()); id *dest __unused = autoreleaseFast(obj); &hellip;">
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -27,7 +44,7 @@ static inline id autorelease(id obj)
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://xudeheng.github.io/ios_tech_octopress/blog/2015/08/18/autoreleasefang-fa-deyuan-ma-fen-xi/">
+  <link rel="canonical" href="http://xudeheng.github.io/ios_tech_octopress/blog/2015/08/19/jekyll-configuration-fileds/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="逆风@{iOS}" type="application/atom+xml">
@@ -77,7 +94,7 @@ static inline id autorelease(id obj)
   
   <header>
     
-      <h1 class="entry-title">Autorelease方法的源码分析</h1>
+      <h1 class="entry-title">Jekyll Configuration Fileds</h1>
     
     
       <p class="meta">
@@ -86,94 +103,16 @@ static inline id autorelease(id obj)
 
 
 
-<time class='entry-date' datetime='2015-08-18T10:51:06+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>18</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>10:51 am</span></time>
+<time class='entry-date' datetime='2015-08-19T11:32:06+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>19</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>11:32 am</span></time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>static inline id autorelease(id obj)
-</span><span class='line'>{
-</span><span class='line'>    assert(obj);
-</span><span class='line'>    assert(!obj-&gt;isTaggedPointer());
-</span><span class='line'>    id *dest __unused = autoreleaseFast(obj);
-</span><span class='line'>    assert(!dest  ||  *dest == obj);
-</span><span class='line'>    return obj;
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+<div class="entry-content"><p>This is Jekyll configuration source file:</p>
 
-
-<p>如果指针没有被标记，则进行 autoreleaseFast 处理过程</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>static inline id *autoreleaseFast(id obj)
-</span><span class='line'>{
-</span><span class='line'>    AutoreleasePoolPage *page = hotPage();
-</span><span class='line'>    if (page && !page-&gt;full()) {
-</span><span class='line'>        return page-&gt;add(obj);
-</span><span class='line'>    } else if (page) {
-</span><span class='line'>        return autoreleaseFullPage(obj, page);
-</span><span class='line'>    } else {
-</span><span class='line'>        return autoreleaseNoPage(obj);
-</span><span class='line'>    }
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>static __attribute__((noinline))
-</span><span class='line'>id *autoreleaseFullPage(id obj, AutoreleasePoolPage *page)
-</span><span class='line'>{
-</span><span class='line'>    // The hot page is full. 
-</span><span class='line'>    // Step to the next non-full page, adding a new page if necessary.
-</span><span class='line'>    // Then add the object to that page.
-</span><span class='line'>    assert(page == hotPage()  &&  page-&gt;full());
-</span><span class='line'>
-</span><span class='line'>    do {
-</span><span class='line'>        if (page-&gt;child) page = page-&gt;child;
-</span><span class='line'>        else page = new AutoreleasePoolPage(page);
-</span><span class='line'>    } while (page-&gt;full());
-</span><span class='line'>
-</span><span class='line'>    setHotPage(page);
-</span><span class='line'>    return page-&gt;add(obj);
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
-
-
-
+<p>For configurating _config.yml use.</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -205,43 +144,132 @@ static inline id autorelease(id obj)
 <span class='line-number'>28</span>
 <span class='line-number'>29</span>
 <span class='line-number'>30</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>static __attribute__((noinline))
-</span><span class='line'>id *autoreleaseNoPage(id obj)
-</span><span class='line'>{
-</span><span class='line'>    // No pool in place.
-</span><span class='line'>    assert(!hotPage());
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># Default options. Overridden by values in _config.yml.
+</span><span class='line'># Strings rather than symbols are used for compatibility with YAML.
+</span><span class='line'>DEFAULTS = {
+</span><span class='line'>  # Where things are
+</span><span class='line'>  'source'        =&gt; Dir.pwd,
+</span><span class='line'>  'destination'   =&gt; File.join(Dir.pwd, '_site'),
+</span><span class='line'>  'plugins'       =&gt; '_plugins',
+</span><span class='line'>  'layouts'       =&gt; '_layouts',
+</span><span class='line'>  'data_source'   =&gt;  '_data',
+</span><span class='line'>  'collections'   =&gt; nil,
 </span><span class='line'>
-</span><span class='line'>    if (obj != POOL_SENTINEL  &&  DebugMissingPools) {
-</span><span class='line'>        // We are pushing an object with no pool in place, 
-</span><span class='line'>        // and no-pool debugging was requested by environment.
-</span><span class='line'>        _objc_inform("MISSING POOLS: Object %p of class %s "
-</span><span class='line'>                     "autoreleased with no pool in place - "
-</span><span class='line'>                     "just leaking - break on "
-</span><span class='line'>                     "objc_autoreleaseNoPool() to debug", 
-</span><span class='line'>                     (void*)obj, object_getClassName(obj));
-</span><span class='line'>        objc_autoreleaseNoPool(obj);
-</span><span class='line'>        return nil;
+</span><span class='line'>  # Handling Reading
+</span><span class='line'>  'safe'          =&gt; false,
+</span><span class='line'>  'include'       =&gt; ['.htaccess'],
+</span><span class='line'>  'exclude'       =&gt; [],
+</span><span class='line'>  'keep_files'    =&gt; ['.git','.svn'],
+</span><span class='line'>  'encoding'      =&gt; 'utf-8',
+</span><span class='line'>  'markdown_ext'  =&gt; 'markdown,mkdown,mkdn,mkd,md',
+</span><span class='line'>  'full_rebuild'  =&gt; false,
+</span><span class='line'>
+</span><span class='line'>  # Filtering Content
+</span><span class='line'>  'show_drafts'   =&gt; nil,
+</span><span class='line'>  'limit_posts'   =&gt; 0,
+</span><span class='line'>  'future'        =&gt; true,           # remove and make true just default
+</span><span class='line'>  'unpublished'   =&gt; false,
+</span><span class='line'>
+</span><span class='line'>  # Plugins
+</span><span class='line'>  'whitelist'     =&gt; [],
+</span><span class='line'>  'gems'          =&gt; [],
+</span><span class='line'>
+</span><span class='line'>  # Conversion
+</span><span class='line'>  'markdown'      =&gt; 'kramdown',
+</span><span class='line'>  'highlighter'   =&gt; 'rouge',
+</span><span class='line'>  'lsi'           =&gt; false,
+</span><span class='line'>  'excerpt_separator' =&gt; "\n\n",
+</span><span class='line'>
+</span><span class='line'>  # Serving
+</span><span class='line'>  'detach'        =&gt; false,          # default to not detaching the server
+</span><span class='line'>  'port'          =&gt; '4000',
+</span><span class='line'>  'host'          =&gt; '127.0.0.1',
+</span><span class='line'>  'baseurl'       =&gt; '',
+</span><span class='line'>
+</span><span class='line'>  # Output Configuration
+</span><span class='line'>  'permalink'     =&gt; 'date',
+</span><span class='line'>  'paginate_path' =&gt; '/page:num',
+</span><span class='line'>  'timezone'      =&gt; nil,           # use the local timezone
+</span><span class='line'>
+</span><span class='line'>  'quiet'         =&gt; false,
+</span><span class='line'>  'verbose'       =&gt; false,
+</span><span class='line'>  'defaults'      =&gt; [],
+</span><span class='line'>
+</span><span class='line'>  'rdiscount' =&gt; {
+</span><span class='line'>    'extensions' =&gt; []
+</span><span class='line'>  },
+</span><span class='line'>
+</span><span class='line'>  'redcarpet' =&gt; {
+</span><span class='line'>    'extensions' =&gt; []
+</span><span class='line'>  },
+</span><span class='line'>
+</span><span class='line'>  'kramdown' =&gt; {
+</span><span class='line'>    'auto_ids'       =&gt; true,
+</span><span class='line'>    'footnote_nr'    =&gt; 1,
+</span><span class='line'>    'entity_output'  =&gt; 'as_char',
+</span><span class='line'>    'toc_levels'     =&gt; '1..6',
+</span><span class='line'>    'smart_quotes'   =&gt; 'lsquo,rsquo,ldquo,rdquo',
+</span><span class='line'>    'enable_coderay' =&gt; false,
+</span><span class='line'>
+</span><span class='line'>    'coderay' =&gt; {
+</span><span class='line'>      'coderay_wrap'              =&gt; 'div',
+</span><span class='line'>      'coderay_line_numbers'      =&gt; 'inline',
+</span><span class='line'>      'coderay_line_number_start' =&gt; 1,
+</span><span class='line'>      'coderay_tab_width'         =&gt; 4,
+</span><span class='line'>      'coderay_bold_every'        =&gt; 10,
+</span><span class='line'>      'coderay_css'               =&gt; 'style'
 </span><span class='line'>    }
-</span><span class='line'>
-</span><span class='line'>    // Install the first page.
-</span><span class='line'>    AutoreleasePoolPage *page = new AutoreleasePoolPage(nil);
-</span><span class='line'>    setHotPage(page);
-</span><span class='line'>
-</span><span class='line'>    // Push an autorelease pool boundary if it wasn't already requested.
-</span><span class='line'>    if (obj != POOL_SENTINEL) {
-</span><span class='line'>        page-&gt;add(POOL_SENTINEL);
-</span><span class='line'>    }
-</span><span class='line'>
-</span><span class='line'>    // Push the requested object.
-</span><span class='line'>    return page-&gt;add(obj);
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>  }
+</span><span class='line'>}
+</span></code></pre></td></tr></table></div></figure>
 
-
-<p>每个 page  的大小是 4096 ，指的是能存储 4096 个对象地址。</p>
-
-<p>如果 <code>page-&gt;full()</code> 已满，则(通过 <code>autoreleaseFullPage(obj, page);</code>)自动从子节点中寻找一个未满的 page 添加新的对象，如果所有子节点都满了，就会创建一个新的page 并让 hotPage 指向这个新的 page，最后添加进新的对象。</p>
-
-<p>如果没有任何的 page，则创建第一个 page，并添加一个 POOL_SENTINEL 作为边界，然后添加这个新的 obj 对象。</p>
 </div>
 
 
@@ -257,12 +285,12 @@ static inline id autorelease(id obj)
 
 
 
-<time class='entry-date' datetime='2015-08-18T10:51:06+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>18</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>10:51 am</span></time>
+<time class='entry-date' datetime='2015-08-19T11:32:06+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>19</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>11:32 am</span></time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/objc/'>objc</a>
+    <a class='category' href='/blog/categories/jekyll/'>jekyll</a>
   
 </span>
 
@@ -278,10 +306,10 @@ static inline id autorelease(id obj)
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2015/08/18/libdispatch-yuan-ma-fen-xi/" title="Previous Post: libdispatch 源码分析">&laquo; libdispatch 源码分析</a>
+        <a class="basic-alignment left" href="/blog/2015/08/19/blockzai-clangzhong-de-shi-xian/" title="Previous Post: Block在Clang中的实现">&laquo; Block在Clang中的实现</a>
       
       
-        <a class="basic-alignment right" href="/blog/2015/08/19/blockzai-clangzhong-de-shi-xian/" title="Next Post: Block在Clang中的实现">Block在Clang中的实现 &raquo;</a>
+        <a class="basic-alignment right" href="/blog/2015/08/19/jekyll-site-class-available-attr/" title="Next Post: Jekyll site class available attr">Jekyll site class available attr &raquo;</a>
       
     </p>
   </footer>
@@ -409,8 +437,8 @@ static inline id autorelease(id obj)
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://xudeheng.github.io/ios_tech_octopress/blog/2015/08/18/autoreleasefang-fa-deyuan-ma-fen-xi/';
-        var disqus_url = 'http://xudeheng.github.io/ios_tech_octopress/blog/2015/08/18/autoreleasefang-fa-deyuan-ma-fen-xi/';
+        var disqus_identifier = 'http://xudeheng.github.io/ios_tech_octopress/blog/2015/08/19/jekyll-configuration-fileds/';
+        var disqus_url = 'http://xudeheng.github.io/ios_tech_octopress/blog/2015/08/19/jekyll-configuration-fileds/';
         var disqus_script = 'embed.js';
       
     (function () {

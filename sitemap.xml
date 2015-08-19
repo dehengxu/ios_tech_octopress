@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://xudeheng.github.io/ios_tech_octopress/blog/2015/08/19/jekyll-site-class-available-attr/</loc>
+    <lastmod>2015-08-19T11:35:34+08:00</lastmod>
+  </url>
+  <url>
+    <loc>http://xudeheng.github.io/ios_tech_octopress/blog/2015/08/19/jekyll-configuration-fileds/</loc>
+    <lastmod>2015-08-19T11:32:06+08:00</lastmod>
+  </url>
+  <url>
     <loc>http://xudeheng.github.io/ios_tech_octopress/blog/2015/08/19/blockzai-clangzhong-de-shi-xian/</loc>
     <lastmod>2015-08-19T06:00:02+08:00</lastmod>
   </url>
@@ -106,8 +114,5 @@
   </url>
   <url>
     <loc>http://xudeheng.github.io/ios_tech_octopress/blog/categories/objc/</loc>
-  </url>
-  <url>
-    <loc>http://xudeheng.github.io/ios_tech_octopress/posts/2/</loc>
   </url>
 </urlset>
