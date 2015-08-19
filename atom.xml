@@ -4,7 +4,7 @@
   <title><![CDATA[逆风@{iOS}]]></title>
   <link href="http://xudeheng.github.io/ios_tech_octopress/atom.xml" rel="self"/>
   <link href="http://xudeheng.github.io/ios_tech_octopress/"/>
-  <updated>2015-08-19T15:39:56+08:00</updated>
+  <updated>2015-08-19T15:50:22+08:00</updated>
   <id>http://xudeheng.github.io/ios_tech_octopress/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
@@ -1126,7 +1126,7 @@ return _dispatch_get_root_queue(qos, flags &amp; DISPATCH_QUEUE_OVERCOMMIT);
 
 <p>当学校外面的人需要访问 <code>Teacher</code> 的时候，不需要直接与 <code>Teacher</code> 交流，而是去找 <code>ConcreteVisitor</code> 通过它与 <code>Teacher</code> 进行交流。</p>
 
-<p><a href="git@github.com:xudeheng/ObjcDesignPatterns.git">Objective-c源码</a></p>
+<p><a href="https://github.com/xudeheng/ObjcDesignPatterns">Objective-c源码</a></p>
 ]]></content>
   </entry>
   
