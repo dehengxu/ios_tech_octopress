@@ -185,7 +185,68 @@ struct _block_byref_foo {
 > e. 变量自身呗设置为初始值。
 > f. `isa` 域被设置为 `NULL`。
 
+#### 在词法范围内访问`__block`变量
 
+为了通过 `copy_helper` 操作编译器 “移动”变量到堆上面，必须简介通过结构体指针`forwarding`来重写访问这个变量。
+
+```
+int __block i = 10;
+i = 11;
+```
+
+会被重写成:
+
+```
+struct _block_byref_i {
+  void *isa;
+  struct _block_byref_i *forwarding;
+  int flags;   //refcount;
+  int size;
+  int captured_i;
+} i = { NULL, &i, 0, sizeof(struct _block_byref_i), 10 };
+
+i.forwarding->captured_i = 11;
+```
+
+在 Block 引用变量被 `__block` 修饰后，工具代码必须由 `_Block_object_assign` 和 `_Block_object_dispose` 两个运行时提供的一套函数来进行拷贝。例如:
+
+```
+__block void (voidBlock)(void) = blockA;
+voidBlock = blockB;
+```
+
+会被转换成:
+
+```
+struct _block_byref_voidBlock {
+    void *isa;
+    struct _block_byref_voidBlock *forwarding;
+    int flags;   //refcount;
+    int size;
+    void (*byref_keep)(struct _block_byref_voidBlock *dst, struct _block_byref_voidBlock *src);
+    void (*byref_dispose)(struct _block_byref_voidBlock *);
+    void (^captured_voidBlock)(void);
+};
+
+void _block_byref_keep_helper(struct _block_byref_voidBlock *dst, struct _block_byref_voidBlock *src) {
+    //_Block_copy_assign(&dst->captured_voidBlock, src->captured_voidBlock, 0);
+    _Block_object_assign(&dst->captured_voidBlock, src->captured_voidBlock, BLOCK_FIELD_IS_BLOCK | BLOCK_BYREF_CALLER);
+}
+
+void _block_byref_dispose_helper(struct _block_byref_voidBlock *param) {
+    //_Block_destroy(param->captured_voidBlock, 0);
+    _Block_object_dispose(param->captured_voidBlock, BLOCK_FIELD_IS_BLOCK | BLOCK_BYREF_CALLER)}
+```
+
+和
+
+```
+struct _block_byref_voidBlock voidBlock = {( .forwarding=&voidBlock, .flags=(1<<25), .size=sizeof(struct _block_byref_voidBlock *),
+    .byref_keep=_block_byref_keep_helper, .byref_dispose=_block_byref_dispose_helper,
+    .captured_voidBlock=blockA )};
+
+voidBlock.forwarding->captured_voidBlock = blockB;
+```
 
 
 <a href="http://clang.llvm.org/docs/Block-ABI-Apple.html" target="_blank">block底层实现的官方文档</a>
