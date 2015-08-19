@@ -9,6 +9,8 @@ footer: true
 categories: Jekyll
 ---
 
+<a href="https://docs.shopify.com/themes/liquid-documentation/basics" target="_blank">LiquidDocument</a>
+
 ```
   class Site
     attr_reader   :source, :dest, :config
