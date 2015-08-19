@@ -4,7 +4,7 @@
   <title><![CDATA[逆风@{iOS}]]></title>
   <link href="http://xudeheng.github.io/ios_tech_octopress/atom.xml" rel="self"/>
   <link href="http://xudeheng.github.io/ios_tech_octopress/"/>
-  <updated>2015-08-19T12:56:48+08:00</updated>
+  <updated>2015-08-19T13:01:29+08:00</updated>
   <id>http://xudeheng.github.io/ios_tech_octopress/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
@@ -18,7 +18,9 @@
     <link href="http://xudeheng.github.io/ios_tech_octopress/blog/2015/08/19/jekyll-site-class-available-attr/"/>
     <updated>2015-08-19T11:35:34+08:00</updated>
     <id>http://xudeheng.github.io/ios_tech_octopress/blog/2015/08/19/jekyll-site-class-available-attr</id>
-    <content type="html"><![CDATA[<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+    <content type="html"><![CDATA[<p><a href="https://docs.shopify.com/themes/liquid-documentation/basics" target="_blank">LiquidDocument</a></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
