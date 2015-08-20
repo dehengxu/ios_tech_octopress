@@ -4,7 +4,7 @@
   <title><![CDATA[逆风@{iOS}]]></title>
   <link href="http://ios.dehengxu.com/atom.xml" rel="self"/>
   <link href="http://ios.dehengxu.com/"/>
-  <updated>2015-08-19T17:18:22+08:00</updated>
+  <updated>2015-08-19T23:24:43+08:00</updated>
   <id>http://ios.dehengxu.com/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
@@ -12,6 +12,15 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[NSMutableCopying and NSCopying]]></title>
+    <link href="http://ios.dehengxu.com/blog/2015/08/19/nsmutablecopying-and-nscopying/"/>
+    <updated>2015-08-19T23:24:42+08:00</updated>
+    <id>http://ios.dehengxu.com/blog/2015/08/19/nsmutablecopying-and-nscopying</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Jekyll Site Class Available Attr]]></title>
@@ -497,7 +506,7 @@
 
 <h4>在词法范围内访问<code>__block</code>变量</h4>
 
-<p>为了通过 <code>copy_helper</code> 操作编译器 “移动”变量到堆上面，必须简介通过结构体指针<code>forwarding</code>来重写访问这个变量。</p>
+<p>为了通过 <code>copy_helper</code> 操作编译器 “移动” 变量到堆里面，必须简介通过结构体指针<code>forwarding</code>来重写访问这个变量。</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -527,7 +536,7 @@
 </span><span class='line'>i.forwarding-&gt;captured_i = 11;</span></code></pre></td></tr></table></div></figure>
 
 
-<p>在 Block 引用变量被 <code>__block</code> 修饰后，工具代码必须由 <code>_Block_object_assign</code> 和 <code>_Block_object_dispose</code> 两个运行时提供的一套函数来进行拷贝。例如:</p>
+<p>在 Block 引用变量被 <code>__block</code> 修饰后，工具代码必须用到 <code>_Block_object_assign</code> 和 <code>_Block_object_dispose</code> 这两个运行时提供的配套函数来进行拷贝。例如:</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -588,6 +597,8 @@
 </span><span class='line'>
 </span><span class='line'>voidBlock.forwarding-&gt;captured_voidBlock = blockB;</span></code></pre></td></tr></table></div></figure>
 
+
+<h4>向 <code>Blocks</code> 中导入 <code>__block</code> 变量</h4>
 
 <p><a href="http://clang.llvm.org/docs/Block-ABI-Apple.html" target="_blank">block底层实现的官方文档</a></p>
 ]]></content>
