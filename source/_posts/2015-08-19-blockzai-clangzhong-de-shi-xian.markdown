@@ -187,7 +187,7 @@ struct _block_byref_foo {
 
 #### 在词法范围内访问`__block`变量
 
-为了通过 `copy_helper` 操作编译器 “移动”变量到堆上面，必须简介通过结构体指针`forwarding`来重写访问这个变量。
+为了通过 `copy_helper` 操作编译器 “移动” 变量到堆里面，必须简介通过结构体指针`forwarding`来重写访问这个变量。
 
 ```
 int __block i = 10;
@@ -208,7 +208,7 @@ struct _block_byref_i {
 i.forwarding->captured_i = 11;
 ```
 
-在 Block 引用变量被 `__block` 修饰后，工具代码必须由 `_Block_object_assign` 和 `_Block_object_dispose` 两个运行时提供的一套函数来进行拷贝。例如:
+在 Block 引用变量被 `__block` 修饰后，工具代码必须用到 `_Block_object_assign` 和 `_Block_object_dispose` 这两个运行时提供的配套函数来进行拷贝。例如:
 
 ```
 __block void (voidBlock)(void) = blockA;
@@ -247,6 +247,7 @@ struct _block_byref_voidBlock voidBlock = {( .forwarding=&voidBlock, .flags=(1<<
 
 voidBlock.forwarding->captured_voidBlock = blockB;
 ```
+#### 向 `Blocks` 中导入 `__block` 变量
 
 
 <a href="http://clang.llvm.org/docs/Block-ABI-Apple.html" target="_blank">block底层实现的官方文档</a>
