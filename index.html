@@ -9,7 +9,7 @@
   <meta name="author" content="Deheng Xu">
 
   
-  <meta name="description" content="NSMutableCopying and NSCopying Aug 19th, 2015 11:24 pm Jekyll Site Class Available Attr Aug 19th, 2015 11:35 am Jekyll Configuration Fileds Aug 19th &hellip;">
+  <meta name="description" content="Git常见用法 Aug 21st, 2015 1:52 pm NSMutableCopying and NSCopying Aug 19th, 2015 11:24 pm Jekyll Site Class Available Attr Aug 19th, 2015 11:35 am &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -69,6 +69,111 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" ><a href="/blog/2015/08/21/gitchang-jian-yong-fa/">Git常见用法</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-08-21T13:52:39+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>21</span><span class='date-suffix'>st</span>, <span class='date-year'>2015</span></span> <span class='time'>1:52 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+
+<!-- <div class="entry-content"><h3>1.checkout</h3>
+
+<h4>切换到指定 commit</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>checkout sha-1</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>切换到分支</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>checkout branch_name</span></code></pre></td></tr></table></div></figure>
+
+
+<hr />
+
+<h3>2.merge</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>   D--------E
+</span><span class='line'>  /
+</span><span class='line'> /
+</span><span class='line'>A---B---C---F----G master</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git merge test</span></code></pre></td></tr></table></div></figure>
+
+
+<p>合并结果：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>   D-------------E
+</span><span class='line'>  /               \
+</span><span class='line'> /                 \
+</span><span class='line'>A---B---C---F----G test, master</span></code></pre></td></tr></table></div></figure>
+
+
+<hr />
+
+<h3>3.rebase</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>   D--------E
+</span><span class='line'>  /
+</span><span class='line'> /
+</span><span class='line'>A---B---C---F----G master</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git rebase dev</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>A---B---D---C---E---F----G  test, master</span></code></pre></td></tr></table></div></figure>
+
+
+<p>复位基线，将两个分支的提交纪录，合并到一条基线路线上。功能作用上和 merge 类似，但是不会产生新的提交节点，而且不存在多个提交路线。</p>
+
+<p>当出现冲突的时候，先去解决冲突，完成后，使用 <code>rebase --continue</code> 继续 <code>rebase</code> 操作。如果冲突不重要也可以 <code>rebase --skip</code> 忽略冲突。</p>
+</div> -->
+
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -749,185 +854,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" ><a href="/blog/2015/08/18/autoreleasefang-fa-deyuan-ma-fen-xi/">Autorelease方法的源码分析</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-08-18T10:51:06+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>18</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>10:51 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-
-<!-- <div class="entry-content"><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>static inline id autorelease(id obj)
-</span><span class='line'>{
-</span><span class='line'>    assert(obj);
-</span><span class='line'>    assert(!obj-&gt;isTaggedPointer());
-</span><span class='line'>    id *dest __unused = autoreleaseFast(obj);
-</span><span class='line'>    assert(!dest  ||  *dest == obj);
-</span><span class='line'>    return obj;
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
-
-
-<p>如果指针没有被标记，则进行 autoreleaseFast 处理过程</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>static inline id *autoreleaseFast(id obj)
-</span><span class='line'>{
-</span><span class='line'>    AutoreleasePoolPage *page = hotPage();
-</span><span class='line'>    if (page && !page-&gt;full()) {
-</span><span class='line'>        return page-&gt;add(obj);
-</span><span class='line'>    } else if (page) {
-</span><span class='line'>        return autoreleaseFullPage(obj, page);
-</span><span class='line'>    } else {
-</span><span class='line'>        return autoreleaseNoPage(obj);
-</span><span class='line'>    }
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>static __attribute__((noinline))
-</span><span class='line'>id *autoreleaseFullPage(id obj, AutoreleasePoolPage *page)
-</span><span class='line'>{
-</span><span class='line'>    // The hot page is full. 
-</span><span class='line'>    // Step to the next non-full page, adding a new page if necessary.
-</span><span class='line'>    // Then add the object to that page.
-</span><span class='line'>    assert(page == hotPage()  &&  page-&gt;full());
-</span><span class='line'>
-</span><span class='line'>    do {
-</span><span class='line'>        if (page-&gt;child) page = page-&gt;child;
-</span><span class='line'>        else page = new AutoreleasePoolPage(page);
-</span><span class='line'>    } while (page-&gt;full());
-</span><span class='line'>
-</span><span class='line'>    setHotPage(page);
-</span><span class='line'>    return page-&gt;add(obj);
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>static __attribute__((noinline))
-</span><span class='line'>id *autoreleaseNoPage(id obj)
-</span><span class='line'>{
-</span><span class='line'>    // No pool in place.
-</span><span class='line'>    assert(!hotPage());
-</span><span class='line'>
-</span><span class='line'>    if (obj != POOL_SENTINEL  &&  DebugMissingPools) {
-</span><span class='line'>        // We are pushing an object with no pool in place, 
-</span><span class='line'>        // and no-pool debugging was requested by environment.
-</span><span class='line'>        _objc_inform("MISSING POOLS: Object %p of class %s "
-</span><span class='line'>                     "autoreleased with no pool in place - "
-</span><span class='line'>                     "just leaking - break on "
-</span><span class='line'>                     "objc_autoreleaseNoPool() to debug", 
-</span><span class='line'>                     (void*)obj, object_getClassName(obj));
-</span><span class='line'>        objc_autoreleaseNoPool(obj);
-</span><span class='line'>        return nil;
-</span><span class='line'>    }
-</span><span class='line'>
-</span><span class='line'>    // Install the first page.
-</span><span class='line'>    AutoreleasePoolPage *page = new AutoreleasePoolPage(nil);
-</span><span class='line'>    setHotPage(page);
-</span><span class='line'>
-</span><span class='line'>    // Push an autorelease pool boundary if it wasn't already requested.
-</span><span class='line'>    if (obj != POOL_SENTINEL) {
-</span><span class='line'>        page-&gt;add(POOL_SENTINEL);
-</span><span class='line'>    }
-</span><span class='line'>
-</span><span class='line'>    // Push the requested object.
-</span><span class='line'>    return page-&gt;add(obj);
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
-
-
-<p>每个 page  的大小是 4096 ，指的是能存储 4096 个对象地址。</p>
-
-<p>如果 <code>page-&gt;full()</code> 已满，则(通过 <code>autoreleaseFullPage(obj, page);</code>)自动从子节点中寻找一个未满的 page 添加新的对象，如果所有子节点都满了，就会创建一个新的page 并让 hotPage 指向这个新的 page，最后添加进新的对象。</p>
-
-<p>如果没有任何的 page，则创建第一个 page，并添加一个 POOL_SENTINEL 作为边界，然后添加这个新的 obj 对象。</p>
-</div> -->
-
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -941,6 +867,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/08/21/gitchang-jian-yong-fa/">Git常见用法</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2015/08/19/nsmutablecopying-and-nscopying/">NSMutableCopying and NSCopying</a>
@@ -1016,10 +946,6 @@
     
       <li class="post">
         <a href="/blog/2014/08/29/welcome-to-jekyll/">Welcome to Jekyll!</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/08/29/rake-usage/">Rake Usage</a>
       </li>
     
   </ul>

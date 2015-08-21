@@ -4,7 +4,7 @@
   <title><![CDATA[逆风@{iOS}]]></title>
   <link href="http://ios.dehengxu.com/atom.xml" rel="self"/>
   <link href="http://ios.dehengxu.com/"/>
-  <updated>2015-08-20T19:21:40+08:00</updated>
+  <updated>2015-08-21T15:21:36+08:00</updated>
   <id>http://ios.dehengxu.com/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
@@ -12,6 +12,89 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Git常见用法]]></title>
+    <link href="http://ios.dehengxu.com/blog/2015/08/21/gitchang-jian-yong-fa/"/>
+    <updated>2015-08-21T13:52:39+08:00</updated>
+    <id>http://ios.dehengxu.com/blog/2015/08/21/gitchang-jian-yong-fa</id>
+    <content type="html"><![CDATA[<h3>1.checkout</h3>
+
+<h4>切换到指定 commit</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>checkout sha-1</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>切换到分支</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>checkout branch_name</span></code></pre></td></tr></table></div></figure>
+
+
+<hr />
+
+<h3>2.merge</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>   D--------E
+</span><span class='line'>  /
+</span><span class='line'> /
+</span><span class='line'>A---B---C---F----G master</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git merge test</span></code></pre></td></tr></table></div></figure>
+
+
+<p>合并结果：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>   D-------------E
+</span><span class='line'>  /               \
+</span><span class='line'> /                 \
+</span><span class='line'>A---B---C---F----G test, master</span></code></pre></td></tr></table></div></figure>
+
+
+<hr />
+
+<h3>3.rebase</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>   D--------E
+</span><span class='line'>  /
+</span><span class='line'> /
+</span><span class='line'>A---B---C---F----G master</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git rebase dev</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>A---B---D---C---E---F----G  test, master</span></code></pre></td></tr></table></div></figure>
+
+
+<p>复位基线，将两个分支的提交纪录，合并到一条基线路线上。功能作用上和 merge 类似，但是不会产生新的提交节点，而且不存在多个提交路线。</p>
+
+<p>当出现冲突的时候，先去解决冲突，完成后，使用 <code>rebase --continue</code> 继续 <code>rebase</code> 操作。如果冲突不重要也可以 <code>rebase --skip</code> 忽略冲突。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[NSMutableCopying and NSCopying]]></title>
@@ -1468,42 +1551,6 @@ return _dispatch_get_root_queue(qos, flags &amp; DISPATCH_QUEUE_OVERCOMMIT);
 
 
 <p>Check out the <a href="http://jekyllrb.com">Jekyll docs</a> for more info on how to get the most out of Jekyll. File all bugs/feature requests at <a href="https://github.com/jekyll/jekyll">Jekyll’s GitHub repo</a>. If you have questions, you can ask them on <a href="https://github.com/jekyll/jekyll-help">Jekyll’s dedicated Help repository</a>.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Rake Usage]]></title>
-    <link href="http://ios.dehengxu.com/blog/2014/08/29/rake-usage/"/>
-    <updated>2014-08-29T14:42:06+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/2014/08/29/rake-usage</id>
-    <content type="html"><![CDATA[<h2>What is rake</h2>
-
-<p>Rake is a ruby build tool likes ant, make&hellip;</p>
-
-<p>In ant, it composed with <code>taget</code>s, but in rake it composed with <code>task</code></p>
-
-<h2>Add your task</h2>
-
-<h3>Normal task</h3>
-
-<p>Define your own task</p>
-
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">task</span> <span class="ss">:taskName</span> <span class="k">do</span>
-    <span class="c1">#Your task code in ruby syntax.</span>
-<span class="k">end</span></code></pre></div>
-
-
-<h3>Task with params.</h3>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>task :taskName, :param1 do |t, params|
-</span><span class='line'>  #Here params is an hash table object.
-</span><span class='line'>end</span></code></pre></td></tr></table></div></figure>
-
-
-<blockquote><p><a href="http://jasonseifer.com/2010/04/06/rake-tutorial">http://jasonseifer.com/2010/04/06/rake-tutorial</a></p></blockquote>
 ]]></content>
   </entry>
   
