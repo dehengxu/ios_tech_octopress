@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Scm,git | 逆风@{iOS}]]></title>
+  <link href="http://ios.dehengxu.com/blog/categories/scm-git/atom.xml" rel="self"/>
+  <link href="http://ios.dehengxu.com/"/>
+  <updated>2015-08-22T23:12:59+08:00</updated>
+  <id>http://ios.dehengxu.com/</id>
+  <author>
+    <name><![CDATA[Deheng Xu]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Git常见用法]]></title>
+    <link href="http://ios.dehengxu.com/blog/2015/08/21/gitchang-jian-yong-fa/"/>
+    <updated>2015-08-21T13:52:39+08:00</updated>
+    <id>http://ios.dehengxu.com/blog/2015/08/21/gitchang-jian-yong-fa</id>
+    <content type="html"><![CDATA[<h3>1.checkout</h3>
+
+<h4>切换到指定 commit</h4>
+
+<pre><code>checkout sha-1
+</code></pre>
+
+<h4>切换到分支</h4>
+
+<pre><code>checkout branch_name
+</code></pre>
+
+<hr />
+
+<h3>2.merge</h3>
+
+<pre><code>   D--------E
+  /
+ /
+A---B---C---F----G master
+</code></pre>
+
+<pre><code>git merge test
+</code></pre>
+
+<p>合并结果：</p>
+
+<pre><code>   D-------------E
+  /               \
+ /                 \
+A---B---C---F----G test, master
+</code></pre>
+
+<hr />
+
+<h3>3.rebase</h3>
+
+<pre><code>   D--------E
+  /
+ /
+A---B---C---F----G master
+</code></pre>
+
+<pre><code>git rebase dev
+</code></pre>
+
+<pre><code>A---B---D---C---E---F----G  test, master
+</code></pre>
+
+<p>复位基线，将两个分支的提交纪录，合并到一条基线路线上。功能作用上和 merge 类似，但是不会产生新的提交节点，而且不存在多个提交路线。</p>
+
+<p>当出现冲突的时候，先去解决冲突，完成后，使用 <code>rebase --continue</code> 继续 <code>rebase</code> 操作。如果冲突不重要也可以 <code>rebase --skip</code> 忽略冲突。</p>
+]]></content>
+  </entry>
+  
+</feed>

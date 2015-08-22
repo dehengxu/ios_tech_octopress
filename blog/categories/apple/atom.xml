@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Apple | 逆风@{iOS}]]></title>
+  <link href="http://ios.dehengxu.com/blog/categories/apple/atom.xml" rel="self"/>
+  <link href="http://ios.dehengxu.com/"/>
+  <updated>2015-08-22T23:12:59+08:00</updated>
+  <id>http://ios.dehengxu.com/</id>
+  <author>
+    <name><![CDATA[Deheng Xu]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Apple Open Source]]></title>
+    <link href="http://ios.dehengxu.com/blog/2015/08/17/apple-open-source/"/>
+    <updated>2015-08-17T10:04:40+08:00</updated>
+    <id>http://ios.dehengxu.com/blog/2015/08/17/apple-open-source</id>
+    <content type="html"><![CDATA[<p><a href="http://opensource.apple.com/tarballs/" target="_blank">Apple Open Source</a></p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Utilities | 逆风@{iOS}]]></title>
+  <link href="http://ios.dehengxu.com/blog/categories/utilities/atom.xml" rel="self"/>
+  <link href="http://ios.dehengxu.com/"/>
+  <updated>2015-08-22T23:12:59+08:00</updated>
+  <id>http://ios.dehengxu.com/</id>
+  <author>
+    <name><![CDATA[Deheng Xu]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Useful Plugins & Tools for Xcode]]></title>
+    <link href="http://ios.dehengxu.com/blog/2015/08/16/useful-plugins-and-tools-for-xcode/"/>
+    <updated>2015-08-16T08:13:33+08:00</updated>
+    <id>http://ios.dehengxu.com/blog/2015/08/16/useful-plugins-and-tools-for-xcode</id>
+    <content type="html"><![CDATA[<h3>Synx</h3>
+
+<blockquote><p>A command line tool used for reform folder hierachy of Xcode, it can make a real folder for &lsquo;Group&rsquo; in Xcode project and make folder hierachy looks pretty.</p></blockquote>
+
+<p>Usage:</p>
+
+<pre><code>synx SomeProject.xcodeproj
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>
