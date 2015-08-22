@@ -6,8 +6,7 @@ comments: true
 published: true
 sharing: true
 footer: true
-categories: 
-tags: ARC
+categories: arc, objc
 ---
 
 <a href="https://developer.apple.com/library/ios/releasenotes/ObjectiveC/RN-TransitioningToARC/Introduction/Introduction.html#//apple_ref/doc/uid/TP40011226-CH1-SW13" target="_blank">ARC Overview</a>

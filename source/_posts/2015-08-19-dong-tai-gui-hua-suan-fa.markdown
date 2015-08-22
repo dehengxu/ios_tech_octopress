@@ -6,7 +6,7 @@ comments: true
 published: false
 sharing: true
 footer: true
-categories: 
+categories: algoritnm
 ---
 
 

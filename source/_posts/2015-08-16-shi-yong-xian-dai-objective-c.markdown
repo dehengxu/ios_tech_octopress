@@ -3,7 +3,7 @@ layout: post
 title: "使用现代Objective-C"
 date: 2015-08-16 15:32:41 +0800
 comments: true
-categories: 
+categories: objc
 ---
 
 现代 Objective-C 比传统 Objective-C 增加了很多优雅的语法和特性。

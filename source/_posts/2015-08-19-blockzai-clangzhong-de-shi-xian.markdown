@@ -6,7 +6,7 @@ comments: true
 published: true
 sharing: true
 footer: true
-categories: 
+categories: objc
 ---
 
 ### 被导入的变量

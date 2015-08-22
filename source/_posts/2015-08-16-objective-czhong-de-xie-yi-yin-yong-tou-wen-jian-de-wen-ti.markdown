@@ -3,7 +3,7 @@ layout: post
 title: "Objective-C中的协议引用头文件的问题"
 date: 2015-08-16 00:59:41 +0800
 comments: true
-categories: 
+categories: objc
 ---
 
 Objective-C 中循环引用头文件，会导致，头文件中声明的符号无法识别的问题。典型的问题是:

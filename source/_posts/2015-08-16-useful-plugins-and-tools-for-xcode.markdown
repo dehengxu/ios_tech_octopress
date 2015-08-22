@@ -3,7 +3,7 @@ layout: post
 title: "Useful plugins & tools for Xcode"
 date: 2015-08-16 08:13:33 +0800
 comments: true
-categories: 
+categories: utilities
 ---
 
 ### Synx

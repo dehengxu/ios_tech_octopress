@@ -4,7 +4,7 @@ title: "libdispatch 源码分析"
 date: 2015-08-18 08:57:37 +0800
 comments: true
 published: true
-categories: ObjC
+categories: objc
 ---
 
 GCD 是苹果的多线程框架，提供了大量便捷的特性，允许用户利用多核 cpu 技术 ，使用中，最常接触的是 

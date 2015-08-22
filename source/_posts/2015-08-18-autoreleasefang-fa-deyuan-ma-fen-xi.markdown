@@ -6,7 +6,7 @@ comments: true
 published: true
 sharing: true
 footer: true
-categories: ObjC
+categories: objc
 ---
 
 ```

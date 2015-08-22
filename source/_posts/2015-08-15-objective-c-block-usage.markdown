@@ -3,7 +3,7 @@ layout: post
 title: "Objective-C block usage"
 date: 2015-08-15 14:43:40 +0800
 comments: true
-categories: Objective-C, block
+categories: objc
 ---
 
 ## Block syntax

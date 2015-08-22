@@ -6,5 +6,5 @@ comments: true
 published: true
 sharing: true
 footer: true
-categories: 
+categories: objc
 ---

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Hello, rake"
-category: 
-tags: []
+category: ruby
+tags: [ruby,rake]
 ---
 

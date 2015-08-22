@@ -3,7 +3,7 @@ layout: post
 title: "Config java envir on OSX"
 date: 2014-08-30 14:45:49 +0800
 comments: true
-categories: Java
+categories: java
 ---
 
 Error message:

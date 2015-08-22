@@ -6,7 +6,7 @@ comments: true
 published: true
 sharing: true
 footer: true
-categories: 
+categories: process
 ---
 ### 序
 
