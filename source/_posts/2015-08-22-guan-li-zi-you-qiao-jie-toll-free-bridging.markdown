@@ -6,11 +6,50 @@ comments: true
 published: true
 sharing: true
 footer: true
-categories: 
+categories: objc, arc
 ---
 
-* __bridge
+在很多 Cocoa 应用程序中，你需要使用 Core Foundation 风格的对象，有的来自 Core Foundation 框架自己(像：[CFArrayRef](https://developer.apple.com/library/ios/documentation/CoreFoundation/Reference/CFArrayRef/index.html#//apple_ref/c/tdef/CFArrayRef) 或 [CFMutaleDictionaryRef](https://developer.apple.com/library/ios/documentation/CoreFoundation/Reference/CFMutableDictionaryRef/index.html#//apple_ref/c/tdef/CFMutableDictionaryRef)) 或者来自于适配了 Core Foudation 大会例如 Core Graphics (你可能使用这些类型：[CGColorSpaceRef](https://developer.apple.com/library/ios/documentation/GraphicsImaging/Reference/CGColorSpace/index.html#//apple_ref/c/tdef/CGColorSpaceRef) 和  [CGGradientRef](https://developer.apple.com/library/ios/documentation/GraphicsImaging/Reference/CGGradient/index.html#//apple_ref/c/tdef/CGGradientRef))。
 
-* __bridge_retained 或 CFBridgingRetain
+编译器不会自动管理 Core Foundation 对象的生命期；你必须调用 [CFRetain](https://developer.apple.com/library/ios/documentation/CoreFoundation/Reference/CFTypeRef/index.html#//apple_ref/c/func/CFRetain) 和 [CFRelease](https://developer.apple.com/library/ios/documentation/CoreFoundation/Reference/CFTypeRef/index.html#//apple_ref/c/func/CFRelease) (或者响应类型指定的变体) 就像 Core Foundation 内存管理规则中描述的(见 [Memory Management Programming](https://developer.apple.com/library/ios/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/CFMemoryMgmt.html#//apple_ref/doc/uid/10000127i))。
 
-* __bridge_transfer 或 CFBridgingRelease
+如果你在 Objective-C 和 Core Foundation 风格对象之间互相转换，你需要告诉编译器使用转换(定义在 objc/runtime.h中)或者 Core Foundation 风格的宏(定义在 NSObjecti.h中) 对象所拥有的的语义关系:
+
+* __bridge 在 Objective-C 和 Core Foundation 之间转换指针，而不需要传递所有权。
+
+* __bridge_retained 或 CFBridgingRetain 转换 Objective-C 指针为 Core Foundation 指针，并且传递所有权个你。你响应 CFRelease 调用，或者相关的函数释放对象所有权。
+
+* __bridge_transfer 或 CFBridgingRelease 移动非 Objective-C 指针到 Objective-C ，并且也传递所有权到 ARC。 ARC 负责释放对象的所有权。
+
+举个例子，如果你曾经这样写过代码：
+
+```
+- (void)logFirstNameOfPerson:(ABRecordRef)person {
+ 
+    NSString *name = (NSString *)ABRecordCopyValue(person, kABPersonFirstNameProperty);
+    NSLog(@"Person's first name: %@", name);
+    [name release];
+}
+```
+
+你可以替换成：
+
+```
+- (void)logFirstNameOfPerson:(ABRecordRef)person {
+ 
+    NSString *name = (NSString *)CFBridgingRelease(ABRecordCopyValue(person, kABPersonFirstNameProperty));
+    NSLog(@"Person's first name: %@", name);
+}
+```
+### 编译器处理从 Cocoa 方法中返回的 CF 对象
+
+编译器根据历史上的 Cocoa 命名规则理解那些返回 Core Foundation 类型的 Objective-C 方法(见: [Advanced Memory Management Programming Guide](https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/MemoryMgmt/Articles/MemoryMgmt.html#//apple_ref/doc/uid/10000011i))。例如，编译器知道,iOS 中 CGColor 通过 [UIColor](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIColor_Class/index.html#//apple_ref/occ/cl/UIColor) 的 [CGColor](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIColor_Class/index.html#//apple_ref/occ/instp/UIColor/CGColor) 方法返回的对象不属于这个规则。你必须使用合适的类型转换，看下面的代码：
+
+```
+NSMutableArray *colors = [NSMutableArray arrayWithObject:(id)[[UIColor darkGrayColor] CGColor]];
+[colors addObject:(id)[[UIColor lightGrayColor] CGColor]];
+```
+
+
+
+
