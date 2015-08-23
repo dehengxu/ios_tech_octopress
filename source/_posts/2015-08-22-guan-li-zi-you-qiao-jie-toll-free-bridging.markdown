@@ -17,9 +17,9 @@ categories: objc, arc
 
 * __bridge 在 Objective-C 和 Core Foundation 之间转换指针，而不需要传递所有权。
 
-* __bridge_retained 或 CFBridgingRetain 转换 Objective-C 指针为 Core Foundation 指针，并且传递所有权个你。你响应 CFRelease 调用，或者相关的函数释放对象所有权。
+* __bridge_retained 或 CFBridgingRetain 转换 Objective-C 指针为 Core Foundation 指针，并且传递对象所有权给你，你负责进行 CFRelease 调用，或者调用相关的函数释放对象所有权。
 
-* __bridge_transfer 或 CFBridgingRelease 移动非 Objective-C 指针到 Objective-C ，并且也传递所有权到 ARC。 ARC 负责释放对象的所有权。
+* __bridge_transfer 或 CFBridgingRelease 移动非 Objective-C 指针到 Objective-C ，同时传递所有权到 ARC。 ARC 负责释放对象的所有权。
 
 举个例子，如果你曾经这样写过代码：
 
