@@ -41,88 +41,88 @@ disaptch_async(queue, ^() {
 
 1.    dispatch_semaphor_t
 
-```
-dispatch_semaphor_t semaphor = disaptch_semaphor_create(1);
+	```
+	dispatch_semaphor_t semaphor = disaptch_semaphor_create(1);
 
-dispatch_async(queue, ^() {
-	dispatch_semaphor_wait(semaphor);
-	//Todo...
+	dispatch_async(queue, ^() {
+		dispatch_semaphor_wait(semaphor);
+		//Todo...
 
-	//Finished.
-	dispatch_semaphor_signal(semaphor);
-});
+		//Finished.
+		dispatch_semaphor_signal(semaphor);
+	});
 
-```
+	```
 
-创建一个只允许一个线程访问的信号量 `disaptch_semaphor_create(1);`
+	创建一个只允许一个线程访问的信号量 `disaptch_semaphor_create(1);`
 
-通知其他访问对象等待 `dispatch_semaphor_wait(semaphor);`
+	通知其他访问对象等待 `dispatch_semaphor_wait(semaphor);`
 
-资源访问结束后，退回占用的资源，并通知其他访问对象可以进行访问。 `dispatch_semaphor_signal(semaphor);`
+	资源访问结束后，退回占用的资源，并通知其他访问对象可以进行访问。 `dispatch_semaphor_signal(semaphor);`
 
 
 2.    dispatch_group_wait
 
-```
-dispatch_group_t group = dispatch_group_create();
+	```
+	dispatch_group_t group = dispatch_group_create();
 
-dispatch_group_async(group, q1, ^ {
-	//Task 1.
-});
+	dispatch_group_async(group, q1, ^ {
+		//Task 1.
+	});
 
-dispatch_group_async(group, q1, ^ {
-	//Task 2.
-});
+	dispatch_group_async(group, q1, ^ {
+		//Task 2.
+	});
 
-dispatch_group_async(group, q1, ^ {
-	//Task 3.
-});
+	dispatch_group_async(group, q1, ^ {
+		//Task 3.
+	});
 
-dispatch_async(queue, ^() {
-	dispatch_group_wait(group);
-	//Todo....
+	dispatch_async(queue, ^() {
+		dispatch_group_wait(group);
+		//Todo....
 
-});
-```
+	});
+	```
 
-`dispatch_group_async`: 添加任务到分组中。
+	`dispatch_group_async`: 添加任务到分组中。
 
-`dispatch_group_wait(group);` 等待 group 里的所有任务完成后方可继续。
+	`dispatch_group_wait(group);` 等待 group 里的所有任务完成后方可继续。
 
 
 3.    dispatch_group_notify
 
-```
-dispatch_group_notify(group, q1, ^ {
-	//Todo...
+	```
+	dispatch_group_notify(group, q1, ^ {
+		//Todo...
 
-});
-```
+	});
+	```
 
-`dispatch_group_notify`: group中的所有任务完成后，执行 block 中的代码。
+	`dispatch_group_notify`: group中的所有任务完成后，执行 block 中的代码。
 
 4.    dispatch_group_enter, dispatch_group_leave
 
-```
-dispatch_group_enter(group);
+	```
+	dispatch_group_enter(group);
 
-dispatch_async(q1, ^ {
-	//Todo...
+	dispatch_async(q1, ^ {
+		//Todo...
 
-	dispatch_group_leave(group);
-});
+		dispatch_group_leave(group);
+	});
 
-```
+	```
 
-该代码等价于:
+	该代码等价于:
 
-```
-dispatch_group_async(q1, ^ {
-	//Todo...
-});
-```
+	```
+	dispatch_group_async(q1, ^ {
+		//Todo...
+	});
+	```
 
-作用也是将任务放入到 q1 队列中，同时也添加到分组中。
+	作用也是将任务放入到 q1 队列中，同时也添加到分组中。
 
 ### 使用 apply 来提高并行效率
 
