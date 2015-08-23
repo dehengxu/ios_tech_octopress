@@ -9,7 +9,7 @@
   <meta name="author" content="Deheng Xu">
 
   
-  <meta name="description" content="Objective-C中的协议引用头文件的问题 Aug 16th, 2015 12:59 am 常用23种设计模式简介 Aug 15th, 2015 11:47 pm 设计模式-观察者模式 Aug 15th, 2015 11:46 pm Objective-C Block Usage Aug &hellip;">
+  <meta name="description" content="Useful Plugins & Tools for Xcode Aug 16th, 2015 8:13 am 设计模式-访问者模式 Aug 16th, 2015 8:05 am Objective-C中的协议引用头文件的问题 Aug 16th, 2015 12:59 am &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -69,6 +69,95 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" ><a href="/blog/2015/08/16/useful-plugins-and-tools-for-xcode/">Useful Plugins & Tools for Xcode</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-08-16T08:13:33+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>16</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>8:13 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+
+<!-- <div class="entry-content"><h3>Synx</h3>
+
+<blockquote><p>A command line tool used for reform folder hierachy of Xcode, it can make a real folder for &lsquo;Group&rsquo; in Xcode project and make folder hierachy looks pretty.</p></blockquote>
+
+<p>Usage:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>synx SomeProject.xcodeproj
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div> -->
+
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" ><a href="/blog/2015/08/16/design-pattern-visitor/">设计模式-访问者模式</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-08-16T08:05:25+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>16</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>8:05 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+
+<!-- <div class="entry-content"><h3>模式说明：</h3>
+
+<blockquote><p>访问者模式(Visitor Pattern)，是一种具有双分派能力的模式，它通过 Visitor 接口约定为已有类 Element 进行扩展，扩展的目标是尽可能少的修改已有类 Element ，在 Visitor 中增加新扩展的接口，对 Element 中的现有接口进行访问。而 Visitor 以外的部分，不需要知道 Element 的具体实现和操作，进行了封装。
+所谓<code>双分派</code>指的是，该模式可以通过不同的 <code>Visitor</code> 对不同的 <code>Element</code> 进行访问。</p></blockquote>
+
+<p>举例：</p>
+
+<blockquote><p>场景介绍，以学校为背景，引入 Teacher, Student, Parent 三类人作为已有类型， 引入 ConcreteVisitor 作为 Visitor 的具体实现类，对以上三者进行扩展。</p>
+
+<p><code>ElementProtocol</code> 作为 Teacher, Student, Parent 的公共接口协议。
+<code>VisitorProtocol</code> 作为访问者的公共接口协议。
+<code>Teacher, Student, Parent</code> 三者是具体的 Element 实现。
+<code>ConcreteVisitor</code> 是具体的 Visitor 实现。</p></blockquote>
+
+<p>当学校外面的人需要访问 <code>Teacher</code> 的时候，不需要直接与 <code>Teacher</code> 交流，而是去找 <code>ConcreteVisitor</code> 通过它与 <code>Teacher</code> 进行交流。</p>
+
+<p><a href="https://github.com/xudeheng/ObjcDesignPatterns">Objective-c源码</a></p>
+</div> -->
+
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -197,190 +286,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" ><a href="/blog/2015/08/15/objective-c-block-usage/">Objective-C Block Usage</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-08-15T14:43:40+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>2:43 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-
-<!-- <div class="entry-content"><h2>Block syntax</h2>
-
-<blockquote><p>Block description</p></blockquote>
-
-<h3>1. Use block as callback</h3>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>int (^maxBlock)(int, int);
-</span><span class='line'>maxBlock = ^(int a, int b) {
-</span><span class='line'>  return a &gt; b ? a : b;
-</span><span class='line'>}
-</span><span class='line'>
-</span><span class='line'>NSLog(@"max is %d", maxBlock(89, 22));
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>2. Use block as parameter</h3>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>- (void)someMethod:(void(^)(void))action;
-</span><span class='line'>
-</span><span class='line'>[self someMethod:^() {
-</span><span class='line'>  NSLog(@"Do some operation in block.");
-</span><span class='line'>}];
-</span><span class='line'>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>3. Use block in recurcive callback</h3>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>void testFunc() {
-</span><span class='line'>  // It looks well.
-</span><span class='line'>  int(^fibonacci)(int) = ^(int n) {
-</span><span class='line'>      if (n &lt;= 1) return n;
-</span><span class='line'>
-</span><span class='line'>      return fibonacci(n - 1) + fibonacci(n - 2);
-</span><span class='line'>  }
-</span><span class='line'>
-</span><span class='line'>  fibonacci(10);
-</span><span class='line'>}
-</span><span class='line'>//It raise exception in runtme.
-</span><span class='line'>//CompositeTests testExample]_block_invoke(.block_descriptor=0x00007fe0da577710, folder=0x00007fe0da575c50) + 766 at CompositeTests.m:49, queue = 'com.apple.main-thread', stop reason = EXC_BAD_ACCESS (code=1, address=0x10)
-</span></code></pre></td></tr></table></div></figure>
-
-
-<blockquote><p>So, you should add <code>static</code> before block declaring, because at this time block is not created and it raise BAD_ACCESS to memory.</p></blockquote>
-
-<h3>4. <strong>block vs </strong>weak</h3>
-
-<p>我们为了防止 block 将对象进行自动强引用导致出现引用循环，有时候会使用 <strong>block 进行 weakRef 的声明，但是  </strong>weak 也可以达成这个目的，那么 <strong>block 和 </strong>weak 有什么区别呢?</p>
-
-<p>我们通常会这么做，这种情况 <strong>block 和 </strong>weak 似乎看不出什么区别</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>__block weskRef = obj
-</span><span class='line'>
-</span><span class='line'>void(^aBlock)() = ^() {
-</span><span class='line'>  NSLog@("%@", weakRef);
-</span><span class='line'>}
-</span><span class='line'>
-</span><span class='line'>aBlock();
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>可是如果这样呢</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>__block weskRef = obj;
-</span><span class='line'>
-</span><span class='line'>void(^aBlock)() = ^() {
-</span><span class='line'>  NSLog@("%@", weakRef);
-</span><span class='line'>}
-</span><span class='line'>
-</span><span class='line'>aBlock();
-</span><span class='line'>
-</span><span class='line'>obj = nil;</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>__block</h4>
-
-<blockquote><p>__block 会保证 weakRef 对象一直有效，直到 block 本身不再使用 weakRef 才会真正释放掉 obj</p></blockquote>
-
-<h4>__weak</h4>
-
-<blockquote><p>__weak 则会在 <code>obj = nil</code>  的同时将 weakRef 置为 <code>nil</code>。</p></blockquote>
-
-<p>这就是 <code>__block</code> 和 <code>__weak</code> 的区别。</p>
-</div> -->
-
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" ><a href="/blog/2015/08/15/hello-rake/">Hello, Rake</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-08-15T00:00:00+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>12:00 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-
-<!-- <div class="entry-content">
-</div> -->
-
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/5">&larr; Older</a>
@@ -396,6 +301,14 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/08/23/xian-cheng-he-jin-cheng-jian-de-qu-bie/">线程和进程间的区别</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/08/23/timer-hui-diao-shi-jian-bei-uijiao-hu-zu-sai-de-jie-jue-ban-fa/">Timer ⌚回调事件被UI交互阻塞的解决办法</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2015/08/23/tong-guo-clang-fen-xi-block-de-ji-zhi/">通过 Clang 分析 Block 的机制</a>
@@ -467,14 +380,6 @@
     
       <li class="post">
         <a href="/blog/2015/08/15/design-pattern-observer/">设计模式-观察者模式</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/08/15/objective-c-block-usage/">Objective-C Block Usage</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/08/15/hello-rake/">Hello, Rake</a>
       </li>
     
   </ul>

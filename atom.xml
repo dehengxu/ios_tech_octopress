@@ -4,7 +4,7 @@
   <title><![CDATA[逆风@{iOS}]]></title>
   <link href="http://ios.dehengxu.com/atom.xml" rel="self"/>
   <link href="http://ios.dehengxu.com/"/>
-  <updated>2015-08-23T13:57:44+08:00</updated>
+  <updated>2015-08-23T15:45:37+08:00</updated>
   <id>http://ios.dehengxu.com/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
@@ -12,6 +12,154 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[线程和进程间的区别]]></title>
+    <link href="http://ios.dehengxu.com/blog/2015/08/23/xian-cheng-he-jin-cheng-jian-de-qu-bie/"/>
+    <updated>2015-08-23T15:13:25+08:00</updated>
+    <id>http://ios.dehengxu.com/blog/2015/08/23/xian-cheng-he-jin-cheng-jian-de-qu-bie</id>
+    <content type="html"><![CDATA[<p><a href="http://www.programmerinterview.com/index.php/operating-systems/thread-vs-process/">译自</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Timer ⌚回调事件被UI交互阻塞的解决办法]]></title>
+    <link href="http://ios.dehengxu.com/blog/2015/08/23/timer-hui-diao-shi-jian-bei-uijiao-hu-zu-sai-de-jie-jue-ban-fa/"/>
+    <updated>2015-08-23T14:59:03+08:00</updated>
+    <id>http://ios.dehengxu.com/blog/2015/08/23/timer-hui-diao-shi-jian-bei-uijiao-hu-zu-sai-de-jie-jue-ban-fa</id>
+    <content type="html"><![CDATA[<p>分析原因：</p>
+
+<p>UI 事件运行在主线程，并且UI 事件的运行模式下 runloop 过滤掉了 timer 事件。</p>
+
+<p>回顾一下 runloop 的运行机制我们知道，runloop 是一个处理事件的循环，为了提高效率和隔离事件，它将事件进行了模式划分，通过 Runloop mode 的方式进行分类，并提供了 <code>runMode:beforeDate:</code> 方法 或者 <code>CFRunLoopRunInMode(CFStringRef mode, CFTimeInterval seconds, Boolean returnAfterSourceHandled)</code> 函数。所以 runloop 在 UI 事件进行中，始终运行在 NSRunLoopCommonModes 模式下。</p>
+
+<h3>Runloop 的模式有这几种：</h3>
+
+<h4>Default: NSDefaultRunLoopMode(Cocoa), kCFRunLoopDefaultMode(Core Foundation)</h4>
+
+<blockquote><p>The default mode is the one used for most operations. Most of the time, you should use this mode to start your run loop and configure your input sources.</p></blockquote>
+
+<h4>Connection: NSConnectionReplyMode (Cocoa)</h4>
+
+<blockquote><p>Cocoa uses this mode in conjunction with NSConnection objects to monitor replies. You should rarely need to use this mode yourself.</p></blockquote>
+
+<h4>Modal: NSModalPanelRunLoopMode (Cocoa)</h4>
+
+<blockquote><p>Cocoa uses this mode to identify events intended for modal panels.</p></blockquote>
+
+<h4>Event tracking: NSEventTrackingRunLoopMode (Cocoa)</h4>
+
+<blockquote><p>Cocoa uses this mode to restrict incoming events during mouse-dragging loops and other sorts of user interface tracking loops.</p></blockquote>
+
+<h4>Common modes: NSRunLoopCommonModes (Cocoa), kCFRunLoopCommonModes (Core Foundation)</h4>
+
+<blockquote><p>This is a configurable group of commonly used modes. Associating an input source with this mode also associates it with each of the modes in the group. For Cocoa applications, this set includes the default, modal, and event tracking modes by default. Core Foundation includes just the default mode initially. You can add custom modes to the set using the CFRunLoopAddCommonMode function.</p></blockquote>
+
+<h3>解决方案有以下两种：</h3>
+
+<h4>1. 在其他线程上运行 timer，并在需要的时候将操作发送到主线程</h4>
+
+<p>objc:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>- (void)startTimer
+</span><span class='line'>{
+</span><span class='line'>    NSThread *th = [[NSThread alloc] initWithTarget:self selector:@selector(threadRun) object:nil];
+</span><span class='line'>    [th start];
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>- (void)addInfinitTimerToCurrentRunloopWithTarget:(id)target selector:(SEL)selector inMode:(NSString *)mode
+</span><span class='line'>{
+</span><span class='line'>    NSTimer *timer = [NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(timerRun:) userInfo:nil repeats:YES];
+</span><span class='line'>    [[NSRunLoop currentRunLoop] addTimer:timer forMode:mode];
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>- (void)threadRun
+</span><span class='line'>{
+</span><span class='line'>    [self addInfinitTimerToCurrentRunloopWithTarget:self selector:@selector(timerRun:) inMode:@"MyTimerMode"];
+</span><span class='line'>
+</span><span class='line'>    while (YES) {
+</span><span class='line'>        NSLog(@"%s while..", __FUNCTION__);
+</span><span class='line'>        
+</span><span class='line'>        [[NSRunLoop currentRunLoop] runMode:@"MyTimerMode" beforeDate:[NSDate distantFuture]];
+</span><span class='line'>    }
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>- (void)timerRun:(id)sender
+</span><span class='line'>{
+</span><span class='line'>    NSLog(@"~");
+</span><span class='line'>    [self performSelectorOnMainThread:@selector(someSelector) withObject:nil waitUntilDone:YES];
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>- (void)someSelector
+</span><span class='line'>{
+</span><span class='line'>  //....
+</span><span class='line'>}
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这里用 NSThread 和自定义的计时器模式 <code>@"MyTimerMode"</code> 来实现。</p>
+
+<h4>2.在主线程加入计时器</h4>
+
+<p>objc:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>- (void)addInfinitTimerToCurrentRunloopWithTarget:(id)target selector:(SEL)selector inMode:(NSString *)mode
+</span><span class='line'>{
+</span><span class='line'>    NSTimer *timer = [NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(timerRun:) userInfo:nil repeats:YES];
+</span><span class='line'>    [[NSRunLoop currentRunLoop] addTimer:timer forMode:mode];
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>//运行在主线程上
+</span><span class='line'>
+</span><span class='line'>[self addInfinitTimerToCurrentRunloopWithTarget:self selector:@selector(timerRun:) inMode:NSRunLoopCommonModes];
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>让 timer 所运行的 Runloop mode 和UI 滚动事件的 Runloop mode 一致即可。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[通过 Clang 分析 Block 的机制]]></title>
@@ -2081,146 +2229,6 @@ return _dispatch_get_root_queue(qos, flags &amp; DISPATCH_QUEUE_OVERCOMMIT);
     <link href="http://ios.dehengxu.com/blog/2015/08/15/design-pattern-observer/"/>
     <updated>2015-08-15T23:46:46+08:00</updated>
     <id>http://ios.dehengxu.com/blog/2015/08/15/design-pattern-observer</id>
-    <content type="html"><![CDATA[
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Objective-C Block Usage]]></title>
-    <link href="http://ios.dehengxu.com/blog/2015/08/15/objective-c-block-usage/"/>
-    <updated>2015-08-15T14:43:40+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/2015/08/15/objective-c-block-usage</id>
-    <content type="html"><![CDATA[<h2>Block syntax</h2>
-
-<blockquote><p>Block description</p></blockquote>
-
-<h3>1. Use block as callback</h3>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>int (^maxBlock)(int, int);
-</span><span class='line'>maxBlock = ^(int a, int b) {
-</span><span class='line'>  return a &gt; b ? a : b;
-</span><span class='line'>}
-</span><span class='line'>
-</span><span class='line'>NSLog(@"max is %d", maxBlock(89, 22));
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>2. Use block as parameter</h3>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>- (void)someMethod:(void(^)(void))action;
-</span><span class='line'>
-</span><span class='line'>[self someMethod:^() {
-</span><span class='line'>  NSLog(@"Do some operation in block.");
-</span><span class='line'>}];
-</span><span class='line'>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>3. Use block in recurcive callback</h3>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>void testFunc() {
-</span><span class='line'>  // It looks well.
-</span><span class='line'>  int(^fibonacci)(int) = ^(int n) {
-</span><span class='line'>      if (n &lt;= 1) return n;
-</span><span class='line'>
-</span><span class='line'>      return fibonacci(n - 1) + fibonacci(n - 2);
-</span><span class='line'>  }
-</span><span class='line'>
-</span><span class='line'>  fibonacci(10);
-</span><span class='line'>}
-</span><span class='line'>//It raise exception in runtme.
-</span><span class='line'>//CompositeTests testExample]_block_invoke(.block_descriptor=0x00007fe0da577710, folder=0x00007fe0da575c50) + 766 at CompositeTests.m:49, queue = 'com.apple.main-thread', stop reason = EXC_BAD_ACCESS (code=1, address=0x10)
-</span></code></pre></td></tr></table></div></figure>
-
-
-<blockquote><p>So, you should add <code>static</code> before block declaring, because at this time block is not created and it raise BAD_ACCESS to memory.</p></blockquote>
-
-<h3>4. <strong>block vs </strong>weak</h3>
-
-<p>我们为了防止 block 将对象进行自动强引用导致出现引用循环，有时候会使用 <strong>block 进行 weakRef 的声明，但是  </strong>weak 也可以达成这个目的，那么 <strong>block 和 </strong>weak 有什么区别呢?</p>
-
-<p>我们通常会这么做，这种情况 <strong>block 和 </strong>weak 似乎看不出什么区别</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>__block weskRef = obj
-</span><span class='line'>
-</span><span class='line'>void(^aBlock)() = ^() {
-</span><span class='line'>  NSLog@("%@", weakRef);
-</span><span class='line'>}
-</span><span class='line'>
-</span><span class='line'>aBlock();
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>可是如果这样呢</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>__block weskRef = obj;
-</span><span class='line'>
-</span><span class='line'>void(^aBlock)() = ^() {
-</span><span class='line'>  NSLog@("%@", weakRef);
-</span><span class='line'>}
-</span><span class='line'>
-</span><span class='line'>aBlock();
-</span><span class='line'>
-</span><span class='line'>obj = nil;</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>__block</h4>
-
-<blockquote><p>__block 会保证 weakRef 对象一直有效，直到 block 本身不再使用 weakRef 才会真正释放掉 obj</p></blockquote>
-
-<h4>__weak</h4>
-
-<blockquote><p>__weak 则会在 <code>obj = nil</code>  的同时将 weakRef 置为 <code>nil</code>。</p></blockquote>
-
-<p>这就是 <code>__block</code> 和 <code>__weak</code> 的区别。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Hello, Rake]]></title>
-    <link href="http://ios.dehengxu.com/blog/2015/08/15/hello-rake/"/>
-    <updated>2015-08-15T00:00:00+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/2015/08/15/hello-rake</id>
     <content type="html"><![CDATA[
 ]]></content>
   </entry>
