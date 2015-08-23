@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Objc, | 逆风@{iOS}]]></title>
   <link href="http://ios.dehengxu.com/blog/categories/objc/atom.xml" rel="self"/>
   <link href="http://ios.dehengxu.com/"/>
-  <updated>2015-08-22T23:12:59+08:00</updated>
+  <updated>2015-08-23T13:57:44+08:00</updated>
   <id>http://ios.dehengxu.com/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
@@ -26,8 +26,8 @@
 
 <ul>
 <li><p>__bridge 在 Objective-C 和 Core Foundation 之间转换指针，而不需要传递所有权。</p></li>
-<li><p>__bridge_retained 或 CFBridgingRetain 转换 Objective-C 指针为 Core Foundation 指针，并且传递所有权个你。你响应 CFRelease 调用，或者相关的函数释放对象所有权。</p></li>
-<li><p>__bridge_transfer 或 CFBridgingRelease 移动非 Objective-C 指针到 Objective-C ，并且也传递所有权到 ARC。 ARC 负责释放对象的所有权。</p></li>
+<li><p>__bridge_retained 或 CFBridgingRetain 转换 Objective-C 指针为 Core Foundation 指针，并且传递对象所有权给你，你负责进行 CFRelease 调用，或者调用相关的函数释放对象所有权。</p></li>
+<li><p>__bridge_transfer 或 CFBridgingRelease 移动非 Objective-C 指针到 Objective-C ，同时传递所有权到 ARC。 ARC 负责释放对象的所有权。</p></li>
 </ul>
 
 

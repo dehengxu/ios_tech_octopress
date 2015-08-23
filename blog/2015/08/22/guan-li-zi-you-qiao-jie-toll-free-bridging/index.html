@@ -96,8 +96,8 @@
 
 <ul>
 <li><p>__bridge 在 Objective-C 和 Core Foundation 之间转换指针，而不需要传递所有权。</p></li>
-<li><p>__bridge_retained 或 CFBridgingRetain 转换 Objective-C 指针为 Core Foundation 指针，并且传递所有权个你。你响应 CFRelease 调用，或者相关的函数释放对象所有权。</p></li>
-<li><p>__bridge_transfer 或 CFBridgingRelease 移动非 Objective-C 指针到 Objective-C ，并且也传递所有权到 ARC。 ARC 负责释放对象的所有权。</p></li>
+<li><p>__bridge_retained 或 CFBridgingRetain 转换 Objective-C 指针为 Core Foundation 指针，并且传递对象所有权给你，你负责进行 CFRelease 调用，或者调用相关的函数释放对象所有权。</p></li>
+<li><p>__bridge_transfer 或 CFBridgingRelease 移动非 Objective-C 指针到 Objective-C ，同时传递所有权到 ARC。 ARC 负责释放对象的所有权。</p></li>
 </ul>
 
 
@@ -181,6 +181,8 @@
         <a class="basic-alignment left" href="/blog/2015/08/21/arc-nei-cun-guan-li/" title="Previous Post: ARC 内存管理">&laquo; ARC 内存管理</a>
       
       
+        <a class="basic-alignment right" href="/blog/2015/08/23/tong-guo-clang-fen-xi-block-de-ji-zhi/" title="Next Post: 通过 clang 分析 block 的机制">通过 clang 分析 block 的机制 &raquo;</a>
+      
     </p>
   </footer>
 </article>
@@ -192,6 +194,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/08/23/tong-guo-clang-fen-xi-block-de-ji-zhi/">通过 Clang 分析 Block 的机制</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2015/08/22/guan-li-zi-you-qiao-jie-toll-free-bridging/">管理自由桥接(Toll-Free Bridging)</a>
@@ -267,10 +273,6 @@
     
       <li class="post">
         <a href="/blog/2015/08/15/hello-rake/">Hello, Rake</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/08/06/welcome-to-jekyll/">Welcome to Jekyll!</a>
       </li>
     
   </ul>

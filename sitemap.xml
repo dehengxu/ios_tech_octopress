@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://ios.dehengxu.com/blog/2015/08/23/tong-guo-clang-fen-xi-block-de-ji-zhi/</loc>
+    <lastmod>2015-08-23T08:35:18+08:00</lastmod>
+  </url>
+  <url>
     <loc>http://ios.dehengxu.com/blog/2015/08/22/guan-li-zi-you-qiao-jie-toll-free-bridging/</loc>
     <lastmod>2015-08-22T18:21:12+08:00</lastmod>
   </url>
@@ -149,5 +153,17 @@
   </url>
   <url>
     <loc>http://ios.dehengxu.com/blog/categories/arc/</loc>
+  </url>
+  <url>
+    <loc>http://ios.dehengxu.com/posts/2/</loc>
+  </url>
+  <url>
+    <loc>http://ios.dehengxu.com/posts/3/</loc>
+  </url>
+  <url>
+    <loc>http://ios.dehengxu.com/posts/4/</loc>
+  </url>
+  <url>
+    <loc>http://ios.dehengxu.com/posts/5/</loc>
   </url>
 </urlset>
