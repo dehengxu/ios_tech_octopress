@@ -4,7 +4,7 @@
   <title><![CDATA[逆风@[iOS,nil]]]></title>
   <link href="http://ios.dehengxu.com/atom.xml" rel="self"/>
   <link href="http://ios.dehengxu.com/"/>
-  <updated>2015-08-23T22:10:29+08:00</updated>
+  <updated>2015-08-23T23:15:37+08:00</updated>
   <id>http://ios.dehengxu.com/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
@@ -12,6 +12,39 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Bash 使用技巧]]></title>
+    <link href="http://ios.dehengxu.com/blog/2015/08/23/bash-shi-yong-ji-qiao/"/>
+    <updated>2015-08-23T23:11:02+08:00</updated>
+    <id>http://ios.dehengxu.com/blog/2015/08/23/bash-shi-yong-ji-qiao</id>
+    <content type="html"><![CDATA[<h4>递归搜索目录下所有文件内容</h4>
+
+<p>bash</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ls ./**/*.ext | xargs grep algorit</span></code></pre></td></tr></table></div></figure>
+
+
+<blockquote><p>搜索当前目录下所有的 ext 文件，并且匹配是否包含关键词 <code>algorit</code></p></blockquote>
+
+<h4>查找进程</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>es -ef|grep name</span></code></pre></td></tr></table></div></figure>
+
+
+<blockquote><p>查找进程名包含 <code>name</code> 的进程</p></blockquote>
+
+<h4>查看开启的端口</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>lsof -i:8080</span></code></pre></td></tr></table></div></figure>
+
+
+<blockquote><p>查看使用端口 8080 的进程</p></blockquote>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[GCD 的常规用法]]></title>
@@ -2314,47 +2347,6 @@ return _dispatch_get_root_queue(qos, flags &amp; DISPATCH_QUEUE_OVERCOMMIT);
     <content type="html"><![CDATA[<p>Objective-C 中循环引用头文件，会导致，头文件中声明的符号无法识别的问题。典型的问题是:</p>
 
 <p>类 <code>SomeClass</code> 不被识别，必须在头文件中通过前导生命的方式让编译器认识该类 <code>@class SomeClass;</code></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[常用23种设计模式简介]]></title>
-    <link href="http://ios.dehengxu.com/blog/2015/08/15/chang-yong-23chong-she-ji-mo-shi-jian-jie/"/>
-    <updated>2015-08-15T23:47:51+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/2015/08/15/chang-yong-23chong-she-ji-mo-shi-jian-jie</id>
-    <content type="html"><![CDATA[<p>根据设计模式的作用分类，23种设计模式可以分为以下几类:</p>
-
-<h3>对象创建</h3>
-
-<p>单例模式，工厂模式，抽象工厂，原型模式，生成器模式</p>
-
-<h3>接口适配</h3>
-
-<p>适配器模式，桥接模式，外观模式</p>
-
-<h3>对象解耦</h3>
-
-<p>中介者模式，观察者模式</p>
-
-<h3>抽象集合</h3>
-
-<p>组合模式，迭代器模式</p>
-
-<h3>行为</h3>
-
-<p>访问者模式, 装饰器模式，责任链模式</p>
-
-<h3>逻辑封装</h3>
-
-<p>模板方法，策略模式，命令模式</p>
-
-<h3>对象访问</h3>
-
-<p>享元模式，代理模式</p>
-
-<h3>对象状态</h3>
-
-<p>备忘录模式</p>
 ]]></content>
   </entry>
   

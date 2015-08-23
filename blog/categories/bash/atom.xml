@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Bash | 逆风@[iOS,nil]]]></title>
+  <link href="http://ios.dehengxu.com/blog/categories/bash/atom.xml" rel="self"/>
+  <link href="http://ios.dehengxu.com/"/>
+  <updated>2015-08-23T23:15:37+08:00</updated>
+  <id>http://ios.dehengxu.com/</id>
+  <author>
+    <name><![CDATA[Deheng Xu]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Bash 使用技巧]]></title>
+    <link href="http://ios.dehengxu.com/blog/2015/08/23/bash-shi-yong-ji-qiao/"/>
+    <updated>2015-08-23T23:11:02+08:00</updated>
+    <id>http://ios.dehengxu.com/blog/2015/08/23/bash-shi-yong-ji-qiao</id>
+    <content type="html"><![CDATA[<h4>递归搜索目录下所有文件内容</h4>
+
+<p>bash</p>
+
+<pre><code>ls ./**/*.ext | xargs grep algorit
+</code></pre>
+
+<blockquote><p>搜索当前目录下所有的 ext 文件，并且匹配是否包含关键词 <code>algorit</code></p></blockquote>
+
+<h4>查找进程</h4>
+
+<pre><code>es -ef|grep name
+</code></pre>
+
+<blockquote><p>查找进程名包含 <code>name</code> 的进程</p></blockquote>
+
+<h4>查看开启的端口</h4>
+
+<pre><code>lsof -i:8080
+</code></pre>
+
+<blockquote><p>查看使用端口 8080 的进程</p></blockquote>
+]]></content>
+  </entry>
+  
+</feed>
