@@ -6,7 +6,7 @@ comments: true
 published: true
 sharing: true
 footer: true
-categories: 
+categories: objc
 ---
 
 ### 简单看一下编译器对 __block 做了什么

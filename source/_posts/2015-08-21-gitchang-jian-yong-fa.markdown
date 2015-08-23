@@ -6,7 +6,7 @@ comments: true
 published: true
 sharing: true
 footer: true
-categories: scm,git
+categories: scm, git
 ---
 
 ### 1.checkout

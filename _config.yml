@@ -3,7 +3,7 @@
 # ----------------------- #
 
 url: http://ios.dehengxu.com
-title: 逆风@{iOS}
+title: 逆风@[iOS,nil]
 subtitle: A blog focus on iOS techs.
 author: Deheng Xu
 simple_search: https://www.google.com/search
