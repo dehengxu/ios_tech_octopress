@@ -130,136 +130,80 @@
 <h3>同步执行任务的方式</h3>
 
 <ol>
-<li>dispatch_semaphor_t</li>
-</ol>
+<li><p>dispatch_semaphor_t</p>
 
+<pre><code>dispatch_semaphor_t semaphor = disaptch_semaphor_create(1);
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>dispatch_semaphor_t semaphor = disaptch_semaphor_create(1);
-</span><span class='line'>
-</span><span class='line'>dispatch_async(queue, ^() {
-</span><span class='line'>  dispatch_semaphor_wait(semaphor);
-</span><span class='line'>  //Todo...
-</span><span class='line'>
-</span><span class='line'>  //Finished.
-</span><span class='line'>  dispatch_semaphor_signal(semaphor);
-</span><span class='line'>});
-</span></code></pre></td></tr></table></div></figure>
+dispatch_async(queue, ^() {
+    dispatch_semaphor_wait(semaphor);
+    //Todo...
 
+    //Finished.
+    dispatch_semaphor_signal(semaphor);
+});
+</code></pre>
 
 <p>创建一个只允许一个线程访问的信号量 <code>disaptch_semaphor_create(1);</code></p>
 
 <p>通知其他访问对象等待 <code>dispatch_semaphor_wait(semaphor);</code></p>
 
-<p>资源访问结束后，退回占用的资源，并通知其他访问对象可以进行访问。 <code>dispatch_semaphor_signal(semaphor);</code></p>
+<p>资源访问结束后，退回占用的资源，并通知其他访问对象可以进行访问。 <code>dispatch_semaphor_signal(semaphor);</code></p></li>
+<li><p>dispatch_group_wait</p>
 
-<ol>
-<li>dispatch_group_wait</li>
-</ol>
+<pre><code>dispatch_group_t group = dispatch_group_create();
 
+dispatch_group_async(group, q1, ^ {
+    //Task 1.
+});
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>dispatch_group_t group = dispatch_group_create();
-</span><span class='line'>
-</span><span class='line'>dispatch_group_async(group, q1, ^ {
-</span><span class='line'>  //Task 1.
-</span><span class='line'>});
-</span><span class='line'>
-</span><span class='line'>dispatch_group_async(group, q1, ^ {
-</span><span class='line'>  //Task 2.
-</span><span class='line'>});
-</span><span class='line'>
-</span><span class='line'>dispatch_group_async(group, q1, ^ {
-</span><span class='line'>  //Task 3.
-</span><span class='line'>});
-</span><span class='line'>
-</span><span class='line'>dispatch_async(queue, ^() {
-</span><span class='line'>  dispatch_group_wait(group);
-</span><span class='line'>  //Todo....
-</span><span class='line'>
-</span><span class='line'>});</span></code></pre></td></tr></table></div></figure>
+dispatch_group_async(group, q1, ^ {
+    //Task 2.
+});
 
+dispatch_group_async(group, q1, ^ {
+    //Task 3.
+});
+
+dispatch_async(queue, ^() {
+    dispatch_group_wait(group);
+    //Todo....
+
+});
+</code></pre>
 
 <p><code>dispatch_group_async</code>: 添加任务到分组中。</p>
 
-<p><code>dispatch_group_wait(group);</code> 等待 group 里的所有任务完成后方可继续。</p>
+<p><code>dispatch_group_wait(group);</code> 等待 group 里的所有任务完成后方可继续。</p></li>
+<li><p>dispatch_group_notify</p>
 
-<ol>
-<li>dispatch_group_notify</li>
-</ol>
+<pre><code>dispatch_group_notify(group, q1, ^ {
+    //Todo...
 
+});
+</code></pre>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>dispatch_group_notify(group, q1, ^ {
-</span><span class='line'>  //Todo...
-</span><span class='line'>
-</span><span class='line'>});</span></code></pre></td></tr></table></div></figure>
+<p><code>dispatch_group_notify</code>: group中的所有任务完成后，执行 block 中的代码。</p></li>
+<li><p>dispatch_group_enter, dispatch_group_leave</p>
 
+<pre><code>dispatch_group_enter(group);
 
-<p><code>dispatch_group_notify</code>: group中的所有任务完成后，执行 block 中的代码。</p>
+dispatch_async(q1, ^ {
+    //Todo...
 
-<ol>
-<li>dispatch_group_enter, dispatch_group_leave</li>
-</ol>
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>dispatch_group_enter(group);
-</span><span class='line'>
-</span><span class='line'>dispatch_async(q1, ^ {
-</span><span class='line'>  //Todo...
-</span><span class='line'>
-</span><span class='line'>  dispatch_group_leave(group);
-</span><span class='line'>});
-</span></code></pre></td></tr></table></div></figure>
-
+    dispatch_group_leave(group);
+});
+</code></pre>
 
 <p>该代码等价于:</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>dispatch_group_async(q1, ^ {
-</span><span class='line'>  //Todo...
-</span><span class='line'>});</span></code></pre></td></tr></table></div></figure>
+<pre><code>dispatch_group_async(q1, ^ {
+    //Todo...
+});
+</code></pre>
 
+<p>作用也是将任务放入到 q1 队列中，同时也添加到分组中。</p></li>
+</ol>
 
-<p>作用也是将任务放入到 q1 队列中，同时也添加到分组中。</p>
 
 <h3>使用 apply 来提高并行效率</h3>
 

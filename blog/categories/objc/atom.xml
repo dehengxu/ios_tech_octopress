@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Objc, | 逆风@[iOS,nil]]]></title>
   <link href="http://ios.dehengxu.com/blog/categories/objc/atom.xml" rel="self"/>
   <link href="http://ios.dehengxu.com/"/>
-  <updated>2015-08-23T20:56:30+08:00</updated>
+  <updated>2015-08-23T21:02:10+08:00</updated>
   <id>http://ios.dehengxu.com/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
@@ -49,9 +49,7 @@
 <h3>同步执行任务的方式</h3>
 
 <ol>
-<li>dispatch_semaphor_t</li>
-</ol>
-
+<li><p>dispatch_semaphor_t</p>
 
 <pre><code>dispatch_semaphor_t semaphor = disaptch_semaphor_create(1);
 
@@ -68,12 +66,8 @@ dispatch_async(queue, ^() {
 
 <p>通知其他访问对象等待 <code>dispatch_semaphor_wait(semaphor);</code></p>
 
-<p>资源访问结束后，退回占用的资源，并通知其他访问对象可以进行访问。 <code>dispatch_semaphor_signal(semaphor);</code></p>
-
-<ol>
-<li>dispatch_group_wait</li>
-</ol>
-
+<p>资源访问结束后，退回占用的资源，并通知其他访问对象可以进行访问。 <code>dispatch_semaphor_signal(semaphor);</code></p></li>
+<li><p>dispatch_group_wait</p>
 
 <pre><code>dispatch_group_t group = dispatch_group_create();
 
@@ -98,12 +92,8 @@ dispatch_async(queue, ^() {
 
 <p><code>dispatch_group_async</code>: 添加任务到分组中。</p>
 
-<p><code>dispatch_group_wait(group);</code> 等待 group 里的所有任务完成后方可继续。</p>
-
-<ol>
-<li>dispatch_group_notify</li>
-</ol>
-
+<p><code>dispatch_group_wait(group);</code> 等待 group 里的所有任务完成后方可继续。</p></li>
+<li><p>dispatch_group_notify</p>
 
 <pre><code>dispatch_group_notify(group, q1, ^ {
     //Todo...
@@ -111,12 +101,8 @@ dispatch_async(queue, ^() {
 });
 </code></pre>
 
-<p><code>dispatch_group_notify</code>: group中的所有任务完成后，执行 block 中的代码。</p>
-
-<ol>
-<li>dispatch_group_enter, dispatch_group_leave</li>
-</ol>
-
+<p><code>dispatch_group_notify</code>: group中的所有任务完成后，执行 block 中的代码。</p></li>
+<li><p>dispatch_group_enter, dispatch_group_leave</p>
 
 <pre><code>dispatch_group_enter(group);
 
@@ -134,7 +120,9 @@ dispatch_async(q1, ^ {
 });
 </code></pre>
 
-<p>作用也是将任务放入到 q1 队列中，同时也添加到分组中。</p>
+<p>作用也是将任务放入到 q1 队列中，同时也添加到分组中。</p></li>
+</ol>
+
 
 <h3>使用 apply 来提高并行效率</h3>
 
