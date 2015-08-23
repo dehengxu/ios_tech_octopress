@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Libdispatch 源码分析 - 逆风@{iOS}</title>
+  <title>Libdispatch 源码分析 - 逆风@[iOS,nil]</title>
   <meta name="author" content="Deheng Xu">
 
   
@@ -28,7 +28,7 @@ dispatch_queue_t dispatch_get_global_queue() dispatch_queue_t &hellip;">
   <link rel="canonical" href="http://ios.dehengxu.com/blog/2015/08/18/libdispatch-yuan-ma-fen-xi/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="/atom.xml" rel="alternate" title="逆风@{iOS}" type="application/atom+xml">
+  <link href="/atom.xml" rel="alternate" title="逆风@[iOS,nil]" type="application/atom+xml">
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
@@ -46,7 +46,7 @@ dispatch_queue_t dispatch_get_global_queue() dispatch_queue_t &hellip;">
 
 <body   >
   <header role="banner"><hgroup>
-  <h1><a href="/">逆风@{iOS}</a></h1>
+  <h1><a href="/">逆风@[iOS,nil]</a></h1>
   
     <h2>A blog focus on iOS techs.</h2>
   
@@ -442,6 +442,10 @@ return _dispatch_get_root_queue(qos, flags &amp; DISPATCH_QUEUE_OVERCOMMIT);
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/08/23/gcd-de-chang-gui-yong-fa/">GCD 的常规用法</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/08/23/xian-cheng-he-jin-cheng-jian-de-qu-bie/">线程和进程间的区别</a>
       </li>
     
@@ -515,10 +519,6 @@ return _dispatch_get_root_queue(qos, flags &amp; DISPATCH_QUEUE_OVERCOMMIT);
     
       <li class="post">
         <a href="/blog/2015/08/15/chang-yong-23chong-she-ji-mo-shi-jian-jie/">常用23种设计模式简介</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/08/15/design-pattern-observer/">设计模式-观察者模式</a>
       </li>
     
   </ul>

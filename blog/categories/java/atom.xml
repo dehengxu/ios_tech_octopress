@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Java | 逆风@{iOS}]]></title>
+  <title><![CDATA[Category: Java | 逆风@[iOS,nil]]]></title>
   <link href="http://ios.dehengxu.com/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://ios.dehengxu.com/"/>
-  <updated>2015-08-23T15:45:37+08:00</updated>
+  <updated>2015-08-23T20:56:30+08:00</updated>
   <id>http://ios.dehengxu.com/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>

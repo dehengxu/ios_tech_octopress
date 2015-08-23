@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://ios.dehengxu.com/blog/2015/08/23/gcd-de-chang-gui-yong-fa/</loc>
+    <lastmod>2015-08-23T15:56:50+08:00</lastmod>
+  </url>
+  <url>
     <loc>http://ios.dehengxu.com/blog/2015/08/23/xian-cheng-he-jin-cheng-jian-de-qu-bie/</loc>
     <lastmod>2015-08-23T15:13:25+08:00</lastmod>
   </url>
@@ -148,7 +152,10 @@
     <loc>http://ios.dehengxu.com/blog/categories/apple/</loc>
   </url>
   <url>
-    <loc>http://ios.dehengxu.com/blog/categories/scm-git/</loc>
+    <loc>http://ios.dehengxu.com/blog/categories/scm/</loc>
+  </url>
+  <url>
+    <loc>http://ios.dehengxu.com/blog/categories/git/</loc>
   </url>
   <url>
     <loc>http://ios.dehengxu.com/blog/categories/process/</loc>
@@ -164,5 +171,23 @@
   </url>
   <url>
     <loc>http://ios.dehengxu.com/blog/categories/os/</loc>
+  </url>
+  <url>
+    <loc>http://ios.dehengxu.com/blog/categories/gcd/</loc>
+  </url>
+  <url>
+    <loc>http://ios.dehengxu.com/posts/2/</loc>
+  </url>
+  <url>
+    <loc>http://ios.dehengxu.com/posts/3/</loc>
+  </url>
+  <url>
+    <loc>http://ios.dehengxu.com/posts/4/</loc>
+  </url>
+  <url>
+    <loc>http://ios.dehengxu.com/posts/5/</loc>
+  </url>
+  <url>
+    <loc>http://ios.dehengxu.com/posts/6/</loc>
   </url>
 </urlset>
