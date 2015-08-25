@@ -89,7 +89,7 @@ __autoreleasing
 
 * `__weak` 指定了引用不会保持对象引用。当没有其他的强引用指向它时，弱引用会设置成 `nil`。
 
-* `__unsafe_unretained` 指定一个引用既不保持对象引用，也不会在不使用时设置为 `nil`。
+* `__unsafe_unretained` 指定一个引用既不保持对象引用，也不会在不使用时设置为 `nil`，这容易引野也指针的问题。
 
 * `__autoreleasing` 被用来描述引用类型的参数在方法 return 之后会自动被释放。
 
@@ -112,6 +112,7 @@ NSString * __unsafe__unretained anotherName;
 NSString * __weak string = [[NSString alloc] initWithFormat:@"First Name: %@", [self firstName]];
 NSLog(@"string: %@", string);
 ```
+
 这种情况，编译器会给出警告。因为没有其他对字符串的强引用，所以这个弱引用，会立即释放掉。
 
 你也需要小心的在传參引用的时候使用对象。下面的代码工作正常：
@@ -237,6 +238,8 @@ myController.completionHandler =  ^(NSInteger result) {
 
 你可以使用 `-fobjc-arc` 编译器标志来开启 ARC。如果读你来说某些文件使用 MRC 更方便的话，你也可以对每个文件单独使用 ARC 模式。项目使用 ARC 为默认方式，你可以使用 `-fno-objc-arc` 来关闭 ARC 。
 
-ARC 被 Xcode 4.2 ， OSX v10.6 和 iOS4 以及后续版本。弱引用不被 OSX v10.6 和 iOS4 支持。Xcode 4.1 和以前的版本 不支持 ARC。
+ARC 被 Xcode 4.2 ， OSX v10.6 和 iOS4 以及后续版本支持。
+弱引用不被 OSX v10.6 和 iOS4 支持。
+Xcode 4.1 和以前的版本不支持 ARC。
 
 
