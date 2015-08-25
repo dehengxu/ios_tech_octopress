@@ -213,6 +213,64 @@ dispatch_async(q1, ^ {
 
 
 <p>你会发现如果 q1 是并发队列，输出的数字是无序的状态。这就是 dispatch_apply 带来的好处，它能快速将当前的迭代任务立刻发送到队列中执行，如果是并发队列，这个效率是很高的。如果你对任务的顺序有要求，或者队列是串行队列，那就不需要使用 dispatch_apply 了。</p>
+
+<h3>dispatch_barrier_async</h3>
+
+<p>障碍异步，意思是通过 dispatch_barrier_async 提交的任务，不会立刻执行，而是会阻碍它之后提交的任务，直到它之前的任务全部完成，它才会执行，并且它执行完毕后，其后提交的任务才能继续进行。</p>
+
+<p>而在 dispatch_barrier_async 之前或者之后的任务都是并发执行的。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>dispatch_queue_t q = dispatch_queue_create("test", DISPATCH_QUEUE_CONCURRENT);
+</span><span class='line'>
+</span><span class='line'>dispatch_async(q, ^() {printf("A\n");});
+</span><span class='line'>dispatch_async(q, ^() {printf("B\n");});
+</span><span class='line'>dispatch_async(q, ^() {printf("C\n");});
+</span><span class='line'>dispatch_async(q, ^() {printf("D\n");});
+</span><span class='line'>
+</span><span class='line'>dispatch_barrier_async(q, ^() {printf("barrier\n");});
+</span><span class='line'>
+</span><span class='line'>dispatch_async(q, ^() {printf("E\n");});
+</span><span class='line'>dispatch_async(q, ^() {printf("F\n");});
+</span><span class='line'>dispatch_async(q, ^() {printf("G\n");});
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>输出结果是:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>A --
+</span><span class='line'>C  |  
+</span><span class='line'>D  |--&gt; //顺序随机产生
+</span><span class='line'>B _|
+</span><span class='line'>barrier //这里的输出位置不会变化
+</span><span class='line'>F --
+</span><span class='line'>E  |--&gt; //顺序随机产生
+</span><span class='line'>G --
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>但是 dispatch_barrier_async 只有提交到自己创建的并发队列时，才有上面的效果。如果是全局队列，或者串行队列，那么 dispatch_barrier_async 和 dispatch_async 是等效的。</p>
 </div>
 
 
@@ -327,7 +385,7 @@ dispatch_async(q1, ^ {
       </li>
     
       <li class="post">
-        <a href="/blog/2015/08/17/apple-open-source/">Apple Open Source</a>
+        <a href="/blog/2015/08/17/apple-source-code-&-documents/">Apple Source Code & Documents</a>
       </li>
     
       <li class="post">

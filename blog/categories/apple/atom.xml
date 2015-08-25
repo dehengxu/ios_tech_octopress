@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Apple | 逆风@[iOS,nil]]]></title>
   <link href="http://ios.dehengxu.com/blog/categories/apple/atom.xml" rel="self"/>
   <link href="http://ios.dehengxu.com/"/>
-  <updated>2015-08-23T23:15:37+08:00</updated>
+  <updated>2015-08-25T09:22:08+08:00</updated>
   <id>http://ios.dehengxu.com/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
@@ -14,11 +14,13 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Apple Open Source]]></title>
-    <link href="http://ios.dehengxu.com/blog/2015/08/17/apple-open-source/"/>
+    <title type="html"><![CDATA[Apple Source Code & Documents]]></title>
+    <link href="http://ios.dehengxu.com/blog/2015/08/17/apple-source-code-&-documents/"/>
     <updated>2015-08-17T10:04:40+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/2015/08/17/apple-open-source</id>
+    <id>http://ios.dehengxu.com/blog/2015/08/17/apple-source-code-&-documents</id>
     <content type="html"><![CDATA[<p><a href="http://opensource.apple.com/tarballs/" target="_blank">Apple Open Source</a></p>
+
+<p><a href="https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/Collections/Collections.html" target="_blank">Collections Programming Topics</a></p>
 ]]></content>
   </entry>
   
