@@ -153,7 +153,7 @@
     <loc>http://ios.dehengxu.com/blog/categories/utilities/</loc>
   </url>
   <url>
-    <loc>http://ios.dehengxu.com/blog/categories/apple/</loc>
+    <loc>http://ios.dehengxu.com/blog/categories/resource/</loc>
   </url>
   <url>
     <loc>http://ios.dehengxu.com/blog/categories/scm/</loc>
@@ -181,5 +181,17 @@
   </url>
   <url>
     <loc>http://ios.dehengxu.com/blog/categories/bash/</loc>
+  </url>
+  <url>
+    <loc>http://ios.dehengxu.com/posts/2/</loc>
+  </url>
+  <url>
+    <loc>http://ios.dehengxu.com/posts/3/</loc>
+  </url>
+  <url>
+    <loc>http://ios.dehengxu.com/posts/4/</loc>
+  </url>
+  <url>
+    <loc>http://ios.dehengxu.com/posts/5/</loc>
   </url>
 </urlset>
