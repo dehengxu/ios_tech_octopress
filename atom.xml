@@ -4,7 +4,7 @@
   <title><![CDATA[逆风@[iOS,nil]]]></title>
   <link href="http://ios.dehengxu.com/atom.xml" rel="self"/>
   <link href="http://ios.dehengxu.com/"/>
-  <updated>2015-08-26T06:34:42+08:00</updated>
+  <updated>2015-08-26T06:50:26+08:00</updated>
   <id>http://ios.dehengxu.com/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
@@ -1145,7 +1145,9 @@ dispatch_async(q1, ^ {
 
 <p>你可以使用 <code>-fobjc-arc</code> 编译器标志来开启 ARC。如果读你来说某些文件使用 MRC 更方便的话，你也可以对每个文件单独使用 ARC 模式。项目使用 ARC 为默认方式，你可以使用 <code>-fno-objc-arc</code> 来关闭 ARC 。</p>
 
-<p>ARC 被 Xcode 4.2 ， OSX v10.6 和 iOS4 以及后续版本。弱引用不被 OSX v10.6 和 iOS4 支持。Xcode 4.1 和以前的版本 不支持 ARC。</p>
+<p>ARC 被 Xcode 4.2 ， OSX v10.6 和 iOS4 以及后续版本支持。
+弱引用不被 OSX v10.6 和 iOS4 支持。
+Xcode 4.1 和以前的版本不支持 ARC。</p>
 ]]></content>
   </entry>
   
