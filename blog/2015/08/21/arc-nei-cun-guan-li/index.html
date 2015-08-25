@@ -195,7 +195,7 @@
 <ul>
 <li><p><code>__strong</code> 是默认的配置。如果是强指针的时候，对象需要保证生命足够长。</p></li>
 <li><p><code>__weak</code> 指定了引用不会保持对象引用。当没有其他的强引用指向它时，弱引用会设置成 <code>nil</code>。</p></li>
-<li><p><code>__unsafe_unretained</code> 指定一个引用既不保持对象引用，也不会在不使用时设置为 <code>nil</code>。</p></li>
+<li><p><code>__unsafe_unretained</code> 指定一个引用既不保持对象引用，也不会在不使用时设置为 <code>nil</code>，这容易引野也指针的问题。</p></li>
 <li><p><code>__autoreleasing</code> 被用来描述引用类型的参数在方法 return 之后会自动被释放。</p></li>
 </ul>
 
