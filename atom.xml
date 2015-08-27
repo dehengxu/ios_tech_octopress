@@ -4,7 +4,7 @@
   <title><![CDATA[逆风@[iOS,nil]]]></title>
   <link href="http://ios.dehengxu.com/atom.xml" rel="self"/>
   <link href="http://ios.dehengxu.com/"/>
-  <updated>2015-08-26T06:50:26+08:00</updated>
+  <updated>2015-08-27T17:18:55+08:00</updated>
   <id>http://ios.dehengxu.com/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
@@ -12,6 +12,44 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Use Dispatch Source Timer]]></title>
+    <link href="http://ios.dehengxu.com/blog/2015/08/27/use-dispatch-source-timer/"/>
+    <updated>2015-08-27T16:58:03+08:00</updated>
+    <id>http://ios.dehengxu.com/blog/2015/08/27/use-dispatch-source-timer</id>
+    <content type="html"><![CDATA[<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>
+</span><span class='line'>dispatch_queue_t queue = dispatch_queue_create("com.xxx.timer", DISPATCH_QUEUE_CONCURRENT);
+</span><span class='line'>
+</span><span class='line'>dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+</span><span class='line'>
+</span><span class='line'>dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC, NSEC_PER_SEC / 10);
+</span><span class='line'>
+</span><span class='line'>// 设置定时器回调 block
+</span><span class='line'>dispatch_source_set_event_handler(timer, ^ {
+</span><span class='line'>  //do something...
+</span><span class='line'>});
+</span><span class='line'>
+</span><span class='line'>dispatch_resume(timer);
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>关键点： timer 一定要被 retain ，防止提前释放，否则 timer 无效。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Bash 使用技巧]]></title>
@@ -1654,6 +1692,10 @@ Xcode 4.1 和以前的版本不支持 ARC。</p>
 </span><span class='line'>};</span></code></pre></td></tr></table></div></figure>
 
 
+<p>_Block_object_assign 的 flag 参数有这几个:</p>
+
+<p><code>BLOCK_FIELD_IS_OBJECT， 3</code>，<code>BLOCK_FIELD_IS_BYREF， 8</code> 和 <code>BLOCK_FIELD_IS_BLOCK</code></p>
+
 <p>这里描述了 Block 如何被使用:</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -2400,17 +2442,6 @@ return _dispatch_get_root_queue(qos, flags &amp; DISPATCH_QUEUE_OVERCOMMIT);
 <p>当学校外面的人需要访问 <code>Teacher</code> 的时候，不需要直接与 <code>Teacher</code> 交流，而是去找 <code>ConcreteVisitor</code> 通过它与 <code>Teacher</code> 进行交流。</p>
 
 <p><a href="https://github.com/xudeheng/ObjcDesignPatterns">Objective-c源码</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Objective-C中的协议引用头文件的问题]]></title>
-    <link href="http://ios.dehengxu.com/blog/2015/08/16/objective-czhong-de-xie-yi-yin-yong-tou-wen-jian-de-wen-ti/"/>
-    <updated>2015-08-16T00:59:41+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/2015/08/16/objective-czhong-de-xie-yi-yin-yong-tou-wen-jian-de-wen-ti</id>
-    <content type="html"><![CDATA[<p>Objective-C 中循环引用头文件，会导致，头文件中声明的符号无法识别的问题。典型的问题是:</p>
-
-<p>类 <code>SomeClass</code> 不被识别，必须在头文件中通过前导生命的方式让编译器认识该类 <code>@class SomeClass;</code></p>
 ]]></content>
   </entry>
   
