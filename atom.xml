@@ -4,7 +4,7 @@
   <title><![CDATA[逆风@[iOS,nil]]]></title>
   <link href="http://ios.dehengxu.com/atom.xml" rel="self"/>
   <link href="http://ios.dehengxu.com/"/>
-  <updated>2015-08-28T18:11:46+08:00</updated>
+  <updated>2015-08-28T18:34:01+08:00</updated>
   <id>http://ios.dehengxu.com/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
@@ -31,6 +31,25 @@
 <p><img src="http://ios.dehengxu.com/images/refered/key_value_coding.jpg" alt="sample" /></p>
 
 <h3>使类支持 KVC</h3>
+
+<p>NSKeyValueCoding 非正式的协议使 KVC 成为可能。其中两个方法： <code>valueForKey:</code> 和 <code>setValue:forKey:</code> 是特殊且重要的方法，应为他们能获取，设置给定 “键” 的属性值。 <code>NSObject</code> 为这两个方法提供了默认实现，并且如果类和 KVC 兼容，它可以依赖这个实现。</p>
+
+<p>你如何实现属性 KVC 的兼容性，依赖于属性是一个附属值，一对多或者一对一的关系。对于附属值，一对一关系来说，类必须至少实现一个以下给定顺序的配置(键 和属性的键关联)：</p>
+
+<ol>
+<li>类使用“键”的名字来声明属性</li>
+<li>实现了以“键”命名的访问器，如果属性是可修改的，<code>setKey:</code>(如果属性是一个布尔值，<code>getter</code>访问起方法有 <code>isKey</code> 有形式。)</li>
+<li>声明了 <code>key</code> 或者 <code>_key</code>形式的实例变量。</li>
+</ol>
+
+
+<blockquote><p>PS: 这里我认为 <code>attribute</code>叫做附属值或者值，<code>property</code>称作属性更恰当。一般来说 attrubute 比 property 要轻量级一些。</p></blockquote>
+
+<p>实现对多的 KVC 兼容是一个更复杂的过程。可以参考权关于 KVC 威性的文档来学习实现的过程。</p>
+
+<p><a href="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/KeyValueCoding/Articles/KeyValueCoding.html#//apple_ref/doc/uid/10000107i">权威论述</a></p>
+
+<p><a href="https://developer.apple.com/library/ios/documentation/General/Conceptual/DevPedia-CocoaCore/KeyValueCoding.html#//apple_ref/doc/uid/TP40008195-CH25-SW1">https://developer.apple.com/library/ios/documentation/General/Conceptual/DevPedia-CocoaCore/KeyValueCoding.html#//apple_ref/doc/uid/TP40008195-CH25-SW1</a></p>
 ]]></content>
   </entry>
   
