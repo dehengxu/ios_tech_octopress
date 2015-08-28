@@ -4,7 +4,7 @@
   <title><![CDATA[逆风@[iOS,nil]]]></title>
   <link href="http://ios.dehengxu.com/atom.xml" rel="self"/>
   <link href="http://ios.dehengxu.com/"/>
-  <updated>2015-08-28T21:42:37+08:00</updated>
+  <updated>2015-08-28T21:47:41+08:00</updated>
   <id>http://ios.dehengxu.com/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
@@ -24,9 +24,13 @@
 
 <blockquote><p>注意：虽然 UIKit 框架通常不支持 KVO，你仍然能够在自定义的对象中实现它，包括自定义的视图。</p></blockquote>
 
-<p><img src="http://ios.dehengxu.com/imags/refered/kvo.jpg" alt="kvo" /></p>
+<p><img src="http://ios.dehengxu.com/images/refered/kvo.jpg" alt="kvo" /></p>
 
 <p>使用 KVO，一个对象可以观察另一个对象的任意的属性，包括简单的附属值，对一的关系和对多的关系。一个对象能找出当前属性先前的值。对多关系的观察者被通告的内容不仅有类型的改变，也被告知哪个对象在改变中被调用。</p>
+
+<p>作为一个通知机制，KVO 和 <code>NSNotification</code> 和 <code>NSNotificationCenter</code> 提供的机制类似，但是也有一些明显的不同。不同于中央对象来对所有注册为观察者的对象广播通知，当属性值的改变发生时，KVO 通知直接发送给观察对象。</p>
+
+<h3>实现 KVO</h3>
 
 <p><a href="https://developer.apple.com/library/ios/documentation/General/Conceptual/DevPedia-CocoaCore/KVO.html#//apple_ref/doc/uid/TP40008195-CH16-SW1">Ref</a></p>
 ]]></content>
