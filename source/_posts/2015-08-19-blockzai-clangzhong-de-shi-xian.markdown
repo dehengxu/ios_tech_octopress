@@ -109,6 +109,10 @@ static struct __block_descriptor_4 {
 };
 ```
 
+_Block_object_assign 的 flag 参数有这几个:
+
+`BLOCK_FIELD_IS_OBJECT， 3`，`BLOCK_FIELD_IS_BYREF， 8` 和 `BLOCK_FIELD_IS_BLOCK`
+
 这里描述了 Block 如何被使用:
 
 ```
