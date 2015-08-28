@@ -9,7 +9,7 @@
   <meta name="author" content="Deheng Xu">
 
   
-  <meta name="description" content="Objective-C中的协议引用头文件的问题 Aug 16th, 2015 12:59 am 常用23种设计模式简介 Aug 15th, 2015 11:47 pm 设计模式-观察者模式 Aug 15th, 2015 11:46 pm Objective-C Block Usage Aug &hellip;">
+  <meta name="description" content="设计模式-访问者模式 Aug 16th, 2015 8:05 am Objective-C中的协议引用头文件的问题 Aug 16th, 2015 12:59 am 常用23种设计模式简介 Aug 15th, 2015 11:47 pm 设计模式-观察者模式 Aug 15th, 2015 11: &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -69,6 +69,53 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" ><a href="/blog/2015/08/16/design-pattern-visitor/">设计模式-访问者模式</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-08-16T08:05:25+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>16</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>8:05 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+
+<!-- <div class="entry-content"><h3>模式说明：</h3>
+
+<blockquote><p>访问者模式(Visitor Pattern)，是一种具有双分派能力的模式，它通过 Visitor 接口约定为已有类 Element 进行扩展，扩展的目标是尽可能少的修改已有类 Element ，在 Visitor 中增加新扩展的接口，对 Element 中的现有接口进行访问。而 Visitor 以外的部分，不需要知道 Element 的具体实现和操作，进行了封装。
+所谓<code>双分派</code>指的是，该模式可以通过不同的 <code>Visitor</code> 对不同的 <code>Element</code> 进行访问。</p></blockquote>
+
+<p>举例：</p>
+
+<blockquote><p>场景介绍，以学校为背景，引入 Teacher, Student, Parent 三类人作为已有类型， 引入 ConcreteVisitor 作为 Visitor 的具体实现类，对以上三者进行扩展。</p>
+
+<p><code>ElementProtocol</code> 作为 Teacher, Student, Parent 的公共接口协议。
+<code>VisitorProtocol</code> 作为访问者的公共接口协议。
+<code>Teacher, Student, Parent</code> 三者是具体的 Element 实现。
+<code>ConcreteVisitor</code> 是具体的 Visitor 实现。</p></blockquote>
+
+<p>当学校外面的人需要访问 <code>Teacher</code> 的时候，不需要直接与 <code>Teacher</code> 交流，而是去找 <code>ConcreteVisitor</code> 通过它与 <code>Teacher</code> 进行交流。</p>
+
+<p><a href="https://github.com/xudeheng/ObjcDesignPatterns">Objective-c源码</a></p>
+</div> -->
+
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -425,88 +472,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" ><a href="/blog/2014/08/31/keys-for-using-jekyll-on-github-dot-com/">Keys for Using Jekyll on github.com</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-08-31T11:48:21+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>31</span><span class='date-suffix'>st</span>, <span class='date-year'>2014</span></span> <span class='time'>11:48 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-
-<!-- <div class="entry-content"><h2>Why choose jekyll?</h2>
-
-<ol>
-<li>First, it&rsquo;s an static blog system, so it can response huge accessing.</li>
-<li>You don&rsquo;t need configure your http server, sql server, and blog system, you can host your own blog site only depend <code>rvm</code>.</li>
-<li>If you don&rsquo;t wanna maintance your own server, you can use github&rsquo;s : )</li>
-</ol>
-
-
-<h2>How to install all of jekyll.</h2>
-
-<h4>Install rvm a ruby version management tool.</h4>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"></pre></td><td class='code'><pre><code class=''></code></pre></td></tr></table></div></figure>
-
-
-<h4>Install jekyll gem.</h4>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>gem install jekyll</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>Install depended gems</h4>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>gem install bundle
-</span><span class='line'>
-</span><span class='line'>bundle install</span></code></pre></td></tr></table></div></figure>
-
-
-<p>All done, you can take rest.</p>
-
-<h2>How to use jekyll with github.com</h2>
-
-<p>You can find some tips on this page:<br/>
-<a href="https://help.github.com/articles/using-jekyll-with-pages">https://help.github.com/articles/using-jekyll-with-pages</a>.</p>
-
-<h2>Why your blog looks poorly.</h2>
-
-<p>Follow this link <a href="http://jekyllrb.com/docs/github-pages/">http://jekyllrb.com/docs/github-pages/</a></p>
-
-<blockquote><p>It figure out you should modify _config.yml, filed <code>base_url</code> value to <code>/your_repository_name</code>, the slash must be there.</p></blockquote>
-
-<h2>Use your own domain</h2>
-
-<p>Add CNAME file to your repostory root dirctory. Writre your domain in one line.</p>
-
-<h2>Final</h2>
-
-<p>That&rsquo;s all, just go writing valuable articles.</p>
-</div> -->
-
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/5">&larr; Older</a>
@@ -522,6 +487,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/08/28/kvo-ji-zhi/">KVO 机制</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2015/08/28/kvc-ji-zhi/">KVC 机制</a>
@@ -597,10 +566,6 @@
     
       <li class="post">
         <a href="/blog/2015/08/16/shi-yong-xian-dai-objective-c/">使用现代Objective-C</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/08/16/useful-plugins-and-tools-for-xcode/">Useful Plugins & Tools for Xcode</a>
       </li>
     
   </ul>

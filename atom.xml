@@ -4,7 +4,7 @@
   <title><![CDATA[逆风@[iOS,nil]]]></title>
   <link href="http://ios.dehengxu.com/atom.xml" rel="self"/>
   <link href="http://ios.dehengxu.com/"/>
-  <updated>2015-08-28T18:34:01+08:00</updated>
+  <updated>2015-08-28T21:42:37+08:00</updated>
   <id>http://ios.dehengxu.com/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
@@ -14,11 +14,30 @@
 
   
   <entry>
+    <title type="html"><![CDATA[KVO 机制]]></title>
+    <link href="http://ios.dehengxu.com/blog/2015/08/28/kvo-ji-zhi/"/>
+    <updated>2015-08-28T18:36:18+08:00</updated>
+    <id>http://ios.dehengxu.com/blog/2015/08/28/kvo-ji-zhi</id>
+    <content type="html"><![CDATA[<h2>KVO : 键值观察 (Key-value observing)</h2>
+
+<p>KVO 是一个允许一个对象直接接受来自另一个对象属性改变时发送的通知的机制。KVO 能成为应用内部重要的因素。它是采用了MVC设计模式的应用程序中对象间的一种通信模式。比如，你可以使用它来同步 view 和 controller 层中模型对象之间的状态。典型情况下，控制器对象观察模型对象，试图对象观察控制器对象或者模型对象。</p>
+
+<blockquote><p>注意：虽然 UIKit 框架通常不支持 KVO，你仍然能够在自定义的对象中实现它，包括自定义的视图。</p></blockquote>
+
+<p><img src="http://ios.dehengxu.com/imags/refered/kvo.jpg" alt="kvo" /></p>
+
+<p>使用 KVO，一个对象可以观察另一个对象的任意的属性，包括简单的附属值，对一的关系和对多的关系。一个对象能找出当前属性先前的值。对多关系的观察者被通告的内容不仅有类型的改变，也被告知哪个对象在改变中被调用。</p>
+
+<p><a href="https://developer.apple.com/library/ios/documentation/General/Conceptual/DevPedia-CocoaCore/KVO.html#//apple_ref/doc/uid/TP40008195-CH16-SW1">Ref</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[KVC 机制]]></title>
     <link href="http://ios.dehengxu.com/blog/2015/08/28/kvc-ji-zhi/"/>
     <updated>2015-08-28T17:16:18+08:00</updated>
     <id>http://ios.dehengxu.com/blog/2015/08/28/kvc-ji-zhi</id>
-    <content type="html"><![CDATA[<h2>KVC : Key-value coding</h2>
+    <content type="html"><![CDATA[<h2>KVC : 键值编码 (Key-value coding)</h2>
 
 <p>键值编码是一个通过字符串间接访问对象属性和关系的机制。它是 Cocoa编程中一些机制和技术的基石，在他们中间 Core Data, 应用程序脚本能力, 绑定技术，还有语言特性中的属性声明。 (脚本特性和绑定是指 OS X 上的 Cocoa。) 你也能使用键值编码来简化你的程序代码。</p>
 
@@ -2439,26 +2458,6 @@ return _dispatch_get_root_queue(qos, flags &amp; DISPATCH_QUEUE_OVERCOMMIT);
 <blockquote><p>宏 NS_DESIGNATED_INITIALIZER</p></blockquote>
 
 <h3>自动引用计数 ARC</h3>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Useful Plugins & Tools for Xcode]]></title>
-    <link href="http://ios.dehengxu.com/blog/2015/08/16/useful-plugins-and-tools-for-xcode/"/>
-    <updated>2015-08-16T08:13:33+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/2015/08/16/useful-plugins-and-tools-for-xcode</id>
-    <content type="html"><![CDATA[<h3>Synx</h3>
-
-<blockquote><p>A command line tool used for reform folder hierachy of Xcode, it can make a real folder for &lsquo;Group&rsquo; in Xcode project and make folder hierachy looks pretty.</p></blockquote>
-
-<p>Usage:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>synx SomeProject.xcodeproj
-</span></code></pre></td></tr></table></div></figure>
-
-
-
 ]]></content>
   </entry>
   
