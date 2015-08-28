@@ -4,7 +4,7 @@
   <title><![CDATA[逆风@[iOS,nil]]]></title>
   <link href="http://ios.dehengxu.com/atom.xml" rel="self"/>
   <link href="http://ios.dehengxu.com/"/>
-  <updated>2015-08-27T17:18:55+08:00</updated>
+  <updated>2015-08-28T18:06:25+08:00</updated>
   <id>http://ios.dehengxu.com/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
@@ -12,6 +12,25 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[KVC 机制]]></title>
+    <link href="http://ios.dehengxu.com/blog/2015/08/28/kvc-ji-zhi/"/>
+    <updated>2015-08-28T17:16:18+08:00</updated>
+    <id>http://ios.dehengxu.com/blog/2015/08/28/kvc-ji-zhi</id>
+    <content type="html"><![CDATA[<h2>KVC : Key-value coding</h2>
+
+<p>键值编码是一个通过字符串间接访问对象属性和关系的机制。它是 Cocoa编程中一些机制和技术的基石，在他们中间 Core Data, 应用程序脚本能力, 绑定技术，还有语言特性中的属性声明。 (脚本特性和绑定是指 OS X 上的 Cocoa。) 你也能使用键值编码来简化你的程序代码。</p>
+
+<h3>对象属性和 KVC</h3>
+
+<p>KVC 的核心是属性的通用概念。一个属性对应一个对象封装的状态单元。属性可以是这两种类型中的一个：一个属性(例如：name, subtotal, 或者 textColor) 或者相对于其他对象的关系。关系既可以是 一对一，也可以是一对多。一对多关系的值通常是一个数组或者集合，取决于关系是否有序。</p>
+
+<p>KVC 通过“键”来定位对象的属性，其实就是一个字符串标识。“键”常常代表一个访问器方法或者实例变量的名字。“键”必须符合某种规则：必须是 ASCII 编码，小写字母开头，还没有空格。Key path是由点与“键”分隔的字符串，它被用来指明一系列对象属性的链式访问。序列的第一个“键”是相对于指定的对象来说的(如下面图表中的 employee1)，并且每个子序列“键”是相对于前一个属性值来的。</p>
+
+<p><img src="http://ios.dehengxu.com/images/refered/key_value_coding.jpg" alt="sample" /></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Use Dispatch Source Timer]]></title>
@@ -48,6 +67,8 @@
 
 
 <p>关键点： timer 一定要被 retain ，防止提前释放，否则 timer 无效。</p>
+
+<p>关闭 timer 可以使用 <code>dispatch_source_cancel</code> 函数。</p>
 ]]></content>
   </entry>
   
@@ -2417,31 +2438,6 @@ return _dispatch_get_root_queue(qos, flags &amp; DISPATCH_QUEUE_OVERCOMMIT);
 
 
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[设计模式-访问者模式]]></title>
-    <link href="http://ios.dehengxu.com/blog/2015/08/16/design-pattern-visitor/"/>
-    <updated>2015-08-16T08:05:25+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/2015/08/16/design-pattern-visitor</id>
-    <content type="html"><![CDATA[<h3>模式说明：</h3>
-
-<blockquote><p>访问者模式(Visitor Pattern)，是一种具有双分派能力的模式，它通过 Visitor 接口约定为已有类 Element 进行扩展，扩展的目标是尽可能少的修改已有类 Element ，在 Visitor 中增加新扩展的接口，对 Element 中的现有接口进行访问。而 Visitor 以外的部分，不需要知道 Element 的具体实现和操作，进行了封装。
-所谓<code>双分派</code>指的是，该模式可以通过不同的 <code>Visitor</code> 对不同的 <code>Element</code> 进行访问。</p></blockquote>
-
-<p>举例：</p>
-
-<blockquote><p>场景介绍，以学校为背景，引入 Teacher, Student, Parent 三类人作为已有类型， 引入 ConcreteVisitor 作为 Visitor 的具体实现类，对以上三者进行扩展。</p>
-
-<p><code>ElementProtocol</code> 作为 Teacher, Student, Parent 的公共接口协议。
-<code>VisitorProtocol</code> 作为访问者的公共接口协议。
-<code>Teacher, Student, Parent</code> 三者是具体的 Element 实现。
-<code>ConcreteVisitor</code> 是具体的 Visitor 实现。</p></blockquote>
-
-<p>当学校外面的人需要访问 <code>Teacher</code> 的时候，不需要直接与 <code>Teacher</code> 交流，而是去找 <code>ConcreteVisitor</code> 通过它与 <code>Teacher</code> 进行交流。</p>
-
-<p><a href="https://github.com/xudeheng/ObjcDesignPatterns">Objective-c源码</a></p>
 ]]></content>
   </entry>
   

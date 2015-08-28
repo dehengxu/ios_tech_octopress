@@ -130,6 +130,8 @@
 
 
 <p>关键点： timer 一定要被 retain ，防止提前释放，否则 timer 无效。</p>
+
+<p>关闭 timer 可以使用 <code>dispatch_source_cancel</code> 函数。</p>
 </div>
 
 
@@ -169,6 +171,8 @@
         <a class="basic-alignment left" href="/blog/2015/08/23/bash-shi-yong-ji-qiao/" title="Previous Post: bash 使用技巧">&laquo; bash 使用技巧</a>
       
       
+        <a class="basic-alignment right" href="/blog/2015/08/28/kvc-ji-zhi/" title="Next Post: KVC 机制">KVC 机制 &raquo;</a>
+      
     </p>
   </footer>
 </article>
@@ -180,6 +184,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/08/28/kvc-ji-zhi/">KVC 机制</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2015/08/27/use-dispatch-source-timer/">Use Dispatch Source Timer</a>
@@ -255,10 +263,6 @@
     
       <li class="post">
         <a href="/blog/2015/08/16/useful-plugins-and-tools-for-xcode/">Useful Plugins & Tools for Xcode</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/08/16/design-pattern-visitor/">设计模式-访问者模式</a>
       </li>
     
   </ul>

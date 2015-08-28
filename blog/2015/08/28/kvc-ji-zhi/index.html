@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: Jekyll, - 逆风@[iOS,nil]</title>
+  <title>KVC 机制 - 逆风@[iOS,nil]</title>
   <meta name="author" content="Deheng Xu">
 
   
-  <meta name="description" content="Category: jekyll,">
+  <meta name="description" content="KVC : Key-value coding 键值编码是一个通过字符串间接访问对象属性和关系的机制。它是 Cocoa编程中一些机制和技术的基石，在他们中间 Core Data, 应用程序脚本能力, 绑定技术，还有语言特性中的属性声明。 (脚本特性和绑定是指 OS X 上的 Cocoa。) &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://ios.dehengxu.com/blog/categories/jekyll/">
+  <link rel="canonical" href="http://ios.dehengxu.com/blog/2015/08/28/kvc-ji-zhi/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="逆风@[iOS,nil]" type="application/atom+xml">
@@ -68,35 +68,78 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: Jekyll,</h1>
+    
+      <h1 class="entry-title">KVC 机制</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-08-28T17:16:18+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>5:16 pm</span></time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><h2>KVC : Key-value coding</h2>
 
-  
-  <h2>2014</h2>
+<p>键值编码是一个通过字符串间接访问对象属性和关系的机制。它是 Cocoa编程中一些机制和技术的基石，在他们中间 Core Data, 应用程序脚本能力, 绑定技术，还有语言特性中的属性声明。 (脚本特性和绑定是指 OS X 上的 Cocoa。) 你也能使用键值编码来简化你的程序代码。</p>
 
-<article>
-  
-<h1><a href="/blog/2014/08/31/keys-for-using-jekyll-on-github-dot-com/">Keys for Using Jekyll on github.com</a></h1>
-<time datetime="2014-08-31T11:48:21+08:00" pubdate><span class='month'>Aug</span> <span class='day'>31</span> <span class='year'>2014</span></time>
+<h3>对象属性和 KVC</h3>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/blog/'>blog,</a>, <a class='category' href='/blog/categories/github-dot-com/'>github.com</a>, <a class='category' href='/blog/categories/jekyll/'>jekyll,</a></span>
-</footer>
+<p>KVC 的核心是属性的通用概念。一个属性对应一个对象封装的状态单元。属性可以是这两种类型中的一个：一个属性(例如：name, subtotal, 或者 textColor) 或者相对于其他对象的关系。关系既可以是 一对一，也可以是一对多。一对多关系的值通常是一个数组或者集合，取决于关系是否有序。</p>
 
+<p>KVC 通过“键”来定位对象的属性，其实就是一个字符串标识。“键”常常代表一个访问器方法或者实例变量的名字。“键”必须符合某种规则：必须是 ASCII 编码，小写字母开头，还没有空格。Key path是由点与“键”分隔的字符串，它被用来指明一系列对象属性的链式访问。序列的第一个“键”是相对于指定的对象来说的(如下面图表中的 employee1)，并且每个子序列“键”是相对于前一个属性值来的。</p>
 
-</article>
-
+<p><img src="http://ios.dehengxu.com/images/refered/key_value_coding.jpg" alt="sample" /></p>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Deheng Xu</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2015-08-28T17:16:18+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>5:16 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/objc/'>objc</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/08/27/use-dispatch-source-timer/" title="Previous Post: Use dispatch source timer">&laquo; Use dispatch source timer</a>
+      
+      
+    </p>
+  </footer>
 </article>
 
 </div>
