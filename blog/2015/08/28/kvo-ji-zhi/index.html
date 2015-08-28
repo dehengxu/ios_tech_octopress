@@ -102,6 +102,33 @@
 
 <h3>实现 KVO</h3>
 
+<p>根类 <code>NSObject</code>，提供了基本的 KVO 实现，你很少需要重载它。因此所有的 Cocoa objects 都继承了 KVO 的能力。你必须按照这些步骤来接收某个属性的 KVO 通知。</p>
+
+<ul>
+<li><p>你必须确保被观察的类对于你想观察的属性是符合 KVO 规范。 KVO 兼容性需要被观察对象的类也是 KVO 兼容的，而且也允许为该属性自动发送观察者通知，或者手动实现该属性的 KVO 。</p></li>
+<li><p>添加一个观察者到一个值会发生改变的对象。你可以通过调用 <code>addObserver:forKeyPath:optios:context:</code> 来达到这个目的。观察者是应用中的另一个对象。</p></li>
+<li><p>在观察者对象中，实现方法 <code>observeValueForKeyPath:ofObject:change:context:</code> 。当被观察对象的属性值发生改变的时候这个方法会被调用。</p></li>
+</ul>
+
+
+<h3>KVO 是绑定(OS X)的必须部分</h3>
+
+<p>Cocoa 绑定是一个允许你不用写一些胶水代码就能确保模型中的值和你应用程序中的视图层同步的 OS X 技术。通过 Interface Builder 检查器中，你就能在视图属性和一些数据之间建立起协调链接，“绑定”他们就像其中一个发生改变会在其他身上反映出来。KVO，和 KVC 还有 KVB 都是 Cocoa 绑定的基础技术。</p>
+
+<h3>前提文章</h3>
+
+<p><a href="https://developer.apple.com/library/ios/documentation/General/Conceptual/DevPedia-CocoaCore/KeyValueCoding.html#//apple_ref/doc/uid/TP40008195-CH25-SW1">Key-value coding</a></p>
+
+<h3>相关的文章</h3>
+
+<p><a href="https://developer.apple.com/library/ios/documentation/General/Conceptual/DevPedia-CocoaCore/MVC.html#//apple_ref/doc/uid/TP40008195-CH32-SW1">Model-View-Controller</a></p>
+
+<p><a href="https://developer.apple.com/library/ios/documentation/General/Conceptual/DevPedia-CocoaCore/DynamicBinding.html#//apple_ref/doc/uid/TP40008195-CH15-SW1">Dynamic binding</a></p>
+
+<h3>权威论述</h3>
+
+<p><a href="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/KeyValueObserving/KeyValueObserving.html#//apple_ref/doc/uid/10000177i">Key-value Observing Programming Guide</a></p>
+
 <p><a href="https://developer.apple.com/library/ios/documentation/General/Conceptual/DevPedia-CocoaCore/KVO.html#//apple_ref/doc/uid/TP40008195-CH16-SW1">Ref</a></p>
 </div>
 
