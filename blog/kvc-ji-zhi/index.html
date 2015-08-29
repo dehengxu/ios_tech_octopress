@@ -140,7 +140,7 @@
 
 <p>这种情况下你可以通过 <code>[people setValue:@"Nick" forKey:@"name"]</code> 或者 <code>[people setValue:@"Nick" forKey:@"_name"]</code> 为 <code>_name</code> 变量赋值。 就是说 KVC 会为 <code>key</code> 或者 <code>_key</code> 为名称的变量完成操作。</p>
 
-<p>说明 KVC 的逻辑是先寻找名为 <code>key</code>, <code>isKey</code> 或者 <code>setKey:</code> 的访问器方法，如果失败，再寻找名为 <code>_key</code> 的变量。因为 Objective-C 默认会为 <code>_key</code> 变量和 <code>key</code> 属性匹配关系。</p>
+<p>说明 KVC 的逻辑是为名为 <code>_&lt;name&gt;</code> 的变量通过 <code>_&lt;name&gt;</code> 或 <code>&lt;name&gt;</code> 形式的 key 来进行 KVC 操作。除此之外针对 <code>&lt;name&gt;</code> 的变量, 一律通过 <code>&lt;name&gt;</code> 形式的 key 来做 KVC 操作。</p>
 
 <p><a href="/blog/zi-ding-yi-lei-ru-he-ti-gong-kvc-jian-rong-te-xing/">KVC 兼容特性</a></p>
 
