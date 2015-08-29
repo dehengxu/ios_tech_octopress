@@ -9,7 +9,7 @@ footer: true
 categories: objc
 ---
 
-## KVC : Key-value coding
+## KVC : 键值编码 (Key-value coding)
 
 键值编码是一个通过字符串间接访问对象属性和关系的机制。它是 Cocoa编程中一些机制和技术的基石，在他们中间 Core Data, 应用程序脚本能力, 绑定技术，还有语言特性中的属性声明。 (脚本特性和绑定是指 OS X 上的 Cocoa。) 你也能使用键值编码来简化你的程序代码。
 
@@ -19,7 +19,7 @@ KVC 的核心是属性的通用概念。一个属性对应一个对象封装的�
 
 KVC 通过“键”来定位对象的属性，其实就是一个字符串标识。“键”常常代表一个访问器方法或者实例变量的名字。“键”必须符合某种规则：必须是 ASCII 编码，小写字母开头，还没有空格。Key path是由点与“键”分隔的字符串，它被用来指明一系列对象属性的链式访问。序列的第一个“键”是相对于指定的对象来说的(如下面图表中的 employee1)，并且每个子序列“键”是相对于前一个属性值来的。
 
-![sample]({{ site.url }}/images/refered/key_value_coding.jpg)
+![sample](/images/refered/key_value_coding.jpg)
 
 ### 使类支持 KVC
 
@@ -35,8 +35,38 @@ NSKeyValueCoding 非正式的协议使 KVC 成为可能。其中两个方法： 
 
 实现对多的 KVC 兼容是一个更复杂的过程。可以参考权关于 KVC 威性的文档来学习实现的过程。
 
-[权威论述](https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/KeyValueCoding/Articles/KeyValueCoding.html#//apple_ref/doc/uid/10000107i)
+### 后话
 
+KVC 规则就是通过 `setValue:forKey:` 对 key 所对应的变量或者属性进行赋值操作，举个简单的例子：
+
+类 `People`
+
+```
+@interface People : NSObject
+{
+	NSString *_name;
+}
+
+```
+
+这种情况下你可以通过 `[people setValue:@"Nick" forKey:@"name"]` 或者 `[people setValue:@"Nick" forKey:@"_name"]` 为 `_name` 变量赋值。 就是说 KVC 会为 `key` 或者 `_key` 为名称的变量完成操作。  
+
+说明 KVC 的逻辑是先寻找名为 `key`, `isKey` 或者 `setKey:` 的访问器方法，如果失败，再寻找名为 `_key` 的变量。因为 Objective-C 默认会为 `_key` 变量和 `key` 属性匹配关系。
+
+[KVC 兼容特性](/blog/zi-ding-yi-lei-ru-he-ti-gong-kvc-jian-rong-te-xing/)
+
+### 前提文章
+
+[Object modeling](https://developer.apple.com/library/ios/documentation/General/Conceptual/DevPedia-CocoaCore/ObjectModeling.html#//apple_ref/doc/uid/TP40008195-CH41-SW1)
+
+[Accessor method](https://developer.apple.com/library/ios/documentation/General/Conceptual/DevPedia-CocoaCore/AccessorMethod.html#//apple_ref/doc/uid/TP40008195-CH2-SW1)
+
+### 相关文章
+
+[Declared property](https://developer.apple.com/library/ios/documentation/General/Conceptual/DevPedia-CocoaCore/DeclaredProperty.html#//apple_ref/doc/uid/TP40008195-CH13-SW1)
+
+### 权威论述
+[Key-value Coding Programming Guide](https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/KeyValueCoding/Articles/KeyValueCoding.html#//apple_ref/doc/uid/10000107i)
 
 
 <https://developer.apple.com/library/ios/documentation/General/Conceptual/DevPedia-CocoaCore/KeyValueCoding.html#//apple_ref/doc/uid/TP40008195-CH25-SW1>

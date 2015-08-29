@@ -1,0 +1,62 @@
+---
+layout: post
+title: "KVO 机制"
+date: 2015-08-28 18:36:18 +0800
+comments: true
+published: true
+sharing: true
+footer: true
+categories: objc
+---
+
+## KVO : 键值观察 (Key-value observing)
+
+KVO 是一个允许一个对象直接接受来自另一个对象属性改变时发送的通知的机制。KVO 能成为应用内部重要的因素。它是采用了MVC设计模式的应用程序中对象间的一种通信模式。比如，你可以使用它来同步 view 和 controller 层中模型对象之间的状态。典型情况下，控制器对象观察模型对象，试图对象观察控制器对象或者模型对象。
+
+> 注意：虽然 UIKit 框架通常不支持 KVO，你仍然能够在自定义的对象中实现它，包括自定义的视图。
+
+![kvo](/images/refered/kvo.jpg)
+
+使用 KVO，一个对象可以观察另一个对象的任意的属性，包括简单的附属值，对一的关系和对多的关系。一个对象能找出当前属性先前的值。对多关系的观察者被通告的内容不仅有类型的改变，也被告知哪个对象在改变中被调用。
+
+作为一个通知机制，KVO 和 `NSNotification` 和 `NSNotificationCenter` 提供的机制类似，但是也有一些明显的不同。不同于中央对象来对所有注册为观察者的对象广播通知，当属性值的改变发生时，KVO 通知直接发送给观察对象。
+
+### 实现 KVO
+
+根类 `NSObject`，提供了基本的 KVO 实现，你很少需要重载它。因此所有的 Cocoa objects 都继承了 KVO 的能力。你必须按照这些步骤来接收某个属性的 KVO 通知。
+
+* 你必须确保被观察的类对于你想观察的属性是符合 KVO 规范。 KVO 兼容性需要被观察对象的类也是 KVO 兼容的，而且也允许为该属性自动发送观察者通知，或者手动实现该属性的 KVO 。
+
+* 添加一个观察者到一个值会发生改变的对象。你可以通过调用 `addObserver:forKeyPath:optios:context:` 来达到这个目的。观察者是应用中的另一个对象。
+
+* 在观察者对象中，实现方法 `observeValueForKeyPath:ofObject:change:context:` 。当被观察对象的属性值发生改变的时候这个方法会被调用。
+
+### KVO 是绑定(OS X)的必须部分
+
+Cocoa 绑定是一个允许你不用写一些胶水代码就能确保模型中的值和你应用程序中的视图层同步的 OS X 技术。通过 Interface Builder 检查器中，你就能在视图属性和一些数据之间建立起协调链接，“绑定”他们就像其中一个发生改变会在其他身上反映出来。KVO，和 KVC 还有 KVB 都是 Cocoa 绑定的基础技术。
+
+### 后话
+
+![KVO runtime](/images/refered/kvo_proj_snap1.png)
+
+从上图可以看出 KVO 是一个同步调用过程通过 _NSSetObjectValueAndNotify 函数，在设置对象值的同时向观察对象发送变化通知，同时会通过 `NSKeyValueObservingOptions` 类型来区分 KVO 发生的类型，并在 `- (void)observeValueForKeyPath:(nullable NSString *)keyPath ofObject:(nullable id)object change:(nullable NSDictionary *)change context:(nullable void *)context` 的 change 字典对象中传递相关值的变化信息(old value, new value 等)。
+
+同时需要注意的是观察者是通过弱引用方式加入到被观察对象中的，所以当不需要继续观察的时候，请使用`removeObserver:forKeyPath:` 移除不再需要的观察者以免引起运行时异常。
+
+### 前提文章
+
+[Key-value coding](https://developer.apple.com/library/ios/documentation/General/Conceptual/DevPedia-CocoaCore/KeyValueCoding.html#//apple_ref/doc/uid/TP40008195-CH25-SW1)
+
+### 相关的文章
+
+[Model-View-Controller](https://developer.apple.com/library/ios/documentation/General/Conceptual/DevPedia-CocoaCore/MVC.html#//apple_ref/doc/uid/TP40008195-CH32-SW1)
+
+[Dynamic binding](https://developer.apple.com/library/ios/documentation/General/Conceptual/DevPedia-CocoaCore/DynamicBinding.html#//apple_ref/doc/uid/TP40008195-CH15-SW1)
+
+### 权威论述
+
+[Key-value Observing Programming Guide](https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/KeyValueObserving/KeyValueObserving.html#//apple_ref/doc/uid/10000177i)
+
+---
+
+[Ref](https://developer.apple.com/library/ios/documentation/General/Conceptual/DevPedia-CocoaCore/KVO.html#//apple_ref/doc/uid/TP40008195-CH16-SW1)
