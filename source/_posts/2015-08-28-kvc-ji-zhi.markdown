@@ -51,7 +51,9 @@ KVC 规则就是通过 `setValue:forKey:` 对 key 所对应的变量或者属性
 
 这种情况下你可以通过 `[people setValue:@"Nick" forKey:@"name"]` 或者 `[people setValue:@"Nick" forKey:@"_name"]` 为 `_name` 变量赋值。 就是说 KVC 会为 `key` 或者 `_key` 为名称的变量完成操作。  
 
-说明 KVC 的逻辑是先寻找名为 `key`, `isKey` 或者 `setKey:` 的访问器方法，如果失败，再寻找名为 `_key` 的变量。因为 Objective-C 默认会为 `_key` 变量和 `key` 属性匹配关系。
+
+
+说明 KVC 的逻辑是为名为 `_<name>` 的变量通过 `_<name>` 或 `<name>` 形式的 key 来进行 KVC 操作。除此之外针对 `<name>` 的变量, 一律通过 `<name>` 形式的 key 来做 KVC 操作。
 
 [KVC 兼容特性](/blog/zi-ding-yi-lei-ru-he-ti-gong-kvc-jian-rong-te-xing/)
 
