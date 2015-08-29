@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+ls ./source/_posts/*.markdown|xargs grep -i $1
