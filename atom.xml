@@ -4,7 +4,7 @@
   <title><![CDATA[逆风@[iOS,nil]]]></title>
   <link href="http://ios.dehengxu.com/atom.xml" rel="self"/>
   <link href="http://ios.dehengxu.com/"/>
-  <updated>2015-08-29T13:00:21+08:00</updated>
+  <updated>2015-08-29T15:23:54+08:00</updated>
   <id>http://ios.dehengxu.com/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
@@ -14,10 +14,71 @@
 
   
   <entry>
+    <title type="html"><![CDATA[自定义类如何提供 KVC 兼容特性]]></title>
+    <link href="http://ios.dehengxu.com/blog/zi-ding-yi-lei-ru-he-ti-gong-kvc-jian-rong-te-xing/"/>
+    <updated>2015-08-29T15:10:33+08:00</updated>
+    <id>http://ios.dehengxu.com/blog/zi-ding-yi-lei-ru-he-ti-gong-kvc-jian-rong-te-xing</id>
+    <content type="html"><![CDATA[<h3>KVC 兼容性</h3>
+
+<h4>对一的关系</h4>
+
+<p>对于属性来说，附属值会存在一对一的关系，这就需要你的类拥有一下特征：</p>
+
+<ul>
+<li><p>实现 <code>-key</code>, <code>-is&lt;Key&gt;</code> 方法类，或者存在有一个叫 <code>key</code> 或者 <code>_key</code> 的实例对象。(显然，这是 getter 访问器的规则)。虽然 key 名字常常以小写字母开头，KVC 也支持 key名称以大写字母开头，例如：<code>URL</code>。</p></li>
+<li><p>如果该属性是可以修改的，那么就应该实现 <code>-set&lt;Key&gt;:</code> 方法。PS:框架会自动寻找 <code>key</code> 或者 <code>_key</code>形式的变量来完成对应操作。</p></li>
+<li><p>你的 <code>-set&lt;Key&gt;:</code> 实现方法不应该执行验证操作。</p></li>
+<li><p>如果你需要验证 <code>key</code> 的话，你需要实现 <code>-validate&lt;key&gt;:error:</code> 的方法。</p></li>
+</ul>
+
+
+<h4>索引化的对多关系</h4>
+
+<p>对于索引化的对多关系而言，KVC 兼容性需要你的类拥有这些特征：</p>
+
+<ul>
+<li><p>实现名为 <code>-&lt;key&gt;</code> 并返回数组的方法。</p></li>
+<li><p>或者拥有一个名为 <code>key</code> 或 <code>_key</code> 的数组实例对象变量。</p></li>
+<li><p>或者实现 <code>-countOf&lt;key&gt;</code> 方法，并且实现 <code>-objectIn&lt;key&gt;AtIndex:</code> 和 <code>-&lt;key&gt;AtIndexes:</code> 两个方法中的一个或所有方法。</p></li>
+<li><p>你也能可选的实现 <code>-get&lt;key&gt;:range:</code> 方法来提高性能表现。</p></li>
+</ul>
+
+
+<p>对于可修改的索引化有序对多关系，KVC 兼容性也需要你的类提供这些特征：</p>
+
+<ul>
+<li><p>实现 <code>-insertObject:in&lt;key&gt;AtIndex:</code> 和 <code>-insert&lt;Key&gt;:atIndexex:</code> 中的一个或所有方法。</p></li>
+<li><p>当然如果愿意，你可也可以实现 <code>-replaceObjectIn&lt;key&gt;AtIndex:withObject:</code> 或 <code>-replace&lt;key&gt;AtIndexes:with&lt;key&gt;:</code> 来提高性能表现。这仅仅是个可选项。 :)</p></li>
+</ul>
+
+
+<h4>无序的对多关系兼容性</h4>
+
+<p>对于无序的对多关系来说，KVC 兼容性需要你的类提供这些特征：</p>
+
+<ul>
+<li><p>实现能返回集合的名为 <code>-&lt;key&gt;</code> 的方法。</p></li>
+<li><p>或者包含一个名为 <code>key</code> 或 <code>_key</code> 的实例变量。</p></li>
+<li><p>或者实现 <code>-countOf&lt;key&gt;</code>，<code>-enumeratorOf&lt;key&gt;</code> 和 <code>-memberOf&lt;key&gt;:</code> 方法。</p></li>
+</ul>
+
+
+<p>对于可变的无序对多关系而言，KVC 兼容性需要你的类也提供这些：</p>
+
+<ul>
+<li><p>实现方法 <code>-add&lt;key&gt;Object:</code> 或 <code>-add&lt;key&gt;:</code> 中的一个或所有。</p></li>
+<li><p>实现方法 <code>-remove&lt;key&gt;Object:</code> 或 <code>-remove&lt;key&gt;:</code>中的一个或所有。</p></li>
+<li><p>你也可以实现 <code>-intersect&lt;key&gt;:</code> 和 <code>-set&lt;key&gt;:</code> 来提高性能表现，不过这是个可选项，根据你面临的情况自己选择吧。</p></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[使用 NSValue 封装任意结构体]]></title>
-    <link href="http://ios.dehengxu.com/blog/2015/08/29/shi-yong-nsvalue-feng-zhuang-ren-yi-jie-gou-ti/"/>
+    <link href="http://ios.dehengxu.com/blog/shi-yong-nsvalue-feng-zhuang-ren-yi-jie-gou-ti/"/>
     <updated>2015-08-29T12:55:21+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/2015/08/29/shi-yong-nsvalue-feng-zhuang-ren-yi-jie-gou-ti</id>
+    <id>http://ios.dehengxu.com/blog/shi-yong-nsvalue-feng-zhuang-ren-yi-jie-gou-ti</id>
     <content type="html"><![CDATA[<h2>NSValue</h2>
 
 <p>装包，拆包，分别用到 <code>value:withObjCType:</code> 和 <code>getValue:</code>两个方法。</p>
@@ -49,7 +110,7 @@
 </pre></td><td class='code'><pre><code class=''><span class='line'>struct Node *header = (struct Node *)malloc(sizeof(struct Node));
 </span><span class='line'>header-&gt;name = "Nicholasxu";
 </span><span class='line'>header-&gt;age = 89;    
-</span><span class='line'>NSValue *struc = [NSValue value:header withObjCType:@encode(struct Node)];</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>NSValue *value = [NSValue value:header withObjCType:@encode(struct Node)];</span></code></pre></td></tr></table></div></figure>
 
 
 <p>通过 <code>@encode</code> 将C 类型转换成 Objective-C 能识别的 char * 形式。</p>
@@ -58,19 +119,28 @@
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>struct Node *chain = (struct Node *)malloc(sizeof(struct Node));
-</span><span class='line'>[struc getValue:chain];</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>[value getValue:chain];
+</span><span class='line'>NSLog(@"%s", chain-&gt;name);
+</span><span class='line'>NSLog(@"%s", chain-&gt;age);
+</span></code></pre></td></tr></table></div></figure>
 
 
-<p>先分配结构题内存 <code>chain</code>，再将数据解包出来，并填充 <code>chain</code> de空间。</p>
+<p>先分配结构题内存 <code>chain</code>，再将数据解包出来，并填充 <code>chain</code> 的空间。</p>
+
+<h3>内存布局</h3>
+
+<p>上面的例子中，<code>value</code> 和 header 都是在堆上分配的空间并且 header 的内存和 value 内部的数据是同一个内存空间，要做好 header 的内存管理工作，否则会导致 value 无法访问内部数据(出现野指针)。而且 chain 的数据是从 value 中复制过来的。</p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[KVO 机制]]></title>
-    <link href="http://ios.dehengxu.com/blog/2015/08/28/kvo-ji-zhi/"/>
+    <link href="http://ios.dehengxu.com/blog/kvo-ji-zhi/"/>
     <updated>2015-08-28T18:36:18+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/2015/08/28/kvo-ji-zhi</id>
+    <id>http://ios.dehengxu.com/blog/kvo-ji-zhi</id>
     <content type="html"><![CDATA[<h2>KVO : 键值观察 (Key-value observing)</h2>
 
 <p>KVO 是一个允许一个对象直接接受来自另一个对象属性改变时发送的通知的机制。KVO 能成为应用内部重要的因素。它是采用了MVC设计模式的应用程序中对象间的一种通信模式。比如，你可以使用它来同步 view 和 controller 层中模型对象之间的状态。典型情况下，控制器对象观察模型对象，试图对象观察控制器对象或者模型对象。</p>
@@ -120,15 +190,17 @@
 
 <p><a href="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/KeyValueObserving/KeyValueObserving.html#//apple_ref/doc/uid/10000177i">Key-value Observing Programming Guide</a></p>
 
+<hr />
+
 <p><a href="https://developer.apple.com/library/ios/documentation/General/Conceptual/DevPedia-CocoaCore/KVO.html#//apple_ref/doc/uid/TP40008195-CH16-SW1">Ref</a></p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[KVC 机制]]></title>
-    <link href="http://ios.dehengxu.com/blog/2015/08/28/kvc-ji-zhi/"/>
+    <link href="http://ios.dehengxu.com/blog/kvc-ji-zhi/"/>
     <updated>2015-08-28T17:16:18+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/2015/08/28/kvc-ji-zhi</id>
+    <id>http://ios.dehengxu.com/blog/kvc-ji-zhi</id>
     <content type="html"><![CDATA[<h2>KVC : 键值编码 (Key-value coding)</h2>
 
 <p>键值编码是一个通过字符串间接访问对象属性和关系的机制。它是 Cocoa编程中一些机制和技术的基石，在他们中间 Core Data, 应用程序脚本能力, 绑定技术，还有语言特性中的属性声明。 (脚本特性和绑定是指 OS X 上的 Cocoa。) 你也能使用键值编码来简化你的程序代码。</p>
@@ -177,20 +249,9 @@
 
 <p>这种情况下你可以通过 <code>[people setValue:@"Nick" forKey:@"name"]</code> 或者 <code>[people setValue:@"Nick" forKey:@"_name"]</code> 为 <code>_name</code> 变量赋值。 就是说 KVC 会为 <code>key</code> 或者 <code>_key</code> 为名称的变量完成操作。</p>
 
-<p>说明 KVC 的逻辑是先寻找名为 <code>key</code> 或者 <code>setKey:</code> 的访问器方法，如果失败，再寻找名为 <code>_key</code> 的变量。因为 Objective-C 默认会为 <code>_key</code> 变量和 <code>key</code> 属性匹配关系。</p>
+<p>说明 KVC 的逻辑是先寻找名为 <code>key</code>, <code>isKey</code> 或者 <code>setKey:</code> 的访问器方法，如果失败，再寻找名为 <code>_key</code> 的变量。因为 Objective-C 默认会为 <code>_key</code> 变量和 <code>key</code> 属性匹配关系。</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>[self setValue:@"Male" forKey:@"sex"];</span></code></pre></td></tr></table></div></figure>
-
-
-<p>被编译成 c++ 代码：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>((void (*)(id, SEL, NSString *))(void *)objc_msgSend)((id)self, sel_registerName("setSex:"), (NSString *)&__NSConstantStringImpl__var_folders_6r_flwjnj4x4wsb8wcbmjj88_z40000gn_T_Block4Clang_033b4d_mi_0);
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>可以看到c++代码响应的是 <code>setSex:</code> 方法。</p>
+<p><a href="http://ios.dehengxu.com/blog/zi-ding-yi-lei-ru-he-ti-gong-kvc-jian-rong-te-xing/">KVC 兼容特性</a></p>
 
 <h3>前提文章</h3>
 
@@ -212,9 +273,9 @@
   
   <entry>
     <title type="html"><![CDATA[Use Dispatch Source Timer]]></title>
-    <link href="http://ios.dehengxu.com/blog/2015/08/27/use-dispatch-source-timer/"/>
+    <link href="http://ios.dehengxu.com/blog/use-dispatch-source-timer/"/>
     <updated>2015-08-27T16:58:03+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/2015/08/27/use-dispatch-source-timer</id>
+    <id>http://ios.dehengxu.com/blog/use-dispatch-source-timer</id>
     <content type="html"><![CDATA[<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -252,9 +313,9 @@
   
   <entry>
     <title type="html"><![CDATA[Bash 使用技巧]]></title>
-    <link href="http://ios.dehengxu.com/blog/2015/08/23/bash-shi-yong-ji-qiao/"/>
+    <link href="http://ios.dehengxu.com/blog/bash-shi-yong-ji-qiao/"/>
     <updated>2015-08-23T23:11:02+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/2015/08/23/bash-shi-yong-ji-qiao</id>
+    <id>http://ios.dehengxu.com/blog/bash-shi-yong-ji-qiao</id>
     <content type="html"><![CDATA[<h4>递归搜索目录下所有文件内容</h4>
 
 <p>bash</p>
@@ -285,9 +346,9 @@
   
   <entry>
     <title type="html"><![CDATA[GCD 的常规用法]]></title>
-    <link href="http://ios.dehengxu.com/blog/2015/08/23/gcd-de-chang-gui-yong-fa/"/>
+    <link href="http://ios.dehengxu.com/blog/gcd-de-chang-gui-yong-fa/"/>
     <updated>2015-08-23T15:56:50+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/2015/08/23/gcd-de-chang-gui-yong-fa</id>
+    <id>http://ios.dehengxu.com/blog/gcd-de-chang-gui-yong-fa</id>
     <content type="html"><![CDATA[<p>GCD 通过将多线程抽象为 <code>dispatch_queue_t</code> 类型的对象，以 Block 作为计算单元实现的一套基于 C 语言的开源多线程库 <code>libdispatch</code>。</p>
 
 <p>GCD 让多线程开发变的更加方便，简洁。</p>
@@ -475,18 +536,18 @@ dispatch_async(q1, ^ {
   
   <entry>
     <title type="html"><![CDATA[线程和进程间的区别]]></title>
-    <link href="http://ios.dehengxu.com/blog/2015/08/23/xian-cheng-he-jin-cheng-jian-de-qu-bie/"/>
+    <link href="http://ios.dehengxu.com/blog/xian-cheng-he-jin-cheng-jian-de-qu-bie/"/>
     <updated>2015-08-23T15:13:25+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/2015/08/23/xian-cheng-he-jin-cheng-jian-de-qu-bie</id>
+    <id>http://ios.dehengxu.com/blog/xian-cheng-he-jin-cheng-jian-de-qu-bie</id>
     <content type="html"><![CDATA[<p><a href="http://www.programmerinterview.com/index.php/operating-systems/thread-vs-process/">译自</a></p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Timer ⌚回调事件被UI交互阻塞的解决办法]]></title>
-    <link href="http://ios.dehengxu.com/blog/2015/08/23/timer-hui-diao-shi-jian-bei-uijiao-hu-zu-sai-de-jie-jue-ban-fa/"/>
+    <link href="http://ios.dehengxu.com/blog/timer-hui-diao-shi-jian-bei-uijiao-hu-zu-sai-de-jie-jue-ban-fa/"/>
     <updated>2015-08-23T14:59:03+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/2015/08/23/timer-hui-diao-shi-jian-bei-uijiao-hu-zu-sai-de-jie-jue-ban-fa</id>
+    <id>http://ios.dehengxu.com/blog/timer-hui-diao-shi-jian-bei-uijiao-hu-zu-sai-de-jie-jue-ban-fa</id>
     <content type="html"><![CDATA[<p>分析原因：</p>
 
 <p>UI 事件运行在主线程，并且UI 事件的运行模式下 runloop 过滤掉了 timer 事件。</p>
@@ -625,9 +686,9 @@ dispatch_async(q1, ^ {
   
   <entry>
     <title type="html"><![CDATA[通过 Clang 分析 Block 的机制]]></title>
-    <link href="http://ios.dehengxu.com/blog/2015/08/23/tong-guo-clang-fen-xi-block-de-ji-zhi/"/>
+    <link href="http://ios.dehengxu.com/blog/tong-guo-clang-fen-xi-block-de-ji-zhi/"/>
     <updated>2015-08-23T08:35:18+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/2015/08/23/tong-guo-clang-fen-xi-block-de-ji-zhi</id>
+    <id>http://ios.dehengxu.com/blog/tong-guo-clang-fen-xi-block-de-ji-zhi</id>
     <content type="html"><![CDATA[<h3>简单看一下编译器对 __block 做了什么</h3>
 
 <h4>1. 普通变量在栈空间上</h4>
@@ -1011,9 +1072,9 @@ dispatch_async(q1, ^ {
   
   <entry>
     <title type="html"><![CDATA[管理自由桥接(Toll-Free Bridging)]]></title>
-    <link href="http://ios.dehengxu.com/blog/2015/08/22/guan-li-zi-you-qiao-jie-toll-free-bridging/"/>
+    <link href="http://ios.dehengxu.com/blog/guan-li-zi-you-qiao-jie-toll-free-bridging/"/>
     <updated>2015-08-22T18:21:12+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/2015/08/22/guan-li-zi-you-qiao-jie-toll-free-bridging</id>
+    <id>http://ios.dehengxu.com/blog/guan-li-zi-you-qiao-jie-toll-free-bridging</id>
     <content type="html"><![CDATA[<p>在很多 Cocoa 应用程序中，你需要使用 Core Foundation 风格的对象，有的来自 Core Foundation 框架自己(像：<a href="https://developer.apple.com/library/ios/documentation/CoreFoundation/Reference/CFArrayRef/index.html#//apple_ref/c/tdef/CFArrayRef">CFArrayRef</a> 或 <a href="https://developer.apple.com/library/ios/documentation/CoreFoundation/Reference/CFMutableDictionaryRef/index.html#//apple_ref/c/tdef/CFMutableDictionaryRef">CFMutaleDictionaryRef</a>) 或者来自于适配了 Core Foudation 大会例如 Core Graphics (你可能使用这些类型：<a href="https://developer.apple.com/library/ios/documentation/GraphicsImaging/Reference/CGColorSpace/index.html#//apple_ref/c/tdef/CGColorSpaceRef">CGColorSpaceRef</a> 和  <a href="https://developer.apple.com/library/ios/documentation/GraphicsImaging/Reference/CGGradient/index.html#//apple_ref/c/tdef/CGGradientRef">CGGradientRef</a>)。</p>
 
 <p>编译器不会自动管理 Core Foundation 对象的生命期；你必须调用 <a href="https://developer.apple.com/library/ios/documentation/CoreFoundation/Reference/CFTypeRef/index.html#//apple_ref/c/func/CFRetain">CFRetain</a> 和 <a href="https://developer.apple.com/library/ios/documentation/CoreFoundation/Reference/CFTypeRef/index.html#//apple_ref/c/func/CFRelease">CFRelease</a> (或者响应类型指定的变体) 就像 Core Foundation 内存管理规则中描述的(见 <a href="https://developer.apple.com/library/ios/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/CFMemoryMgmt.html#//apple_ref/doc/uid/10000127i">Memory Management Programming</a>)。</p>
@@ -1073,9 +1134,9 @@ dispatch_async(q1, ^ {
   
   <entry>
     <title type="html"><![CDATA[ARC 内存管理]]></title>
-    <link href="http://ios.dehengxu.com/blog/2015/08/21/arc-nei-cun-guan-li/"/>
+    <link href="http://ios.dehengxu.com/blog/arc-nei-cun-guan-li/"/>
     <updated>2015-08-21T23:06:08+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/2015/08/21/arc-nei-cun-guan-li</id>
+    <id>http://ios.dehengxu.com/blog/arc-nei-cun-guan-li</id>
     <content type="html"><![CDATA[<p><a href="https://developer.apple.com/library/ios/releasenotes/ObjectiveC/RN-TransitioningToARC/Introduction/Introduction.html#//apple_ref/doc/uid/TP40011226-CH1-SW13" target="_blank">ARC Overview</a></p>
 
 <p>ARC 概述
@@ -1390,9 +1451,9 @@ Xcode 4.1 和以前的版本不支持 ARC。</p>
   
   <entry>
     <title type="html"><![CDATA[进程间通信方式]]></title>
-    <link href="http://ios.dehengxu.com/blog/2015/08/21/jin-cheng-jian-tong-xin-fang-shi/"/>
+    <link href="http://ios.dehengxu.com/blog/jin-cheng-jian-tong-xin-fang-shi/"/>
     <updated>2015-08-21T15:23:01+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/2015/08/21/jin-cheng-jian-tong-xin-fang-shi</id>
+    <id>http://ios.dehengxu.com/blog/jin-cheng-jian-tong-xin-fang-shi</id>
     <content type="html"><![CDATA[<h3>序</h3>
 
 <p>linux下的进程通信手段基本上是从Unix平台上的进程通信手段继承而来的。而对Unix发展做出重大贡献的两大主力AT&amp;T的贝尔实验室及BSD（加州大学伯克利分校的伯克利软件发布中心）在进程间通信方面的侧重点有所不同。前者对Unix早期的进程间通信手段进行了系统的改进和扩充，形成了“system V IPC”，通信进程局限在单个计算机内；后者则跳过了该限制，形成了基于套接口（socket）的进程间通信机制。Linux则把两者继承了下来，如图示：</p>
@@ -1427,9 +1488,9 @@ Xcode 4.1 和以前的版本不支持 ARC。</p>
   
   <entry>
     <title type="html"><![CDATA[Git常见用法]]></title>
-    <link href="http://ios.dehengxu.com/blog/2015/08/21/gitchang-jian-yong-fa/"/>
+    <link href="http://ios.dehengxu.com/blog/gitchang-jian-yong-fa/"/>
     <updated>2015-08-21T13:52:39+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/2015/08/21/gitchang-jian-yong-fa</id>
+    <id>http://ios.dehengxu.com/blog/gitchang-jian-yong-fa</id>
     <content type="html"><![CDATA[<h3>1.checkout</h3>
 
 <h4>切换到指定 commit</h4>
@@ -1510,18 +1571,18 @@ Xcode 4.1 和以前的版本不支持 ARC。</p>
   
   <entry>
     <title type="html"><![CDATA[NSMutableCopying and NSCopying]]></title>
-    <link href="http://ios.dehengxu.com/blog/2015/08/19/nsmutablecopying-and-nscopying/"/>
+    <link href="http://ios.dehengxu.com/blog/nsmutablecopying-and-nscopying/"/>
     <updated>2015-08-19T23:24:42+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/2015/08/19/nsmutablecopying-and-nscopying</id>
+    <id>http://ios.dehengxu.com/blog/nsmutablecopying-and-nscopying</id>
     <content type="html"><![CDATA[
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Jekyll Site Class Available Attr]]></title>
-    <link href="http://ios.dehengxu.com/blog/2015/08/19/jekyll-site-class-available-attr/"/>
+    <link href="http://ios.dehengxu.com/blog/jekyll-site-class-available-attr/"/>
     <updated>2015-08-19T11:35:34+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/2015/08/19/jekyll-site-class-available-attr</id>
+    <id>http://ios.dehengxu.com/blog/jekyll-site-class-available-attr</id>
     <content type="html"><![CDATA[<p><a href="https://docs.shopify.com/themes/liquid-documentation/basics" target="_blank">LiquidDocument</a></p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -1554,9 +1615,9 @@ Xcode 4.1 和以前的版本不支持 ARC。</p>
   
   <entry>
     <title type="html"><![CDATA[Jekyll Configuration Fileds]]></title>
-    <link href="http://ios.dehengxu.com/blog/2015/08/19/jekyll-configuration-fileds/"/>
+    <link href="http://ios.dehengxu.com/blog/jekyll-configuration-fileds/"/>
     <updated>2015-08-19T11:32:06+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/2015/08/19/jekyll-configuration-fileds</id>
+    <id>http://ios.dehengxu.com/blog/jekyll-configuration-fileds</id>
     <content type="html"><![CDATA[<p>This is Jekyll configuration source file:</p>
 
 <p>For configurating _config.yml use.</p>
@@ -1722,9 +1783,9 @@ Xcode 4.1 和以前的版本不支持 ARC。</p>
   
   <entry>
     <title type="html"><![CDATA[Block在Clang中的实现]]></title>
-    <link href="http://ios.dehengxu.com/blog/2015/08/19/blockzai-clangzhong-de-shi-xian/"/>
+    <link href="http://ios.dehengxu.com/blog/blockzai-clangzhong-de-shi-xian/"/>
     <updated>2015-08-19T06:00:02+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/2015/08/19/blockzai-clangzhong-de-shi-xian</id>
+    <id>http://ios.dehengxu.com/blog/blockzai-clangzhong-de-shi-xian</id>
     <content type="html"><![CDATA[<h3>被导入的变量</h3>
 
 <h4>被导入成 const copy 变量</h4>
@@ -2105,9 +2166,9 @@ Xcode 4.1 和以前的版本不支持 ARC。</p>
   
   <entry>
     <title type="html"><![CDATA[Autorelease方法的源码分析]]></title>
-    <link href="http://ios.dehengxu.com/blog/2015/08/18/autoreleasefang-fa-deyuan-ma-fen-xi/"/>
+    <link href="http://ios.dehengxu.com/blog/autoreleasefang-fa-deyuan-ma-fen-xi/"/>
     <updated>2015-08-18T10:51:06+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/2015/08/18/autoreleasefang-fa-deyuan-ma-fen-xi</id>
+    <id>http://ios.dehengxu.com/blog/autoreleasefang-fa-deyuan-ma-fen-xi</id>
     <content type="html"><![CDATA[<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -2262,9 +2323,9 @@ Xcode 4.1 和以前的版本不支持 ARC。</p>
   
   <entry>
     <title type="html"><![CDATA[Libdispatch 源码分析]]></title>
-    <link href="http://ios.dehengxu.com/blog/2015/08/18/libdispatch-yuan-ma-fen-xi/"/>
+    <link href="http://ios.dehengxu.com/blog/libdispatch-yuan-ma-fen-xi/"/>
     <updated>2015-08-18T08:57:37+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/2015/08/18/libdispatch-yuan-ma-fen-xi</id>
+    <id>http://ios.dehengxu.com/blog/libdispatch-yuan-ma-fen-xi</id>
     <content type="html"><![CDATA[<p>GCD 是苹果的多线程框架，提供了大量便捷的特性，允许用户利用多核 cpu 技术 ，使用中，最常接触的是</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -2558,19 +2619,6 @@ return _dispatch_get_root_queue(qos, flags &amp; DISPATCH_QUEUE_OVERCOMMIT);
 </span><span class='line'>      .dq_serialnum = 5,
 </span><span class='line'>  }</span></code></pre></td></tr></table></div></figure>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Apple Source Code & Documents]]></title>
-    <link href="http://ios.dehengxu.com/blog/2015/08/17/apple-source-code-&-documents/"/>
-    <updated>2015-08-17T10:04:40+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/2015/08/17/apple-source-code-&-documents</id>
-    <content type="html"><![CDATA[<p><a href="http://opensource.apple.com/tarballs/" target="_blank">Apple Open Source</a></p>
-
-<p><a href="https://developer.apple.com/resources/" target="_blank">Apple Developer Resources</a></p>
-
-<p><a href="https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/Collections/Collections.html" target="_blank">Collections Programming Topics</a></p>
 ]]></content>
   </entry>
   

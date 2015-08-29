@@ -1,0 +1,315 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>自定义类如何提供 KVC 兼容特性 - 逆风@[iOS,nil]</title>
+  <meta name="author" content="Deheng Xu">
+
+  
+  <meta name="description" content="KVC 兼容性 对一的关系 对于属性来说，附属值会存在一对一的关系，这就需要你的类拥有一下特征： 实现 -key, -is&lt;Key&gt; 方法类，或者存在有一个叫 key 或者 _key 的实例对象。(显然，这是 getter 访问器的规则)。虽然 key 名字常常以小写字母开头，KVC &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://ios.dehengxu.com/blog/zi-ding-yi-lei-ru-he-ti-gong-kvc-jian-rong-te-xing/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="逆风@[iOS,nil]" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+
+  <!--<script src="/javascript/search.min.js" type="text/javascript" charset="utf-8"></script> -->
+
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">逆风@[iOS,nil]</a></h1>
+  
+    <h2>A blog focus on iOS techs.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="ios.dehengxu.com">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">自定义类如何提供 KVC 兼容特性</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-08-29T15:10:33+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>29</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>3:10 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h3>KVC 兼容性</h3>
+
+<h4>对一的关系</h4>
+
+<p>对于属性来说，附属值会存在一对一的关系，这就需要你的类拥有一下特征：</p>
+
+<ul>
+<li><p>实现 <code>-key</code>, <code>-is&lt;Key&gt;</code> 方法类，或者存在有一个叫 <code>key</code> 或者 <code>_key</code> 的实例对象。(显然，这是 getter 访问器的规则)。虽然 key 名字常常以小写字母开头，KVC 也支持 key名称以大写字母开头，例如：<code>URL</code>。</p></li>
+<li><p>如果该属性是可以修改的，那么就应该实现 <code>-set&lt;Key&gt;:</code> 方法。PS:框架会自动寻找 <code>key</code> 或者 <code>_key</code>形式的变量来完成对应操作。</p></li>
+<li><p>你的 <code>-set&lt;Key&gt;:</code> 实现方法不应该执行验证操作。</p></li>
+<li><p>如果你需要验证 <code>key</code> 的话，你需要实现 <code>-validate&lt;key&gt;:error:</code> 的方法。</p></li>
+</ul>
+
+
+<h4>索引化的对多关系</h4>
+
+<p>对于索引化的对多关系而言，KVC 兼容性需要你的类拥有这些特征：</p>
+
+<ul>
+<li><p>实现名为 <code>-&lt;key&gt;</code> 并返回数组的方法。</p></li>
+<li><p>或者拥有一个名为 <code>key</code> 或 <code>_key</code> 的数组实例对象变量。</p></li>
+<li><p>或者实现 <code>-countOf&lt;key&gt;</code> 方法，并且实现 <code>-objectIn&lt;key&gt;AtIndex:</code> 和 <code>-&lt;key&gt;AtIndexes:</code> 两个方法中的一个或所有方法。</p></li>
+<li><p>你也能可选的实现 <code>-get&lt;key&gt;:range:</code> 方法来提高性能表现。</p></li>
+</ul>
+
+
+<p>对于可修改的索引化有序对多关系，KVC 兼容性也需要你的类提供这些特征：</p>
+
+<ul>
+<li><p>实现 <code>-insertObject:in&lt;key&gt;AtIndex:</code> 和 <code>-insert&lt;Key&gt;:atIndexex:</code> 中的一个或所有方法。</p></li>
+<li><p>当然如果愿意，你可也可以实现 <code>-replaceObjectIn&lt;key&gt;AtIndex:withObject:</code> 或 <code>-replace&lt;key&gt;AtIndexes:with&lt;key&gt;:</code> 来提高性能表现。这仅仅是个可选项。 :)</p></li>
+</ul>
+
+
+<h4>无序的对多关系兼容性</h4>
+
+<p>对于无序的对多关系来说，KVC 兼容性需要你的类提供这些特征：</p>
+
+<ul>
+<li><p>实现能返回集合的名为 <code>-&lt;key&gt;</code> 的方法。</p></li>
+<li><p>或者包含一个名为 <code>key</code> 或 <code>_key</code> 的实例变量。</p></li>
+<li><p>或者实现 <code>-countOf&lt;key&gt;</code>，<code>-enumeratorOf&lt;key&gt;</code> 和 <code>-memberOf&lt;key&gt;:</code> 方法。</p></li>
+</ul>
+
+
+<p>对于可变的无序对多关系而言，KVC 兼容性需要你的类也提供这些：</p>
+
+<ul>
+<li><p>实现方法 <code>-add&lt;key&gt;Object:</code> 或 <code>-add&lt;key&gt;:</code> 中的一个或所有。</p></li>
+<li><p>实现方法 <code>-remove&lt;key&gt;Object:</code> 或 <code>-remove&lt;key&gt;:</code>中的一个或所有。</p></li>
+<li><p>你也可以实现 <code>-intersect&lt;key&gt;:</code> 和 <code>-set&lt;key&gt;:</code> 来提高性能表现，不过这是个可选项，根据你面临的情况自己选择吧。</p></li>
+</ul>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Deheng Xu</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2015-08-29T15:10:33+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>29</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>3:10 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/objc/'>objc</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/shi-yong-nsvalue-feng-zhuang-ren-yi-jie-gou-ti/" title="Previous Post: 使用 NSValue 封装任意结构体">&laquo; 使用 NSValue 封装任意结构体</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/zi-ding-yi-lei-ru-he-ti-gong-kvc-jian-rong-te-xing/">自定义类如何提供 KVC 兼容特性</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/shi-yong-nsvalue-feng-zhuang-ren-yi-jie-gou-ti/">使用 NSValue 封装任意结构体</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/kvo-ji-zhi/">KVO 机制</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/kvc-ji-zhi/">KVC 机制</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/use-dispatch-source-timer/">Use Dispatch Source Timer</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/bash-shi-yong-ji-qiao/">Bash 使用技巧</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/gcd-de-chang-gui-yong-fa/">GCD 的常规用法</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/xian-cheng-he-jin-cheng-jian-de-qu-bie/">线程和进程间的区别</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/timer-hui-diao-shi-jian-bei-uijiao-hu-zu-sai-de-jie-jue-ban-fa/">Timer ⌚回调事件被UI交互阻塞的解决办法</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/tong-guo-clang-fen-xi-block-de-ji-zhi/">通过 Clang 分析 Block 的机制</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/guan-li-zi-you-qiao-jie-toll-free-bridging/">管理自由桥接(Toll-Free Bridging)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/arc-nei-cun-guan-li/">ARC 内存管理</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/jin-cheng-jian-tong-xin-fang-shi/">进程间通信方式</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/gitchang-jian-yong-fa/">Git常见用法</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/nsmutablecopying-and-nscopying/">NSMutableCopying and NSCopying</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/jekyll-site-class-available-attr/">Jekyll Site Class Available Attr</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/jekyll-configuration-fileds/">Jekyll Configuration Fileds</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/blockzai-clangzhong-de-shi-xian/">Block在Clang中的实现</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/autoreleasefang-fa-deyuan-ma-fen-xi/">Autorelease方法的源码分析</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/libdispatch-yuan-ma-fen-xi/">Libdispatch 源码分析</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>About Me</h1>
+  <p>I'm focusing on iOS techs, and interested in web technologies.</p>
+  <p><a href="mailto:dehengxu@outlook.com?subject=咱们认识一下吧">dehengxu@outlook.com</a></p>
+  <p>QQ:36764672</p>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Deheng Xu -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+  <span class="credit"><a href="https://github.com/xudeheng" target="_blank">@github</a></span>
+	<span class="credit"><a href="https://twitter.com/dehengxu" target="_blank">@twitter</a></span>
+	<span class="credit"><a href="https://github.com/xudeheng/ios_tech_octopress" target="_blank">source</a></span>
+  <span class="credit"><a href="http://www.dehengxu.com/" target="_blank">MyBase</a></span>
+  <span class="credit"><a href="http://jekyllrb.com/docs/">JekyllDocs</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

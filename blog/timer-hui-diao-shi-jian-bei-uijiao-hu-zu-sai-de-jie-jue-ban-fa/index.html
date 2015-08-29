@@ -1,0 +1,397 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Timer ⌚回调事件被UI交互阻塞的解决办法 - 逆风@[iOS,nil]</title>
+  <meta name="author" content="Deheng Xu">
+
+  
+  <meta name="description" content="分析原因： UI 事件运行在主线程，并且UI 事件的运行模式下 runloop 过滤掉了 timer 事件。 回顾一下 runloop 的运行机制我们知道，runloop 是一个处理事件的循环，为了提高效率和隔离事件，它将事件进行了模式划分，通过 Runloop mode 的方式进行分类，并提供了 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://ios.dehengxu.com/blog/timer-hui-diao-shi-jian-bei-uijiao-hu-zu-sai-de-jie-jue-ban-fa/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="逆风@[iOS,nil]" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+
+  <!--<script src="/javascript/search.min.js" type="text/javascript" charset="utf-8"></script> -->
+
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">逆风@[iOS,nil]</a></h1>
+  
+    <h2>A blog focus on iOS techs.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="ios.dehengxu.com">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Timer ⌚回调事件被UI交互阻塞的解决办法</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-08-23T14:59:03+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2015</span></span> <span class='time'>2:59 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>分析原因：</p>
+
+<p>UI 事件运行在主线程，并且UI 事件的运行模式下 runloop 过滤掉了 timer 事件。</p>
+
+<p>回顾一下 runloop 的运行机制我们知道，runloop 是一个处理事件的循环，为了提高效率和隔离事件，它将事件进行了模式划分，通过 Runloop mode 的方式进行分类，并提供了 <code>runMode:beforeDate:</code> 方法 或者 <code>CFRunLoopRunInMode(CFStringRef mode, CFTimeInterval seconds, Boolean returnAfterSourceHandled)</code> 函数。所以 runloop 在 UI 事件进行中，始终运行在 NSRunLoopCommonModes 模式下。</p>
+
+<h3>Runloop 的模式有这几种：</h3>
+
+<p><a href="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/Multithreading/RunLoopManagement/RunLoopManagement.html" target="_blank">Runloop modes</a>></p>
+
+<h4>Default: NSDefaultRunLoopMode(Cocoa), kCFRunLoopDefaultMode(Core Foundation)</h4>
+
+<blockquote><p>The default mode is the one used for most operations. Most of the time, you should use this mode to start your run loop and configure your input sources.</p></blockquote>
+
+<h4>Connection: NSConnectionReplyMode (Cocoa)</h4>
+
+<blockquote><p>Cocoa uses this mode in conjunction with NSConnection objects to monitor replies. You should rarely need to use this mode yourself.</p></blockquote>
+
+<h4>Modal: NSModalPanelRunLoopMode (Cocoa)</h4>
+
+<blockquote><p>Cocoa uses this mode to identify events intended for modal panels.</p></blockquote>
+
+<h4>Event tracking: NSEventTrackingRunLoopMode (Cocoa)</h4>
+
+<blockquote><p>Cocoa uses this mode to restrict incoming events during mouse-dragging loops and other sorts of user interface tracking loops.</p></blockquote>
+
+<h4>Common modes: NSRunLoopCommonModes (Cocoa), kCFRunLoopCommonModes (Core Foundation)</h4>
+
+<blockquote><p>This is a configurable group of commonly used modes. Associating an input source with this mode also associates it with each of the modes in the group. For Cocoa applications, this set includes the default, modal, and event tracking modes by default. Core Foundation includes just the default mode initially. You can add custom modes to the set using the CFRunLoopAddCommonMode function.</p></blockquote>
+
+<h3>解决方案有以下两种：</h3>
+
+<h4>1. 在其他线程上运行 timer，并在需要的时候将操作发送到主线程</h4>
+
+<p>objc:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>- (void)startTimer
+</span><span class='line'>{
+</span><span class='line'>    NSThread *th = [[NSThread alloc] initWithTarget:self selector:@selector(threadRun) object:nil];
+</span><span class='line'>    [th start];
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>- (void)addInfinitTimerToCurrentRunloopWithTarget:(id)target selector:(SEL)selector inMode:(NSString *)mode
+</span><span class='line'>{
+</span><span class='line'>    NSTimer *timer = [NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(timerRun:) userInfo:nil repeats:YES];
+</span><span class='line'>    [[NSRunLoop currentRunLoop] addTimer:timer forMode:mode];
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>- (void)threadRun
+</span><span class='line'>{
+</span><span class='line'>    [self addInfinitTimerToCurrentRunloopWithTarget:self selector:@selector(timerRun:) inMode:@"MyTimerMode"];
+</span><span class='line'>
+</span><span class='line'>    while (YES) {
+</span><span class='line'>        NSLog(@"%s while..", __FUNCTION__);
+</span><span class='line'>        
+</span><span class='line'>        [[NSRunLoop currentRunLoop] runMode:@"MyTimerMode" beforeDate:[NSDate distantFuture]];
+</span><span class='line'>    }
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>- (void)timerRun:(id)sender
+</span><span class='line'>{
+</span><span class='line'>    NSLog(@"~");
+</span><span class='line'>    [self performSelectorOnMainThread:@selector(someSelector) withObject:nil waitUntilDone:YES];
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>- (void)someSelector
+</span><span class='line'>{
+</span><span class='line'>  //....
+</span><span class='line'>}
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这里用 NSThread 和自定义的计时器模式 <code>@"MyTimerMode"</code> 来实现。</p>
+
+<h4>2.在主线程加入计时器</h4>
+
+<p>objc:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>- (void)addInfinitTimerToCurrentRunloopWithTarget:(id)target selector:(SEL)selector inMode:(NSString *)mode
+</span><span class='line'>{
+</span><span class='line'>    NSTimer *timer = [NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(timerRun:) userInfo:nil repeats:YES];
+</span><span class='line'>    [[NSRunLoop currentRunLoop] addTimer:timer forMode:mode];
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>//运行在主线程上
+</span><span class='line'>
+</span><span class='line'>[self addInfinitTimerToCurrentRunloopWithTarget:self selector:@selector(timerRun:) inMode:NSRunLoopCommonModes];
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>让 timer 所运行的 Runloop mode 和UI 滚动事件的 Runloop mode 一致即可。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Deheng Xu</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2015-08-23T14:59:03+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2015</span></span> <span class='time'>2:59 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/objc/'>objc</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/tong-guo-clang-fen-xi-block-de-ji-zhi/" title="Previous Post: 通过 clang 分析 block 的机制">&laquo; 通过 clang 分析 block 的机制</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/xian-cheng-he-jin-cheng-jian-de-qu-bie/" title="Next Post: 线程和进程间的区别">线程和进程间的区别 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/zi-ding-yi-lei-ru-he-ti-gong-kvc-jian-rong-te-xing/">自定义类如何提供 KVC 兼容特性</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/shi-yong-nsvalue-feng-zhuang-ren-yi-jie-gou-ti/">使用 NSValue 封装任意结构体</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/kvo-ji-zhi/">KVO 机制</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/kvc-ji-zhi/">KVC 机制</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/use-dispatch-source-timer/">Use Dispatch Source Timer</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/bash-shi-yong-ji-qiao/">Bash 使用技巧</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/gcd-de-chang-gui-yong-fa/">GCD 的常规用法</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/xian-cheng-he-jin-cheng-jian-de-qu-bie/">线程和进程间的区别</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/timer-hui-diao-shi-jian-bei-uijiao-hu-zu-sai-de-jie-jue-ban-fa/">Timer ⌚回调事件被UI交互阻塞的解决办法</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/tong-guo-clang-fen-xi-block-de-ji-zhi/">通过 Clang 分析 Block 的机制</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/guan-li-zi-you-qiao-jie-toll-free-bridging/">管理自由桥接(Toll-Free Bridging)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/arc-nei-cun-guan-li/">ARC 内存管理</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/jin-cheng-jian-tong-xin-fang-shi/">进程间通信方式</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/gitchang-jian-yong-fa/">Git常见用法</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/nsmutablecopying-and-nscopying/">NSMutableCopying and NSCopying</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/jekyll-site-class-available-attr/">Jekyll Site Class Available Attr</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/jekyll-configuration-fileds/">Jekyll Configuration Fileds</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/blockzai-clangzhong-de-shi-xian/">Block在Clang中的实现</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/autoreleasefang-fa-deyuan-ma-fen-xi/">Autorelease方法的源码分析</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/libdispatch-yuan-ma-fen-xi/">Libdispatch 源码分析</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>About Me</h1>
+  <p>I'm focusing on iOS techs, and interested in web technologies.</p>
+  <p><a href="mailto:dehengxu@outlook.com?subject=咱们认识一下吧">dehengxu@outlook.com</a></p>
+  <p>QQ:36764672</p>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Deheng Xu -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+  <span class="credit"><a href="https://github.com/xudeheng" target="_blank">@github</a></span>
+	<span class="credit"><a href="https://twitter.com/dehengxu" target="_blank">@twitter</a></span>
+	<span class="credit"><a href="https://github.com/xudeheng/ios_tech_octopress" target="_blank">source</a></span>
+  <span class="credit"><a href="http://www.dehengxu.com/" target="_blank">MyBase</a></span>
+  <span class="credit"><a href="http://jekyllrb.com/docs/">JekyllDocs</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

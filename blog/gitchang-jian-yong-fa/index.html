@@ -1,0 +1,346 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Git常见用法 - 逆风@[iOS,nil]</title>
+  <meta name="author" content="Deheng Xu">
+
+  
+  <meta name="description" content="1.checkout 切换到指定 commit 1
+checkout sha-1 切换到分支 1
+checkout branch_name 2.merge 1
+2
+3
+4 D--------E / /
+A---B---C---F----G master 1
+git merge test 合并结果 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://ios.dehengxu.com/blog/gitchang-jian-yong-fa/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="逆风@[iOS,nil]" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+
+  <!--<script src="/javascript/search.min.js" type="text/javascript" charset="utf-8"></script> -->
+
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">逆风@[iOS,nil]</a></h1>
+  
+    <h2>A blog focus on iOS techs.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="ios.dehengxu.com">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Git常见用法</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-08-21T13:52:39+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>21</span><span class='date-suffix'>st</span>, <span class='date-year'>2015</span></span> <span class='time'>1:52 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h3>1.checkout</h3>
+
+<h4>切换到指定 commit</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>checkout sha-1</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>切换到分支</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>checkout branch_name</span></code></pre></td></tr></table></div></figure>
+
+
+<hr />
+
+<h3>2.merge</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>   D--------E
+</span><span class='line'>  /
+</span><span class='line'> /
+</span><span class='line'>A---B---C---F----G master</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git merge test</span></code></pre></td></tr></table></div></figure>
+
+
+<p>合并结果：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>   D-------------E
+</span><span class='line'>  /               \
+</span><span class='line'> /                 \
+</span><span class='line'>A---B---C---F----G test, master</span></code></pre></td></tr></table></div></figure>
+
+
+<hr />
+
+<h3>3.rebase</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>   D--------E
+</span><span class='line'>  /
+</span><span class='line'> /
+</span><span class='line'>A---B---C---F----G master</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git rebase dev</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>A---B---D---C---E---F----G  test, master</span></code></pre></td></tr></table></div></figure>
+
+
+<p>复位基线，将两个分支的提交纪录，合并到一条基线路线上。功能作用上和 merge 类似，但是不会产生新的提交节点，而且不存在多个提交路线。</p>
+
+<p>当出现冲突的时候，先去解决冲突，完成后，使用 <code>rebase --continue</code> 继续 <code>rebase</code> 操作。如果冲突不重要也可以 <code>rebase --skip</code> 忽略冲突。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Deheng Xu</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2015-08-21T13:52:39+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>21</span><span class='date-suffix'>st</span>, <span class='date-year'>2015</span></span> <span class='time'>1:52 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/git/'>git</a>, <a class='category' href='/blog/categories/scm/'>scm,</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/nsmutablecopying-and-nscopying/" title="Previous Post: NSMutableCopying and NSCopying">&laquo; NSMutableCopying and NSCopying</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/jin-cheng-jian-tong-xin-fang-shi/" title="Next Post: 进程间通信方式">进程间通信方式 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/zi-ding-yi-lei-ru-he-ti-gong-kvc-jian-rong-te-xing/">自定义类如何提供 KVC 兼容特性</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/shi-yong-nsvalue-feng-zhuang-ren-yi-jie-gou-ti/">使用 NSValue 封装任意结构体</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/kvo-ji-zhi/">KVO 机制</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/kvc-ji-zhi/">KVC 机制</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/use-dispatch-source-timer/">Use Dispatch Source Timer</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/bash-shi-yong-ji-qiao/">Bash 使用技巧</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/gcd-de-chang-gui-yong-fa/">GCD 的常规用法</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/xian-cheng-he-jin-cheng-jian-de-qu-bie/">线程和进程间的区别</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/timer-hui-diao-shi-jian-bei-uijiao-hu-zu-sai-de-jie-jue-ban-fa/">Timer ⌚回调事件被UI交互阻塞的解决办法</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/tong-guo-clang-fen-xi-block-de-ji-zhi/">通过 Clang 分析 Block 的机制</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/guan-li-zi-you-qiao-jie-toll-free-bridging/">管理自由桥接(Toll-Free Bridging)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/arc-nei-cun-guan-li/">ARC 内存管理</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/jin-cheng-jian-tong-xin-fang-shi/">进程间通信方式</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/gitchang-jian-yong-fa/">Git常见用法</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/nsmutablecopying-and-nscopying/">NSMutableCopying and NSCopying</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/jekyll-site-class-available-attr/">Jekyll Site Class Available Attr</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/jekyll-configuration-fileds/">Jekyll Configuration Fileds</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/blockzai-clangzhong-de-shi-xian/">Block在Clang中的实现</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/autoreleasefang-fa-deyuan-ma-fen-xi/">Autorelease方法的源码分析</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/libdispatch-yuan-ma-fen-xi/">Libdispatch 源码分析</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>About Me</h1>
+  <p>I'm focusing on iOS techs, and interested in web technologies.</p>
+  <p><a href="mailto:dehengxu@outlook.com?subject=咱们认识一下吧">dehengxu@outlook.com</a></p>
+  <p>QQ:36764672</p>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Deheng Xu -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+  <span class="credit"><a href="https://github.com/xudeheng" target="_blank">@github</a></span>
+	<span class="credit"><a href="https://twitter.com/dehengxu" target="_blank">@twitter</a></span>
+	<span class="credit"><a href="https://github.com/xudeheng/ios_tech_octopress" target="_blank">source</a></span>
+  <span class="credit"><a href="http://www.dehengxu.com/" target="_blank">MyBase</a></span>
+  <span class="credit"><a href="http://jekyllrb.com/docs/">JekyllDocs</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

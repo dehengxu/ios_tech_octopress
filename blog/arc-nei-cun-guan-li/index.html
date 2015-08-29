@@ -1,0 +1,573 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>ARC 内存管理 - 逆风@[iOS,nil]</title>
+  <meta name="author" content="Deheng Xu">
+
+  
+  <meta name="description" content="ARC Overview ARC 概述 在编译时通过增加额外的代码来确保对象生命周期长度足够所需，但是概念上它通过增加合适的内存管理的代码调用来遵循和 MRC 同样的内存管理原则。 为了让编译器生成正确的代码，ARC 严格限制你能用的方法，以及如何使用自由桥接(toll-free bridging &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://ios.dehengxu.com/blog/arc-nei-cun-guan-li/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="逆风@[iOS,nil]" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+
+  <!--<script src="/javascript/search.min.js" type="text/javascript" charset="utf-8"></script> -->
+
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">逆风@[iOS,nil]</a></h1>
+  
+    <h2>A blog focus on iOS techs.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="ios.dehengxu.com">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">ARC 内存管理</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-08-21T23:06:08+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>21</span><span class='date-suffix'>st</span>, <span class='date-year'>2015</span></span> <span class='time'>11:06 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><a href="https://developer.apple.com/library/ios/releasenotes/ObjectiveC/RN-TransitioningToARC/Introduction/Introduction.html#//apple_ref/doc/uid/TP40011226-CH1-SW13" target="_blank">ARC Overview</a></p>
+
+<p>ARC 概述
+ 在编译时通过增加额外的代码来确保对象生命周期长度足够所需，但是概念上它通过增加合适的内存管理的代码调用来遵循和 MRC 同样的内存管理原则。</p>
+
+<p>为了让编译器生成正确的代码，ARC 严格限制你能用的方法，以及如何使用自由桥接(toll-free bridging)。ARC 也为对象引用和属性生命增加了新的生命周期修饰符。</p>
+
+<p>ARC 在 Xcode 4.2 OSX v10.6 he v10.7 ， 以及 iOS4， iOS5中提供支持。若引用不被 OSX v10.6 和 iOS4 支持。</p>
+
+<p>对象属性默认情况下是 <code>strong</code> 属性；</p>
+
+<p>ARC 会保证在最后一个对象引用使用前，不会释放掉该对象。</p>
+
+<h3>ARC 的强制新规则</h3>
+
+<p>当使用其他编译器模式的时候，ARC 会暗示一些新的规则。规则会提供一个完全可靠的内存管理模式；在一些情况下，他们简单的强制最好的方式，在一些其他的情况下，规则会简化你的代码，或者你完全不用去处理内存管理。如果你违反了这些规则，你会立刻得到一个编译时错误，而不是一个运行时出现的轻微bug。</p>
+
+<ul>
+<li>你不能显示调用 <code>dealloc</code>，或着实现，或者调用 <code>retain</code>, <code>release</code>, <code>retainCount</code> 和 <code>autorelease</code>。</li>
+</ul>
+
+
+<p>同时也不允许使用 @selector(retain), @selector(release) 等等。</p>
+
+<p>你可以实现 <code>dealloc</code> 方法，如果你需要管理一些资源而不是释放一些实例变量。</p>
+
+<p> ARC 中的自定义 <code>dealloc</code> 方法不需要调用 <code>[super dealloc]</code>(它会引起编译错误)。调用 super 的过程会被编译器自动并强制执行。</p>
+
+<p> 你仍然能调用 CFRetain, CFRelease, 和其他相关的 Core Foundation风格对象的函数。</p>
+
+<ul>
+<li>你不能使用 <code>NSAllocateObject</code> 或者 <code>NSDeallocateObject</code>。</li>
+</ul>
+
+
+<p>你使用 <code>alloc</code> 创建对象；运行时来负责释放对象；</p>
+
+<ul>
+<li>你不能在 C 结构体中使用对象指针。</li>
+</ul>
+
+
+<p>你能创建 <code>Objective-C</code> 对象来管理数据，而不是用 <code>struct</code>。</p>
+
+<ul>
+<li>id 和 void * 之间不能进行转换。</li>
+</ul>
+
+
+<p>你必须使用特定的转换方式告诉编译器对象的生命期，你需要这样在 Objective-C 和 Core Foundation 类型之间转换，来做为你传递的函数参数。更多细节，请看 <a href="">Managing Toll-Free Bridging</a></p>
+
+<ul>
+<li>你不能使用 <code>NSAutoreleasePool</code> 对象。</li>
+</ul>
+
+
+<p>ARC 提供了 <code>@autoreleasepool</code> 块来代替它。这些比 <code>NSAutoreleasePool</code> 的效率更有优势。</p>
+
+<ul>
+<li>你不能使用内存区</li>
+</ul>
+
+
+<p>不再需要使用 <code>NSZone</code>，他们被现代 <code>Objective-C</code> 运行时忽略掉了。</p>
+
+<p>为了和 MRC 代码进行交互，ARC 强制约束方法的命名：</p>
+
+<ul>
+<li>你不能给访问器用 new 开头起名。</li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>//不能正常工作，编译会提示错误。
+</span><span class='line'>@property NSString *newName;
+</span><span class='line'>
+</span><span class='line'>//这样的命名是没问题的。
+</span><span class='line'>@property NSString *theNewName;</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>ARC 带来了新的生命期修饰符</h3>
+
+<p>ARC 为对象带来了一些新的生命期修饰符，还有弱引用。弱引用不会延长对象的生命期，但是会在没有强引用的时候自动设置为 <code>nil</code>。</p>
+
+<p>你可以使用这些修饰符的优势来管理程序中的对象。特殊的是，ARC 不会保护强循环引用。合理的运用弱关系会帮助你避免出现引用循环。</p>
+
+<p>ARC 下，<code>strong</code> 是对象类型属性的默认配置。</p>
+
+<p>下面看一下各种修饰符：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>__strong
+</span><span class='line'>__weak
+</span><span class='line'>__unsafe_unretained
+</span><span class='line'>__autoreleasing</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li><p><code>__strong</code> 是默认的配置。如果是强指针的时候，对象需要保证生命足够长。</p></li>
+<li><p><code>__weak</code> 指定了引用不会保持对象引用。当没有其他的强引用指向它时，弱引用会设置成 <code>nil</code>。</p></li>
+<li><p><code>__unsafe_unretained</code> 指定一个引用既不保持对象引用，也不会在不使用时设置为 <code>nil</code>，这容易引野也指针的问题。</p></li>
+<li><p><code>__autoreleasing</code> 被用来描述引用类型的参数在方法 return 之后会自动被释放。</p></li>
+</ul>
+
+
+<p>你需要正确的修饰变量，当对一个对象申明使用修饰符的时候，正确的格式如下：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ClassName * qulifier variableName;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>例如:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>NSString * __weak name;
+</span><span class='line'>NSString * __unsafe__unretained anotherName;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>你需要小心地在栈上面使用 __weak 变量，参考下面的例子：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>NSString * __weak string = [[NSString alloc] initWithFormat:@"First Name: %@", [self firstName]];
+</span><span class='line'>NSLog(@"string: %@", string);</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这种情况，编译器会给出警告。因为没有其他对字符串的强引用，所以这个弱引用，会立即释放掉。</p>
+
+<p>你也需要小心的在传參引用的时候使用对象。下面的代码工作正常：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>NSError *error;
+</span><span class='line'>BOOL OK = [myObject performOperationWithError:&error];
+</span><span class='line'>if (!OK) {
+</span><span class='line'>    // Report the error.
+</span><span class='line'>    // ...</span></code></pre></td></tr></table></div></figure>
+
+
+<p>无论如何，error 申明是隐式的：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>NSError * __strong e;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>方法申明通常会是：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>-(BOOL)performOperationWithError:(NSError * __autoreleasing *)error;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>编译器会重写代码为：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>NSError * __strong error;
+</span><span class='line'>NSError * __autoreleasing tmp = error;
+</span><span class='line'>BOOL OK = [myObject performOperationWithError:&tmp];
+</span><span class='line'>error = tmp;
+</span><span class='line'>if (!OK) {
+</span><span class='line'>    // Report the error.
+</span><span class='line'>    // ...</span></code></pre></td></tr></table></div></figure>
+
+
+<p>使用生命期修饰符避免强引用循环</p>
+
+<p>你可以使用生命期修饰符避免强引用循环。举个例子，通常如果你在父子结构中有一个对象图谱，并且所有的父节点需要引用他们的子节点，反之也是这样。你将会制造出父子强引用关系和子父强引用关系。其他的情况可能更微妙，特别当他们用到了 <code>block</code> 对象。</p>
+
+<p>在 MRC 模式下，<code>__block id x;</code> 不会持有(retain) x 的引用。在 ARC 模式，<code>__block id x;</code> 默认会持有 x 的引用。为了在 ARC 下面达到 MRC 的行为，你可以使用 <code>__unsafe_unretained __block id x;</code>。无论如何 <code>__unsafe_unretained</code> 表示未被持有的对象还是比较危险的，所以不鼓励这么使用。可以使用 <strong>weak 或者设置 </strong>block value 为 nil 来接触循环引用。</p>
+
+<p>下面的代码通过 MRC 模式下的方式解释了这种问题。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>MyViewController *myController = [[MyViewController alloc] init…];
+</span><span class='line'>// ...
+</span><span class='line'>myController.completionHandler =  ^(NSInteger result) {
+</span><span class='line'>   [myController dismissViewControllerAnimated:YES completion:nil];
+</span><span class='line'>};
+</span><span class='line'>[self presentViewController:myController animated:YES completion:^{
+</span><span class='line'>   [myController release];
+</span><span class='line'>}];</span></code></pre></td></tr></table></div></figure>
+
+
+<p>你可以使用 <code>__block</code> 修饰符，并在 completion handler 中设置 <code>myController</code> 变量为 nil。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>MyViewController * __block myController = [[MyViewController alloc] init…];
+</span><span class='line'>// ...
+</span><span class='line'>myController.completionHandler =  ^(NSInteger result) {
+</span><span class='line'>    [myController dismissViewControllerAnimated:YES completion:nil];
+</span><span class='line'>    myController = nil;
+</span><span class='line'>};</span></code></pre></td></tr></table></div></figure>
+
+
+<p>你也可以使用临时 <code>__weak</code> 变量。下面的代码展示了简单的实现：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>MyViewController *myController = [[MyViewController alloc] init…];
+</span><span class='line'>// ...
+</span><span class='line'>MyViewController * __weak weakMyViewController = myController;
+</span><span class='line'>myController.completionHandler =  ^(NSInteger result) {
+</span><span class='line'>    [weakMyViewController dismissViewControllerAnimated:YES completion:nil];
+</span><span class='line'>};</span></code></pre></td></tr></table></div></figure>
+
+
+<p>为了避免引用循环，你需要这样做：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>MyViewController *myController = [[MyViewController alloc] init…];
+</span><span class='line'>// ...
+</span><span class='line'>MyViewController * __weak weakMyController = myController;
+</span><span class='line'>myController.completionHandler =  ^(NSInteger result) {
+</span><span class='line'>    MyViewController *strongMyController = weakMyController;
+</span><span class='line'>    if (strongMyController) {
+</span><span class='line'>        // ...
+</span><span class='line'>        [strongMyController dismissViewControllerAnimated:YES completion:nil];
+</span><span class='line'>        // ...
+</span><span class='line'>    }
+</span><span class='line'>    else {
+</span><span class='line'>        // Probably nothing...
+</span><span class='line'>    }
+</span><span class='line'>};</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>ARC 使用新的表达式来管理自动释放池</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>@autoreleasepool {
+</span><span class='line'>  // Code, such as a loop that creates a large number of temporary objects.
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在块开始的时候，释放池被推入栈；块退出(break, return, goto 等等) 释放池会弹出栈。为了兼容现有代码，如果推出会产生异常，那么这个自动释放池不会被弹出。</p>
+
+<h3>管理 Outlets 的方式成为了跨平台方式</h3>
+
+<p>这种申明 <code>outlets</code> 的模式在 iOS 和 OSX 中通过 ARC 得到了改变，并同时跨越了这两个平台。这种模式中，你需要这样来适配：outlets 需要设置为 weak，因为 File&rsquo;s Owner 对于 nib 文件中的顶级对象是强引用。</p>
+
+<p>全部细节请看这里 <a href="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/LoadingResources/Introduction/Introduction.html#//apple_ref/doc/uid/10000051i" target="_blank">Resource Programming Guide</a> 中的 <a href="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/LoadingResources/Introduction/Introduction.html#//apple_ref/doc/uid/10000051i" target="_blank">Nib Files</a></p>
+
+<h3>栈变量会被初始化成 nil</h3>
+
+<p>使用 ARC , strong, weak, 和 autoreleasing 栈变量，现在会隐式初始化成 nil。例如:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>- (void)myMethod {
+</span><span class='line'>    NSString *name;
+</span><span class='line'>    NSLog(@"name: %@", name);
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>使用编译器标志来开启或关闭 ARC</h3>
+
+<p>你可以使用 <code>-fobjc-arc</code> 编译器标志来开启 ARC。如果读你来说某些文件使用 MRC 更方便的话，你也可以对每个文件单独使用 ARC 模式。项目使用 ARC 为默认方式，你可以使用 <code>-fno-objc-arc</code> 来关闭 ARC 。</p>
+
+<p>ARC 被 Xcode 4.2 ， OSX v10.6 和 iOS4 以及后续版本支持。
+弱引用不被 OSX v10.6 和 iOS4 支持。
+Xcode 4.1 和以前的版本不支持 ARC。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Deheng Xu</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2015-08-21T23:06:08+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>21</span><span class='date-suffix'>st</span>, <span class='date-year'>2015</span></span> <span class='time'>11:06 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/arc/'>arc,</a>, <a class='category' href='/blog/categories/objc/'>objc</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/jin-cheng-jian-tong-xin-fang-shi/" title="Previous Post: 进程间通信方式">&laquo; 进程间通信方式</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/guan-li-zi-you-qiao-jie-toll-free-bridging/" title="Next Post: 管理自由桥接(Toll-Free Bridging)">管理自由桥接(Toll-Free Bridging) &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/zi-ding-yi-lei-ru-he-ti-gong-kvc-jian-rong-te-xing/">自定义类如何提供 KVC 兼容特性</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/shi-yong-nsvalue-feng-zhuang-ren-yi-jie-gou-ti/">使用 NSValue 封装任意结构体</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/kvo-ji-zhi/">KVO 机制</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/kvc-ji-zhi/">KVC 机制</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/use-dispatch-source-timer/">Use Dispatch Source Timer</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/bash-shi-yong-ji-qiao/">Bash 使用技巧</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/gcd-de-chang-gui-yong-fa/">GCD 的常规用法</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/xian-cheng-he-jin-cheng-jian-de-qu-bie/">线程和进程间的区别</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/timer-hui-diao-shi-jian-bei-uijiao-hu-zu-sai-de-jie-jue-ban-fa/">Timer ⌚回调事件被UI交互阻塞的解决办法</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/tong-guo-clang-fen-xi-block-de-ji-zhi/">通过 Clang 分析 Block 的机制</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/guan-li-zi-you-qiao-jie-toll-free-bridging/">管理自由桥接(Toll-Free Bridging)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/arc-nei-cun-guan-li/">ARC 内存管理</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/jin-cheng-jian-tong-xin-fang-shi/">进程间通信方式</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/gitchang-jian-yong-fa/">Git常见用法</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/nsmutablecopying-and-nscopying/">NSMutableCopying and NSCopying</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/jekyll-site-class-available-attr/">Jekyll Site Class Available Attr</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/jekyll-configuration-fileds/">Jekyll Configuration Fileds</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/blockzai-clangzhong-de-shi-xian/">Block在Clang中的实现</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/autoreleasefang-fa-deyuan-ma-fen-xi/">Autorelease方法的源码分析</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/libdispatch-yuan-ma-fen-xi/">Libdispatch 源码分析</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>About Me</h1>
+  <p>I'm focusing on iOS techs, and interested in web technologies.</p>
+  <p><a href="mailto:dehengxu@outlook.com?subject=咱们认识一下吧">dehengxu@outlook.com</a></p>
+  <p>QQ:36764672</p>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Deheng Xu -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+  <span class="credit"><a href="https://github.com/xudeheng" target="_blank">@github</a></span>
+	<span class="credit"><a href="https://twitter.com/dehengxu" target="_blank">@twitter</a></span>
+	<span class="credit"><a href="https://github.com/xudeheng/ios_tech_octopress" target="_blank">source</a></span>
+  <span class="credit"><a href="http://www.dehengxu.com/" target="_blank">MyBase</a></span>
+  <span class="credit"><a href="http://jekyllrb.com/docs/">JekyllDocs</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,323 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>使用 NSValue 封装任意结构体 - 逆风@[iOS,nil]</title>
+  <meta name="author" content="Deheng Xu">
+
+  
+  <meta name="description" content="NSValue 装包，拆包，分别用到 value:withObjCType: 和 getValue:两个方法。 第一个是通过 type 类型，将 value 封装成 NSValue 对象。 后者是通过 NSValue 对象，获取值型数据 假设有一个自定义结构体 1
+2
+3
+4
+5
+struct &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://ios.dehengxu.com/blog/shi-yong-nsvalue-feng-zhuang-ren-yi-jie-gou-ti/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="逆风@[iOS,nil]" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+
+  <!--<script src="/javascript/search.min.js" type="text/javascript" charset="utf-8"></script> -->
+
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">逆风@[iOS,nil]</a></h1>
+  
+    <h2>A blog focus on iOS techs.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="ios.dehengxu.com">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">使用 NSValue 封装任意结构体</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-08-29T12:55:21+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>29</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>12:55 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h2>NSValue</h2>
+
+<p>装包，拆包，分别用到 <code>value:withObjCType:</code> 和 <code>getValue:</code>两个方法。</p>
+
+<p>第一个是通过 type 类型，将 value 封装成 NSValue 对象。</p>
+
+<p>后者是通过 NSValue 对象，获取值型数据</p>
+
+<p>假设有一个自定义结构体</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>struct Node {
+</span><span class='line'>    struct Node *next;
+</span><span class='line'>    char *name;
+</span><span class='line'>    int age;
+</span><span class='line'>};</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>struct Node *header = (struct Node *)malloc(sizeof(struct Node));
+</span><span class='line'>header-&gt;name = "Nicholasxu";
+</span><span class='line'>header-&gt;age = 89;    
+</span><span class='line'>NSValue *value = [NSValue value:header withObjCType:@encode(struct Node)];</span></code></pre></td></tr></table></div></figure>
+
+
+<p>通过 <code>@encode</code> 将C 类型转换成 Objective-C 能识别的 char * 形式。</p>
+
+<p>解包方法如下：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>struct Node *chain = (struct Node *)malloc(sizeof(struct Node));
+</span><span class='line'>[value getValue:chain];
+</span><span class='line'>NSLog(@"%s", chain-&gt;name);
+</span><span class='line'>NSLog(@"%s", chain-&gt;age);
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>先分配结构题内存 <code>chain</code>，再将数据解包出来，并填充 <code>chain</code> 的空间。</p>
+
+<h3>内存布局</h3>
+
+<p>上面的例子中，<code>value</code> 和 header 都是在堆上分配的空间并且 header 的内存和 value 内部的数据是同一个内存空间，要做好 header 的内存管理工作，否则会导致 value 无法访问内部数据(出现野指针)。而且 chain 的数据是从 value 中复制过来的。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Deheng Xu</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2015-08-29T12:55:21+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>29</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>12:55 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/objc/'>objc</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/kvo-ji-zhi/" title="Previous Post: KVO 机制">&laquo; KVO 机制</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/zi-ding-yi-lei-ru-he-ti-gong-kvc-jian-rong-te-xing/" title="Next Post: 自定义类如何提供 KVC 兼容特性">自定义类如何提供 KVC 兼容特性 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/zi-ding-yi-lei-ru-he-ti-gong-kvc-jian-rong-te-xing/">自定义类如何提供 KVC 兼容特性</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/shi-yong-nsvalue-feng-zhuang-ren-yi-jie-gou-ti/">使用 NSValue 封装任意结构体</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/kvo-ji-zhi/">KVO 机制</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/kvc-ji-zhi/">KVC 机制</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/use-dispatch-source-timer/">Use Dispatch Source Timer</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/bash-shi-yong-ji-qiao/">Bash 使用技巧</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/gcd-de-chang-gui-yong-fa/">GCD 的常规用法</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/xian-cheng-he-jin-cheng-jian-de-qu-bie/">线程和进程间的区别</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/timer-hui-diao-shi-jian-bei-uijiao-hu-zu-sai-de-jie-jue-ban-fa/">Timer ⌚回调事件被UI交互阻塞的解决办法</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/tong-guo-clang-fen-xi-block-de-ji-zhi/">通过 Clang 分析 Block 的机制</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/guan-li-zi-you-qiao-jie-toll-free-bridging/">管理自由桥接(Toll-Free Bridging)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/arc-nei-cun-guan-li/">ARC 内存管理</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/jin-cheng-jian-tong-xin-fang-shi/">进程间通信方式</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/gitchang-jian-yong-fa/">Git常见用法</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/nsmutablecopying-and-nscopying/">NSMutableCopying and NSCopying</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/jekyll-site-class-available-attr/">Jekyll Site Class Available Attr</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/jekyll-configuration-fileds/">Jekyll Configuration Fileds</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/blockzai-clangzhong-de-shi-xian/">Block在Clang中的实现</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/autoreleasefang-fa-deyuan-ma-fen-xi/">Autorelease方法的源码分析</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/libdispatch-yuan-ma-fen-xi/">Libdispatch 源码分析</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>About Me</h1>
+  <p>I'm focusing on iOS techs, and interested in web technologies.</p>
+  <p><a href="mailto:dehengxu@outlook.com?subject=咱们认识一下吧">dehengxu@outlook.com</a></p>
+  <p>QQ:36764672</p>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Deheng Xu -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+  <span class="credit"><a href="https://github.com/xudeheng" target="_blank">@github</a></span>
+	<span class="credit"><a href="https://twitter.com/dehengxu" target="_blank">@twitter</a></span>
+	<span class="credit"><a href="https://github.com/xudeheng/ios_tech_octopress" target="_blank">source</a></span>
+  <span class="credit"><a href="http://www.dehengxu.com/" target="_blank">MyBase</a></span>
+  <span class="credit"><a href="http://jekyllrb.com/docs/">JekyllDocs</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

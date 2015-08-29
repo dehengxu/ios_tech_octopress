@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | 逆风@[iOS,nil]]]></title>
   <link href="http://ios.dehengxu.com/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://ios.dehengxu.com/"/>
-  <updated>2015-08-29T13:00:21+08:00</updated>
+  <updated>2015-08-29T15:23:54+08:00</updated>
   <id>http://ios.dehengxu.com/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
@@ -15,18 +15,18 @@
   
   <entry>
     <title type="html"><![CDATA[Hello, Rake]]></title>
-    <link href="http://ios.dehengxu.com/blog/2015/08/15/hello-rake/"/>
+    <link href="http://ios.dehengxu.com/blog/hello-rake/"/>
     <updated>2015-08-15T00:00:00+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/2015/08/15/hello-rake</id>
+    <id>http://ios.dehengxu.com/blog/hello-rake</id>
     <content type="html"><![CDATA[
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Rake Usage]]></title>
-    <link href="http://ios.dehengxu.com/blog/2014/08/29/rake-usage/"/>
+    <link href="http://ios.dehengxu.com/blog/rake-usage/"/>
     <updated>2014-08-29T14:42:06+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/2014/08/29/rake-usage</id>
+    <id>http://ios.dehengxu.com/blog/rake-usage</id>
     <content type="html"><![CDATA[<h2>What is rake</h2>
 
 <p>Rake is a ruby build tool likes ant, make&hellip;</p>

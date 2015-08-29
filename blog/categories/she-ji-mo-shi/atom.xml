@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 设计模式 | 逆风@[iOS,nil]]]></title>
   <link href="http://ios.dehengxu.com/blog/categories/she-ji-mo-shi/atom.xml" rel="self"/>
   <link href="http://ios.dehengxu.com/"/>
-  <updated>2015-08-29T13:00:21+08:00</updated>
+  <updated>2015-08-29T15:23:54+08:00</updated>
   <id>http://ios.dehengxu.com/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[设计模式-访问者模式]]></title>
-    <link href="http://ios.dehengxu.com/blog/2015/08/16/design-pattern-visitor/"/>
+    <link href="http://ios.dehengxu.com/blog/design-pattern-visitor/"/>
     <updated>2015-08-16T08:05:25+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/2015/08/16/design-pattern-visitor</id>
+    <id>http://ios.dehengxu.com/blog/design-pattern-visitor</id>
     <content type="html"><![CDATA[<h3>模式说明：</h3>
 
 <blockquote><p>访问者模式(Visitor Pattern)，是一种具有双分派能力的模式，它通过 Visitor 接口约定为已有类 Element 进行扩展，扩展的目标是尽可能少的修改已有类 Element ，在 Visitor 中增加新扩展的接口，对 Element 中的现有接口进行访问。而 Visitor 以外的部分，不需要知道 Element 的具体实现和操作，进行了封装。
@@ -40,9 +40,9 @@
   
   <entry>
     <title type="html"><![CDATA[常用23种设计模式简介]]></title>
-    <link href="http://ios.dehengxu.com/blog/2015/08/15/chang-yong-23chong-she-ji-mo-shi-jian-jie/"/>
+    <link href="http://ios.dehengxu.com/blog/chang-yong-23chong-she-ji-mo-shi-jian-jie/"/>
     <updated>2015-08-15T23:47:51+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/2015/08/15/chang-yong-23chong-she-ji-mo-shi-jian-jie</id>
+    <id>http://ios.dehengxu.com/blog/chang-yong-23chong-she-ji-mo-shi-jian-jie</id>
     <content type="html"><![CDATA[<p>根据设计模式的作用分类，23种设计模式可以分为以下几类:</p>
 
 <h3>对象创建</h3>
@@ -81,9 +81,9 @@
   
   <entry>
     <title type="html"><![CDATA[设计模式-观察者模式]]></title>
-    <link href="http://ios.dehengxu.com/blog/2015/08/15/design-pattern-observer/"/>
+    <link href="http://ios.dehengxu.com/blog/design-pattern-observer/"/>
     <updated>2015-08-15T23:46:46+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/2015/08/15/design-pattern-observer</id>
+    <id>http://ios.dehengxu.com/blog/design-pattern-observer</id>
     <content type="html"><![CDATA[
 ]]></content>
   </entry>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Java | 逆风@[iOS,nil]]]></title>
   <link href="http://ios.dehengxu.com/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://ios.dehengxu.com/"/>
-  <updated>2015-08-29T13:00:21+08:00</updated>
+  <updated>2015-08-29T15:23:54+08:00</updated>
   <id>http://ios.dehengxu.com/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Config Java Envir on OSX]]></title>
-    <link href="http://ios.dehengxu.com/blog/2014/08/30/config-java-envir-on-osx/"/>
+    <link href="http://ios.dehengxu.com/blog/config-java-envir-on-osx/"/>
     <updated>2014-08-30T14:45:49+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/2014/08/30/config-java-envir-on-osx</id>
+    <id>http://ios.dehengxu.com/blog/config-java-envir-on-osx</id>
     <content type="html"><![CDATA[<p>Error message:</p>
 
 <blockquote><p>/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/bin: No such file or directory</p></blockquote>

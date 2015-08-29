@@ -9,7 +9,7 @@
   <meta name="author" content="Deheng Xu">
 
   
-  <meta name="description" content="使用 NSValue 封装任意结构体 Aug 29th, 2015 12:55 pm KVO 机制 Aug 28th, 2015 6:36 pm KVC 机制 Aug 28th, 2015 5:16 pm Use Dispatch Source Timer Aug 27th, 2015 4:58 &hellip;">
+  <meta name="description" content="自定义类如何提供 KVC 兼容特性 Aug 29th, 2015 3:10 pm 使用 NSValue 封装任意结构体 Aug 29th, 2015 12:55 pm KVO 机制 Aug 28th, 2015 6:36 pm KVC 机制 Aug 28th, 2015 5:16 pm Use &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -75,7 +75,90 @@
       
   <header>
     
-      <h1 class="entry-title" ><a href="/blog/2015/08/29/shi-yong-nsvalue-feng-zhuang-ren-yi-jie-gou-ti/">使用 NSValue 封装任意结构体</a></h1>
+      <h1 class="entry-title" ><a href="/blog/zi-ding-yi-lei-ru-he-ti-gong-kvc-jian-rong-te-xing/">自定义类如何提供 KVC 兼容特性</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-08-29T15:10:33+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>29</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>3:10 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+
+<!-- <div class="entry-content"><h3>KVC 兼容性</h3>
+
+<h4>对一的关系</h4>
+
+<p>对于属性来说，附属值会存在一对一的关系，这就需要你的类拥有一下特征：</p>
+
+<ul>
+<li><p>实现 <code>-key</code>, <code>-is&lt;Key&gt;</code> 方法类，或者存在有一个叫 <code>key</code> 或者 <code>_key</code> 的实例对象。(显然，这是 getter 访问器的规则)。虽然 key 名字常常以小写字母开头，KVC 也支持 key名称以大写字母开头，例如：<code>URL</code>。</p></li>
+<li><p>如果该属性是可以修改的，那么就应该实现 <code>-set&lt;Key&gt;:</code> 方法。PS:框架会自动寻找 <code>key</code> 或者 <code>_key</code>形式的变量来完成对应操作。</p></li>
+<li><p>你的 <code>-set&lt;Key&gt;:</code> 实现方法不应该执行验证操作。</p></li>
+<li><p>如果你需要验证 <code>key</code> 的话，你需要实现 <code>-validate&lt;key&gt;:error:</code> 的方法。</p></li>
+</ul>
+
+
+<h4>索引化的对多关系</h4>
+
+<p>对于索引化的对多关系而言，KVC 兼容性需要你的类拥有这些特征：</p>
+
+<ul>
+<li><p>实现名为 <code>-&lt;key&gt;</code> 并返回数组的方法。</p></li>
+<li><p>或者拥有一个名为 <code>key</code> 或 <code>_key</code> 的数组实例对象变量。</p></li>
+<li><p>或者实现 <code>-countOf&lt;key&gt;</code> 方法，并且实现 <code>-objectIn&lt;key&gt;AtIndex:</code> 和 <code>-&lt;key&gt;AtIndexes:</code> 两个方法中的一个或所有方法。</p></li>
+<li><p>你也能可选的实现 <code>-get&lt;key&gt;:range:</code> 方法来提高性能表现。</p></li>
+</ul>
+
+
+<p>对于可修改的索引化有序对多关系，KVC 兼容性也需要你的类提供这些特征：</p>
+
+<ul>
+<li><p>实现 <code>-insertObject:in&lt;key&gt;AtIndex:</code> 和 <code>-insert&lt;Key&gt;:atIndexex:</code> 中的一个或所有方法。</p></li>
+<li><p>当然如果愿意，你可也可以实现 <code>-replaceObjectIn&lt;key&gt;AtIndex:withObject:</code> 或 <code>-replace&lt;key&gt;AtIndexes:with&lt;key&gt;:</code> 来提高性能表现。这仅仅是个可选项。 :)</p></li>
+</ul>
+
+
+<h4>无序的对多关系兼容性</h4>
+
+<p>对于无序的对多关系来说，KVC 兼容性需要你的类提供这些特征：</p>
+
+<ul>
+<li><p>实现能返回集合的名为 <code>-&lt;key&gt;</code> 的方法。</p></li>
+<li><p>或者包含一个名为 <code>key</code> 或 <code>_key</code> 的实例变量。</p></li>
+<li><p>或者实现 <code>-countOf&lt;key&gt;</code>，<code>-enumeratorOf&lt;key&gt;</code> 和 <code>-memberOf&lt;key&gt;:</code> 方法。</p></li>
+</ul>
+
+
+<p>对于可变的无序对多关系而言，KVC 兼容性需要你的类也提供这些：</p>
+
+<ul>
+<li><p>实现方法 <code>-add&lt;key&gt;Object:</code> 或 <code>-add&lt;key&gt;:</code> 中的一个或所有。</p></li>
+<li><p>实现方法 <code>-remove&lt;key&gt;Object:</code> 或 <code>-remove&lt;key&gt;:</code>中的一个或所有。</p></li>
+<li><p>你也可以实现 <code>-intersect&lt;key&gt;:</code> 和 <code>-set&lt;key&gt;:</code> 来提高性能表现，不过这是个可选项，根据你面临的情况自己选择吧。</p></li>
+</ul>
+
+</div> -->
+
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" ><a href="/blog/shi-yong-nsvalue-feng-zhuang-ren-yi-jie-gou-ti/">使用 NSValue 封装任意结构体</a></h1>
     
     
       <p class="meta">
@@ -123,7 +206,7 @@
 </pre></td><td class='code'><pre><code class=''><span class='line'>struct Node *header = (struct Node *)malloc(sizeof(struct Node));
 </span><span class='line'>header-&gt;name = "Nicholasxu";
 </span><span class='line'>header-&gt;age = 89;    
-</span><span class='line'>NSValue *struc = [NSValue value:header withObjCType:@encode(struct Node)];</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>NSValue *value = [NSValue value:header withObjCType:@encode(struct Node)];</span></code></pre></td></tr></table></div></figure>
 
 
 <p>通过 <code>@encode</code> 将C 类型转换成 Objective-C 能识别的 char * 形式。</p>
@@ -132,11 +215,20 @@
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>struct Node *chain = (struct Node *)malloc(sizeof(struct Node));
-</span><span class='line'>[struc getValue:chain];</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>[value getValue:chain];
+</span><span class='line'>NSLog(@"%s", chain-&gt;name);
+</span><span class='line'>NSLog(@"%s", chain-&gt;age);
+</span></code></pre></td></tr></table></div></figure>
 
 
-<p>先分配结构题内存 <code>chain</code>，再将数据解包出来，并填充 <code>chain</code> de空间。</p>
+<p>先分配结构题内存 <code>chain</code>，再将数据解包出来，并填充 <code>chain</code> 的空间。</p>
+
+<h3>内存布局</h3>
+
+<p>上面的例子中，<code>value</code> 和 header 都是在堆上分配的空间并且 header 的内存和 value 内部的数据是同一个内存空间，要做好 header 的内存管理工作，否则会导致 value 无法访问内部数据(出现野指针)。而且 chain 的数据是从 value 中复制过来的。</p>
 </div> -->
 
   
@@ -150,7 +242,7 @@
       
   <header>
     
-      <h1 class="entry-title" ><a href="/blog/2015/08/28/kvo-ji-zhi/">KVO 机制</a></h1>
+      <h1 class="entry-title" ><a href="/blog/kvo-ji-zhi/">KVO 机制</a></h1>
     
     
       <p class="meta">
@@ -173,7 +265,7 @@
 
 <blockquote><p>注意：虽然 UIKit 框架通常不支持 KVO，你仍然能够在自定义的对象中实现它，包括自定义的视图。</p></blockquote>
 
-<p><img src="http://ios.dehengxu.com/images/refered/kvo.jpg" alt="kvo" /></p>
+<p><img src="/images/refered/kvo.jpg" alt="kvo" /></p>
 
 <p>使用 KVO，一个对象可以观察另一个对象的任意的属性，包括简单的附属值，对一的关系和对多的关系。一个对象能找出当前属性先前的值。对多关系的观察者被通告的内容不仅有类型的改变，也被告知哪个对象在改变中被调用。</p>
 
@@ -196,7 +288,7 @@
 
 <h3>后话</h3>
 
-<p><img src="http://ios.dehengxu.com/images/refered/kvo_proj_snap1.png" alt="KVO runtime" /></p>
+<p><img src="/images/refered/kvo_proj_snap1.png" alt="KVO runtime" /></p>
 
 <p>从上图可以看出 KVO 是一个同步调用过程通过 _NSSetObjectValueAndNotify 函数，在设置对象值的同时向观察对象发送变化通知，同时会通过 <code>NSKeyValueObservingOptions</code> 类型来区分 KVO 发生的类型，并在 <code>- (void)observeValueForKeyPath:(nullable NSString *)keyPath ofObject:(nullable id)object change:(nullable NSDictionary *)change context:(nullable void *)context</code> 的 change 字典对象中传递相关值的变化信息(old value, new value 等)。</p>
 
@@ -216,6 +308,8 @@
 
 <p><a href="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/KeyValueObserving/KeyValueObserving.html#//apple_ref/doc/uid/10000177i">Key-value Observing Programming Guide</a></p>
 
+<hr />
+
 <p><a href="https://developer.apple.com/library/ios/documentation/General/Conceptual/DevPedia-CocoaCore/KVO.html#//apple_ref/doc/uid/TP40008195-CH16-SW1">Ref</a></p>
 </div> -->
 
@@ -230,7 +324,7 @@
       
   <header>
     
-      <h1 class="entry-title" ><a href="/blog/2015/08/28/kvc-ji-zhi/">KVC 机制</a></h1>
+      <h1 class="entry-title" ><a href="/blog/kvc-ji-zhi/">KVC 机制</a></h1>
     
     
       <p class="meta">
@@ -257,7 +351,7 @@
 
 <p>KVC 通过“键”来定位对象的属性，其实就是一个字符串标识。“键”常常代表一个访问器方法或者实例变量的名字。“键”必须符合某种规则：必须是 ASCII 编码，小写字母开头，还没有空格。Key path是由点与“键”分隔的字符串，它被用来指明一系列对象属性的链式访问。序列的第一个“键”是相对于指定的对象来说的(如下面图表中的 employee1)，并且每个子序列“键”是相对于前一个属性值来的。</p>
 
-<p><img src="http://ios.dehengxu.com/images/refered/key_value_coding.jpg" alt="sample" /></p>
+<p><img src="/images/refered/key_value_coding.jpg" alt="sample" /></p>
 
 <h3>使类支持 KVC</h3>
 
@@ -295,20 +389,9 @@
 
 <p>这种情况下你可以通过 <code>[people setValue:@"Nick" forKey:@"name"]</code> 或者 <code>[people setValue:@"Nick" forKey:@"_name"]</code> 为 <code>_name</code> 变量赋值。 就是说 KVC 会为 <code>key</code> 或者 <code>_key</code> 为名称的变量完成操作。</p>
 
-<p>说明 KVC 的逻辑是先寻找名为 <code>key</code> 或者 <code>setKey:</code> 的访问器方法，如果失败，再寻找名为 <code>_key</code> 的变量。因为 Objective-C 默认会为 <code>_key</code> 变量和 <code>key</code> 属性匹配关系。</p>
+<p>说明 KVC 的逻辑是先寻找名为 <code>key</code>, <code>isKey</code> 或者 <code>setKey:</code> 的访问器方法，如果失败，再寻找名为 <code>_key</code> 的变量。因为 Objective-C 默认会为 <code>_key</code> 变量和 <code>key</code> 属性匹配关系。</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>[self setValue:@"Male" forKey:@"sex"];</span></code></pre></td></tr></table></div></figure>
-
-
-<p>被编译成 c++ 代码：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>((void (*)(id, SEL, NSString *))(void *)objc_msgSend)((id)self, sel_registerName("setSex:"), (NSString *)&__NSConstantStringImpl__var_folders_6r_flwjnj4x4wsb8wcbmjj88_z40000gn_T_Block4Clang_033b4d_mi_0);
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>可以看到c++代码响应的是 <code>setSex:</code> 方法。</p>
+<p><a href="/blog/zi-ding-yi-lei-ru-he-ti-gong-kvc-jian-rong-te-xing/">KVC 兼容特性</a></p>
 
 <h3>前提文章</h3>
 
@@ -338,7 +421,7 @@
       
   <header>
     
-      <h1 class="entry-title" ><a href="/blog/2015/08/27/use-dispatch-source-timer/">Use Dispatch Source Timer</a></h1>
+      <h1 class="entry-title" ><a href="/blog/use-dispatch-source-timer/">Use Dispatch Source Timer</a></h1>
     
     
       <p class="meta">
@@ -400,7 +483,7 @@
       
   <header>
     
-      <h1 class="entry-title" ><a href="/blog/2015/08/23/bash-shi-yong-ji-qiao/">Bash 使用技巧</a></h1>
+      <h1 class="entry-title" ><a href="/blog/bash-shi-yong-ji-qiao/">Bash 使用技巧</a></h1>
     
     
       <p class="meta">
@@ -455,7 +538,7 @@
       
   <header>
     
-      <h1 class="entry-title" ><a href="/blog/2015/08/23/gcd-de-chang-gui-yong-fa/">GCD 的常规用法</a></h1>
+      <h1 class="entry-title" ><a href="/blog/gcd-de-chang-gui-yong-fa/">GCD 的常规用法</a></h1>
     
     
       <p class="meta">
@@ -662,37 +745,6 @@ dispatch_async(q1, ^ {
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" ><a href="/blog/2015/08/23/xian-cheng-he-jin-cheng-jian-de-qu-bie/">线程和进程间的区别</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-08-23T15:13:25+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2015</span></span> <span class='time'>3:13 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-
-<!-- <div class="entry-content"><p><a href="http://www.programmerinterview.com/index.php/operating-systems/thread-vs-process/">译自</a></p>
-</div> -->
-
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -708,83 +760,83 @@ dispatch_async(q1, ^ {
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2015/08/29/shi-yong-nsvalue-feng-zhuang-ren-yi-jie-gou-ti/">使用 NSValue 封装任意结构体</a>
+        <a href="/blog/zi-ding-yi-lei-ru-he-ti-gong-kvc-jian-rong-te-xing/">自定义类如何提供 KVC 兼容特性</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2015/08/28/kvo-ji-zhi/">KVO 机制</a>
+        <a href="/blog/shi-yong-nsvalue-feng-zhuang-ren-yi-jie-gou-ti/">使用 NSValue 封装任意结构体</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2015/08/28/kvc-ji-zhi/">KVC 机制</a>
+        <a href="/blog/kvo-ji-zhi/">KVO 机制</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2015/08/27/use-dispatch-source-timer/">Use Dispatch Source Timer</a>
+        <a href="/blog/kvc-ji-zhi/">KVC 机制</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2015/08/23/bash-shi-yong-ji-qiao/">Bash 使用技巧</a>
+        <a href="/blog/use-dispatch-source-timer/">Use Dispatch Source Timer</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2015/08/23/gcd-de-chang-gui-yong-fa/">GCD 的常规用法</a>
+        <a href="/blog/bash-shi-yong-ji-qiao/">Bash 使用技巧</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2015/08/23/xian-cheng-he-jin-cheng-jian-de-qu-bie/">线程和进程间的区别</a>
+        <a href="/blog/gcd-de-chang-gui-yong-fa/">GCD 的常规用法</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2015/08/23/timer-hui-diao-shi-jian-bei-uijiao-hu-zu-sai-de-jie-jue-ban-fa/">Timer ⌚回调事件被UI交互阻塞的解决办法</a>
+        <a href="/blog/xian-cheng-he-jin-cheng-jian-de-qu-bie/">线程和进程间的区别</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2015/08/23/tong-guo-clang-fen-xi-block-de-ji-zhi/">通过 Clang 分析 Block 的机制</a>
+        <a href="/blog/timer-hui-diao-shi-jian-bei-uijiao-hu-zu-sai-de-jie-jue-ban-fa/">Timer ⌚回调事件被UI交互阻塞的解决办法</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2015/08/22/guan-li-zi-you-qiao-jie-toll-free-bridging/">管理自由桥接(Toll-Free Bridging)</a>
+        <a href="/blog/tong-guo-clang-fen-xi-block-de-ji-zhi/">通过 Clang 分析 Block 的机制</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2015/08/21/arc-nei-cun-guan-li/">ARC 内存管理</a>
+        <a href="/blog/guan-li-zi-you-qiao-jie-toll-free-bridging/">管理自由桥接(Toll-Free Bridging)</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2015/08/21/jin-cheng-jian-tong-xin-fang-shi/">进程间通信方式</a>
+        <a href="/blog/arc-nei-cun-guan-li/">ARC 内存管理</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2015/08/21/gitchang-jian-yong-fa/">Git常见用法</a>
+        <a href="/blog/jin-cheng-jian-tong-xin-fang-shi/">进程间通信方式</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2015/08/19/nsmutablecopying-and-nscopying/">NSMutableCopying and NSCopying</a>
+        <a href="/blog/gitchang-jian-yong-fa/">Git常见用法</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2015/08/19/jekyll-site-class-available-attr/">Jekyll Site Class Available Attr</a>
+        <a href="/blog/nsmutablecopying-and-nscopying/">NSMutableCopying and NSCopying</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2015/08/19/jekyll-configuration-fileds/">Jekyll Configuration Fileds</a>
+        <a href="/blog/jekyll-site-class-available-attr/">Jekyll Site Class Available Attr</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2015/08/19/blockzai-clangzhong-de-shi-xian/">Block在Clang中的实现</a>
+        <a href="/blog/jekyll-configuration-fileds/">Jekyll Configuration Fileds</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2015/08/18/autoreleasefang-fa-deyuan-ma-fen-xi/">Autorelease方法的源码分析</a>
+        <a href="/blog/blockzai-clangzhong-de-shi-xian/">Block在Clang中的实现</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2015/08/18/libdispatch-yuan-ma-fen-xi/">Libdispatch 源码分析</a>
+        <a href="/blog/autoreleasefang-fa-deyuan-ma-fen-xi/">Autorelease方法的源码分析</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2015/08/17/apple-source-code-&-documents/">Apple Source Code & Documents</a>
+        <a href="/blog/libdispatch-yuan-ma-fen-xi/">Libdispatch 源码分析</a>
       </li>
     
   </ul>
