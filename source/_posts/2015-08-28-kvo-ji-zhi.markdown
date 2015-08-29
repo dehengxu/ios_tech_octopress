@@ -58,5 +58,4 @@ Cocoa 绑定是一个允许你不用写一些胶水代码就能确保模型中�
 [Key-value Observing Programming Guide](https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/KeyValueObserving/KeyValueObserving.html#//apple_ref/doc/uid/10000177i)
 
 ---
-
 [Ref](https://developer.apple.com/library/ios/documentation/General/Conceptual/DevPedia-CocoaCore/KVO.html#//apple_ref/doc/uid/TP40008195-CH16-SW1)
