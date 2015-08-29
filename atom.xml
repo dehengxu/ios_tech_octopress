@@ -4,7 +4,7 @@
   <title><![CDATA[逆风@[iOS,nil]]]></title>
   <link href="http://ios.dehengxu.com/atom.xml" rel="self"/>
   <link href="http://ios.dehengxu.com/"/>
-  <updated>2015-08-28T22:18:15+08:00</updated>
+  <updated>2015-08-29T09:40:12+08:00</updated>
   <id>http://ios.dehengxu.com/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
@@ -44,6 +44,14 @@
 <h3>KVO 是绑定(OS X)的必须部分</h3>
 
 <p>Cocoa 绑定是一个允许你不用写一些胶水代码就能确保模型中的值和你应用程序中的视图层同步的 OS X 技术。通过 Interface Builder 检查器中，你就能在视图属性和一些数据之间建立起协调链接，“绑定”他们就像其中一个发生改变会在其他身上反映出来。KVO，和 KVC 还有 KVB 都是 Cocoa 绑定的基础技术。</p>
+
+<h3>后话</h3>
+
+<p><img src="http://ios.dehengxu.com/images/refered/kvo_proj_snap1.png" alt="KVO runtime" /></p>
+
+<p>从上图可以看出 KVO 是一个同步调用过程通过 _NSSetObjectValueAndNotify 函数，在设置对象值的同时向观察对象发送变化通知，同时会通过 <code>NSKeyValueObservingOptions</code> 类型来区分 KVO 发生的类型，并在 <code>- (void)observeValueForKeyPath:(nullable NSString *)keyPath ofObject:(nullable id)object change:(nullable NSDictionary *)change context:(nullable void *)context</code> 的 change 字典对象中传递相关值的变化信息(old value, new value 等)。</p>
+
+<p>同时需要注意的是观察者是通过弱引用方式加入到被观察对象中的，所以当不需要继续观察的时候，请使用<code>removeObserver:forKeyPath:</code> 移除不再需要的观察者以免引起运行时异常。</p>
 
 <h3>前提文章</h3>
 
