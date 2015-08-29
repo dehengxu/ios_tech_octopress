@@ -9,7 +9,7 @@
   <meta name="author" content="Deheng Xu">
 
   
-  <meta name="description" content="KVO 机制 Aug 28th, 2015 6:36 pm KVC 机制 Aug 28th, 2015 5:16 pm Use Dispatch Source Timer Aug 27th, 2015 4:58 pm Bash 使用技巧 Aug 23rd, 2015 11:11 pm GCD &hellip;">
+  <meta name="description" content="使用 NSValue 封装任意结构体 Aug 29th, 2015 12:55 pm KVO 机制 Aug 28th, 2015 6:36 pm KVC 机制 Aug 28th, 2015 5:16 pm Use Dispatch Source Timer Aug 27th, 2015 4:58 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -69,6 +69,81 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" ><a href="/blog/2015/08/29/shi-yong-nsvalue-feng-zhuang-ren-yi-jie-gou-ti/">使用 NSValue 封装任意结构体</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-08-29T12:55:21+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>29</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>12:55 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+
+<!-- <div class="entry-content"><h2>NSValue</h2>
+
+<p>装包，拆包，分别用到 <code>value:withObjCType:</code> 和 <code>getValue:</code>两个方法。</p>
+
+<p>第一个是通过 type 类型，将 value 封装成 NSValue 对象。</p>
+
+<p>后者是通过 NSValue 对象，获取值型数据</p>
+
+<p>假设有一个自定义结构体</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>struct Node {
+</span><span class='line'>    struct Node *next;
+</span><span class='line'>    char *name;
+</span><span class='line'>    int age;
+</span><span class='line'>};</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>struct Node *header = (struct Node *)malloc(sizeof(struct Node));
+</span><span class='line'>header-&gt;name = "Nicholasxu";
+</span><span class='line'>header-&gt;age = 89;    
+</span><span class='line'>NSValue *struc = [NSValue value:header withObjCType:@encode(struct Node)];</span></code></pre></td></tr></table></div></figure>
+
+
+<p>通过 <code>@encode</code> 将C 类型转换成 Objective-C 能识别的 char * 形式。</p>
+
+<p>解包方法如下：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>struct Node *chain = (struct Node *)malloc(sizeof(struct Node));
+</span><span class='line'>[struc getValue:chain];</span></code></pre></td></tr></table></div></figure>
+
+
+<p>先分配结构题内存 <code>chain</code>，再将数据解包出来，并填充 <code>chain</code> de空间。</p>
+</div> -->
+
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -200,6 +275,40 @@
 <blockquote><p>PS: 这里我认为 <code>attribute</code>叫做附属值或者值，<code>property</code>称作属性更恰当。一般来说 attrubute 比 property 要轻量级一些。</p></blockquote>
 
 <p>实现对多的 KVC 兼容是一个更复杂的过程。可以参考权关于 KVC 威性的文档来学习实现的过程。</p>
+
+<h3>后话</h3>
+
+<p>KVC 规则就是通过 <code>setValue:forKey:</code> 对 key 所对应的变量或者属性进行赋值操作，举个简单的例子：</p>
+
+<p>类 <code>People</code></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>@interface People : NSObject
+</span><span class='line'>{
+</span><span class='line'>  NSString *_name;
+</span><span class='line'>}
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这种情况下你可以通过 <code>[people setValue:@"Nick" forKey:@"name"]</code> 或者 <code>[people setValue:@"Nick" forKey:@"_name"]</code> 为 <code>_name</code> 变量赋值。 就是说 KVC 会为 <code>key</code> 或者 <code>_key</code> 为名称的变量完成操作。</p>
+
+<p>说明 KVC 的逻辑是先寻找名为 <code>key</code> 或者 <code>setKey:</code> 的访问器方法，如果失败，再寻找名为 <code>_key</code> 的变量。因为 Objective-C 默认会为 <code>_key</code> 变量和 <code>key</code> 属性匹配关系。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>[self setValue:@"Male" forKey:@"sex"];</span></code></pre></td></tr></table></div></figure>
+
+
+<p>被编译成 c++ 代码：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>((void (*)(id, SEL, NSString *))(void *)objc_msgSend)((id)self, sel_registerName("setSex:"), (NSString *)&__NSConstantStringImpl__var_folders_6r_flwjnj4x4wsb8wcbmjj88_z40000gn_T_Block4Clang_033b4d_mi_0);
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>可以看到c++代码响应的是 <code>setSex:</code> 方法。</p>
 
 <h3>前提文章</h3>
 
@@ -584,169 +693,6 @@ dispatch_async(q1, ^ {
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" ><a href="/blog/2015/08/23/timer-hui-diao-shi-jian-bei-uijiao-hu-zu-sai-de-jie-jue-ban-fa/">Timer ⌚回调事件被UI交互阻塞的解决办法</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-08-23T14:59:03+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2015</span></span> <span class='time'>2:59 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-
-<!-- <div class="entry-content"><p>分析原因：</p>
-
-<p>UI 事件运行在主线程，并且UI 事件的运行模式下 runloop 过滤掉了 timer 事件。</p>
-
-<p>回顾一下 runloop 的运行机制我们知道，runloop 是一个处理事件的循环，为了提高效率和隔离事件，它将事件进行了模式划分，通过 Runloop mode 的方式进行分类，并提供了 <code>runMode:beforeDate:</code> 方法 或者 <code>CFRunLoopRunInMode(CFStringRef mode, CFTimeInterval seconds, Boolean returnAfterSourceHandled)</code> 函数。所以 runloop 在 UI 事件进行中，始终运行在 NSRunLoopCommonModes 模式下。</p>
-
-<h3>Runloop 的模式有这几种：</h3>
-
-<p><a href="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/Multithreading/RunLoopManagement/RunLoopManagement.html" target="_blank">Runloop modes</a>></p>
-
-<h4>Default: NSDefaultRunLoopMode(Cocoa), kCFRunLoopDefaultMode(Core Foundation)</h4>
-
-<blockquote><p>The default mode is the one used for most operations. Most of the time, you should use this mode to start your run loop and configure your input sources.</p></blockquote>
-
-<h4>Connection: NSConnectionReplyMode (Cocoa)</h4>
-
-<blockquote><p>Cocoa uses this mode in conjunction with NSConnection objects to monitor replies. You should rarely need to use this mode yourself.</p></blockquote>
-
-<h4>Modal: NSModalPanelRunLoopMode (Cocoa)</h4>
-
-<blockquote><p>Cocoa uses this mode to identify events intended for modal panels.</p></blockquote>
-
-<h4>Event tracking: NSEventTrackingRunLoopMode (Cocoa)</h4>
-
-<blockquote><p>Cocoa uses this mode to restrict incoming events during mouse-dragging loops and other sorts of user interface tracking loops.</p></blockquote>
-
-<h4>Common modes: NSRunLoopCommonModes (Cocoa), kCFRunLoopCommonModes (Core Foundation)</h4>
-
-<blockquote><p>This is a configurable group of commonly used modes. Associating an input source with this mode also associates it with each of the modes in the group. For Cocoa applications, this set includes the default, modal, and event tracking modes by default. Core Foundation includes just the default mode initially. You can add custom modes to the set using the CFRunLoopAddCommonMode function.</p></blockquote>
-
-<h3>解决方案有以下两种：</h3>
-
-<h4>1. 在其他线程上运行 timer，并在需要的时候将操作发送到主线程</h4>
-
-<p>objc:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>- (void)startTimer
-</span><span class='line'>{
-</span><span class='line'>    NSThread *th = [[NSThread alloc] initWithTarget:self selector:@selector(threadRun) object:nil];
-</span><span class='line'>    [th start];
-</span><span class='line'>}
-</span><span class='line'>
-</span><span class='line'>- (void)addInfinitTimerToCurrentRunloopWithTarget:(id)target selector:(SEL)selector inMode:(NSString *)mode
-</span><span class='line'>{
-</span><span class='line'>    NSTimer *timer = [NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(timerRun:) userInfo:nil repeats:YES];
-</span><span class='line'>    [[NSRunLoop currentRunLoop] addTimer:timer forMode:mode];
-</span><span class='line'>}
-</span><span class='line'>
-</span><span class='line'>- (void)threadRun
-</span><span class='line'>{
-</span><span class='line'>    [self addInfinitTimerToCurrentRunloopWithTarget:self selector:@selector(timerRun:) inMode:@"MyTimerMode"];
-</span><span class='line'>
-</span><span class='line'>    while (YES) {
-</span><span class='line'>        NSLog(@"%s while..", __FUNCTION__);
-</span><span class='line'>        
-</span><span class='line'>        [[NSRunLoop currentRunLoop] runMode:@"MyTimerMode" beforeDate:[NSDate distantFuture]];
-</span><span class='line'>    }
-</span><span class='line'>}
-</span><span class='line'>
-</span><span class='line'>- (void)timerRun:(id)sender
-</span><span class='line'>{
-</span><span class='line'>    NSLog(@"~");
-</span><span class='line'>    [self performSelectorOnMainThread:@selector(someSelector) withObject:nil waitUntilDone:YES];
-</span><span class='line'>}
-</span><span class='line'>
-</span><span class='line'>- (void)someSelector
-</span><span class='line'>{
-</span><span class='line'>  //....
-</span><span class='line'>}
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>这里用 NSThread 和自定义的计时器模式 <code>@"MyTimerMode"</code> 来实现。</p>
-
-<h4>2.在主线程加入计时器</h4>
-
-<p>objc:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>- (void)addInfinitTimerToCurrentRunloopWithTarget:(id)target selector:(SEL)selector inMode:(NSString *)mode
-</span><span class='line'>{
-</span><span class='line'>    NSTimer *timer = [NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(timerRun:) userInfo:nil repeats:YES];
-</span><span class='line'>    [[NSRunLoop currentRunLoop] addTimer:timer forMode:mode];
-</span><span class='line'>}
-</span><span class='line'>
-</span><span class='line'>//运行在主线程上
-</span><span class='line'>
-</span><span class='line'>[self addInfinitTimerToCurrentRunloopWithTarget:self selector:@selector(timerRun:) inMode:NSRunLoopCommonModes];
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>让 timer 所运行的 Runloop mode 和UI 滚动事件的 Runloop mode 一致即可。</p>
-</div> -->
-
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -760,6 +706,10 @@ dispatch_async(q1, ^ {
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/08/29/shi-yong-nsvalue-feng-zhuang-ren-yi-jie-gou-ti/">使用 NSValue 封装任意结构体</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2015/08/28/kvo-ji-zhi/">KVO 机制</a>
@@ -835,10 +785,6 @@ dispatch_async(q1, ^ {
     
       <li class="post">
         <a href="/blog/2015/08/17/apple-source-code-&-documents/">Apple Source Code & Documents</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/08/16/shi-yong-xian-dai-objective-c/">使用现代Objective-C</a>
       </li>
     
   </ul>

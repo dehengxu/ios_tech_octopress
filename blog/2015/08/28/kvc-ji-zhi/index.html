@@ -117,6 +117,40 @@
 
 <p>实现对多的 KVC 兼容是一个更复杂的过程。可以参考权关于 KVC 威性的文档来学习实现的过程。</p>
 
+<h3>后话</h3>
+
+<p>KVC 规则就是通过 <code>setValue:forKey:</code> 对 key 所对应的变量或者属性进行赋值操作，举个简单的例子：</p>
+
+<p>类 <code>People</code></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>@interface People : NSObject
+</span><span class='line'>{
+</span><span class='line'>  NSString *_name;
+</span><span class='line'>}
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这种情况下你可以通过 <code>[people setValue:@"Nick" forKey:@"name"]</code> 或者 <code>[people setValue:@"Nick" forKey:@"_name"]</code> 为 <code>_name</code> 变量赋值。 就是说 KVC 会为 <code>key</code> 或者 <code>_key</code> 为名称的变量完成操作。</p>
+
+<p>说明 KVC 的逻辑是先寻找名为 <code>key</code> 或者 <code>setKey:</code> 的访问器方法，如果失败，再寻找名为 <code>_key</code> 的变量。因为 Objective-C 默认会为 <code>_key</code> 变量和 <code>key</code> 属性匹配关系。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>[self setValue:@"Male" forKey:@"sex"];</span></code></pre></td></tr></table></div></figure>
+
+
+<p>被编译成 c++ 代码：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>((void (*)(id, SEL, NSString *))(void *)objc_msgSend)((id)self, sel_registerName("setSex:"), (NSString *)&__NSConstantStringImpl__var_folders_6r_flwjnj4x4wsb8wcbmjj88_z40000gn_T_Block4Clang_033b4d_mi_0);
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>可以看到c++代码响应的是 <code>setSex:</code> 方法。</p>
+
 <h3>前提文章</h3>
 
 <p><a href="https://developer.apple.com/library/ios/documentation/General/Conceptual/DevPedia-CocoaCore/ObjectModeling.html#//apple_ref/doc/uid/TP40008195-CH41-SW1">Object modeling</a></p>
@@ -184,6 +218,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/08/29/shi-yong-nsvalue-feng-zhuang-ren-yi-jie-gou-ti/">使用 NSValue 封装任意结构体</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2015/08/28/kvo-ji-zhi/">KVO 机制</a>
@@ -259,10 +297,6 @@
     
       <li class="post">
         <a href="/blog/2015/08/17/apple-source-code-&-documents/">Apple Source Code & Documents</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/08/16/shi-yong-xian-dai-objective-c/">使用现代Objective-C</a>
       </li>
     
   </ul>

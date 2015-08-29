@@ -9,7 +9,7 @@
   <meta name="author" content="Deheng Xu">
 
   
-  <meta name="description" content="通过 Clang 分析 Block 的机制 Aug 23rd, 2015 8:35 am 管理自由桥接(Toll-Free Bridging) Aug 22nd, 2015 6:21 pm ARC 内存管理 Aug 21st, 2015 11:06 pm 进程间通信方式 Aug 21st, &hellip;">
+  <meta name="description" content="Timer ⌚回调事件被UI交互阻塞的解决办法 Aug 23rd, 2015 2:59 pm 通过 Clang 分析 Block 的机制 Aug 23rd, 2015 8:35 am 管理自由桥接(Toll-Free Bridging) Aug 22nd, 2015 6:21 pm ARC &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -69,6 +69,169 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" ><a href="/blog/2015/08/23/timer-hui-diao-shi-jian-bei-uijiao-hu-zu-sai-de-jie-jue-ban-fa/">Timer ⌚回调事件被UI交互阻塞的解决办法</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-08-23T14:59:03+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2015</span></span> <span class='time'>2:59 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+
+<!-- <div class="entry-content"><p>分析原因：</p>
+
+<p>UI 事件运行在主线程，并且UI 事件的运行模式下 runloop 过滤掉了 timer 事件。</p>
+
+<p>回顾一下 runloop 的运行机制我们知道，runloop 是一个处理事件的循环，为了提高效率和隔离事件，它将事件进行了模式划分，通过 Runloop mode 的方式进行分类，并提供了 <code>runMode:beforeDate:</code> 方法 或者 <code>CFRunLoopRunInMode(CFStringRef mode, CFTimeInterval seconds, Boolean returnAfterSourceHandled)</code> 函数。所以 runloop 在 UI 事件进行中，始终运行在 NSRunLoopCommonModes 模式下。</p>
+
+<h3>Runloop 的模式有这几种：</h3>
+
+<p><a href="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/Multithreading/RunLoopManagement/RunLoopManagement.html" target="_blank">Runloop modes</a>></p>
+
+<h4>Default: NSDefaultRunLoopMode(Cocoa), kCFRunLoopDefaultMode(Core Foundation)</h4>
+
+<blockquote><p>The default mode is the one used for most operations. Most of the time, you should use this mode to start your run loop and configure your input sources.</p></blockquote>
+
+<h4>Connection: NSConnectionReplyMode (Cocoa)</h4>
+
+<blockquote><p>Cocoa uses this mode in conjunction with NSConnection objects to monitor replies. You should rarely need to use this mode yourself.</p></blockquote>
+
+<h4>Modal: NSModalPanelRunLoopMode (Cocoa)</h4>
+
+<blockquote><p>Cocoa uses this mode to identify events intended for modal panels.</p></blockquote>
+
+<h4>Event tracking: NSEventTrackingRunLoopMode (Cocoa)</h4>
+
+<blockquote><p>Cocoa uses this mode to restrict incoming events during mouse-dragging loops and other sorts of user interface tracking loops.</p></blockquote>
+
+<h4>Common modes: NSRunLoopCommonModes (Cocoa), kCFRunLoopCommonModes (Core Foundation)</h4>
+
+<blockquote><p>This is a configurable group of commonly used modes. Associating an input source with this mode also associates it with each of the modes in the group. For Cocoa applications, this set includes the default, modal, and event tracking modes by default. Core Foundation includes just the default mode initially. You can add custom modes to the set using the CFRunLoopAddCommonMode function.</p></blockquote>
+
+<h3>解决方案有以下两种：</h3>
+
+<h4>1. 在其他线程上运行 timer，并在需要的时候将操作发送到主线程</h4>
+
+<p>objc:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>- (void)startTimer
+</span><span class='line'>{
+</span><span class='line'>    NSThread *th = [[NSThread alloc] initWithTarget:self selector:@selector(threadRun) object:nil];
+</span><span class='line'>    [th start];
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>- (void)addInfinitTimerToCurrentRunloopWithTarget:(id)target selector:(SEL)selector inMode:(NSString *)mode
+</span><span class='line'>{
+</span><span class='line'>    NSTimer *timer = [NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(timerRun:) userInfo:nil repeats:YES];
+</span><span class='line'>    [[NSRunLoop currentRunLoop] addTimer:timer forMode:mode];
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>- (void)threadRun
+</span><span class='line'>{
+</span><span class='line'>    [self addInfinitTimerToCurrentRunloopWithTarget:self selector:@selector(timerRun:) inMode:@"MyTimerMode"];
+</span><span class='line'>
+</span><span class='line'>    while (YES) {
+</span><span class='line'>        NSLog(@"%s while..", __FUNCTION__);
+</span><span class='line'>        
+</span><span class='line'>        [[NSRunLoop currentRunLoop] runMode:@"MyTimerMode" beforeDate:[NSDate distantFuture]];
+</span><span class='line'>    }
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>- (void)timerRun:(id)sender
+</span><span class='line'>{
+</span><span class='line'>    NSLog(@"~");
+</span><span class='line'>    [self performSelectorOnMainThread:@selector(someSelector) withObject:nil waitUntilDone:YES];
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>- (void)someSelector
+</span><span class='line'>{
+</span><span class='line'>  //....
+</span><span class='line'>}
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这里用 NSThread 和自定义的计时器模式 <code>@"MyTimerMode"</code> 来实现。</p>
+
+<h4>2.在主线程加入计时器</h4>
+
+<p>objc:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>- (void)addInfinitTimerToCurrentRunloopWithTarget:(id)target selector:(SEL)selector inMode:(NSString *)mode
+</span><span class='line'>{
+</span><span class='line'>    NSTimer *timer = [NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(timerRun:) userInfo:nil repeats:YES];
+</span><span class='line'>    [[NSRunLoop currentRunLoop] addTimer:timer forMode:mode];
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>//运行在主线程上
+</span><span class='line'>
+</span><span class='line'>[self addInfinitTimerToCurrentRunloopWithTarget:self selector:@selector(timerRun:) inMode:NSRunLoopCommonModes];
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>让 timer 所运行的 Runloop mode 和UI 滚动事件的 Runloop mode 一致即可。</p>
+</div> -->
+
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1096,63 +1259,6 @@ Xcode 4.1 和以前的版本不支持 ARC。</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" ><a href="/blog/2015/08/19/jekyll-site-class-available-attr/">Jekyll Site Class Available Attr</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-08-19T11:35:34+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>19</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>11:35 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-
-<!-- <div class="entry-content"><p><a href="https://docs.shopify.com/themes/liquid-documentation/basics" target="_blank">LiquidDocument</a></p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>  class Site
-</span><span class='line'>    attr_reader   :source, :dest, :config
-</span><span class='line'>    attr_accessor :layouts, :posts, :pages, :static_files, :drafts,
-</span><span class='line'>                  :exclude, :include, :lsi, :highlighter, :permalink_style,
-</span><span class='line'>                  :time, :future, :unpublished, :safe, :plugins, :limit_posts,
-</span><span class='line'>                  :show_drafts, :keep_files, :baseurl, :data, :file_read_opts,
-</span><span class='line'>                  :gems, :plugin_manager
-</span><span class='line'>
-</span><span class='line'>    attr_accessor :converters, :generators, :reader
-</span><span class='line'>    attr_reader   :regenerator, :liquid_renderer
-</span><span class='line'>
-</span><span class='line'>  ...</span></code></pre></td></tr></table></div></figure>
-
-</div> -->
-
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/3">&larr; Older</a>
@@ -1168,6 +1274,10 @@ Xcode 4.1 和以前的版本不支持 ARC。</p>
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/08/29/shi-yong-nsvalue-feng-zhuang-ren-yi-jie-gou-ti/">使用 NSValue 封装任意结构体</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2015/08/28/kvo-ji-zhi/">KVO 机制</a>
@@ -1243,10 +1353,6 @@ Xcode 4.1 和以前的版本不支持 ARC。</p>
     
       <li class="post">
         <a href="/blog/2015/08/17/apple-source-code-&-documents/">Apple Source Code & Documents</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/08/16/shi-yong-xian-dai-objective-c/">使用现代Objective-C</a>
       </li>
     
   </ul>
