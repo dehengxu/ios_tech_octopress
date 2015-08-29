@@ -4,7 +4,7 @@
   <title><![CDATA[逆风@[iOS,nil]]]></title>
   <link href="http://ios.dehengxu.com/atom.xml" rel="self"/>
   <link href="http://ios.dehengxu.com/"/>
-  <updated>2015-08-29T18:28:47+08:00</updated>
+  <updated>2015-08-29T21:25:32+08:00</updated>
   <id>http://ios.dehengxu.com/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
@@ -215,7 +215,7 @@
 
 <h3>使类支持 KVC</h3>
 
-<p>NSKeyValueCoding 非正式的协议使 KVC 成为可能。其中两个方法： <code>valueForKey:</code> 和 <code>setValue:forKey:</code> 是特殊且重要的方法，应为他们能获取，设置给定 “键” 的属性值。 <code>NSObject</code> 为这两个方法提供了默认实现，并且如果类和 KVC 兼容，它可以依赖这个实现。</p>
+<p>NSKeyValueCoding 非正式的协议使 KVC 成为可能。其中两个方法： <code>valueForKey:</code> 和 <code>setValue:forKey:</code> 是特殊且重要的方法，因为他们能获取，设置给定 “键” 的属性值。 <code>NSObject</code> 为这两个方法提供了默认实现，并且如果类和 KVC 兼容，它可以依赖这个实现。</p>
 
 <p>你如何实现属性 KVC 的兼容性，依赖于属性是一个附属值，一对多或者一对一的关系。对于附属值，一对一关系来说，类必须至少实现一个以下给定顺序的配置(键 和属性的键关联)：</p>
 
@@ -248,6 +248,21 @@
 
 
 <p>这种情况下你可以通过 <code>[people setValue:@"Nick" forKey:@"name"]</code> 或者 <code>[people setValue:@"Nick" forKey:@"_name"]</code> 为 <code>_name</code> 变量赋值。 就是说 KVC 会为 <code>key</code> 或者 <code>_key</code> 为名称的变量完成操作。</p>
+
+<p>将代码改为：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>@interface People : NSObject
+</span><span class='line'>{
+</span><span class='line'>  NSString *name;
+</span><span class='line'>}
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>依然执行 <code>[people setValue:@"Nick" forKey:@"name"]</code> 或者 <code>[people setValue:@"Nick" forKey:@"_name"]</code> 方法，后者会提示错误 <code>this class is not key value coding-compliant for the key _name."</code></p>
 
 <p>说明 KVC 的逻辑是为名为 <code>_&lt;name&gt;</code> 的变量通过 <code>_&lt;name&gt;</code> 或 <code>&lt;name&gt;</code> 形式的 key 来进行 KVC 操作。除此之外针对 <code>&lt;name&gt;</code> 的变量, 一律通过 <code>&lt;name&gt;</code> 形式的 key 来做 KVC 操作。</p>
 
