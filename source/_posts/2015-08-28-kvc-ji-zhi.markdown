@@ -23,7 +23,7 @@ KVC 通过“键”来定位对象的属性，其实就是一个字符串标识�
 
 ### 使类支持 KVC
 
-NSKeyValueCoding 非正式的协议使 KVC 成为可能。其中两个方法： `valueForKey:` 和 `setValue:forKey:` 是特殊且重要的方法，应为他们能获取，设置给定 “键” 的属性值。 `NSObject` 为这两个方法提供了默认实现，并且如果类和 KVC 兼容，它可以依赖这个实现。
+NSKeyValueCoding 非正式的协议使 KVC 成为可能。其中两个方法： `valueForKey:` 和 `setValue:forKey:` 是特殊且重要的方法，因为他们能获取，设置给定 “键” 的属性值。 `NSObject` 为这两个方法提供了默认实现，并且如果类和 KVC 兼容，它可以依赖这个实现。
 
 你如何实现属性 KVC 的兼容性，依赖于属性是一个附属值，一对多或者一对一的关系。对于附属值，一对一关系来说，类必须至少实现一个以下给定顺序的配置(键 和属性的键关联)：
 
@@ -51,7 +51,17 @@ KVC 规则就是通过 `setValue:forKey:` 对 key 所对应的变量或者属性
 
 这种情况下你可以通过 `[people setValue:@"Nick" forKey:@"name"]` 或者 `[people setValue:@"Nick" forKey:@"_name"]` 为 `_name` 变量赋值。 就是说 KVC 会为 `key` 或者 `_key` 为名称的变量完成操作。  
 
+将代码改为：
 
+```
+@interface People : NSObject
+{
+	NSString *name;
+}
+
+```
+
+依然执行 `[people setValue:@"Nick" forKey:@"name"]` 或者 `[people setValue:@"Nick" forKey:@"_name"]` 方法，后者会提示错误 `this class is not key value coding-compliant for the key _name."` 
 
 说明 KVC 的逻辑是为名为 `_<name>` 的变量通过 `_<name>` 或 `<name>` 形式的 key 来进行 KVC 操作。除此之外针对 `<name>` 的变量, 一律通过 `<name>` 形式的 key 来做 KVC 操作。
 
