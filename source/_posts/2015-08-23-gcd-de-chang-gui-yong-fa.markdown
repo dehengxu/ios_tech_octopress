@@ -136,7 +136,7 @@ disaptch_async(queue, ^() {
 
 ### dispatch_barrier_async
 
-障碍异步，意思是通过 dispatch_barrier_async 提交的任务，不会立刻执行，而是会阻碍它之后提交的任务，直到它之前的任务全部完成，它才会执行，并且它执行完毕后，其后提交的任务才能继续进行。
+阻碍异步，意思是通过 dispatch_barrier_async 提交的任务，不会立刻执行，而是会阻碍它之后提交的任务，直到它之前的任务全部完成，它才会执行，并且它执行完毕后，其后提交的任务才能继续进行。
 
 而在 dispatch_barrier_async 之前或者之后的任务都是并发执行的。
 
@@ -173,6 +173,4 @@ G --
 
 
 但是 dispatch_barrier_async 只有提交到自己创建的并发队列时，才有上面的效果。如果是全局队列，或者串行队列，那么 dispatch_barrier_async 和 dispatch_async 是等效的。
-
-
 

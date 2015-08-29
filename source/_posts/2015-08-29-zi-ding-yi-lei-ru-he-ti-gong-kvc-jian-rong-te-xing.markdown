@@ -7,6 +7,7 @@ published: true
 sharing: true
 footer: true
 categories: objc
+tags: KVC, KVO
 ---
 
 ### KVC 兼容性
