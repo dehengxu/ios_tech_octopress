@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: Bash - 逆风@[iOS,nil]</title>
+  <title>objc_msgSend 编译错误的解决方法 - 逆风@[iOS,nil]</title>
   <meta name="author" content="Deheng Xu">
 
   
-  <meta name="description" content="Category: bash">
+  <meta name="description" content="最近在 Xcode6.4 上编译一个老旧的库时，出现了运行时函数 objc_msgSend 的编译错误，提示: Too many arguments to function call, excepted 0, have 7，说函数不需要参数，却传入了7个参数。 原来是预编译指令的问题: &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://ios.dehengxu.com/blog/categories/bash/">
+  <link rel="canonical" href="http://ios.dehengxu.com/blog/objc-msgsend-bian-yi-cuo-wu-de-jie-jue-fang-fa/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="逆风@[iOS,nil]" type="application/atom+xml">
@@ -69,36 +69,88 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: Bash</h1>
+    
+      <h1 class="entry-title">objc_msgSend 编译错误的解决方法</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-08-30T12:13:22+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>12:13 pm</span></time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://ios.dehengxu.com">Comments</a>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p>最近在 Xcode6.4 上编译一个老旧的库时，出现了运行时函数 <code>objc_msgSend</code> 的编译错误，提示:</p>
 
-  
-  <h2>2015</h2>
+<p><code>Too many arguments to function call, excepted 0, have 7</code>，说函数不需要参数，却传入了7个参数。</p>
 
-<article>
-  
-<h1><a href="/blog/bash-shi-yong-ji-qiao/">Bash 使用技巧</a></h1>
-<time datetime="2015-08-23T23:11:02+08:00" pubdate><span class='month'>Aug</span> <span class='day'>23</span> <span class='year'>2015</span></time>
+<p>原来是预编译指令的问题:</p>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/bash/'>bash</a></span>
-</footer>
+<p>找到编译出错的那个库，选中 target -> Build Settings 搜索框中输入 <code>objc</code></p>
 
+<p>定位到这里:</p>
 
-</article>
+<p><img src="/images/refered/msgSend_error_fix.png" alt="msgSend_fix" /></p>
 
+<p>将</p>
+
+<p><code>Enable Strict Checking of objc_msgSend Calls</code>  字段设为 <code>NO</code></p>
+
+<p>关闭 <code>objc_msgSend</code> 的严格调用检查。</p>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Deheng Xu</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2015-08-30T12:13:22+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>12:13 pm</span></time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/zi-ding-yi-lei-ru-he-ti-gong-kvc-jian-rong-te-xing/" title="Previous Post: 自定义类如何提供 KVC 兼容特性">&laquo; 自定义类如何提供 KVC 兼容特性</a>
+      
+      
+    </p>
+  </footer>
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -221,7 +273,10 @@
       var disqus_shortname = 'headwindx';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://ios.dehengxu.com/blog/objc-msgsend-bian-yi-cuo-wu-de-jie-jue-fang-fa/';
+        var disqus_url = 'http://ios.dehengxu.com/blog/objc-msgsend-bian-yi-cuo-wu-de-jie-jue-fang-fa/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
