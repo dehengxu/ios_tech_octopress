@@ -4,7 +4,7 @@
   <title><![CDATA[逆风@[iOS,nil]]]></title>
   <link href="http://ios.dehengxu.com/atom.xml" rel="self"/>
   <link href="http://ios.dehengxu.com/"/>
-  <updated>2015-08-30T12:21:47+08:00</updated>
+  <updated>2015-08-30T12:55:13+08:00</updated>
   <id>http://ios.dehengxu.com/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
@@ -30,9 +30,7 @@
 
 <p><img src="http://ios.dehengxu.com/images/refered/msgSend_error_fix.png" alt="msgSend_fix" /></p>
 
-<p>将</p>
-
-<p><code>Enable Strict Checking of objc_msgSend Calls</code>  字段设为 <code>NO</code></p>
+<p>将 <code>Enable Strict Checking of objc_msgSend Calls</code>  字段设为 <code>NO</code></p>
 
 <p>关闭 <code>objc_msgSend</code> 的严格调用检查。</p>
 ]]></content>
