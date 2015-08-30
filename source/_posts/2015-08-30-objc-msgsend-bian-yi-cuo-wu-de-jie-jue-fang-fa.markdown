@@ -21,9 +21,7 @@ categories:
 
 ![msgSend_fix](/images/refered/msgSend_error_fix.png)
 
-将
-
-`Enable Strict Checking of objc_msgSend Calls`  字段设为 `NO`
+将 `Enable Strict Checking of objc_msgSend Calls`  字段设为 `NO`
 
 关闭 `objc_msgSend` 的严格调用检查。
 
