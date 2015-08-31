@@ -149,10 +149,13 @@
     <lastmod>2014-08-29T14:42:06+08:00</lastmod>
   </url>
   <url>
-    <loc>http://ios.dehengxu.com/blog/archives/</loc>
+    <loc>http://ios.dehengxu.com/</loc>
   </url>
   <url>
-    <loc>http://ios.dehengxu.com/</loc>
+    <loc>http://ios.dehengxu.com/works/</loc>
+  </url>
+  <url>
+    <loc>http://ios.dehengxu.com/blog/archives/</loc>
   </url>
   <url>
     <loc>http://ios.dehengxu.com/blog/categories/ruby/</loc>
@@ -219,20 +222,5 @@
   </url>
   <url>
     <loc>http://ios.dehengxu.com/blog/categories/cocoapods/</loc>
-  </url>
-  <url>
-    <loc>http://ios.dehengxu.com/posts/2/</loc>
-  </url>
-  <url>
-    <loc>http://ios.dehengxu.com/posts/3/</loc>
-  </url>
-  <url>
-    <loc>http://ios.dehengxu.com/posts/4/</loc>
-  </url>
-  <url>
-    <loc>http://ios.dehengxu.com/posts/5/</loc>
-  </url>
-  <url>
-    <loc>http://ios.dehengxu.com/posts/6/</loc>
   </url>
 </urlset>
