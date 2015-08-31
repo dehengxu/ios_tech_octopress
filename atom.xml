@@ -4,7 +4,7 @@
   <title><![CDATA[逆风@[iOS,nil]]]></title>
   <link href="http://ios.dehengxu.com/atom.xml" rel="self"/>
   <link href="http://ios.dehengxu.com/"/>
-  <updated>2015-08-30T12:55:13+08:00</updated>
+  <updated>2015-08-31T08:03:01+08:00</updated>
   <id>http://ios.dehengxu.com/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
@@ -14,11 +14,13 @@
 
   
   <entry>
-    <title type="html"><![CDATA[objc_msgSend 编译错误的解决方法]]></title>
+    <title type="html"><![CDATA[Runtime 在新版本 Xcode 中引起的编译错误，及解决方法]]></title>
     <link href="http://ios.dehengxu.com/blog/objc-msgsend-bian-yi-cuo-wu-de-jie-jue-fang-fa/"/>
     <updated>2015-08-30T12:13:22+08:00</updated>
     <id>http://ios.dehengxu.com/blog/objc-msgsend-bian-yi-cuo-wu-de-jie-jue-fang-fa</id>
-    <content type="html"><![CDATA[<p>最近在 Xcode6.4 上编译一个老旧的库时，出现了运行时函数 <code>objc_msgSend</code> 的编译错误，提示:</p>
+    <content type="html"><![CDATA[<h2>objc_msgSend</h2>
+
+<p>最近在 Xcode6.4 上编译一个老旧的库时，出现了运行时函数 <code>objc_msgSend</code> 的编译错误，提示:</p>
 
 <p><code>Too many arguments to function call, excepted 0, have 7</code>，说函数不需要参数，却传入了7个参数。</p>
 
@@ -28,11 +30,29 @@
 
 <p>定位到这里:</p>
 
-<p><img src="http://ios.dehengxu.com/images/refered/msgSend_error_fix.png" alt="msgSend_fix" /></p>
+<p><img src="http://ios.dehengxu.com/images/refered/runtime_msgsend_fix.png" alt="msgSend_fix" /></p>
 
 <p>将 <code>Enable Strict Checking of objc_msgSend Calls</code>  字段设为 <code>NO</code></p>
 
 <p>关闭 <code>objc_msgSend</code> 的严格调用检查。</p>
+
+<h2>object->isa</h2>
+
+<p>最近在 Xcode6.4 上编译依赖 JSONKit 的时候，对于 JSONKit 内部通过指针访问 <code>isa</code> 变量代码，引起编译错误，提示:</p>
+
+<p><code>Assignment to Objective-C's isa is deprecated in favor of object_setClass()</code> 或者 <code>Assignment to Objective-C's isa is deprecated in favor of object_getClass()</code></p>
+
+<p>如图:</p>
+
+<p><img src="http://ios.dehengxu.com/images/refered/runtime_isa_error.png" alt="isa_err" /></p>
+
+<p>解决办法：找到 JSONKit 项目 target -> Build Settings 搜索框中输入 <code>isa</code></p>
+
+<p>定位到:</p>
+
+<p><img src="http://ios.dehengxu.com/images/refered/runtime_isa_fix.png" alt="isa_err" /></p>
+
+<p>修改为 <code>NO</code> 即可。</p>
 ]]></content>
   </entry>
   
