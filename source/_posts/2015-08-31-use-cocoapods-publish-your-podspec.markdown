@@ -11,7 +11,7 @@ categories: Cocoapods
 
 ### 创建 podspec
 
-pod spec create
+pod spec create NAME
 
 ### 补完 podspec 文件
 
