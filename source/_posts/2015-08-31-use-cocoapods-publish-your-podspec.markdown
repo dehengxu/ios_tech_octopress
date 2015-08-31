@@ -17,7 +17,7 @@ pod spec create NAME
 
 参考例子：
 
-```
+```Ruby
 Pod::Spec.new do |spec|
   spec.name             = 'Reachability'
   spec.version          = '3.1.0'
@@ -46,7 +46,7 @@ end
 
 为了保证与 Cocoapods 通信的合法性，需要在你的电脑上注册一个会话，方法如下：
 
-```
+```Bash
 pod trunk register orta@cocoapods.org 'Orta Therox' --description='macbook air'
 ```
 
