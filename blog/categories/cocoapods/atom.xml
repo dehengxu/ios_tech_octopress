@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Cocoapods | 逆风@[iOS,nil]]]></title>
   <link href="http://ios.dehengxu.com/blog/categories/cocoapods/atom.xml" rel="self"/>
   <link href="http://ios.dehengxu.com/"/>
-  <updated>2015-08-31T22:35:36+08:00</updated>
+  <updated>2015-08-31T22:40:33+08:00</updated>
   <id>http://ios.dehengxu.com/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
@@ -26,7 +26,7 @@
 
 <p>参考例子：</p>
 
-<pre><code>Pod::Spec.new do |spec|
+<pre><code class="Ruby">Pod::Spec.new do |spec|
   spec.name             = 'Reachability'
   spec.version          = '3.1.0'
   spec.license          = { :type =&gt; 'BSD' }
@@ -54,7 +54,7 @@ end
 
 <p>为了保证与 Cocoapods 通信的合法性，需要在你的电脑上注册一个会话，方法如下：</p>
 
-<pre><code>pod trunk register orta@cocoapods.org 'Orta Therox' --description='macbook air'
+<pre><code class="Bash">pod trunk register orta@cocoapods.org 'Orta Therox' --description='macbook air'
 </code></pre>
 
 <p>执行完后，你的邮箱会收到一封激活邮件，点击其中的激活链接后，你的会话就算是合法了。</p>

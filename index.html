@@ -185,7 +185,7 @@
 
 <p>参考例子：</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -197,18 +197,19 @@
 <span class='line-number'>10</span>
 <span class='line-number'>11</span>
 <span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>Pod::Spec.new do |spec|
-</span><span class='line'>  spec.name             = 'Reachability'
-</span><span class='line'>  spec.version          = '3.1.0'
-</span><span class='line'>  spec.license          = { :type =&gt; 'BSD' }
-</span><span class='line'>  spec.homepage         = 'https://github.com/tonymillion/Reachability'
-</span><span class='line'>  spec.authors          = { 'Tony Million' =&gt; 'tonymillion@gmail.com' }
-</span><span class='line'>  spec.summary          = 'ARC and GCD Compatible Reachability Class for iOS and OS X.'
-</span><span class='line'>  spec.source           = { :git =&gt; 'https://github.com/tonymillion/Reachability.git', :tag =&gt; 'v3.1.0' }
-</span><span class='line'>  spec.source_files     = 'Reachability.h,m'
-</span><span class='line'>  spec.framework        = 'SystemConfiguration'
-</span><span class='line'>  spec.requires_arc     = true
-</span><span class='line'>end</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class='Ruby'><span class='line'><span class="no">Pod</span><span class="o">::</span><span class="no">Spec</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">spec</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">spec</span><span class="o">.</span><span class="n">name</span>             <span class="o">=</span> <span class="s1">&#39;Reachability&#39;</span>
+</span><span class='line'>  <span class="n">spec</span><span class="o">.</span><span class="n">version</span>          <span class="o">=</span> <span class="s1">&#39;3.1.0&#39;</span>
+</span><span class='line'>  <span class="n">spec</span><span class="o">.</span><span class="n">license</span>          <span class="o">=</span> <span class="p">{</span> <span class="ss">:type</span> <span class="o">=&gt;</span> <span class="s1">&#39;BSD&#39;</span> <span class="p">}</span>
+</span><span class='line'>  <span class="n">spec</span><span class="o">.</span><span class="n">homepage</span>         <span class="o">=</span> <span class="s1">&#39;https://github.com/tonymillion/Reachability&#39;</span>
+</span><span class='line'>  <span class="n">spec</span><span class="o">.</span><span class="n">authors</span>          <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;Tony Million&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;tonymillion@gmail.com&#39;</span> <span class="p">}</span>
+</span><span class='line'>  <span class="n">spec</span><span class="o">.</span><span class="n">summary</span>          <span class="o">=</span> <span class="s1">&#39;ARC and GCD Compatible Reachability Class for iOS and OS X.&#39;</span>
+</span><span class='line'>  <span class="n">spec</span><span class="o">.</span><span class="n">source</span>           <span class="o">=</span> <span class="p">{</span> <span class="ss">:git</span> <span class="o">=&gt;</span> <span class="s1">&#39;https://github.com/tonymillion/Reachability.git&#39;</span><span class="p">,</span> <span class="ss">:tag</span> <span class="o">=&gt;</span> <span class="s1">&#39;v3.1.0&#39;</span> <span class="p">}</span>
+</span><span class='line'>  <span class="n">spec</span><span class="o">.</span><span class="n">source_files</span>     <span class="o">=</span> <span class="s1">&#39;Reachability.h,m&#39;</span>
+</span><span class='line'>  <span class="n">spec</span><span class="o">.</span><span class="n">framework</span>        <span class="o">=</span> <span class="s1">&#39;SystemConfiguration&#39;</span>
+</span><span class='line'>  <span class="n">spec</span><span class="o">.</span><span class="n">requires_arc</span>     <span class="o">=</span> <span class="kp">true</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p><a href="https://guides.cocoapods.org/making/specs-and-specs-repo.html">Offical Docs</a></p>
@@ -225,8 +226,9 @@
 
 <p>为了保证与 Cocoapods 通信的合法性，需要在你的电脑上注册一个会话，方法如下：</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>pod trunk register orta@cocoapods.org 'Orta Therox' --description='macbook air'</span></code></pre></td></tr></table></div></figure>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='Bash'><span class='line'>pod trunk register orta@cocoapods.org <span class="s1">&#39;Orta Therox&#39;</span> --description<span class="o">=</span><span class="s1">&#39;macbook air&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>执行完后，你的邮箱会收到一封激活邮件，点击其中的激活链接后，你的会话就算是合法了。</p>
