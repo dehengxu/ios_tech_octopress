@@ -124,3 +124,8 @@ pod trunk push CoreDataEnvir.podspec --verbose
 经过了漫长的 Pods master specs 的下载过程，才开始进行库的验证过程，每一个 tag 都会验证，这个过程也很漫长，好在过去的每一个 tag 我都执行过验证。
 
 > PS:如果需要提交到私有库，你需要执行 `pod trunk push REPO CoreDataEnvir.podspec`
+
+---
+
+[Ref](https://guides.cocoapods.org/making/getting-setup-with-trunk.html)
+[podspec](https://guides.cocoapods.org/syntax/podspec.html)
