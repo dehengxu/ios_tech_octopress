@@ -5,12 +5,23 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>NSMutableCopying and NSCopying - 逆风@[iOS,nil]</title>
+  <title>Use Cocoapods Publish Your Podspec - 逆风@[iOS,nil]</title>
   <meta name="author" content="Deheng Xu">
 
   
-  <meta name="description" content="
-">
+  <meta name="description" content="创建 podspec pod spec create 补完 podspec 文件 参考例子： 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+Pod::Spec.new do |spec| spec.name = 'Reachability' spec.version = '3.1.0' &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +30,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://ios.dehengxu.com/blog/nsmutablecopying-and-nscopying/">
+  <link rel="canonical" href="http://ios.dehengxu.com/blog/use-cocoapods-publish-your-podspec/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="逆风@[iOS,nil]" type="application/atom+xml">
@@ -81,7 +92,7 @@
   
   <header>
     
-      <h1 class="entry-title">NSMutableCopying and NSCopying</h1>
+      <h1 class="entry-title">Use Cocoapods Publish Your Podspec</h1>
     
     
       <p class="meta">
@@ -90,7 +101,7 @@
 
 
 
-<time class='entry-date' datetime='2015-08-19T23:24:42+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>19</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>11:24 pm</span></time>
+<time class='entry-date' datetime='2015-08-31T22:10:34+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>31</span><span class='date-suffix'>st</span>, <span class='date-year'>2015</span></span> <span class='time'>10:10 pm</span></time>
         
            | <a href="#disqus_thread"
              data-disqus-identifier="http://ios.dehengxu.com">Comments</a>
@@ -100,7 +111,65 @@
   </header>
 
 
-<div class="entry-content">
+<div class="entry-content"><h3>创建 podspec</h3>
+
+<p>pod spec create</p>
+
+<h3>补完 podspec 文件</h3>
+
+<p>参考例子：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Pod::Spec.new do |spec|
+</span><span class='line'>  spec.name             = 'Reachability'
+</span><span class='line'>  spec.version          = '3.1.0'
+</span><span class='line'>  spec.license          = { :type =&gt; 'BSD' }
+</span><span class='line'>  spec.homepage         = 'https://github.com/tonymillion/Reachability'
+</span><span class='line'>  spec.authors          = { 'Tony Million' =&gt; 'tonymillion@gmail.com' }
+</span><span class='line'>  spec.summary          = 'ARC and GCD Compatible Reachability Class for iOS and OS X.'
+</span><span class='line'>  spec.source           = { :git =&gt; 'https://github.com/tonymillion/Reachability.git', :tag =&gt; 'v3.1.0' }
+</span><span class='line'>  spec.source_files     = 'Reachability.h,m'
+</span><span class='line'>  spec.framework        = 'SystemConfiguration'
+</span><span class='line'>  spec.requires_arc     = true
+</span><span class='line'>end</span></code></pre></td></tr></table></div></figure>
+
+
+<p><a href="https://guides.cocoapods.org/making/specs-and-specs-repo.html">Offical Docs</a></p>
+
+<h3>验证代码</h3>
+
+<p><code>pod lib lint CoreDataEnvir.podspec</code></p>
+
+<h3>验证 podspec</h3>
+
+<p><code>pod spec lint CoreDataEnvir.podspec</code></p>
+
+<h3>注册 Cocoapods 会话</h3>
+
+<p>为了保证与 Cocoapods 通信的合法性，需要在你的电脑上注册一个会话，方法如下：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>pod trunk register orta@cocoapods.org 'Orta Therox' --description='macbook air'</span></code></pre></td></tr></table></div></figure>
+
+
+<p>执行完后，你的邮箱会收到一封激活邮件，点击其中的激活链接后，你的会话就算是合法了。</p>
+
+<h3>提交你的 podspec</h3>
+
+<p><code>pod trunk push CoreDataEnvir.podspec</code> 这条命令会把你的 podspec 提交到公共库中。</p>
+
+<p>如果需要提交到私有库，你需要执行 <code>pod trunk push REPO CoreDataEnvir.podspec</code></p>
 </div>
 
 
@@ -116,12 +185,12 @@
 
 
 
-<time class='entry-date' datetime='2015-08-19T23:24:42+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>19</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>11:24 pm</span></time>
+<time class='entry-date' datetime='2015-08-31T22:10:34+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>31</span><span class='date-suffix'>st</span>, <span class='date-year'>2015</span></span> <span class='time'>10:10 pm</span></time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/objc/'>objc</a>
+    <a class='category' href='/blog/categories/cocoapods/'>cocoapods</a>
   
 </span>
 
@@ -137,10 +206,10 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/jekyll-site-class-available-attr/" title="Previous Post: Jekyll site class available attr">&laquo; Jekyll site class available attr</a>
+        <a class="basic-alignment left" href="/blog/objc-msgsend-bian-yi-cuo-wu-de-jie-jue-fang-fa/" title="Previous Post: Runtime 在新版本 Xcode 中引起的编译错误，及解决方法">&laquo; Runtime 在新版本 Xcode 中引起的编译错误，及解决方法</a>
       
       
-        <a class="basic-alignment right" href="/blog/gitchang-jian-yong-fa/" title="Next Post: git常见用法">git常见用法 &raquo;</a>
+        <a class="basic-alignment right" href="/blog/create-a-private-pods/" title="Next Post: Create a private pods">Create a private pods &raquo;</a>
       
     </p>
   </footer>
@@ -274,8 +343,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://ios.dehengxu.com/blog/nsmutablecopying-and-nscopying/';
-        var disqus_url = 'http://ios.dehengxu.com/blog/nsmutablecopying-and-nscopying/';
+        var disqus_identifier = 'http://ios.dehengxu.com/blog/use-cocoapods-publish-your-podspec/';
+        var disqus_url = 'http://ios.dehengxu.com/blog/use-cocoapods-publish-your-podspec/';
         var disqus_script = 'embed.js';
       
     (function () {

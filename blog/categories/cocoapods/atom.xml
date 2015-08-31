@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Cocoapods | 逆风@[iOS,nil]]]></title>
+  <link href="http://ios.dehengxu.com/blog/categories/cocoapods/atom.xml" rel="self"/>
+  <link href="http://ios.dehengxu.com/"/>
+  <updated>2015-08-31T22:33:22+08:00</updated>
+  <id>http://ios.dehengxu.com/</id>
+  <author>
+    <name><![CDATA[Deheng Xu]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Use Cocoapods Publish Your Podspec]]></title>
+    <link href="http://ios.dehengxu.com/blog/use-cocoapods-publish-your-podspec/"/>
+    <updated>2015-08-31T22:10:34+08:00</updated>
+    <id>http://ios.dehengxu.com/blog/use-cocoapods-publish-your-podspec</id>
+    <content type="html"><![CDATA[<h3>创建 podspec</h3>
+
+<p>pod spec create</p>
+
+<h3>补完 podspec 文件</h3>
+
+<p>参考例子：</p>
+
+<pre><code>Pod::Spec.new do |spec|
+  spec.name             = 'Reachability'
+  spec.version          = '3.1.0'
+  spec.license          = { :type =&gt; 'BSD' }
+  spec.homepage         = 'https://github.com/tonymillion/Reachability'
+  spec.authors          = { 'Tony Million' =&gt; 'tonymillion@gmail.com' }
+  spec.summary          = 'ARC and GCD Compatible Reachability Class for iOS and OS X.'
+  spec.source           = { :git =&gt; 'https://github.com/tonymillion/Reachability.git', :tag =&gt; 'v3.1.0' }
+  spec.source_files     = 'Reachability.h,m'
+  spec.framework        = 'SystemConfiguration'
+  spec.requires_arc     = true
+end
+</code></pre>
+
+<p><a href="https://guides.cocoapods.org/making/specs-and-specs-repo.html">Offical Docs</a></p>
+
+<h3>验证代码</h3>
+
+<p><code>pod lib lint CoreDataEnvir.podspec</code></p>
+
+<h3>验证 podspec</h3>
+
+<p><code>pod spec lint CoreDataEnvir.podspec</code></p>
+
+<h3>注册 Cocoapods 会话</h3>
+
+<p>为了保证与 Cocoapods 通信的合法性，需要在你的电脑上注册一个会话，方法如下：</p>
+
+<pre><code>pod trunk register orta@cocoapods.org 'Orta Therox' --description='macbook air'
+</code></pre>
+
+<p>执行完后，你的邮箱会收到一封激活邮件，点击其中的激活链接后，你的会话就算是合法了。</p>
+
+<h3>提交你的 podspec</h3>
+
+<p><code>pod trunk push CoreDataEnvir.podspec</code> 这条命令会把你的 podspec 提交到公共库中。</p>
+
+<p>如果需要提交到私有库，你需要执行 <code>pod trunk push REPO CoreDataEnvir.podspec</code></p>
+]]></content>
+  </entry>
+  
+</feed>

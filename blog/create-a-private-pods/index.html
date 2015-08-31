@@ -5,12 +5,18 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>NSMutableCopying and NSCopying - 逆风@[iOS,nil]</title>
+  <title>Create a Private Pods - 逆风@[iOS,nil]</title>
   <meta name="author" content="Deheng Xu">
 
   
-  <meta name="description" content="
-">
+  <meta name="description" content="1. 创建私有 Spec 仓库 没必要 fork CocoaPods 的Spec 主仓库。你可以建立自己的仓库，也不用公开。 而且你也可以创建自己的私有本地仓库 1
+2
+3
+4
+cd /opt/git
+mkdir Specs.git
+cd Specs.git
+git init --bare 2. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +25,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://ios.dehengxu.com/blog/nsmutablecopying-and-nscopying/">
+  <link rel="canonical" href="http://ios.dehengxu.com/blog/create-a-private-pods/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="逆风@[iOS,nil]" type="application/atom+xml">
@@ -81,7 +87,7 @@
   
   <header>
     
-      <h1 class="entry-title">NSMutableCopying and NSCopying</h1>
+      <h1 class="entry-title">Create a Private Pods</h1>
     
     
       <p class="meta">
@@ -90,7 +96,7 @@
 
 
 
-<time class='entry-date' datetime='2015-08-19T23:24:42+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>19</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>11:24 pm</span></time>
+<time class='entry-date' datetime='2015-08-31T22:20:30+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>31</span><span class='date-suffix'>st</span>, <span class='date-year'>2015</span></span> <span class='time'>10:20 pm</span></time>
         
            | <a href="#disqus_thread"
              data-disqus-identifier="http://ios.dehengxu.com">Comments</a>
@@ -100,7 +106,47 @@
   </header>
 
 
-<div class="entry-content">
+<div class="entry-content"><h3>1. 创建私有 Spec 仓库</h3>
+
+<p>没必要 fork CocoaPods 的Spec 主仓库。你可以建立自己的仓库，也不用公开。</p>
+
+<p>而且你也可以创建自己的私有本地仓库</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cd /opt/git
+</span><span class='line'>mkdir Specs.git
+</span><span class='line'>cd Specs.git
+</span><span class='line'>git init --bare</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>2. 添加私有仓库到 CocoaPods 安装文件中</h3>
+
+<p><code>pod repo add REPO_NAME SOURCE_URL</code></p>
+
+<blockquote><p>如果你想检测是否安装成功，可以这样测试：</p></blockquote>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cd ~/.cocoapods/repos/REPO_NAME
+</span><span class='line'>pod repo lint</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>3. 添加你的 podspec 到你自己的仓库</h3>
+
+<p>pod repo push REPO_NAME SPEC_NAME.podspec</p>
+
+<hr />
+
+<p>最后，你需要在 podfile 文件中通过 <code>source</code> 指令来使用你自己的仓库：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>source 'YOUR_REPO_URL'</span></code></pre></td></tr></table></div></figure>
+
+
+<p><a href="https://guides.cocoapods.org/making/private-cocoapods.html">REF</a></p>
 </div>
 
 
@@ -116,14 +162,8 @@
 
 
 
-<time class='entry-date' datetime='2015-08-19T23:24:42+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>19</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>11:24 pm</span></time>
+<time class='entry-date' datetime='2015-08-31T22:20:30+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>31</span><span class='date-suffix'>st</span>, <span class='date-year'>2015</span></span> <span class='time'>10:20 pm</span></time>
       
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/objc/'>objc</a>
-  
-</span>
 
 
     </p>
@@ -137,10 +177,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/jekyll-site-class-available-attr/" title="Previous Post: Jekyll site class available attr">&laquo; Jekyll site class available attr</a>
+        <a class="basic-alignment left" href="/blog/use-cocoapods-publish-your-podspec/" title="Previous Post: Use cocoapods publish your podspec">&laquo; Use cocoapods publish your podspec</a>
       
-      
-        <a class="basic-alignment right" href="/blog/gitchang-jian-yong-fa/" title="Next Post: git常见用法">git常见用法 &raquo;</a>
       
     </p>
   </footer>
@@ -274,8 +312,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://ios.dehengxu.com/blog/nsmutablecopying-and-nscopying/';
-        var disqus_url = 'http://ios.dehengxu.com/blog/nsmutablecopying-and-nscopying/';
+        var disqus_identifier = 'http://ios.dehengxu.com/blog/create-a-private-pods/';
+        var disqus_url = 'http://ios.dehengxu.com/blog/create-a-private-pods/';
         var disqus_script = 'embed.js';
       
     (function () {
