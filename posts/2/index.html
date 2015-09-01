@@ -483,7 +483,7 @@ dispatch_async(q1, ^ {
 
 <h3>Runloop 的模式有这几种：</h3>
 
-<p><a href="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/Multithreading/RunLoopManagement/RunLoopManagement.html" target="_blank">Runloop modes</a>></p>
+<p><a href="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/Multithreading/RunLoopManagement/RunLoopManagement.html" target="_blank">Runloop modes</a></p>
 
 <h4>Default: NSDefaultRunLoopMode(Cocoa), kCFRunLoopDefaultMode(Core Foundation)</h4>
 
@@ -511,7 +511,7 @@ dispatch_async(q1, ^ {
 
 <p>objc:</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -544,39 +544,39 @@ dispatch_async(q1, ^ {
 <span class='line-number'>31</span>
 <span class='line-number'>32</span>
 <span class='line-number'>33</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>- (void)startTimer
-</span><span class='line'>{
-</span><span class='line'>    NSThread *th = [[NSThread alloc] initWithTarget:self selector:@selector(threadRun) object:nil];
-</span><span class='line'>    [th start];
-</span><span class='line'>}
+</pre></td><td class='code'><pre><code class='Objective-C'><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">startTimer</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="bp">NSThread</span> <span class="o">*</span><span class="n">th</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">NSThread</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithTarget</span><span class="p">:</span><span class="nb">self</span> <span class="nl">selector</span><span class="p">:</span><span class="k">@selector</span><span class="p">(</span><span class="n">threadRun</span><span class="p">)</span> <span class="nl">object</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
+</span><span class='line'>    <span class="p">[</span><span class="n">th</span> <span class="n">start</span><span class="p">];</span>
+</span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'>- (void)addInfinitTimerToCurrentRunloopWithTarget:(id)target selector:(SEL)selector inMode:(NSString *)mode
-</span><span class='line'>{
-</span><span class='line'>    NSTimer *timer = [NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(timerRun:) userInfo:nil repeats:YES];
-</span><span class='line'>    [[NSRunLoop currentRunLoop] addTimer:timer forMode:mode];
-</span><span class='line'>}
+</span><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">addInfinitTimerToCurrentRunloopWithTarget:</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nv">target</span> <span class="nf">selector:</span><span class="p">(</span><span class="kt">SEL</span><span class="p">)</span><span class="nv">selector</span> <span class="nf">inMode:</span><span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">mode</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="bp">NSTimer</span> <span class="o">*</span><span class="n">timer</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSTimer</span> <span class="nl">timerWithTimeInterval</span><span class="p">:</span><span class="mf">1.0</span> <span class="nl">target</span><span class="p">:</span><span class="nb">self</span> <span class="nl">selector</span><span class="p">:</span><span class="k">@selector</span><span class="p">(</span><span class="nl">timerRun</span><span class="p">:)</span> <span class="nl">userInfo</span><span class="p">:</span><span class="nb">nil</span> <span class="nl">repeats</span><span class="p">:</span><span class="nb">YES</span><span class="p">];</span>
+</span><span class='line'>    <span class="p">[[</span><span class="bp">NSRunLoop</span> <span class="n">currentRunLoop</span><span class="p">]</span> <span class="nl">addTimer</span><span class="p">:</span><span class="n">timer</span> <span class="nl">forMode</span><span class="p">:</span><span class="n">mode</span><span class="p">];</span>
+</span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'>- (void)threadRun
-</span><span class='line'>{
-</span><span class='line'>    [self addInfinitTimerToCurrentRunloopWithTarget:self selector:@selector(timerRun:) inMode:@"MyTimerMode"];
+</span><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">threadRun</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="p">[</span><span class="nb">self</span> <span class="nl">addInfinitTimerToCurrentRunloopWithTarget</span><span class="p">:</span><span class="nb">self</span> <span class="nl">selector</span><span class="p">:</span><span class="k">@selector</span><span class="p">(</span><span class="nl">timerRun</span><span class="p">:)</span> <span class="nl">inMode</span><span class="p">:</span><span class="s">@&quot;MyTimerMode&quot;</span><span class="p">];</span>
 </span><span class='line'>
-</span><span class='line'>    while (YES) {
-</span><span class='line'>        NSLog(@"%s while..", __FUNCTION__);
-</span><span class='line'>        
-</span><span class='line'>        [[NSRunLoop currentRunLoop] runMode:@"MyTimerMode" beforeDate:[NSDate distantFuture]];
-</span><span class='line'>    }
-</span><span class='line'>}
+</span><span class='line'>    <span class="k">while</span> <span class="p">(</span><span class="nb">YES</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%s while..&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span><span class="p">);</span>
 </span><span class='line'>
-</span><span class='line'>- (void)timerRun:(id)sender
-</span><span class='line'>{
-</span><span class='line'>    NSLog(@"~");
-</span><span class='line'>    [self performSelectorOnMainThread:@selector(someSelector) withObject:nil waitUntilDone:YES];
-</span><span class='line'>}
+</span><span class='line'>        <span class="p">[[</span><span class="bp">NSRunLoop</span> <span class="n">currentRunLoop</span><span class="p">]</span> <span class="nl">runMode</span><span class="p">:</span><span class="s">@&quot;MyTimerMode&quot;</span> <span class="nl">beforeDate</span><span class="p">:[</span><span class="bp">NSDate</span> <span class="n">distantFuture</span><span class="p">]];</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'>- (void)someSelector
-</span><span class='line'>{
-</span><span class='line'>  //....
-</span><span class='line'>}
+</span><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">timerRun:</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nv">sender</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;~&quot;</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">[</span><span class="nb">self</span> <span class="nl">performSelectorOnMainThread</span><span class="p">:</span><span class="k">@selector</span><span class="p">(</span><span class="n">someSelector</span><span class="p">)</span> <span class="nl">withObject</span><span class="p">:</span><span class="nb">nil</span> <span class="nl">waitUntilDone</span><span class="p">:</span><span class="nb">YES</span><span class="p">];</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">someSelector</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="c1">//....</span>
+</span><span class='line'><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -586,7 +586,7 @@ dispatch_async(q1, ^ {
 
 <p>objc:</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -595,15 +595,15 @@ dispatch_async(q1, ^ {
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>- (void)addInfinitTimerToCurrentRunloopWithTarget:(id)target selector:(SEL)selector inMode:(NSString *)mode
-</span><span class='line'>{
-</span><span class='line'>    NSTimer *timer = [NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(timerRun:) userInfo:nil repeats:YES];
-</span><span class='line'>    [[NSRunLoop currentRunLoop] addTimer:timer forMode:mode];
-</span><span class='line'>}
+</pre></td><td class='code'><pre><code class='Objective-C'><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">addInfinitTimerToCurrentRunloopWithTarget:</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nv">target</span> <span class="nf">selector:</span><span class="p">(</span><span class="kt">SEL</span><span class="p">)</span><span class="nv">selector</span> <span class="nf">inMode:</span><span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">mode</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="bp">NSTimer</span> <span class="o">*</span><span class="n">timer</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSTimer</span> <span class="nl">timerWithTimeInterval</span><span class="p">:</span><span class="mf">1.0</span> <span class="nl">target</span><span class="p">:</span><span class="nb">self</span> <span class="nl">selector</span><span class="p">:</span><span class="k">@selector</span><span class="p">(</span><span class="nl">timerRun</span><span class="p">:)</span> <span class="nl">userInfo</span><span class="p">:</span><span class="nb">nil</span> <span class="nl">repeats</span><span class="p">:</span><span class="nb">YES</span><span class="p">];</span>
+</span><span class='line'>    <span class="p">[[</span><span class="bp">NSRunLoop</span> <span class="n">currentRunLoop</span><span class="p">]</span> <span class="nl">addTimer</span><span class="p">:</span><span class="n">timer</span> <span class="nl">forMode</span><span class="p">:</span><span class="n">mode</span><span class="p">];</span>
+</span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'>//运行在主线程上
+</span><span class='line'><span class="c1">//运行在主线程上</span>
 </span><span class='line'>
-</span><span class='line'>[self addInfinitTimerToCurrentRunloopWithTarget:self selector:@selector(timerRun:) inMode:NSRunLoopCommonModes];
+</span><span class='line'><span class="p">[</span><span class="nb">self</span> <span class="nl">addInfinitTimerToCurrentRunloopWithTarget</span><span class="p">:</span><span class="nb">self</span> <span class="nl">selector</span><span class="p">:</span><span class="k">@selector</span><span class="p">(</span><span class="nl">timerRun</span><span class="p">:)</span> <span class="nl">inMode</span><span class="p">:</span><span class="n">NSRunLoopCommonModes</span><span class="p">];</span>
 </span></code></pre></td></tr></table></div></figure>
 
 

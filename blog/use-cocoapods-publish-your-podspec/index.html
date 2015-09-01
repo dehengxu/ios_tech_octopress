@@ -152,6 +152,8 @@ Pod::Spec.new do |spec| spec.name = &#39;Reachability&#39; spec. &hellip;">
 
 <p><code>pod lib lint CoreDataEnvir.podspec</code></p>
 
+<p>如果你将 source 路径设置为 git@github.com&hellip;..，会出现这种警告提示：<code>- WARN  | Git SSH URLs will NOT work for people behind firewalls configured to only allow HTTP, therefore HTTPS is preferred.</code>。将 source 地址设置为 <a href="https://github.com....">https://github.com....</a> 的形式，可以解决此问题。</p>
+
 <h3>验证 podspec</h3>
 
 <p><code>pod spec lint CoreDataEnvir.podspec</code></p>
@@ -294,7 +296,7 @@ Pod::Spec.new do |spec| spec.name = &#39;Reachability&#39; spec. &hellip;">
 
 <p>经过了漫长的 Pods master specs 的下载过程，才开始进行库的验证过程，每一个 tag 都会验证，这个过程也很漫长，好在过去的每一个 tag 我都执行过验证。</p>
 
-<blockquote><p>PS:如果需要提交到私有库，你需要执行 <code>pod trunk push REPO CoreDataEnvir.podspec</code></p></blockquote>
+<blockquote><p>PS:如果需要提交到私有库，你需要执行 <code>pod trunk push CoreDataEnvir.podspec</code></p></blockquote>
 
 <hr />
 
