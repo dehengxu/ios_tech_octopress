@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Cocoapods | 逆风@[iOS,nil]]]></title>
   <link href="http://ios.dehengxu.com/blog/categories/cocoapods/atom.xml" rel="self"/>
   <link href="http://ios.dehengxu.com/"/>
-  <updated>2015-09-01T10:45:40+08:00</updated>
+  <updated>2015-09-01T12:21:08+08:00</updated>
   <id>http://ios.dehengxu.com/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
@@ -131,6 +131,14 @@ end
 <p>经过了漫长的 Pods master specs 的下载过程，才开始进行库的验证过程，每一个 tag 都会验证，这个过程也很漫长，好在过去的每一个 tag 我都执行过验证。</p>
 
 <blockquote><p>PS:如果需要提交到私有库，你需要执行 <code>pod trunk push CoreDataEnvir.podspec</code></p></blockquote>
+
+<h3>如果你的验证阶段经常 failed，有两种解决办法：</h3>
+
+<ol>
+<li>解决所有的 warning, 配置好 podspec 文件。</li>
+<li>在lint 后面增加一个参数 <code>--allow-warning</code>，为了看清楚出错的原因你也可以增加  <code>--verbose</code>。</li>
+</ol>
+
 
 <hr />
 
