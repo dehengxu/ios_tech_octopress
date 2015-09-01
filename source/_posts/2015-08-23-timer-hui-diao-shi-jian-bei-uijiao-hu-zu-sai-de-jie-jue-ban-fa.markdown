@@ -17,7 +17,7 @@ UI 事件运行在主线程，并且UI 事件的运行模式下 runloop 过滤�
 
 ### Runloop 的模式有这几种：
 
-<a href="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/Multithreading/RunLoopManagement/RunLoopManagement.html" target="_blank">Runloop modes</a>>
+<a href="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/Multithreading/RunLoopManagement/RunLoopManagement.html" target="_blank">Runloop modes</a>
 
 #### Default: NSDefaultRunLoopMode(Cocoa), kCFRunLoopDefaultMode(Core Foundation)
 
@@ -45,7 +45,8 @@ UI 事件运行在主线程，并且UI 事件的运行模式下 runloop 过滤�
 
 objc:
 
-```
+``` Objective-C
+
 - (void)startTimer
 {
     NSThread *th = [[NSThread alloc] initWithTarget:self selector:@selector(threadRun) object:nil];
@@ -64,7 +65,7 @@ objc:
 
     while (YES) {
         NSLog(@"%s while..", __FUNCTION__);
-        
+
         [[NSRunLoop currentRunLoop] runMode:@"MyTimerMode" beforeDate:[NSDate distantFuture]];
     }
 }
@@ -90,6 +91,7 @@ objc:
 objc:
 
 ```
+
 - (void)addInfinitTimerToCurrentRunloopWithTarget:(id)target selector:(SEL)selector inMode:(NSString *)mode
 {
     NSTimer *timer = [NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(timerRun:) userInfo:nil repeats:YES];
@@ -103,5 +105,3 @@ objc:
 ```
 
 让 timer 所运行的 Runloop mode 和UI 滚动事件的 Runloop mode 一致即可。
-
-

@@ -38,6 +38,8 @@ end
 
 `pod lib lint CoreDataEnvir.podspec`
 
+如果你将 source 路径设置为 git@github.com.....，会出现这种警告提示：`- WARN  | Git SSH URLs will NOT work for people behind firewalls configured to only allow HTTP, therefore HTTPS is preferred.`。将 source 地址设置为 https://github.com.... 的形式，可以解决此问题。
+
 ### 验证 podspec
 
 `pod spec lint CoreDataEnvir.podspec`
@@ -123,7 +125,7 @@ pod trunk push CoreDataEnvir.podspec --verbose
 
 经过了漫长的 Pods master specs 的下载过程，才开始进行库的验证过程，每一个 tag 都会验证，这个过程也很漫长，好在过去的每一个 tag 我都执行过验证。
 
-> PS:如果需要提交到私有库，你需要执行 `pod trunk push REPO CoreDataEnvir.podspec`
+> PS:如果需要提交到私有库，你需要执行 `pod trunk push CoreDataEnvir.podspec`
 
 ---
 

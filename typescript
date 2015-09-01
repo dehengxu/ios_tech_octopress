@@ -143,4 +143,86 @@ cd _deploy
 Counting objects: 151, done.
 Delta compression using up to 2 threads.
 Compressing objects:   0% (1/108)   Compressing objects:   1% (2/108)   Compressing objects:   2% (3/108)   Compressing objects:   3% (4/108)   Compressing objects:   4% (5/108)   Compressing objects:   5% (6/108)   Compressing objects:   6% (7/108)   Compressing objects:   7% (8/108)   Compressing objects:   8% (9/108)   Compressing objects:   9% (10/108)   Compressing objects:  10% (11/108)   Compressing objects:  11% (12/108)   Compressing objects:  12% (13/108)   Compressing objects:  13% (15/108)   Compressing objects:  14% (16/108)   Compressing objects:  15% (17/108)   Compressing objects:  16% (18/108)   Compressing objects:  17% (19/108)   Compressing objects:  18% (20/108)   Compressing objects:  19% (21/108)   Compressing objects:  20% (22/108)   Compressing objects:  21% (23/108)   Compressing objects:  22% (24/108)   Compressing objects:  23% (25/108)   Compressing objects:  24% (26/108)   Compressing objects:  25% (27/108)   Compressing objects:  26% (29/108)   Compressing objects:  27% (30/108)   Compressing objects:  28% (31/108)   Compressing objects:  29% (32/108)   Compressing objects:  30% (33/108)   Compressing objects:  31% (34/108)   Compressing objects:  32% (35/108)   Compressing objects:  33% (36/108)   Compressing objects:  34% (37/108)   Compressing objects:  35% (38/108)   Compressing objects:  36% (39/108)   Compressing objects:  37% (40/108)   Compressing objects:  38% (42/108)   Compressing objects:  39% (43/108)   Compressing objects:  40% (44/108)   Compressing objects:  41% (45/108)   Compressing objects:  42% (46/108)   Compressing objects:  43% (47/108)   Compressing objects:  44% (48/108)   Compressing objects:  45% (49/108)   Compressing objects:  46% (50/108)   Compressing objects:  47% (51/108)   Compressing objects:  48% (52/108)   Compressing objects:  49% (53/108)   Compressing objects:  50% (54/108)   Compressing objects:  51% (56/108)   Compressing objects:  52% (57/108)   Compressing objects:  53% (58/108)   Compressing objects:  54% (59/108)   Compressing objects:  55% (60/108)   Compressing objects:  56% (61/108)   Compressing objects:  57% (62/108)   Compressing objects:  58% (63/108)   Compressing objects:  59% (64/108)   Compressing objects:  60% (65/108)   Compressing objects:  61% (66/108)   Compressing objects:  62% (67/108)   Compressing objects:  63% (69/108)   Compressing objects:  64% (70/108)   Compressing objects:  65% (71/108)   Compressing objects:  66% (72/108)   Compressing objects:  67% (73/108)   Compressing objects:  68% (74/108)   Compressing objects:  69% (75/108)   Compressing objects:  70% (76/108)   Compressing objects:  71% (77/108)   Compressing objects:  72% (78/108)   Compressing objects:  73% (79/108)   Compressing objects:  74% (80/108)   Compressing objects:  75% (81/108)   Compressing objects:  76% (83/108)   Compressing objects:  77% (84/108)   Compressing objects:  78% (85/108)   Compressing objects:  79% (86/108)   Compressing objects:  80% (87/108)   Compressing objects:  81% (88/108)   Compressing objects:  82% (89/108)   Compressing objects:  83% (90/108)   Compressing objects:  84% (91/108)   Compressing objects:  85% (92/108)   Compressing objects:  86% (93/108)   Compressing objects:  87% (94/108)   Compressing objects:  88% (96/108)   Compressing objects:  89% (97/108)   Compressing objects:  90% (98/108)   Compressing objects:  91% (99/108)   Compressing objects:  92% (100/108)   Compressing objects:  93% (101/108)   Compressing objects:  94% (102/108)   Compressing objects:  95% (103/108)   Compressing objects:  96% (104/108)   Compressing objects:  97% (105/108)   Compressing objects:  98% (106/108)   Compressing objects:  99% (107/108)   Compressing objects: 100% (108/108)   Compressing objects: 100% (108/108), done.
-Writing objects:   0% (1/151)   Writing objects:   1% (2/151)   Writing objects:   2% (4/151)   Writing objects:   3% (5/151)   Writing objects:   4% (7/151)   Writing objects:   5% (8/151)   Writing objects:   6% (10/151)   Writing objects:   7% (11/151)   Writing objects:   8% (13/151)   Writing objects:   9% (14/151)   Writing objects:  10% (16/151)   Writing objects:  11% (17/151)   Writing objects:  12% (19/151)   Writing objects:  13% (20/151)   Writing objects:  14% (22/151)   Writing objects:  15% (23/151)   Writing objects:  16% (25/151)   Writing objects:  17% (26/151)   Writing objects:  18% (28/151)   Writing objects:  19% (29/151)   Writing objects:  20% (31/151)   Writing objects:  21% (32/151)   Writing objects:  22% (34/151)   Writing objects:  23% (35/151)   Writing objects:  24% (37/151)   Writing objects:  25% (38/151)   Writing objects:  26% (40/151)   Writing objects:  27% (41/151)   Writing objects:  28% (43/151)   Writing objects:  29% (44/151)   Writing objects:  30% (46/151)   Writing objects:  31% (47/151)   Writing objects:  32% (49/151)   Writing objects:  33% (50/151)   Writing objects:  34% (52/151)   Writing objects:  35% (53/151)   Writing objects:  36% (55/151)   Writing objects:  37% (56/151)   Writing objects:  38% (58/151)   Writing objects:  39% (59/151)   Writing objects:  40% (61/151)   Writing objects:  41% (62/151)   Writing objects:  42% (64/151)   Writing objects:  43% (65/151)   Writing objects:  44% (67/151)   Writing objects:  45% (68/151)   Writing objects:  46% (70/151)   Writing objects:  47% (71/151)   Writing objects:  48% (73/151)   Writing objects:  49% (74/151)   Writing objects:  50% (77/151)   Writing objects:  51% (78/151)   Writing objects:  52% (79/151)   Writing objects:  53% (81/151)   Writing objects:  54% (82/151)   Writing objects:  55% (84/151)   Writing objects:  56% (85/151)   Writing objects:  57% (87/151)   Writing objects:  58% (88/151)   Writing objects:  59% (90/151)   Writing objects:  60% (91/151)   Writing objects:  61% (93/151)   Writing objects:  62% (94/151)   Writing objects:  63% (96/151)   Writing objects:  64% (97/151)   Writing objects:  65% (99/151)   Writing objects:  66% (100/151)   Writing objects:  67% (102/151)   Writing objects:  68% (103/151)   Writing objects:  69% (105/151)   Writing objects:  7
+Writing objects:   0% (1/151)   Writing objects:   1% (2/151)   Writing objects:   2% (4/151)   Writing objects:   3% (5/151)   Writing objects:   4% (7/151)   Writing objects:   5% (8/151)   Writing objects:   6% (10/151)   Writing objects:   7% (11/151)   Writing objects:   8% (13/151)   Writing objects:   9% (14/151)   Writing objects:  10% (16/151)   Writing objects:  11% (17/151)   Writing objects:  12% (19/151)   Writing objects:  13% (20/151)   Writing objects:  14% (22/151)   Writing objects:  15% (23/151)   Writing objects:  16% (25/151)   Writing objects:  17% (26/151)   Writing objects:  18% (28/151)   Writing objects:  19% (29/151)   Writing objects:  20% (31/151)   Writing objects:  21% (32/151)   Writing objects:  22% (34/151)   Writing objects:  23% (35/151)   Writing objects:  24% (37/151)   Writing objects:  25% (38/151)   Writing objects:  26% (40/151)   Writing objects:  27% (41/151)   Writing objects:  28% (43/151)   Writing objects:  29% (44/151)   Writing objects:  30% (46/151)   Writing objects:  31% (47/151)   Writing objects:  32% (49/151)   Writing objects:  33% (50/151)   Writing objects:  34% (52/151)   Writing objects:  35% (53/151)   Writing objects:  36% (55/151)   Writing objects:  37% (56/151)   Writing objects:  38% (58/151)   Writing objects:  39% (59/151)   Writing objects:  40% (61/151)   Writing objects:  41% (62/151)   Writing objects:  42% (64/151)   Writing objects:  43% (65/151)   Writing objects:  44% (67/151)   Writing objects:  45% (68/151)   Writing objects:  46% (70/151)   Writing objects:  47% (71/151)   Writing objects:  48% (73/151)   Writing objects:  49% (74/151)   Writing objects:  50% (77/151)   Writing objects:  51% (78/151)   Writing objects:  52% (79/151)   Writing objects:  53% (81/151)   Writing objects:  54% (82/151)   Writing objects:  55% (84/151)   Writing objects:  56% (85/151)   Writing objects:  57% (87/151)   Writing objects:  58% (88/151)   Writing objects:  59% (90/151)   Writing objects:  60% (91/151)   Writing objects:  61% (93/151)   Writing objects:  62% (94/151)   Writing objects:  63% (96/151)   Writing objects:  64% (97/151)   Writing objects:  65% (99/151)   Writing objects:  66% (100/151)   Writing objects:  67% (102/151)   Writing objects:  68% (103/151)   Writing objects:  69% (105/151)   Writing objects:  70% (106/151)   Writing objects:  71% (108/151)   Writing objects:  72% (109/151)   Writing objects:  73% (111/151)   Writing objects:  74% (112/151)   Writing objects:  76% (115/151)   Writing objects:  77% (117/151)   Writing objects:  78% (118/151)   Writing objects:  79% (120/151)   Writing objects:  80% (121/151)   Writing objects:  81% (123/151)   Writing objects:  82% (124/151)   Writing objects:  83% (126/151)   Writing objects:  84% (127/151)   Writing objects:  85% (129/151)   Writing objects:  86% (130/151)   Writing objects:  87% (132/151)   Writing objects:  88% (133/151)   Writing objects:  89% (135/151)   Writing objects:  90% (136/151)   Writing objects:  91% (138/151)   Writing objects:  92% (139/151)   Writing objects:  93% (141/151)   Writing objects:  94% (142/151)   Writing objects:  95% (144/151)   Writing objects:  96% (145/151)   Writing objects:  97% (147/151)   Writing objects:  98% (148/151)   Writing objects:  99% (150/151)   Writing objects: 100% (151/151)   Writing objects: 100% (151/151), 40.25 KiB | 0 bytes/s, done.
+Total 151 (delta 84), reused 0 (delta 0)
+To git@github.com:xudeheng/ios_tech_octopress.git
+   aafabff..1b6ef20  gh-pages -> gh-pages
+
+## Github Pages deploy complete
+cd -
+[master 6d04f1b] Update octopress blogs.
+ 4 files changed, 104 insertions(+), 10 deletions(-)
+ delete mode 100644 source/works/index.html
+ create mode 100644 source/works/index.markdown
+Counting objects: 9, done.
+Delta compression using up to 2 threads.
+Compressing objects:  12% (1/8)   Compressing objects:  25% (2/8)   Compressing objects:  37% (3/8)   Compressing objects:  50% (4/8)   Compressing objects:  62% (5/8)   Compressing objects:  75% (6/8)   Compressing objects:  87% (7/8)   Compressing objects: 100% (8/8)   Compressing objects: 100% (8/8), done.
+Writing objects:  11% (1/9)   Writing objects:  22% (2/9)   Writing objects:  33% (3/9)   Writing objects:  44% (4/9)   Writing objects:  55% (5/9)   Writing objects:  66% (6/9)   Writing objects:  77% (7/9)   Writing objects:  88% (8/9)   Writing objects: 100% (9/9)   Writing objects: 100% (9/9), 3.86 KiB | 0 bytes/s, done.
+Total 9 (delta 5), reused 0 (delta 0)
+To git@github.com:xudeheng/ios_tech_octopress.git
+   e35781d..6d04f1b  master -> master
+[1m[7m%[27m[1m[0m                                                                                                                                   ]2;nicholasxu@NicholasXudeMacBook-Pro]1;..log_octopress]7;file:///Users/nicholasxu/Projects/web/ios_blog_octopress[0m[27m[24m[J
+[34mProjects/web/ios_blog_octopress[00m  [32mmaster [32m✔[00m[00m 
+▶ [K[124C[1A[30m0m[00m  [31m[00m[1B[128D[?1h=aatom .[?1l>
+]2;atom .]1;atom[1m[7m%[27m[1m[0m                                                                                                                                   ]2;nicholasxu@NicholasXudeMacBook-Pro]1;..log_octopress]7;file:///Users/nicholasxu/Projects/web/ios_blog_octopress[0m[27m[24m[J
+[34mProjects/web/ios_blog_octopress[00m  [32mmaster [31m✗[00m[00m 
+▶ [K[119C[1A[30m1h32m[00m [33m⚑  [31m[00m[1B[128D[?1h=aatom .[?1l>
+]2;atom .]1;atom[1m[7m%[27m[1m[0m                                                                                                                                   ]2;nicholasxu@NicholasXudeMacBook-Pro]1;..log_octopress]7;file:///Users/nicholasxu/Projects/web/ios_blog_octopress[0m[27m[24m[J
+[34mProjects/web/ios_blog_octopress[00m  [32mmaster [31m✗[00m[00m 
+▶ [K[119C[1A[30m2h17m[00m [33m⚑  [31m[00m[1B[128D[?1h=../scripts[1m/[0m[0m/sync[1m [0m[0m [?1l>
+]2;./scripts/sync]1;./scripts/sync## Generating Site with Jekyll
+[32m    write[0m source/stylesheets/screen.css
+Configuration file: /Users/nicholasxu/Projects/web/ios_blog_octopress/_config.yml
+            Source: source
+       Destination: public
+      Generating... 
+                    done.
+ Auto-regeneration: disabled. Use --watch to enable.
+## Deploying branch to Github Pages 
+## Pulling any updates from Github Pages 
+cd _deploy
+remote: Counting objects: 9, done.[K
+remote: Compressing objects:  33% (1/3)   [Kremote: Compressing objects:  66% (2/3)   [Kremote: Compressing objects: 100% (3/3)   [Kremote: Compressing objects: 100% (3/3), done.[K
+remote: Total 9 (delta 5), reused 9 (delta 5), pack-reused 0[K
+Unpacking objects:  11% (1/9)   Unpacking objects:  22% (2/9)   Unpacking objects:  33% (3/9)   Unpacking objects:  44% (4/9)   Unpacking objects:  55% (5/9)   Unpacking objects:  66% (6/9)   Unpacking objects:  77% (7/9)   Unpacking objects:  88% (8/9)   Unpacking objects: 100% (9/9)   Unpacking objects: 100% (9/9), done.
+From github.com:xudeheng/ios_tech_octopress
+   e35781d..6d04f1b  master     -> origin/master
+There is no tracking information for the current branch.
+Please specify which branch you want to merge with.
+See git-pull(1) for details
+
+    git pull <remote> <branch>
+
+If you wish to set tracking information for this branch you can do so with:
+
+    git branch --set-upstream-to=<remote>/<branch> gh-pages
+
+cd -
+rm -rf _deploy/assets
+rm -rf _deploy/atom.xml
+rm -rf _deploy/blog
+rm -rf _deploy/CNAME
+rm -rf _deploy/favicon.png
+rm -rf _deploy/images
+rm -rf _deploy/index.html
+rm -rf _deploy/javascripts
+rm -rf _deploy/posts
+rm -rf _deploy/robots.txt
+rm -rf _deploy/search.xml
+rm -rf _deploy/sitemap.xml
+rm -rf _deploy/stylesheets
+rm -rf _deploy/works
+
+## Copying public to _deploy
+cp -r public/. _deploy
+cd _deploy
+
+## Committing: Site updated at 2015-09-01 02:45:58 UTC
+[gh-pages 5019338] Site updated at 2015-09-01 02:45:58 UTC
+ 26 files changed, 165 insertions(+), 138 deletions(-)
+
+## Pushing generated _deploy website
+Counting objects: 54, done.
+Delta compression using up to 2 threads.
+Compressing objects:   2% (1/50)   Compressing objects:   4% (2/50)   Compressing objects:   6% (3/50)   Compressing objects:   8% (4/50)   Compressing objects:  10% (5/50)   Compressing objects:  12% (6/50)   Compressing objects:  14% (7/50)   Compressing objects:  16% (8/50)   Compressing objects:  18% (9/50)   Compressing objects:  20% (10/50)   Compressing objects:  22% (11/50)   Compressing objects:  24% (12/50)   Compressing objects:  26% (13/50)   Compressing objects:  28% (14/50)   Compressing objects:  30% (15/50)   Compressing objects:  32% (16/50)   Compressing objects:  34% (17/50)   Compressing objects:  36% (18/50)   Compressing objects:  38% (19/50)   Compressing objects:  40% (20/50)   Compressing objects:  42% (21/50)   Compressing objects:  44% (22/50)   Compressing objects:  46% (23/50)   Compressing objects:  48% (24/50)   Compressing objects:  50% (25/50)   Compressing objects:  52% (26/50)   Compressing objects:  54% (27/50)   Compressing objects:  56% (28/50)   Compressing objects:  58% (29/50)   Compressing objects:  60% (30/50)   Compressing objects:  62% (31/50)   Compressing objects:  64% (32/50)   Compressing objects:  66% (33/50)   Compressing objects:  68% (34/50)   Compressing objects:  70% (35/50)   Compressing objects:  72% (36/50)   Compressing objects:  74% (37/50)   Compressing objects:  76% (38/50)   Compressing objects:  78% (39/50)   Compressing objects:  80% (40/50)   Compressing objects:  82% (41/50)   Compressing objects:  84% (42/50)   Compressing objects:  86% (43/50)   Compressing objects:  88% (44/50)   Compressing objects:  90% (45/50)   Compressing objects:  92% (46/50)   Compressing objects:  94% (47/50)   Compressing objects:  96% (48/50)   Compressing objects:  98% (49/50)   Compressing objects: 100% (50/50)   Compressing objects: 100% (50/50), done.
+Writing objects:   1% (1/54)   Writing objects:   3% (2/54)   Writing objects:   5% (3/54)   Writing objects:   7% (4/54)   Writing objects:   9% (5/54)   Writing objects:  11% (6/54)   Writing objects:  12% (7/54)   Writing objects:  14% (8/54)   Writing ob

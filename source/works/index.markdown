@@ -18,3 +18,7 @@ footer: true
 <https://github.com/xudeheng/XCocoaUtilsPublic>
 
 <https://github.com/xudeheng/LionSettings>
+
+可以在 cocoapods 上搜索到
+
+项目中可以在 `podfile` 里通过 pod 'CoreDataEnvir' 来引用
