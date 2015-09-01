@@ -127,6 +127,12 @@ pod trunk push CoreDataEnvir.podspec --verbose
 
 > PS:如果需要提交到私有库，你需要执行 `pod trunk push CoreDataEnvir.podspec`
 
+
+### 如果你的验证阶段经常 failed，有两种解决办法：
+
+1. 解决所有的 warning, 配置好 podspec 文件。
+2. 在lint 后面增加一个参数 `--allow-warning`，为了看清楚出错的原因你也可以增加  `--verbose`。
+
 ---
 
 [Ref](https://guides.cocoapods.org/making/getting-setup-with-trunk.html)
