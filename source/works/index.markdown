@@ -7,9 +7,13 @@ sharing: true
 footer: true
 ---
 
-## My pod specs
+## Specs
 
-<https://github.com/xudeheng/Specs>
+Cocoapods offical `https://github.com/CocoaPods/Specs.git`
+
+My public spe `https://github.com/xudeheng/Specs.git`
+
+My private spec `https://dehengxu@bitbucket.org/dehengxu/specs.git` or `https://git.coding.net/headwindx/Specs.git`
 
 ## My iOS open source
 
@@ -21,4 +25,4 @@ footer: true
 
 可以在 cocoapods 上搜索到
 
-项目中可以在 `podfile` 里通过 pod 'CoreDataEnvir' 来引用
+项目中可以在 Podfile 里通过 `pod 'CoreDataEnvir'` 来引用
