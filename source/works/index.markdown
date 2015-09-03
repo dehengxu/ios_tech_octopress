@@ -9,11 +9,16 @@ footer: true
 
 ## Specs
 
-Cocoapods offical `https://github.com/CocoaPods/Specs.git`
+Cocoapods offical :
+```
+https://github.com/CocoaPods/Specs.git
+```
 
-My public spe `https://github.com/xudeheng/Specs.git`
+My private spec :
 
-My private spec `https://dehengxu@bitbucket.org/dehengxu/specs.git` or `https://git.coding.net/headwindx/Specs.git`
+```
+https://git.coding.net/headwindx/Specs.git
+```
 
 ## My iOS open source
 
