@@ -34,6 +34,6 @@ https://git.coding.net/headwindx/Specs.git
 
 ## 一些常用的 iOS 资源
 
-[iOS 第三方库]({{site_url}}/ios_ui_libs.html)
+[iOS 第三方库]({{site_url}}/works/ios-ui-libs.html)
 
-[iOS 博客资源]({{site_url}}/ios_ui_libs.html)
+[iOS 博客资源]({{site_url}}/works/ios-ui-libs.html)
