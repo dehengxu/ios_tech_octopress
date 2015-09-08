@@ -4,7 +4,7 @@
   <title><![CDATA[逆风@[iOS,nil]]]></title>
   <link href="http://ios.dehengxu.com/atom.xml" rel="self"/>
   <link href="http://ios.dehengxu.com/"/>
-  <updated>2015-09-08T15:41:00+08:00</updated>
+  <updated>2015-09-08T16:02:47+08:00</updated>
   <id>http://ios.dehengxu.com/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
@@ -12,6 +12,52 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[使用 Cocoapods 来管理基于 Svn 的子项目]]></title>
+    <link href="http://ios.dehengxu.com/blog/shi-yong-cocoapods-lai-guan-li-ji-yu-svn-de-zi-xiang-mu/"/>
+    <updated>2015-09-08T16:01:14+08:00</updated>
+    <id>http://ios.dehengxu.com/blog/shi-yong-cocoapods-lai-guan-li-ji-yu-svn-de-zi-xiang-mu</id>
+    <content type="html"><![CDATA[<p>首先，感谢 clarkda 为cocoapods 提供了这个 repo-svn 的 svn 支持插件。</p>
+
+<p>根据 <a href="https://github.com/clarkda/cocoapods-repo-svn">https://github.com/clarkda/cocoapods-repo-svn</a> 上的说明</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>
+</span><span class='line'>gem install cocoapods-repo-svn 来安装 repo-svn 插件。
+</span><span class='line'>
+</span><span class='line'>pod repo-svn add my-svn-repo http://svn-repo-url 添加你的私有 svn 项目仓库
+</span><span class='line'>
+</span><span class='line'>pod repo-svn update my-svn-repo 更新项目
+</span><span class='line'>
+</span><span class='line'>pod repo-svn remove my-svn-repo 删除项目
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>其实不添加项目也是可以的，需要为 svn 上的子项目添加 .podspec 文件，使项目可被 cocoapods 识别并管理，并为你自己的项目添加 Podfile 文件。</p>
+
+<h4>第一步：为你用到的所有子项目，添加 podspec</h4>
+
+<p>pod spec create my-svn-repo</p>
+
+<p>编辑 libname.podspec 文件，主要设置好 s.source, s.source_files, s.exclude_files, s.framework, s.library 字段。</p>
+
+<p>其中 s.source 的字段需要把地址改成 :svn => &ldquo;<a href="http://svnurl/">http://svnurl/</a>&rdquo;</p>
+
+<h4>第二步：编辑 Podfiles</h4>
+
+<p>加上 pod &lsquo;my-svn-repo&rsquo;, :svn => &ldquo;<a href="http://10.255.223.227:81/svn/readersdk/cppsdk/branches/2.2.1_buildReaderKit">http://10.255.223.227:81/svn/readersdk/cppsdk/branches/2.2.1_buildReaderKit</a>&rdquo;</p>
+
+<p>现在，就可以享受 cocoapods 为你的 svn 项目带来自动化配置管理了。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Create a Private Pods]]></title>
@@ -1925,174 +1971,6 @@ Xcode 4.1 和以前的版本不支持 ARC。</p>
 </span><span class='line'>    attr_reader   :regenerator, :liquid_renderer
 </span><span class='line'>
 </span><span class='line'>  ...</span></code></pre></td></tr></table></div></figure>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Jekyll Configuration Fileds]]></title>
-    <link href="http://ios.dehengxu.com/blog/jekyll-configuration-fileds/"/>
-    <updated>2015-08-19T11:32:06+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/jekyll-configuration-fileds</id>
-    <content type="html"><![CDATA[<p>This is Jekyll configuration source file:</p>
-
-<p>For configurating _config.yml use.</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-<span class='line-number'>60</span>
-<span class='line-number'>61</span>
-<span class='line-number'>62</span>
-<span class='line-number'>63</span>
-<span class='line-number'>64</span>
-<span class='line-number'>65</span>
-<span class='line-number'>66</span>
-<span class='line-number'>67</span>
-<span class='line-number'>68</span>
-<span class='line-number'>69</span>
-<span class='line-number'>70</span>
-<span class='line-number'>71</span>
-<span class='line-number'>72</span>
-<span class='line-number'>73</span>
-<span class='line-number'>74</span>
-<span class='line-number'>75</span>
-<span class='line-number'>76</span>
-<span class='line-number'>77</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'># Default options. Overridden by values in _config.yml.
-</span><span class='line'># Strings rather than symbols are used for compatibility with YAML.
-</span><span class='line'>DEFAULTS = {
-</span><span class='line'>  # Where things are
-</span><span class='line'>  'source'        =&gt; Dir.pwd,
-</span><span class='line'>  'destination'   =&gt; File.join(Dir.pwd, '_site'),
-</span><span class='line'>  'plugins'       =&gt; '_plugins',
-</span><span class='line'>  'layouts'       =&gt; '_layouts',
-</span><span class='line'>  'data_source'   =&gt;  '_data',
-</span><span class='line'>  'collections'   =&gt; nil,
-</span><span class='line'>
-</span><span class='line'>  # Handling Reading
-</span><span class='line'>  'safe'          =&gt; false,
-</span><span class='line'>  'include'       =&gt; ['.htaccess'],
-</span><span class='line'>  'exclude'       =&gt; [],
-</span><span class='line'>  'keep_files'    =&gt; ['.git','.svn'],
-</span><span class='line'>  'encoding'      =&gt; 'utf-8',
-</span><span class='line'>  'markdown_ext'  =&gt; 'markdown,mkdown,mkdn,mkd,md',
-</span><span class='line'>  'full_rebuild'  =&gt; false,
-</span><span class='line'>
-</span><span class='line'>  # Filtering Content
-</span><span class='line'>  'show_drafts'   =&gt; nil,
-</span><span class='line'>  'limit_posts'   =&gt; 0,
-</span><span class='line'>  'future'        =&gt; true,           # remove and make true just default
-</span><span class='line'>  'unpublished'   =&gt; false,
-</span><span class='line'>
-</span><span class='line'>  # Plugins
-</span><span class='line'>  'whitelist'     =&gt; [],
-</span><span class='line'>  'gems'          =&gt; [],
-</span><span class='line'>
-</span><span class='line'>  # Conversion
-</span><span class='line'>  'markdown'      =&gt; 'kramdown',
-</span><span class='line'>  'highlighter'   =&gt; 'rouge',
-</span><span class='line'>  'lsi'           =&gt; false,
-</span><span class='line'>  'excerpt_separator' =&gt; "\n\n",
-</span><span class='line'>
-</span><span class='line'>  # Serving
-</span><span class='line'>  'detach'        =&gt; false,          # default to not detaching the server
-</span><span class='line'>  'port'          =&gt; '4000',
-</span><span class='line'>  'host'          =&gt; '127.0.0.1',
-</span><span class='line'>  'baseurl'       =&gt; '',
-</span><span class='line'>
-</span><span class='line'>  # Output Configuration
-</span><span class='line'>  'permalink'     =&gt; 'date',
-</span><span class='line'>  'paginate_path' =&gt; '/page:num',
-</span><span class='line'>  'timezone'      =&gt; nil,           # use the local timezone
-</span><span class='line'>
-</span><span class='line'>  'quiet'         =&gt; false,
-</span><span class='line'>  'verbose'       =&gt; false,
-</span><span class='line'>  'defaults'      =&gt; [],
-</span><span class='line'>
-</span><span class='line'>  'rdiscount' =&gt; {
-</span><span class='line'>    'extensions' =&gt; []
-</span><span class='line'>  },
-</span><span class='line'>
-</span><span class='line'>  'redcarpet' =&gt; {
-</span><span class='line'>    'extensions' =&gt; []
-</span><span class='line'>  },
-</span><span class='line'>
-</span><span class='line'>  'kramdown' =&gt; {
-</span><span class='line'>    'auto_ids'       =&gt; true,
-</span><span class='line'>    'footnote_nr'    =&gt; 1,
-</span><span class='line'>    'entity_output'  =&gt; 'as_char',
-</span><span class='line'>    'toc_levels'     =&gt; '1..6',
-</span><span class='line'>    'smart_quotes'   =&gt; 'lsquo,rsquo,ldquo,rdquo',
-</span><span class='line'>    'enable_coderay' =&gt; false,
-</span><span class='line'>
-</span><span class='line'>    'coderay' =&gt; {
-</span><span class='line'>      'coderay_wrap'              =&gt; 'div',
-</span><span class='line'>      'coderay_line_numbers'      =&gt; 'inline',
-</span><span class='line'>      'coderay_line_number_start' =&gt; 1,
-</span><span class='line'>      'coderay_tab_width'         =&gt; 4,
-</span><span class='line'>      'coderay_bold_every'        =&gt; 10,
-</span><span class='line'>      'coderay_css'               =&gt; 'style'
-</span><span class='line'>    }
-</span><span class='line'>  }
-</span><span class='line'>}
-</span></code></pre></td></tr></table></div></figure>
 
 ]]></content>
   </entry>
