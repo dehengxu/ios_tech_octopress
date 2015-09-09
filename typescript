@@ -61,4 +61,66 @@ cd _deploy
 Counting objects: 49, done.
 Delta compression using up to 2 threads.
 Compressing objects:   2% (1/48)   Compressing objects:   4% (2/48)   Compressing objects:   6% (3/48)   Compressing objects:   8% (4/48)   Compressing objects:  10% (5/48)   Compressing objects:  12% (6/48)   Compressing objects:  14% (7/48)   Compressing objects:  16% (8/48)   Compressing objects:  18% (9/48)   Compressing objects:  20% (10/48)   Compressing objects:  22% (11/48)   Compressing objects:  25% (12/48)   Compressing objects:  27% (13/48)   Compressing objects:  29% (14/48)   Compressing objects:  31% (15/48)   Compressing objects:  33% (16/48)   Compressing objects:  35% (17/48)   Compressing objects:  37% (18/48)   Compressing objects:  39% (19/48)   Compressing objects:  41% (20/48)   Compressing objects:  43% (21/48)   Compressing objects:  45% (22/48)   Compressing objects:  47% (23/48)   Compressing objects:  50% (24/48)   Compressing objects:  52% (25/48)   Compressing objects:  54% (26/48)   Compressing objects:  56% (27/48)   Compressing objects:  58% (28/48)   Compressing objects:  60% (29/48)   Compressing objects:  62% (30/48)   Compressing objects:  64% (31/48)   Compressing objects:  66% (32/48)   Compressing objects:  68% (33/48)   Compressing objects:  70% (34/48)   Compressing objects:  72% (35/48)   Compressing objects:  75% (36/48)   Compressing objects:  77% (37/48)   Compressing objects:  79% (38/48)   Compressing objects:  81% (39/48)   Compressing objects:  83% (40/48)   Compressing objects:  85% (41/48)   Compressing objects:  87% (42/48)   Compressing objects:  89% (43/48)   Compressing objects:  91% (44/48)   Compressing objects:  93% (45/48)   Compressing objects:  95% (46/48)   Compressing objects:  97% (47/48)   Compressing objects: 100% (48/48)   Compressing objects: 100% (48/48), done.
-Writing objects:   2% (1/49)   Writing objects:   4% (2/49)   Writing objects:   6% (3/49)   Writing objects:   8% (4/49)   Writing objects:  10% (5/49)   Writing objects:  12% (6/49)   Writing objects:  14% (7/49)   Writing objects:  16% (8/49)   Writing objects:  18% (9/49)   Writing objects:  20% (10/49)   Writing objects:  22% (11/49)   Writing objects:  24% (12/49)   Writing objects:  26% (13/49)   Writing objects:  28% (14/49)   Writing objects:  30% (15/49)   Writing objects:  32% (16/49)   Writing objects:  34% (17/49)   Writing objects:  36% (18/49)   Writing objects:  38% (19/49)   Writing objects:  40% (20/49)   Writing objects:  42% (21/49)   Writing objects:  44% (22/49)   Writing objects:  46% (23/49)   Writing objects:  48% (24/49)   Writing objects:  51% (25/49)   Writing objects:
+Writing objects:   2% (1/49)   Writing objects:   4% (2/49)   Writing objects:   6% (3/49)   Writing objects:   8% (4/49)   Writing objects:  10% (5/49)   Writing objects:  12% (6/49)   Writing objects:  14% (7/49)   Writing objects:  16% (8/49)   Writing objects:  18% (9/49)   Writing objects:  20% (10/49)   Writing objects:  22% (11/49)   Writing objects:  24% (12/49)   Writing objects:  26% (13/49)   Writing objects:  28% (14/49)   Writing objects:  30% (15/49)   Writing objects:  32% (16/49)   Writing objects:  34% (17/49)   Writing objects:  36% (18/49)   Writing objects:  38% (19/49)   Writing objects:  40% (20/49)   Writing objects:  42% (21/49)   Writing objects:  44% (22/49)   Writing objects:  46% (23/49)   Writing objects:  48% (24/49)   Writing objects:  51% (25/49)   Writing objects:  53% (26/49)   Writing objects:  55% (27/49)   Writing objects:  57% (28/49)   Writing objects:  59% (29/49)   Writing objects:  61% (30/49)   Writing objects:  63% (31/49)   Writing objects:  65% (32/49)   Writing objects:  67% (33/49)   Writing objects:  69% (34/49)   Writing objects:  71% (35/49)   Writing objects:  73% (36/49)   Writing objects:  75% (37/49)   Writing objects:  77% (38/49)   Writing objects:  79% (39/49)   Writing objects:  81% (40/49)   Writing objects:  83% (41/49)   Writing objects:  85% (42/49)   Writing objects:  87% (43/49)   Writing objects:  89% (44/49)   Writing objects:  91% (45/49)   Writing objects:  93% (46/49)   Writing objects:  95% (47/49)   Writing objects:  97% (48/49)   Writing objects: 100% (49/49)   Writing objects: 100% (49/49), 4.48 KiB | 0 bytes/s, done.
+Total 49 (delta 26), reused 0 (delta 0)
+To git@github.com:xudeheng/ios_tech_octopress.git
+   fef34f6..e923d7a  gh-pages -> gh-pages
+
+## Github Pages deploy complete
+cd -
+[master bf3e483] Update octopress blogs.
+ 3 files changed, 81 insertions(+), 494 deletions(-)
+ rewrite typescript (96%)
+Counting objects: 8, done.
+Delta compression using up to 2 threads.
+Compressing objects:  12% (1/8)   Compressing objects:  25% (2/8)   Compressing objects:  37% (3/8)   Compressing objects:  50% (4/8)   Compressing objects:  62% (5/8)   Compressing objects:  75% (6/8)   Compressing objects:  87% (7/8)   Compressing objects: 100% (8/8)   Compressing objects: 100% (8/8), done.
+Writing objects:  12% (1/8)   Writing objects:  25% (2/8)   Writing objects:  37% (3/8)   Writing objects:  50% (4/8)   Writing objects:  62% (5/8)   Writing objects:  75% (6/8)   Writing objects:  87% (7/8)   Writing objects: 100% (8/8)   Writing objects: 100% (8/8), 1.80 KiB | 0 bytes/s, done.
+Total 8 (delta 6), reused 0 (delta 0)
+To git@github.com:xudeheng/ios_tech_octopress.git
+   cc79071..bf3e483  master -> master
+[1m[7m%[27m[1m[0m                                                                                ]2;nicholasxu@localhost]1;..log_octopress]7;file:///Users/nicholasxu/Projects/web/ios_blog_octopress[0m[27m[24m[J
+[34mProjects/web/ios_blog_octopress[00m  [32mmaster [32m✔[00m[00m 
+▶ [K[73C[1A[30m0m[00m  [31m[00m[1B[77D[?1h=ppod search jsonaccelerator[?1l>
+]2;pod search jsonaccelerator]1;pod[31m[!] Unable to find a pod with name matching `jsonaccelerator'[0m
+[1m[7m%[27m[1m[0m                                                                                ]2;nicholasxu@localhost]1;..log_octopress]7;file:///Users/nicholasxu/Projects/web/ios_blog_octopress[0m[27m[24m[J
+[34mProjects/web/ios_blog_octopress[00m  [32mmaster [31m✗[00m[00m 
+▶ [K[69C[1A[30m12m[00m [33m⚑  [31m⍉[00m[1B[77D[?1h=pod search jsonaccelerator      [?1l>
+]2;pod search jsonaccel]1;pod[31m[!] Unable to find a pod with name matching `jsonaccel'[0m
+[1m[7m%[27m[1m[0m                                                                                ]2;nicholasxu@localhost]1;..log_octopress]7;file:///Users/nicholasxu/Projects/web/ios_blog_octopress[0m[27m[24m[J
+[34mProjects/web/ios_blog_octopress[00m  [32mmaster [31m✗[00m[00m 
+▶ [K[69C[1A[30m12m[00m [33m⚑  [31m⍉[00m[1B[77D[?1h=pod search jsonaccel [?1l>
+]2;pod search jsonacce]1;pod[33m
+[32m
+-> RDHJSONAccessors (0.9.1)[0m[0m
+   Two categories on `NSDictionary` and `NSArray` for type checking values as
+   they are extracted from JSON objects.
+   pod 'RDHJSONAccessors', '~> 0.9.1'
+   - Homepage: https://github.com/rhodgkins/RDHJSONAccessors
+   - Source:   https://github.com/rhodgkins/RDHJSONAccessors.git
+   - Versions: 0.9.1, 0.9.0 [master repo]
+[1m[7m%[27m[1m[0m                                                                                ]2;nicholasxu@localhost]1;..log_octopress]7;file:///Users/nicholasxu/Projects/web/ios_blog_octopress[0m[27m[24m[J
+[34mProjects/web/ios_blog_octopress[00m  [32mmaster [31m✗[00m[00m 
+▶ [K[70C[1A[30m12m[00m [33m⚑  [31m[00m[1B[77D[?1h=nnew n  sscripts/ne        s  rrake new_page    pst         r  sscript
+[J[0mscript    [J[1;31mscripts[0m/[J[A[0m[27m[24m[2Cscript[K[64C[1A[30m12m[00m [33m⚑  [31m[00m[1B[71Ds/post[1m [0m[0m ''R'e'a'' ' e'a'c't'i'v'e'C'o'c'o'a' '的''  '  '概'念''  '  架'构'理'解''  '  的架构'[2C[2C[2C架构'  [?1l>
+[J]2;scripts/post 'ReactiveCocoa 架构']1;scripts/postmkdir -p source/_posts
+Creating new post: source/_posts/2015-09-09-reactivecocoa-jia-gou.markdown
+[1m[7m%[27m[1m[0m                                                                                ]2;nicholasxu@localhost]1;..log_octopress]7;file:///Users/nicholasxu/Projects/web/ios_blog_octopress[0m[27m[24m[J
+[34mProjects/web/ios_blog_octopress[00m  [32mmaster [31m✗[00m[00m 
+▶ [K[66C[1A[30m3h54m[00m [33m⚑ [30m◒  [31m[00m[1B[77D[?1h=lls[?1l>
+]2;ls -G]1;lsCHANGELOG.markdown Rakefile           config.ru          [34mscripts[39;49m[0m
+Gemfile            _config.yml        [34mplugins[39;49m[0m            [31msearch[39;49m[0m
+Gemfile.lock       [34m_deploy[39;49m[0m            [34mpublic[39;49m[0m             [34msource[39;49m[0m
+README.markdown    config.rb          [34msass[39;49m[0m               typescript
+[1m[7m%[27m[1m[0m                                                                                ]2;nicholasxu@localhost]1;..log_octopress]7;file:///Users/nicholasxu/Projects/web/ios_blog_octopress[0m[27m[24m[J
+[34mProjects/web/ios_blog_octopress[00m  [32mmaster [31m✗[00m[00m 
+▶ [K[66C[1A[30m3h54m[00m [33m⚑ [30m◒  [31m[00m[1B[77D[?1h=mmv m  mmv scripts[1m/[0m[0m  tools[?1l>
+]2;mv scripts tools]1;mv[1m[7m%[27m[1m[0m                                                                                ]2;nicholasxu@localhost]1;..log_octopress]7;file:///Users/nicholasxu/Projects/web/ios_blog_octopress[0m[27m[24m[J
+[34mProjects/web/ios_blog_octopress[00m  [32mmaster [31m✗[00m[00m 
+▶ [K[64C[1A[30m3h55m[00m [31m✖ [33m⚑ [30m◒  [31m[00m[1B[77D[?1h=lls[?1l>
+]2;ls -G]1;lsCHANGELOG.markdown Rakefile           config.ru          [31msearch[39;49m[0m
+Gemfile            _config.yml        [34mplugins[39;49m[0m            [34msource[39;49m[0m
+Gemfile.lock       [34m_deploy[39;49m[0m            [34mpublic[39;49m[0m             [34mtools[39;49m[0m
+README.markdown    config.rb          [34msass[39;49m[0m               typescript
+[1m[7m%[27m[1m[0m                                                                                ]2;nicholasxu@localhost]1;..log_octopress]7;file:///Users/nicholasxu/Projects/web/ios_blog_octopress[0m[27m[24m[J
+[34mProjects/web/ios_blog_octopress[00m  [32mmaster [31m✗[00m[00m 
+▶ [K[64C[1A[30m3h55m[00m [31m✖ [33m⚑ [30m◒  [31m[00m[1B[77D[?1h=
