@@ -29,14 +29,14 @@ pod repo-svn remove my-svn-repo 删除项目
 
 #### 第一步：为你用到的所有子项目，添加 podspec
 
-pod spec create my-svn-repo
+`pod spec create my-svn-repo`
 
 编辑 libname.podspec 文件，主要设置好 s.source, s.source_files, s.exclude_files, s.framework, s.library 字段。
 
-其中 s.source 的字段需要把地址改成 :svn => "http://svnurl/"
+其中 `s.source` 的字段需要把地址改成 `:svn => "http://svnurl/"`
 
 #### 第二步：编辑 Podfiles
 
-加上 pod 'my-svn-repo', :svn => "http://10.255.223.227:81/svn/readersdk/cppsdk/branches/2.2.1_buildReaderKit"
+加上 `pod 'my-svn-repo', :svn => "http://10.255.223.227:81/svn/readersdk/cppsdk/branches/2.2.1_buildReaderKit"`
 
 现在，就可以享受 cocoapods 为你的 svn 项目带来自动化配置管理了。
