@@ -4,7 +4,7 @@
   <title><![CDATA[逆风@[iOS,nil]]]></title>
   <link href="http://ios.dehengxu.com/atom.xml" rel="self"/>
   <link href="http://ios.dehengxu.com/"/>
-  <updated>2015-09-08T16:02:47+08:00</updated>
+  <updated>2015-09-09T09:53:10+08:00</updated>
   <id>http://ios.dehengxu.com/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
@@ -45,15 +45,15 @@
 
 <h4>第一步：为你用到的所有子项目，添加 podspec</h4>
 
-<p>pod spec create my-svn-repo</p>
+<p><code>pod spec create my-svn-repo</code></p>
 
 <p>编辑 libname.podspec 文件，主要设置好 s.source, s.source_files, s.exclude_files, s.framework, s.library 字段。</p>
 
-<p>其中 s.source 的字段需要把地址改成 :svn => &ldquo;<a href="http://svnurl/">http://svnurl/</a>&rdquo;</p>
+<p>其中 <code>s.source</code> 的字段需要把地址改成 <code>:svn =&gt; "http://svnurl/"</code></p>
 
 <h4>第二步：编辑 Podfiles</h4>
 
-<p>加上 pod &lsquo;my-svn-repo&rsquo;, :svn => &ldquo;<a href="http://10.255.223.227:81/svn/readersdk/cppsdk/branches/2.2.1_buildReaderKit">http://10.255.223.227:81/svn/readersdk/cppsdk/branches/2.2.1_buildReaderKit</a>&rdquo;</p>
+<p>加上 <code>pod 'my-svn-repo', :svn =&gt; "http://10.255.223.227:81/svn/readersdk/cppsdk/branches/2.2.1_buildReaderKit"</code></p>
 
 <p>现在，就可以享受 cocoapods 为你的 svn 项目带来自动化配置管理了。</p>
 ]]></content>
