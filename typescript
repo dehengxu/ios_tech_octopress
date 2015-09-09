@@ -123,4 +123,144 @@ Gemfile.lock       [34m_deploy[39;49m[0m            [34mpublic[39;49m[0m  
 README.markdown    config.rb          [34msass[39;49m[0m               typescript
 [1m[7m%[27m[1m[0m                                                                                ]2;nicholasxu@localhost]1;..log_octopress]7;file:///Users/nicholasxu/Projects/web/ios_blog_octopress[0m[27m[24m[J
 [34mProjects/web/ios_blog_octopress[00m  [32mmaster [31m✗[00m[00m 
-▶ [K[64C[1A[30m3h55m[00m [31m✖ [33m⚑ [30m◒  [31m[00m[1B[77D[?1h=
+▶ [K[64C[1A[30m3h55m[00m [31m✖ [33m⚑ [30m◒  [31m[00m[1B[77D[?1h=aadda[?1l>
+]2;git add --all]1;adda[1m[7m%[27m[1m[0m                                                                                ]2;nicholasxu@localhost]1;..log_octopress]7;file:///Users/nicholasxu/Projects/web/ios_blog_octopress[0m[27m[24m[J
+[34mProjects/web/ios_blog_octopress[00m  [32mmaster [31m✗[00m[00m 
+▶ [K[66C[1A[30m3h55m[00m [34m▴ [32m✚  [31m[00m[1B[77D[?1h=cci m  -m ''u'p'd'a't'e'[?1l>
+]2;git commit -m 'update']1;ci[master df2858a] update
+ 7 files changed, 73 insertions(+), 1 deletion(-)
+ create mode 100644 source/_posts/2015-09-09-reactivecocoa-jia-gou.markdown
+ rename {scripts => tools}/gen (100%)
+ rename {scripts => tools}/page (100%)
+ rename {scripts => tools}/post (100%)
+ rename {scripts => tools}/sync (100%)
+ rename {scripts => tools}/upload (100%)
+[1m[7m%[27m[1m[0m                                                                                ]2;nicholasxu@localhost]1;..log_octopress]7;file:///Users/nicholasxu/Projects/web/ios_blog_octopress[0m[27m[24m[J
+[34mProjects/web/ios_blog_octopress[00m  [32mmaster [32m✔[00m[00m 
+▶ [K[73C[1A[30m0m[00m  [31m[00m[1B[77D[?1h=ppush 
+[0mHEAD                                            
+[1;31m_deploy[0m/                                        
+bitbucket.org                                   
+broadcasthost                                   
+cafe                                            
+cafe/master                                     
+cloud-cdn-digitalocean-com.global.ssl.fastly.net
+flask.local                                     
+git.coding.net                                  
+gitblit.dehengxu.com                            
+gitcafe.com                                     
+github.com                                      
+localhost                                       
+master                                          
+origin                                          
+origin/master                                   
+php.local                                       
+[1;31mplugins[0m/                                        
+[1;31mpublic[0m/                                         
+py.local                                        
+rb.local                                        
+s5.dehengxu.com                                 
+[Js6.dehengxu.com                                 [J
+s7.dehengxu.com                                 [J
+[1;31msass[0m/                                           [J
+[1;31msource[0m/                                         [J
+test.dehengxu.com                               [J
+[1;31mtools[0m/                                          [J
+webapp.local                                    [J
+[0m[27m[24m[J
+[34mProjects/web/ios_blog_octopress[00m  [32mmaster [32m✔[00m[00m 
+▶ push[K[69C[1A[30m0m[00m  [31m[00m[1B[72Dorigin
+[J[0morigin         [Jorigin/master[J[A[0m[27m[24m[2Cpush origin[K[62C[1A[30m0m[00m  [31m[00m[1B[66D master[1m:[0m[0m [?1l>
+[J]2;git push origin master]1;pushCounting objects: 6, done.
+Delta compression using up to 2 threads.
+Compressing objects:  16% (1/6)   Compressing objects:  33% (2/6)   Compressing objects:  50% (3/6)   Compressing objects:  66% (4/6)   Compressing objects:  83% (5/6)   Compressing objects: 100% (6/6)   Compressing objects: 100% (6/6), done.
+Writing objects:  16% (1/6)   Writing objects:  33% (2/6)   Writing objects:  50% (3/6)   Writing objects:  66% (4/6)   Writing objects:  83% (5/6)   Writing objects: 100% (6/6)   Writing objects: 100% (6/6), 3.32 KiB | 0 bytes/s, done.
+Total 6 (delta 3), reused 0 (delta 0)
+To git@github.com:xudeheng/ios_tech_octopress.git
+   bf3e483..df2858a  master -> master
+[1m[7m%[27m[1m[0m                                                                                ]2;nicholasxu@localhost]1;..log_octopress]7;file:///Users/nicholasxu/Projects/web/ios_blog_octopress[0m[27m[24m[J
+[34mProjects/web/ios_blog_octopress[00m  [32mmaster [32m✔[00m[00m 
+▶ [K[73C[1A[30m0m[00m  [31m[00m[1B[77D[?1h=push origin master   ter
+[1m[7m%[27m[1m[0m                                                                                ]2;nicholasxu@localhost]1;..log_octopress]7;file:///Users/nicholasxu/Projects/web/ios_blog_octopress[0m[27m[24m[J
+[34mProjects/web/ios_blog_octopress[00m  [32mmaster [31m✗[00m[00m 
+▶ [K[67C[1A[30m2h56m[00m [33m⚑  [31m⍉[00m[1B[77D[?1h=nnew n  sscr
+[0mSCREEN_NO      screen         screenshot2                              
+[Jscrapy         [Jscreencapture  [Jscript         [J                          [A[A[0m[27m[24m[2Cscr[K[64C[1A[30m2h56m[00m [33m⚑  [31m⍉[00m[1B[74Di
+[J[A[6Cpts/post ''R'e'a'c't'i'v'e'C'o'c'o'a' '使'用''  '  的'使'用'[?1l>
+[J]2;scripts/post 'ReactiveCocoa 的使用']1;scripts/postzsh: no such file or directory: scripts/post
+[1m[7m%[27m[1m[0m                                                                                ]2;nicholasxu@localhost]1;..log_octopress]7;file:///Users/nicholasxu/Projects/web/ios_blog_octopress[0m[27m[24m[J
+[34mProjects/web/ios_blog_octopress[00m  [32mmaster [31m✗[00m[00m 
+▶ [K[67C[1A[30m2h56m[00m [33m⚑  [31m⍉[00m[1B[77D[?1h=scripts/post 'ReactiveCocoa 的使用' 'ReactiveCocoa 的使用' [24D 'ReactiveCocoa 的使用' [24D 'ReactiveCocoa 的使用' [24D 'ReactiveCocoa 的使用' [24D 'ReactiveCocoa 的使用' [24Dload_rvm_scripts[1m [0m 'ReactiveCocoa 的使用'[23D[0m 
+[0mCHANGELOG.markdown  Rakefile            config.ru           [1;32msearch[0m*           
+Gemfile             _config.yml         [1;31mplugins[0m/            [1;31msource[0m/           
+Gemfile.lock        [1;31m_deploy[0m/            [1;31mpublic[0m/             [1;31mtools[0m/            
+[JREADME.markdown     [Jconfig.rb           [J[1;31msass[0m/               [Jtypescript        [J[4A[0m[27m[24m[2Cload_rvm_scripts  'ReactiveCocoa 的使用'[K[27C[1A[30m2h56m[00m [33m⚑  [31m⍉[00m[1B[60DCHANGELOG.markdown 'ReactiveCocoa 的使用'[23D
+[7mCHANGELOG.markdown[0m  Rakefile            config.ru           [1;32msearch[0m*           [K
+Gemfile             _config.yml         [1;31mplugins[0m/            [1;31msource[0m/           [K
+Gemfile.lock        [1;31m_deploy[0m/            [1;31mpublic[0m/             [1;31mtools[0m/            [K
+[JREADME.markdown     [Jconfig.rb           [J[1;31msass[0m/               [Jtypescript        [J[4A[0m[27m[24m[2Cload_rvm_scripts CHANGELOG.markdown 'ReactiveCocoa 的使用'[K[9C[1A[30m2h56m[00m [33m⚑  [31m⍉[00m[1B[42D
+[7mCHANGELOG.markdown[0m  [7mCHANGELOG.markdown[0m  [A[0m[27m[24m[2Cload_rvm_scripts CHANGELOG.markdown 'ReactiveCocoa 的使用'[K[9C[1A[30m2h56m[00m [33m⚑  [31m⍉[00m[1B[42D[18DGemfile 'ReactiveCocoa 的使用'           [34D
+[0mCHANGELOG.markdown  [1B[7mGemfile           [0m  [A[A[0m[27m[24m[2Cload_rvm_scripts Gemfile 'ReactiveCocoa 的使用'[K[20C[1A[30m2h56m[00m [33m⚑  [31m⍉[00m[1B[53D.lock 'ReactiveCocoa 的使用'[23D
+[1B[0mGemfile             [1B[7mGemfile.lock      [0m  [3A[0m[27m[24m[2Cload_rvm_scripts Gemfile.lock 'ReactiveCocoa 的使用'[K[15C[1A[30m2h56m[00m [33m⚑  [31m⍉[00m[1B[48D[12D_deploy[1m/[0m 'ReactiveCocoa 的使用'    [27D
+[2B[20C[7m_deploy/          [0m  Gemfile.lock        [3A[0m[27m[24m[2Cload_rvm_scripts _deploy[1m/[0m 'ReactiveCocoa 的使用'[K[19C[1A[30m2h56m[00m [33m⚑  [31m⍉[00m[1B[52D[8Dpublic[1m/[0m[0m 'ReactiveCocoa 的使用' [24D
+[2B[40C[7mpublic/           [0m  [20C[1;31m_deploy[0m/            [3A[0m[27m[24m[2Cload_rvm_scripts public[1m/[0m 'ReactiveCocoa 的使用'[K[20C[1A[30m2h56m[00m [33m⚑  [31m⍉[00m[1B[53Dtools[1m/[0m[0m 'ReactiveCocoa 的使用' [24D
+[2B[60C[7mtools/            [0m[40C[1;31mpublic[0m/             [3A[0m[27m[24m[2Cload_rvm_scripts tools[1m/[0m 'ReactiveCocoa 的使用'[K[21C[1A[30m2h56m[00m [33m⚑  [31m⍉[00m[1B[54D
+[J[A[25C[0m 'ReactiveCocoa 的使用' [25Dtools 'ReactiveCocoa 的使用' [29Dtools 'ReactiveCocoa 的使用' [29Dools 'ReactiveCocoa 的使用' [29Dtools 'ReactiveCocoa 的使用' [29Dtools 'ReactiveCocoa 的使用' [29Dtools 'ReactiveCocoa 的使用' [29Dtools 'ReactiveCocoa 的使用' [29Dtools 'ReactiveCocoa 的使用' [29Dtools 'ReactiveCocoa 的使用' [29Dtools 'ReactiveCocoa 的使用' [29Dtools 'ReactiveCocoa 的使用' [29Dtools 'ReactiveCocoa 的使用' [29Dtools 'ReactiveCocoa 的使用' [29Dtools 'ReactiveCocoa 的使用' [29Dtools 'ReactiveCocoa 的使用' [29Dltools 'ReactiveCocoa 的使用' [29Dtools 'ReactiveCocoa 的使用' [29D[1C[1C[1C[1C[1C/ 'ReactiveCocoa 的使用'[23Dp 'ReactiveCocoa 的使用'[23Do 'ReactiveCocoa 的使用'[23Ds 'ReactiveCocoa 的使用'[23Dt[1m [0m 'ReactiveCocoa 的使用'[23D[0m 'ReactiveCocoa 的使用' [24D[?1l>
+[J]2;tools/post 'ReactiveCocoa 的使用']1;tools/postmkdir -p source/_posts
+Creating new post: source/_posts/2015-09-09-reactivecocoa-de-shi-yong.markdown
+[1m[7m%[27m[1m[0m                                                                                ]2;nicholasxu@localhost]1;..log_octopress]7;file:///Users/nicholasxu/Projects/web/ios_blog_octopress[0m[27m[24m[J
+[34mProjects/web/ios_blog_octopress[00m  [32mmaster [31m✗[00m[00m 
+▶ [K[66C[1A[30m2h57m[00m [33m⚑ [30m◒  [31m[00m[1B[77D[?1h=tools/post 'ReactiveCocoa 的使用''  '  '  ' ' a' '源'码'分'析'[2C[2C[2C1'' 之' '' U'I'T'e'x't'V'i'e'w'[?1l>
+]2;tools/post 'ReactiveCocoa 源码分析之UITextView']1;tools/postmkdir -p source/_posts
+Creating new post: source/_posts/2015-09-09-reactivecocoa-yuan-ma-fen-xi-zhi-uitextview.markdown
+[1m[7m%[27m[1m[0m                                                                                ]2;nicholasxu@localhost]1;..log_octopress]7;file:///Users/nicholasxu/Projects/web/ios_blog_octopress[0m[27m[24m[J
+[34mProjects/web/ios_blog_octopress[00m  [32mmaster [31m✗[00m[00m 
+▶ [K[67C[1A[30m3h4m[00m [33m⚑ [30m◒  [31m[00m[1B[77D[?1h=sscs  ttool/scr   sys/sync[1m [0m[0m [?1l>
+]2;tools/sync]1;tools/sync## Generating Site with Jekyll
+[32m    write[0m source/stylesheets/screen.css
+Configuration file: /Users/nicholasxu/Projects/web/ios_blog_octopress/_config.yml
+            Source: source
+       Destination: public
+      Generating... 
+                    done.
+ Auto-regeneration: disabled. Use --watch to enable.
+## Deploying branch to Github Pages 
+## Pulling any updates from Github Pages 
+cd _deploy
+remote: Counting objects: 14, done.[K
+remote: Compressing objects:  12% (1/8)   [Kremote: Compressing objects:  25% (2/8)   [Kremote: Compressing objects:  37% (3/8)   [Kremote: Compressing objects:  50% (4/8)   [Kremote: Compressing objects:  62% (5/8)   [Kremote: Compressing objects:  75% (6/8)   [Kremote: Compressing objects:  87% (7/8)   [Kremote: Compressing objects: 100% (8/8)   [Kremote: Compressing objects: 100% (8/8), done.[K
+remote: Total 14 (delta 10), reused 10 (delta 6), pack-reused 0[K
+Unpacking objects:   7% (1/14)   Unpacking objects:  14% (2/14)   Unpacking objects:  21% (3/14)   Unpacking objects:  28% (4/14)   Unpacking objects:  35% (5/14)   Unpacking objects:  42% (6/14)   Unpacking objects:  50% (7/14)   Unpacking objects:  57% (8/14)   Unpacking objects:  64% (9/14)   Unpacking objects:  71% (10/14)   Unpacking objects:  78% (11/14)   Unpacking objects:  85% (12/14)   Unpacking objects:  92% (13/14)   Unpacking objects: 100% (14/14)   Unpacking objects: 100% (14/14), done.
+From github.com:xudeheng/ios_tech_octopress
+   cc79071..df2858a  master     -> origin/master
+There is no tracking information for the current branch.
+Please specify which branch you want to merge with.
+See git-pull(1) for details
+
+    git pull <remote> <branch>
+
+If you wish to set tracking information for this branch you can do so with:
+
+    git branch --set-upstream-to=<remote>/<branch> gh-pages
+
+cd -
+rm -rf _deploy/assets
+rm -rf _deploy/atom.xml
+rm -rf _deploy/blog
+rm -rf _deploy/CNAME
+rm -rf _deploy/favicon.png
+rm -rf _deploy/images
+rm -rf _deploy/index.html
+rm -rf _deploy/javascripts
+rm -rf _deploy/posts
+rm -rf _deploy/robots.txt
+rm -rf _deploy/search.xml
+rm -rf _deploy/sitemap.xml
+rm -rf _deploy/stylesheets
+rm -rf _deploy/works
+
+## Copying public to _deploy
+cp -r public/. _deploy
+cd _deploy
+
+## Committing: Site updated at 2015-09-09 09:31:36 UTC
