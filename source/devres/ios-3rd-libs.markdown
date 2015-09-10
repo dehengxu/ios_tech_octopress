@@ -17,6 +17,12 @@ footer: true
 
 > 一个可以编程操作 .xcodeproj 的gem
 
+[chartee](https://github.com/zhiyu/chartee)
+
+[Core-Plot 图形库](https://github.com/core-plot/core-plot)
+
+[股票图](https://github.com/dangfm/stockChart)
+
 ### iOS 工具
 
 [Carthage](https://github.com/Carthage/Carthage)
