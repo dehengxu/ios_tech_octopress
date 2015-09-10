@@ -369,3 +369,80 @@ cd _deploy
 
 ## Pushing generated _deploy website
 Counting objects: 49, done.
+Delta compression using up to 2 threads.
+Compressing objects:   2% (1/48)   Compressing objects:   4% (2/48)   Compressing objects:   6% (3/48)   Compressing objects:   8% (4/48)   Compressing objects:  10% (5/48)   Compressing objects:  12% (6/48)   Compressing objects:  14% (7/48)   Compressing objects:  16% (8/48)   Compressing objects:  18% (9/48)   Compressing objects:  20% (10/48)   Compressing objects:  22% (11/48)   Compressing objects:  25% (12/48)   Compressing objects:  27% (13/48)   Compressing objects:  29% (14/48)   Compressing objects:  31% (15/48)   Compressing objects:  33% (16/48)   Compressing objects:  35% (17/48)   Compressing objects:  37% (18/48)   Compressing objects:  39% (19/48)   Compressing objects:  41% (20/48)   Compressing objects:  43% (21/48)   Compressing objects:  45% (22/48)   Compressing objects:  47% (23/48)   Compressing objects:  50% (24/48)   Compressing objects:  52% (25/48)   Compressing objects:  54% (26/48)   Compressing objects:  56% (27/48)   Compressing objects:  58% (28/48)   Compressing objects:  60% (29/48)   Compressing objects:  62% (30/48)   Compressing objects:  64% (31/48)   Compressing objects:  66% (32/48)   Compressing objects:  68% (33/48)   Compressing objects:  70% (34/48)   Compressing objects:  72% (35/48)   Compressing objects:  75% (36/48)   Compressing objects:  77% (37/48)   Compressing objects:  79% (38/48)   Compressing objects:  81% (39/48)   Compressing objects:  83% (40/48)   Compressing objects:  85% (41/48)   Compressing objects:  87% (42/48)   Compressing objects:  89% (43/48)   Compressing objects:  91% (44/48)   Compressing objects:  93% (45/48)   Compressing objects:  95% (46/48)   Compressing objects:  97% (47/48)   Compressing objects: 100% (48/48)   Compressing objects: 100% (48/48), done.
+Writing objects:   2% (1/49)   Writing objects:   4% (2/49)   Writing objects:   6% (3/49)   Writing objects:   8% (4/49)   Writing objects:  10% (5/49)   Writing objects:  12% (6/49)   Writing objects:  14% (7/49)   Writing objects:  16% (8/49)   Writing objects:  18% (9/49)   Writing objects:  20% (10/49)   Writing objects:  22% (11/49)   Writing objects:  24% (12/49)   Writing objects:  26% (13/49)   Writing objects:  28% (14/49)   Writing objects:  30% (15/49)   Writing objects:  32% (16/49)   Writing objects:  34% (17/49)   Writing objects:  36% (18/49)   Writing objects:  38% (19/49)   Writing objects:  40% (20/49)   Writing objects:  42% (21/49)   Writing objects:  44% (22/49)   Writing objects:  46% (23/49)   Writing objects:  48% (24/49)   Writing objects:  51% (25/49)   Writing objects:  53% (26/49)   Writing objects:  55% (27/49)   Writing objects:  57% (28/49)   Writing objects:  59% (29/49)   Writing objects:  61% (30/49)   Writing objects:  63% (31/49)   Writing objects:  65% (32/49)   Writing objects:  67% (33/49)   Writing objects:  69% (34/49)   Writing objects:  71% (35/49)   Writing objects:  73% (36/49)   Writing objects:  75% (37/49)   Writing objects:  77% (38/49)   Writing objects:  79% (39/49)   Writing objects:  81% (40/49)   Writing objects:  83% (41/49)   Writing objects:  85% (42/49)   Writing objects:  87% (43/49)   Writing objects:  89% (44/49)   Writing objects:  91% (45/49)   Writing objects:  93% (46/49)   Writing objects:  95% (47/49)   Writing objects:  97% (48/49)   Writing objects: 100% (49/49)   Writing objects: 100% (49/49), 4.56 KiB | 0 bytes/s, done.
+Total 49 (delta 26), reused 0 (delta 0)
+To git@github.com:xudeheng/ios_tech_octopress.git
+   641dd50..5610934  gh-pages -> gh-pages
+
+## Github Pages deploy complete
+cd -
+[master bc8a78c] Update octopress blogs.
+ 4 files changed, 119 insertions(+), 5 deletions(-)
+ create mode 100644 source/devres/index.markdown
+ rename source/{works => devres}/ios-3rd-libs.markdown (100%)
+Counting objects: 8, done.
+Delta compression using up to 2 threads.
+Compressing objects:  14% (1/7)   Compressing objects:  28% (2/7)   Compressing objects:  42% (3/7)   Compressing objects:  57% (4/7)   Compressing objects:  71% (5/7)   Compressing objects:  85% (6/7)   Compressing objects: 100% (7/7)   Compressing objects: 100% (7/7), done.
+Writing objects:  12% (1/8)   Writing objects:  25% (2/8)   Writing objects:  37% (3/8)   Writing objects:  50% (4/8)   Writing objects:  62% (5/8)   Writing objects:  75% (6/8)   Writing objects:  87% (7/8)   Writing objects: 100% (8/8)   Writing objects: 100% (8/8), 2.30 KiB | 0 bytes/s, done.
+Total 8 (delta 3), reused 0 (delta 0)
+To git@github.com:xudeheng/ios_tech_octopress.git
+   ce82dda..bc8a78c  master -> master
+[1m[7m%[27m[1m[0m                                                                                ]2;nicholasxu@localhost]1;..log_octopress]7;file:///Users/nicholasxu/Projects/web/ios_blog_octopress[0m[27m[24m[J
+[34mProjects/web/ios_blog_octopress[00m  [32mmaster [31m✗[00m[00m 
+▶ [K[71C[1A[30m0m[00m [33m⚑  [31m[00m[1B[77D[?1h=tools/sync[?1l>
+]2;tools/sync]1;tools/sync## Generating Site with Jekyll
+[32m    write[0m source/stylesheets/screen.css
+Configuration file: /Users/nicholasxu/Projects/web/ios_blog_octopress/_config.yml
+            Source: source
+       Destination: public
+      Generating... 
+                    done.
+ Auto-regeneration: disabled. Use --watch to enable.
+## Deploying branch to Github Pages 
+## Pulling any updates from Github Pages 
+cd _deploy
+remote: Counting objects: 8, done.[K
+remote: Compressing objects:  25% (1/4)   [Kremote: Compressing objects:  50% (2/4)   [Kremote: Compressing objects:  75% (3/4)   [Kremote: Compressing objects: 100% (4/4)   [Kremote: Compressing objects: 100% (4/4), done.[K
+remote: Total 8 (delta 3), reused 8 (delta 3), pack-reused 0[K
+Unpacking objects:  12% (1/8)   Unpacking objects:  25% (2/8)   Unpacking objects:  37% (3/8)   Unpacking objects:  50% (4/8)   Unpacking objects:  62% (5/8)   Unpacking objects:  75% (6/8)   Unpacking objects:  87% (7/8)   Unpacking objects: 100% (8/8)   Unpacking objects: 100% (8/8), done.
+From github.com:xudeheng/ios_tech_octopress
+   ce82dda..bc8a78c  master     -> origin/master
+There is no tracking information for the current branch.
+Please specify which branch you want to merge with.
+See git-pull(1) for details
+
+    git pull <remote> <branch>
+
+If you wish to set tracking information for this branch you can do so with:
+
+    git branch --set-upstream-to=<remote>/<branch> gh-pages
+
+cd -
+rm -rf _deploy/assets
+rm -rf _deploy/atom.xml
+rm -rf _deploy/blog
+rm -rf _deploy/CNAME
+rm -rf _deploy/devres
+rm -rf _deploy/favicon.png
+rm -rf _deploy/images
+rm -rf _deploy/index.html
+rm -rf _deploy/javascripts
+rm -rf _deploy/posts
+rm -rf _deploy/robots.txt
+rm -rf _deploy/search.xml
+rm -rf _deploy/sitemap.xml
+rm -rf _deploy/stylesheets
+rm -rf _deploy/works
+
+## Copying public to _deploy
+cp -r public/. _deploy
+cd _deploy
+
+## Committing: Site updated at 2015-09-10 03:31:28 UTC
+[gh-pages 20ba6d3] Site updated at 2015-09-10 03:31:28 UTC
+ 21 files changed, 34 insertions(+), 23 deletions(-)
+
+## Pushing generated _deploy website
+Counting objects: 45, done.
