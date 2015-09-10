@@ -32,8 +32,3 @@ https://git.coding.net/headwindx/Specs.git
 
 项目中可以在 Podfile 里通过 `pod 'CoreDataEnvir'` 来引用
 
-## 一些常用的 iOS 资源
-
-[iOS 第三方库]({{site_url}}/works/ios-3rd-libs.html)
-
-<!-- [iOS 博客资源]({{site_url}}/works/ios-ui-libs.html) -->
