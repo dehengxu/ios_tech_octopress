@@ -32,3 +32,4 @@ https://git.coding.net/headwindx/Specs.git
 
 项目中可以在 Podfile 里通过 `pod 'CoreDataEnvir'` 来引用
 
+[git book](https://github.com/lyhopq/progit)

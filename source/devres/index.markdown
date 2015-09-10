@@ -11,12 +11,17 @@ footer: true
 
 <a href="https://developer.apple.com/library/" target="_blank">苹果官方开发文档</a>
 
+<a href="https://developer.apple.com/resources/" target="_blank">苹果开发资源</a>
+
+[SecurityFrameworkReference](https://developer.apple.com/library/ios/documentation/Security/Reference/certifkeytrustservices/index.html)
+
 <a href="http://nshipster.com/" target="_blank">NSHispter</a>
 
 <a href="http://nshipster.cn/" target="_blank">NSHipsterCN</a>
 
 [Ashfurrow Cocoa开发者个人博客](http://ashfurrow.com/)
-<!-- [整理的iOS 第三方库]({{site_url}}/devres/ios-3rd-libs.html) -->
+
+[整理的iOS 第三方库]({{site_url}}/devres/ios-utilities.html)
 
 <!-- [iOS 博客资源]({{site_url}}/works/ios-ui-libs.html) -->
 
@@ -25,7 +30,6 @@ footer: true
 ## Android 开发相关资源
 
 <a href="http://developer.android.com/index.html" target="_blank">Android 官方开发文档</a>
-
 
 ## 其他
 

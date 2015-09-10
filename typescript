@@ -523,4 +523,193 @@ cd _deploy
 Counting objects: 156, done.
 Delta compression using up to 2 threads.
 Compressing objects:   0% (1/112)   Compressing objects:   1% (2/112)   Compressing objects:   2% (3/112)   Compressing objects:   3% (4/112)   Compressing objects:   4% (5/112)   Compressing objects:   5% (6/112)   Compressing objects:   6% (7/112)   Compressing objects:   7% (8/112)   Compressing objects:   8% (9/112)   Compressing objects:   9% (11/112)   Compressing objects:  10% (12/112)   Compressing objects:  11% (13/112)   Compressing objects:  12% (14/112)   Compressing objects:  13% (15/112)   Compressing objects:  14% (16/112)   Compressing objects:  15% (17/112)   Compressing objects:  16% (18/112)   Compressing objects:  17% (20/112)   Compressing objects:  18% (21/112)   Compressing objects:  19% (22/112)   Compressing objects:  20% (23/112)   Compressing objects:  21% (24/112)   Compressing objects:  22% (25/112)   Compressing objects:  23% (26/112)   Compressing objects:  24% (27/112)   Compressing objects:  25% (28/112)   Compressing objects:  26% (30/112)   Compressing objects:  27% (31/112)   Compressing objects:  28% (32/112)   Compressing objects:  29% (33/112)   Compressing objects:  30% (34/112)   Compressing objects:  31% (35/112)   Compressing objects:  32% (36/112)   Compressing objects:  33% (37/112)   Compressing objects:  34% (39/112)   Compressing objects:  35% (40/112)   Compressing objects:  36% (41/112)   Compressing objects:  37% (42/112)   Compressing objects:  38% (43/112)   Compressing objects:  39% (44/112)   Compressing objects:  40% (45/112)   Compressing objects:  41% (46/112)   Compressing objects:  42% (48/112)   Compressing objects:  43% (49/112)   Compressing objects:  44% (50/112)   Compressing objects:  45% (51/112)   Compressing objects:  46% (52/112)   Compressing objects:  47% (53/112)   Compressing objects:  48% (54/112)   Compressing objects:  49% (55/112)   Compressing objects:  50% (56/112)   Compressing objects:  51% (58/112)   Compressing objects:  52% (59/112)   Compressing objects:  53% (60/112)   Compressing objects:  54% (61/112)   Compressing objects:  55% (62/112)   Compressing objects:  56% (63/112)   Compressing objects:  57% (64/112)   Compressing objects:  58% (65/112)   Compressing objects:  59% (67/112)   Compressing objects:  60% (68/112)   Compressing objects:  61% (69/112)   Compressing objects:  62% (70/112)   Compressing objects:  63% (71/112)   Compressing objects:  64% (72/112)   Compressing objects:  65% (73/112)   Compressing objects:  66% (74/112)   Compressing objects:  67% (76/112)   Compressing objects:  68% (77/112)   Compressing objects:  69% (78/112)   Compressing objects:  70% (79/112)   Compressing objects:  71% (80/112)   Compressing objects:  72% (81/112)   Compressing objects:  73% (82/112)   Compressing objects:  74% (83/112)   Compressing objects:  75% (84/112)   Compressing objects:  76% (86/112)   Compressing objects:  77% (87/112)   Compressing objects:  78% (88/112)   Compressing objects:  79% (89/112)   Compressing objects:  80% (90/112)   Compressing objects:  81% (91/112)   Compressing objects:  82% (92/112)   Compressing objects:  83% (93/112)   Compressing objects:  84% (95/112)   Compressing objects:  85% (96/112)   Compressing objects:  86% (97/112)   Compressing objects:  87% (98/112)   Compressing objects:  88% (99/112)   Compressing objects:  89% (100/112)   Compressing objects:  90% (101/112)   Compressing objects:  91% (102/112)   Compressing objects:  92% (104/112)   Compressing objects:  93% (105/112)   Compressing objects:  94% (106/112)   Compressing objects:  95% (107/112)   Compressing objects:  96% (108/112)   Compressing objects:  97% (109/112)   Compressing objects:  98% (110/112)   Compressing objects:  99% (111/112)   Compressing objects: 100% (112/112)   Compressing objects: 100% (112/112), done.
-Writing objects:   0% (1/156)   Writing objects:   1% (2/156)   Writing objects:   2% (4/156)   Writing objects:   3% (5/156)   Writing objects:   4% (7/156)   Writing objects:   5% (8/156)   Writing objects:   6% (10/156)   Writing objects:   7% (11/156)   Writing objects:   8% (13/156)   Writing objects:   9% (15/156)   Writing objects:  10% (16/156)   Writing objects:  11% (18/156)   Writing objects:  12% (19/156)   Writing objects:  13% (21/156)   Writing objects:  14% (22/156)   Writing objects:  15% (24/156)   Writing objects:  16% (25/156)   Writing objects:  17% (27/156)   Writing objects:  18% (29/156)   Writing objects:  19% (30/156)   Writing objects:  20% (32/156)   Writing objects:  21% (33/156)   Writing objects:  22% (35/156)   Writing objects:  23% (36/156)   Writing objects:  24% (38/156)   Writing objects:  25% (39/156)   Writing objects:  26% (41/156)   Writing objects:  27% (43/156)   Writing objects:  28% (44/156)   Writing objects:  29% (46/156)   Writing objects:  30% (47/156)   Writing objects:  31% (49/156)   Writing objects:  32% (50/156)   Writing objects:  33% (52/156)   Writing objects:  34% (54/156)   Writing objects:  35% (55/156)   Writing objects:  36% (57/156)   Writing objects:  37% (58/156)   Writing objects:  38% (60/156)   Writing objects:  39% (61/156)   Writing objects:  40% (63/156)   Writing objects:  41% (64/156)   Writing objects:  42% (66/156)   Writing objects:  43% (68/156)   Writing objects:  44% (69/156)   Writing objects:  45% (71/156)   Writing objects:  46% (72/156)   Writing objects:  47% (74/156)   Writing objects:  48% (75/156)   Writing objects:  49% (77/156)   Writing objects:  50% (78/156)   Writing objects:  51% (80/156)   Writing objects:  52% (82/156)   Writing objects:  53% (84/156)   Writing objects:  54% (85/156)   Writing objects:  55% (86/156)   Writing objects:  56% (88/156)   Writing objects:  57% (89/156)   Writing objects:  58% (91/156)   Writing objects:  59% (93/156)   Writing objects:  60% (94/156)   Writing objects:  61% (96/156)   Writing objects:  62% (97/156)   Writing objects:  63% (99/156)   Writing objects:  64% (100/156)   Writing objects:  65% (102/156)   Writing objects:  66% (103/156)   Writing objects:  67% (105/156)   Writing objects:  68% (107/156)   Writing objects:  69% (108/156)   Writing objects:  70% (110/156)   Writing objects:  71% (112/156)   Writing objects:  72% (113/156)   
+Writing objects:   0% (1/156)   Writing objects:   1% (2/156)   Writing objects:   2% (4/156)   Writing objects:   3% (5/156)   Writing objects:   4% (7/156)   Writing objects:   5% (8/156)   Writing objects:   6% (10/156)   Writing objects:   7% (11/156)   Writing objects:   8% (13/156)   Writing objects:   9% (15/156)   Writing objects:  10% (16/156)   Writing objects:  11% (18/156)   Writing objects:  12% (19/156)   Writing objects:  13% (21/156)   Writing objects:  14% (22/156)   Writing objects:  15% (24/156)   Writing objects:  16% (25/156)   Writing objects:  17% (27/156)   Writing objects:  18% (29/156)   Writing objects:  19% (30/156)   Writing objects:  20% (32/156)   Writing objects:  21% (33/156)   Writing objects:  22% (35/156)   Writing objects:  23% (36/156)   Writing objects:  24% (38/156)   Writing objects:  25% (39/156)   Writing objects:  26% (41/156)   Writing objects:  27% (43/156)   Writing objects:  28% (44/156)   Writing objects:  29% (46/156)   Writing objects:  30% (47/156)   Writing objects:  31% (49/156)   Writing objects:  32% (50/156)   Writing objects:  33% (52/156)   Writing objects:  34% (54/156)   Writing objects:  35% (55/156)   Writing objects:  36% (57/156)   Writing objects:  37% (58/156)   Writing objects:  38% (60/156)   Writing objects:  39% (61/156)   Writing objects:  40% (63/156)   Writing objects:  41% (64/156)   Writing objects:  42% (66/156)   Writing objects:  43% (68/156)   Writing objects:  44% (69/156)   Writing objects:  45% (71/156)   Writing objects:  46% (72/156)   Writing objects:  47% (74/156)   Writing objects:  48% (75/156)   Writing objects:  49% (77/156)   Writing objects:  50% (78/156)   Writing objects:  51% (80/156)   Writing objects:  52% (82/156)   Writing objects:  53% (84/156)   Writing objects:  54% (85/156)   Writing objects:  55% (86/156)   Writing objects:  56% (88/156)   Writing objects:  57% (89/156)   Writing objects:  58% (91/156)   Writing objects:  59% (93/156)   Writing objects:  60% (94/156)   Writing objects:  61% (96/156)   Writing objects:  62% (97/156)   Writing objects:  63% (99/156)   Writing objects:  64% (100/156)   Writing objects:  65% (102/156)   Writing objects:  66% (103/156)   Writing objects:  67% (105/156)   Writing objects:  68% (107/156)   Writing objects:  69% (108/156)   Writing objects:  70% (110/156)   Writing objects:  71% (112/156)   Writing objects:  72% (113/156)   Writing objects:  73% (114/156)   Writing objects:  74% (116/156)   Writing objects:  75% (117/156)   Writing objects:  76% (119/156)   Writing objects:  77% (121/156)   Writing objects:  78% (122/156)   Writing objects:  79% (124/156)   Writing objects:  80% (125/156)   Writing objects:  81% (127/156)   Writing objects:  82% (128/156)   Writing objects:  83% (130/156)   Writing objects:  84% (132/156)   Writing objects:  85% (133/156)   Writing objects:  86% (135/156)   Writing objects:  87% (136/156)   Writing objects:  88% (138/156)   Writing objects:  89% (139/156)   Writing objects:  90% (141/156)   Writing objects:  91% (142/156)   Writing objects:  92% (144/156)   Writing objects:  93% (146/156)   Writing objects:  94% (147/156)   Writing objects:  95% (149/156)   Writing objects:  96% (150/156)   Writing objects:  97% (152/156)   Writing objects:  98% (153/156)   Writing objects:  99% (155/156)   Writing objects: 100% (156/156)   Writing objects: 100% (156/156), 42.41 KiB | 0 bytes/s, done.
+Total 156 (delta 87), reused 0 (delta 0)
+To git@github.com:xudeheng/ios_tech_octopress.git
+   20ba6d3..292386d  gh-pages -> gh-pages
+
+## Github Pages deploy complete
+cd -
+[master f488b45] Update octopress blogs.
+ 4 files changed, 95 insertions(+)
+Counting objects: 10, done.
+Delta compression using up to 2 threads.
+Compressing objects:  10% (1/10)   Compressing objects:  20% (2/10)   Compressing objects:  30% (3/10)   Compressing objects:  40% (4/10)   Compressing objects:  50% (5/10)   Compressing objects:  60% (6/10)   Compressing objects:  70% (7/10)   Compressing objects:  80% (8/10)   Compressing objects:  90% (9/10)   Compressing objects: 100% (10/10)   Compressing objects: 100% (10/10), done.
+Writing objects:  10% (1/10)   Writing objects:  20% (2/10)   Writing objects:  30% (3/10)   Writing objects:  40% (4/10)   Writing objects:  50% (5/10)   Writing objects:  60% (6/10)   Writing objects:  70% (7/10)   Writing objects:  80% (8/10)   Writing objects:  90% (9/10)   Writing objects: 100% (10/10)   Writing objects: 100% (10/10), 2.85 KiB | 0 bytes/s, done.
+Total 10 (delta 8), reused 0 (delta 0)
+To git@github.com:xudeheng/ios_tech_octopress.git
+   3170f27..f488b45  master -> master
+[1m[7m%[27m[1m[0m                                                                                ]2;nicholasxu@localhost]1;..log_octopress]7;file:///Users/nicholasxu/Projects/web/ios_blog_octopress[0m[27m[24m[J
+[34mProjects/web/ios_blog_octopress[00m  [32mmaster [31m✗[00m[00m 
+▶ [K[71C[1A[30m0m[00m [33m⚑  [31m[00m[1B[77D[?1h=s ttools./  /sear        t  s ../search[1m [0m[0m categories: [?1l>
+]2;./search categories:]1;./search./source/_posts/2014-08-29-rake-usage.md:categories: ruby
+./source/_posts/2014-08-29-welcome-to-jekyll.markdown:categories: jekyll update
+./source/_posts/2014-08-30-config-java-envir-on-osx.md:categories: java
+./source/_posts/2014-08-31-keys-for-using-jekyll-on-github-dot-com.md:categories: jekyll, blog, github.com
+./source/_posts/2015-08-06-welcome-to-jekyll.markdown:categories: jekyll update
+./source/_posts/2015-08-15-chang-yong-23chong-she-ji-mo-shi-jian-jie.md:categories: 设计模式
+./source/_posts/2015-08-15-design-pattern-observer.md:categories: 设计模式
+./source/_posts/2015-08-15-objective-c-block-usage.markdown:categories: objc
+./source/_posts/2015-08-16-design-pattern-abstract-factory.markdown:categories: 设计模式
+./source/_posts/2015-08-16-design-pattern-adatper.markdown:categories: 设计模式
+./source/_posts/2015-08-16-design-pattern-bridge.markdown:categories: 设计模式
+./source/_posts/2015-08-16-design-pattern-builder.markdown:categories: 设计模式
+./source/_posts/2015-08-16-design-pattern-chain-of-responsibility.markdown:categories: 设计模式
+./source/_posts/2015-08-16-design-pattern-command.markdown:categories: 设计模式
+./source/_posts/2015-08-16-design-pattern-composite.markdown:categories: 设计模式
+./source/_posts/2015-08-16-design-pattern-decorator.markdown:categories: 设计模式
+./source/_posts/2015-08-16-design-pattern-facade.markdown:categories: 设计模式
+./source/_posts/2015-08-16-design-pattern-factory.markdown:categories: 设计模式
+./source/_posts/2015-08-16-design-pattern-flyweight.markdown:categories: 设计模式
+./source/_posts/2015-08-16-design-pattern-interpreter.markdown:categories: 设计模式
+./source/_posts/2015-08-16-design-pattern-iterator.markdown:categories: 设计模式
+./source/_posts/2015-08-16-design-pattern-mediator.markdown:categories: 设计模式
+./source/_posts/2015-08-16-design-pattern-memento.markdown:categories: 设计模式
+./source/_posts/2015-08-16-design-pattern-prototype.markdown:categories: 设计模式
+./source/_posts/2015-08-16-design-pattern-proxy.markdown:categories: 设计模式
+./source/_posts/2015-08-16-design-pattern-singleton.markdown:categories: 设计模式
+./source/_posts/2015-08-16-design-pattern-state.markdown:categories: 设计模式
+./source/_posts/2015-08-16-design-pattern-strategy.markdown:categories: 设计模式
+./source/_posts/2015-08-16-design-pattern-template-method.markdown:categories: 设计模式
+./source/_posts/2015-08-16-design-pattern-visitor.markdown:categories: 设计模式
+./source/_posts/2015-08-16-objective-czhong-de-xie-yi-yin-yong-tou-wen-jian-de-wen-ti.markdown:categories: objc
+./source/_posts/2015-08-16-shi-yong-xian-dai-objective-c.markdown:categories: objc
+./source/_posts/2015-08-16-useful-plugins-and-tools-for-xcode.markdown:categories: utilities
+./source/_posts/2015-08-17-apple-source-code-&-documents.markdown:categories: resource
+./source/_posts/2015-08-18-autoreleasefang-fa-deyuan-ma-fen-xi.markdown:categories: objc
+./source/_posts/2015-08-18-libdispatch-yuan-ma-fen-xi.markdown:categories: objc
+./source/_posts/2015-08-19-blockzai-clangzhong-de-shi-xian.markdown:categories: objc
+./source/_posts/2015-08-19-dong-tai-gui-hua-suan-fa.markdown:categories: algorithm
+./source/_posts/2015-08-19-jekyll-configuration-fileds.markdown:categories: Jekyll
+./source/_posts/2015-08-19-jekyll-site-class-available-attr.markdown:categories: Jekyll
+./source/_posts/2015-08-19-nsmutablecopying-and-nscopying.markdown:categories: objc
+./source/_posts/2015-08-21-arc-nei-cun-guan-li.markdown:categories: arc, objc
+./source/_posts/2015-08-21-gitchang-jian-yong-fa.markdown:categories: scm, git
+./source/_posts/2015-08-21-jin-cheng-jian-tong-xin-fang-shi.markdown:categories: process
+./source/_posts/2015-08-22-guan-li-zi-you-qiao-jie-toll-free-bridging.markdown:categories: objc, arc
+./source/_posts/2015-08-23-bash-shi-yong-ji-qiao.markdown:categories: bash
+./source/_posts/2015-08-23-gcd-de-chang-gui-yong-fa.markdown:categories: objc, GCD
+./source/_posts/2015-08-23-huan-zhuang-lian-biao-de-jian-ce-fang-fa.markdown:categories: algorithm
+./source/_posts/2015-08-23-ios-xian-cheng-jian-tong-xin.markdown:categories: objc
+./source/_posts/2015-08-23-timer-hui-diao-shi-jian-bei-uijiao-hu-zu-sai-de-jie-jue-ban-fa.markdown:categories: objc
+./source/_posts/2015-08-23-tong-guo-clang-fen-xi-block-de-ji-zhi.markdown:categories: objc
+./source/_posts/2015-08-23-xian-cheng-he-jin-cheng-jian-de-qu-bie.markdown:categories: os
+./source/_posts/2015-08-25-dui-ji-he-de-bian-cheng.markdown:categories: objc
+./source/_posts/2015-08-25-nsset-he-nsarray-de-qu-bie.markdown:categories: objc
+./source/_posts/2015-08-26-working-with-blocks.markdown:categories: objc
+./source/_posts/2015-08-27-use-dispatch-source-timer.markdown:categories: objc
+./source/_posts/2015-08-28-kvc-ji-zhi.markdown:categories: objc
+./source/_posts/2015-08-28-kvo-ji-zhi.markdown:categories: objc
+./source/_posts/2015-08-29-customizing-existing-classes.markdown:categories: objc
+./source/_posts/2015-08-29-model-view-controller.markdown:categories: design
+./source/_posts/2015-08-29-object-modeling.markdown:categories: design
+./source/_posts/2015-08-29-objective-c-de-zi-sheng-ji-zhi.markdown:categories: 
+./source/_posts/2015-08-29-objective-c-zhong-chu-li-cuo-wu.markdown:categories: objc
+./source/_posts/2015-08-29-objective-c-zhong-de-selector-dao-di-shi-shi-yao-gui.markdown:categories: objc
+./source/_posts/2015-08-29-shi-yong-nsvalue-feng-zhuang-ren-yi-jie-gou-ti.markdown:categories: objc
+./source/_posts/2015-08-29-zi-ding-yi-lei-ru-he-ti-gong-kvc-jian-rong-te-xing.markdown:categories: objc
+./source/_posts/2015-08-30-objc-msgsend-bian-yi-cuo-wu-de-jie-jue-fang-fa.markdown:categories: Xcode
+./source/_posts/2015-08-31-create-a-private-pods.markdown:categories:
+./source/_posts/2015-08-31-use-cocoapods-publish-your-podspec.markdown:categories: Cocoapods
+./source/_posts/2015-09-08-shi-yong-cocoapods-lai-guan-li-ji-yu-svn-de-zi-xiang-mu.markdown:categories: 
+./source/_posts/2015-09-09-reactivecocoa-de-shi-yong.markdown:categories: 3rd,RAC
+./source/_posts/2015-09-09-reactivecocoa-jia-gou.markdown:categories: 3rd,RAC
+./source/_posts/2015-09-09-reactivecocoa-yuan-ma-fen-xi-zhi-uitextview.markdown:categories: 3rd,RAC
+[1m[7m%[27m[1m[0m                                                                                ]2;nicholasxu@localhost]1;..log_octopress]7;file:///Users/nicholasxu/Projects/web/ios_blog_octopress[0m[27m[24m[J
+[34mProjects/web/ios_blog_octopress[00m  [32mmaster [31m✗[00m[00m 
+▶ [K[65C[1A[30m3h0m[00m [31m✖ [33m⚑ [30m◒  [31m[00m[1B[77D[?1h=./search categories:           an  ios[?1l>
+]2;./search ios]1;./search./source/_posts/2015-08-21-arc-nei-cun-guan-li.markdown:<a href="https://developer.apple.com/library/ios/releasenotes/ObjectiveC/RN-TransitioningToARC/Introduction/Introduction.html#//apple_ref/doc/uid/TP40011226-CH1-SW13" target="_blank">ARC Overview</a>
+./source/_posts/2015-08-21-arc-nei-cun-guan-li.markdown:ARC 在 Xcode 4.2 OSX v10.6 he v10.7 ， 以及 iOS4， iOS5中提供支持。若引用不被 OSX v10.6 和 iOS4 支持。
+./source/_posts/2015-08-21-arc-nei-cun-guan-li.markdown:这种申明 `outlets` 的模式在 iOS 和 OSX 中通过 ARC 得到了改变，并同时跨越了这两个平台。这种模式中，你需要这样来适配：outlets 需要设置为 weak，因为 File's Owner 对于 nib 文件中的顶级对象是强引用。
+./source/_posts/2015-08-21-arc-nei-cun-guan-li.markdown:全部细节请看这里 <a href="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/LoadingResources/Introduction/Introduction.html#//apple_ref/doc/uid/10000051i" target="_blank">Resource Programming Guide</a> 中的 <a href="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/LoadingResources/Introduction/Introduction.html#//apple_ref/doc/uid/10000051i" target="_blank">Nib Files</a>
+./source/_posts/2015-08-21-arc-nei-cun-guan-li.markdown:ARC 被 Xcode 4.2 ， OSX v10.6 和 iOS4 以及后续版本支持。
+./source/_posts/2015-08-21-arc-nei-cun-guan-li.markdown:弱引用不被 OSX v10.6 和 iOS4 支持。
+./source/_posts/2015-08-22-guan-li-zi-you-qiao-jie-toll-free-bridging.markdown:在很多 Cocoa 应用程序中，你需要使用 Core Foundation 风格的对象，有的来自 Core Foundation 框架自己(像：[CFArrayRef](https://developer.apple.com/library/ios/documentation/CoreFoundation/Reference/CFArrayRef/index.html#//apple_ref/c/tdef/CFArrayRef) 或 [CFMutaleDictionaryRef](https://developer.apple.com/library/ios/documentation/CoreFoundation/Reference/CFMutableDictionaryRef/index.html#//apple_ref/c/tdef/CFMutableDictionaryRef)) 或者来自于适配了 Core Foudation 大会例如 Core Graphics (你可能使用这些类型：[CGColorSpaceRef](https://developer.apple.com/library/ios/documentation/GraphicsImaging/Reference/CGColorSpace/index.html#//apple_ref/c/tdef/CGColorSpaceRef) 和  [CGGradientRef](https://developer.apple.com/library/ios/documentation/GraphicsImaging/Reference/CGGradient/index.html#//apple_ref/c/tdef/CGGradientRef))。
+./source/_posts/2015-08-22-guan-li-zi-you-qiao-jie-toll-free-bridging.markdown:编译器不会自动管理 Core Foundation 对象的生命期；你必须调用 [CFRetain](https://developer.apple.com/library/ios/documentation/CoreFoundation/Reference/CFTypeRef/index.html#//apple_ref/c/func/CFRetain) 和 [CFRelease](https://developer.apple.com/library/ios/documentation/CoreFoundation/Reference/CFTypeRef/index.html#//apple_ref/c/func/CFRelease) (或者响应类型指定的变体) 就像 Core Foundation 内存管理规则中描述的(见 [Memory Management Programming](https://developer.apple.com/library/ios/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/CFMemoryMgmt.html#//apple_ref/doc/uid/10000127i))。
+./source/_posts/2015-08-22-guan-li-zi-you-qiao-jie-toll-free-bridging.markdown:编译器根据历史上的 Cocoa 命名规则理解那些返回 Core Foundation 类型的 Objective-C 方法(见: [Advanced Memory Management Programming Guide](https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/MemoryMgmt/Articles/MemoryMgmt.html#//apple_ref/doc/uid/10000011i))。例如，编译器知道,iOS 中 CGColor 通过 [UIColor](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIColor_Class/index.html#//apple_ref/occ/cl/UIColor) 的 [CGColor](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIColor_Class/index.html#//apple_ref/occ/instp/UIColor/CGColor) 方法返回的对象不属于这个规则。你必须使用合适的类型转换，看下面的代码：
+./source/_posts/2015-08-23-ios-xian-cheng-jian-tong-xin.markdown:title: "iOS 线程间通信"
+./source/_posts/2015-08-23-timer-hui-diao-shi-jian-bei-uijiao-hu-zu-sai-de-jie-jue-ban-fa.markdown:<a href="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/Multithreading/RunLoopManagement/RunLoopManagement.html" target="_blank">Runloop modes</a>
+./source/_posts/2015-08-28-kvc-ji-zhi.markdown:[Object modeling](https://developer.apple.com/library/ios/documentation/General/Conceptual/DevPedia-CocoaCore/ObjectModeling.html#//apple_ref/doc/uid/TP40008195-CH41-SW1)
+./source/_posts/2015-08-28-kvc-ji-zhi.markdown:[Accessor method](https://developer.apple.com/library/ios/documentation/General/Conceptual/DevPedia-CocoaCore/AccessorMethod.html#//apple_ref/doc/uid/TP40008195-CH2-SW1)
+./source/_posts/2015-08-28-kvc-ji-zhi.markdown:[Declared property](https://developer.apple.com/library/ios/documentation/General/Conceptual/DevPedia-CocoaCore/DeclaredProperty.html#//apple_ref/doc/uid/TP40008195-CH13-SW1)
+./source/_posts/2015-08-28-kvc-ji-zhi.markdown:[Key-value Coding Programming Guide](https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/KeyValueCoding/Articles/KeyValueCoding.html#//apple_ref/doc/uid/10000107i)
+./source/_posts/2015-08-28-kvc-ji-zhi.markdown:[Ref](https://developer.apple.com/library/ios/documentation/General/Conceptual/DevPedia-CocoaCore/KeyValueCoding.html#//apple_ref/doc/uid/TP40008195-CH25-SW1)
+./source/_posts/2015-08-28-kvo-ji-zhi.markdown:* 添加一个观察者到一个值会发生改变的对象。你可以通过调用 `addObserver:forKeyPath:optios:context:` 来达到这个目的。观察者是应用中的另一个对象。
+./source/_posts/2015-08-28-kvo-ji-zhi.markdown:[Key-value coding](https://developer.apple.com/library/ios/documentation/General/Conceptual/DevPedia-CocoaCore/KeyValueCoding.html#//apple_ref/doc/uid/TP40008195-CH25-SW1)
+./source/_posts/2015-08-28-kvo-ji-zhi.markdown:[Model-View-Controller](https://developer.apple.com/library/ios/documentation/General/Conceptual/DevPedia-CocoaCore/MVC.html#//apple_ref/doc/uid/TP40008195-CH32-SW1)
+./source/_posts/2015-08-28-kvo-ji-zhi.markdown:[Dynamic binding](https://developer.apple.com/library/ios/documentation/General/Conceptual/DevPedia-CocoaCore/DynamicBinding.html#//apple_ref/doc/uid/TP40008195-CH15-SW1)
+./source/_posts/2015-08-28-kvo-ji-zhi.markdown:[Key-value Observing Programming Guide](https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/KeyValueObserving/KeyValueObserving.html#//apple_ref/doc/uid/10000177i)
+./source/_posts/2015-08-28-kvo-ji-zhi.markdown:[Ref](https://developer.apple.com/library/ios/documentation/General/Conceptual/DevPedia-CocoaCore/KVO.html#//apple_ref/doc/uid/TP40008195-CH16-SW1)
+./source/_posts/2015-08-29-model-view-controller.markdown:[Ref](https://developer.apple.com/library/ios/documentation/General/Conceptual/DevPedia-CocoaCore/MVC.html#//apple_ref/doc/uid/TP40008195-CH32-SW1)
+./source/_posts/2015-08-29-object-modeling.markdown:[Ref](https://developer.apple.com/library/ios/documentation/General/Conceptual/DevPedia-CocoaCore/ObjectModeling.html#//apple_ref/doc/uid/TP40008195-CH41-SW1)
+./source/_posts/2015-08-31-use-cocoapods-publish-your-podspec.markdown:  spec.summary          = 'ARC and GCD Compatible Reachability Class for iOS and OS X.'
+./source/_posts/2015-08-31-use-cocoapods-publish-your-podspec.markdown:    .../0.1.4/youtube-ios-player-helper.podspec.json   |   35 +
+./source/_posts/2015-08-31-use-cocoapods-publish-your-podspec.markdown:    create mode 100644 Specs/youtube-ios-player-helper/0.1.4/youtube-ios-player-helper.podspec.json
+./source/_posts/2015-08-31-use-cocoapods-publish-your-podspec.markdown:     CoreDataEnvir (0.4) - Analyzing on iOS platform.
+./source/_posts/2015-08-31-use-cocoapods-publish-your-podspec.markdown: -> Fetching podspec for `CoreDataEnvir` from `/Users/nicholasxu/Projects/iOS/XFramework/CoreDataEnvir/CoreDataEnvir.podspec`
+[1m[7m%[27m[1m[0m                                                                                ]2;nicholasxu@localhost]1;..log_octopress]7;file:///Users/nicholasxu/Projects/web/ios_blog_octopress[0m[27m[24m[J
+[34mProjects/web/ios_blog_octopress[00m  [32mmaster [31m✗[00m[00m 
+▶ [K[65C[1A[30m3h0m[00m [31m✖ [33m⚑ [30m◒  [31m[00m[1B[77D[?1h=rresource[1m [0m[0m [?1l>
+]2;source ~/mybashrc.sh]1;resource[1m[7m%[27m[1m[0m                                                                                ]2;nicholasxu@localhost]1;..log_octopress]7;file:///Users/nicholasxu/Projects/web/ios_blog_octopress[0m[27m[24m[J
+[34mProjects/web/ios_blog_octopress[00m  [32mmaster [31m✗[00m[00m 
+▶ [K[66C[1A[30m4h29m[00m [31m✖ [30m◒  [31m[00m[1B[77D[?1h=resource    urce[8Dvi ~/mybashrc.sh[16Dpod search spdy [15Dvi ~/mybashrc.sh[16Dresource        [8D    urce[8D        [8Dttools/sync[1m [0m[0m [?1l>
+]2;tools/sync]1;tools/sync## Generating Site with Jekyll
+[32m    write[0m source/stylesheets/screen.css
+Configuration file: /Users/nicholasxu/Projects/web/ios_blog_octopress/_config.yml
+            Source: source
+       Destination: public
+      Generating... 
+                    done.
+ Auto-regeneration: disabled. Use --watch to enable.
+## Deploying branch to Github Pages 
+## Pulling any updates from Github Pages 
+cd _deploy
+remote: Counting objects: 10, done.[K
+remote: Compressing objects:  50% (1/2)   [Kremote: Compressing objects: 100% (2/2)   [Kremote: Compressing objects: 100% (2/2), done.[K
+remote: Total 10 (delta 8), reused 10 (delta 8), pack-reused 0[K
+Unpacking objects:  10% (1/10)   Unpacking objects:  20% (2/10)   Unpacking objects:  30% (3/10)   Unpacking objects:  40% (4/10)   Unpacking objects:  50% (5/10)   Unpacking objects:  60% (6/10)   Unpacking objects:  70% (7/10)   Unpacking objects:  80% (8/10)   Unpacking objects:  90% (9/10)   Unpacking objects: 100% (10/10)   Unpacking objects: 100% (10/10), done.
+From github.com:xudeheng/ios_tech_octopress
+   3170f27..f488b45  master     -> origin/master
+There is no tracking information for the current branch.
+Please specify which branch you want to merge with.
+See git-pull(1) for details
+
+    git pull <remote> <branch>
+
+If you wish to set tracking information for this branch you can do so with:
+
+    git branch --set-upstream-to=<remote>/<branch> gh-pages
+
+cd -
+rm -rf _deploy/assets
+rm -rf _deploy/atom.xml
+rm -rf _deploy/blog
+rm -rf _deploy/CNAME
+rm -rf _deploy/devres
+rm -rf _deploy/favicon.png
+rm -rf _deploy/images
+rm -rf _deploy/index.html
+rm -rf _deploy/javascripts
+rm -rf _deploy/posts
+rm -rf _deploy/robots.txt
+rm -rf _deploy/search.xml
+rm -rf _deploy/sitemap.xml
+rm -rf _deploy/stylesheets
+rm -rf _deploy/works
+
+## Copying public to _deploy
+cp -r public/. _deploy
+cd _deploy
+
+## Committing: Site updated at 2015-09-10 10:29:08 UTC
+[gh-pages ac1643a] Site updated at 2015-09-10 10:29:08 UTC
+ 26 files changed, 531 insertions(+), 333 deletions(-)
+ create mode 100644 "assets\006jwplayer/glow/controlbar/fullscreenButton.png"
+ delete mode 100644 devres/ios-3rd-libs.html
+ create mode 100644 devres/ios-utilities.html
+
+## Pushing generated _deploy website
+Counting objects: 52, done.
+Delta compression using up to 2 threads.
+Compressing objects:   2% (1/48)   Compressing objects:   4% (2/48)   Compressing objects:   6% (3/48)   Compressing objects:   8% (4/48)   Compressing objects:  10% (5/48)   Compressing objects:  12% (6/48)   Compressing objects:  14% (7/48)   Compressing objects:  16% (8/48)   Compressing objects:  18% (9/48)   Compressing objects:  20% (10/48)   Compressing objects:  22% (11/48)   Compressing objects:  25% (12/48)   Compressing objects:  27% (13/48)   Compressing objects:  29% (14/48)   Compressing objects:  31% (15/48)   Compressing objects:  33% (16/48)   Compressing objects:  35% (17/48)   Compressing objects:  37% (18/48)   Compressing objects:  39% (19/48)   Compressing objects:  41% (20/48)   Compressing objects:  43% (21/48)   Compressing objects:  45% (22/48)   Compressing objects:  47% (23/48)   Compressing objects:  50% (24/48)   Compressing objects:  52% (25/48)   Compressing objects:  54% (26/48)   Compressing objects:  56% (27/48)   Compressing objects:  58% (28/48)   Compressing objects:  60% (29/48)   Compressing objects:  62% (30/48)   Compressing objects:  64% (31/48)   Compressing objects:  66% (32/48)   Compressing objects:  68% (33/48)   Compressing objects:  70% (34/48)   Compressing objects:  72% (35/48)   Compressing objects:  75% (36/48)   Compressing objects:  77% (37/48)   Compressing objects:  79% (38/48)   Compressing objects:  81% (39/48)   Compressing objects:  83% (40/48)   Compressing objects:  85% (41/48)   Compressing objects:  87% (42/48)   Compressing objects:  89% (43/48)   Compressing objects:  91% (44/48)   Compressing objects:  93% (45/48)   Compressing objects:  95% (46/48)   Compressing objects:  97% (47/48)   Compressing objects: 100% (48/48)   Compressing objects: 100% (48/48), done.
+Writing objects:   1% (1/52)   Writing objects:   3% (2/52)   Writing objects:   5% (3/52)   Writing objects:   7% (4/52)   Writing objects:   9% (5/52)   Writing objects:  11% (6/52)   Writing objects:  13% (7/52)   Writing objects:  15% (8/52)   Writing objects:  17% (9/52)   Writing objects:  19% (10/52)   Writing objects:  21% (11/52)   Writing objects:  23% (12/52)   Writing objects:  25% (13/52)   Writing objects:  26% (14/52)   Writing objects:  28% (15/52)   Writing objects:  30% (16/52)   Wr
