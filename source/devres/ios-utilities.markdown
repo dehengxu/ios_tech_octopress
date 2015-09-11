@@ -9,7 +9,7 @@ footer: true
 
 ## iOS 开发库
 
-### iOS UI:
+### iOS UI
 
 [awesome-ios-ui](https://github.com/cjwirth/awesome-ios-ui)
 
@@ -40,7 +40,8 @@ footer: true
 
 [MGLinePlot](https://github.com/mattgibbs/MGLinePlot)
 
-> 
+---
+
 ### Serialization
 
 [JSONAccelerator](https://github.com/azu/JSONAccelerator)
@@ -54,6 +55,8 @@ footer: true
 [TBXML](https://github.com/71squared/TBXML)
 
 > JSON Accelerator helps developers from all programming language persuasions get data, verify it, and write model objects - Objective C, Java, or Python. It’s complexity, simplified.
+
+---
 
 ### Database
 
@@ -79,6 +82,7 @@ footer: true
 
 > ActiveRecord-like ORM interface for Sqlite in Objective-C for use in iOS applications.
 
+---
 
 ### Testing
 
@@ -126,6 +130,8 @@ footer: true
 
 > An easy way to fine-tune, and adjust parameters for iOS apps in development.
 
+---
+
 ### Network
 
 [RestKit](https://github.com/RestKit/RestKit)
@@ -140,6 +146,7 @@ footer: true
 
 > Simple offline caching for UIWebView and other NSURLConnection clients
 
+---
 
 ### 3rd Framework
 
@@ -179,6 +186,8 @@ footer: true
 
 > An iOS compatible Cocoa Web Server.
 
+---
+
 ### Utilities
 
 [ClangFormat-Xcode](https://github.com/travisjeffery/ClangFormat-Xcode)
@@ -215,6 +224,8 @@ footer: true
 
 > How to create, develop, and distribute iOS Static Frameworks quickly and efficiently
 
+---
+
 ### iOS 开发工具
 
 [Carthage](https://github.com/Carthage/Carthage)
@@ -245,6 +256,7 @@ footer: true
 
 > A replacement for Apple's xcodebuild that makes it easier to build and test iOS or OSX apps.
 
+---
 
 ### 有心人的总结
 
