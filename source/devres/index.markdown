@@ -13,6 +13,8 @@ footer: true
 
 <a href="https://developer.apple.com/resources/" target="_blank">苹果开发资源</a>
 
+<a href="https://developer.apple.com/library/prerelease/ios/releasenotes/General/WhatsNewIniOS/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008244-SW1" target="_blank">What's New in iOS</a>
+
 [SecurityFrameworkReference](https://developer.apple.com/library/ios/documentation/Security/Reference/certifkeytrustservices/index.html)
 
 <a href="http://nshipster.com/" target="_blank">NSHispter</a>
