@@ -6,7 +6,7 @@ comments: true
 published: true
 sharing: true
 footer: true
-categories: 
+categories: Cocoapods
 ---
 
 首先，感谢 clarkda 为cocoapods 提供了这个 repo-svn 的 svn 支持插件。
@@ -40,3 +40,5 @@ pod repo-svn remove my-svn-repo 删除项目
 加上 `pod 'my-svn-repo', :svn => "http://10.255.223.227:81/svn/readersdk/cppsdk/branches/2.2.1_buildReaderKit"`
 
 现在，就可以享受 cocoapods 为你的 svn 项目带来自动化配置管理了。
+
+[这里可以讨论一些问题](http://www.dehengxu.com/使用-cocoapods-来管理基于-svn-项目/)
