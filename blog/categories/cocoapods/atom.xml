@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Cocoapods | 逆风@[iOS,nil]]]></title>
   <link href="http://ios.dehengxu.com/blog/categories/cocoapods/atom.xml" rel="self"/>
   <link href="http://ios.dehengxu.com/"/>
-  <updated>2015-09-12T16:13:59+08:00</updated>
+  <updated>2015-09-13T11:08:47+08:00</updated>
   <id>http://ios.dehengxu.com/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
@@ -12,6 +12,45 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[使用 Cocoapods 来管理基于 Svn 的子项目]]></title>
+    <link href="http://ios.dehengxu.com/blog/shi-yong-cocoapods-lai-guan-li-ji-yu-svn-de-zi-xiang-mu/"/>
+    <updated>2015-09-08T16:01:14+08:00</updated>
+    <id>http://ios.dehengxu.com/blog/shi-yong-cocoapods-lai-guan-li-ji-yu-svn-de-zi-xiang-mu</id>
+    <content type="html"><![CDATA[<p>首先，感谢 clarkda 为cocoapods 提供了这个 repo-svn 的 svn 支持插件。</p>
+
+<p>根据 <a href="https://github.com/clarkda/cocoapods-repo-svn">https://github.com/clarkda/cocoapods-repo-svn</a> 上的说明</p>
+
+<pre><code>
+gem install cocoapods-repo-svn 来安装 repo-svn 插件。
+
+pod repo-svn add my-svn-repo http://svn-repo-url 添加你的私有 svn 项目仓库
+
+pod repo-svn update my-svn-repo 更新项目
+
+pod repo-svn remove my-svn-repo 删除项目
+</code></pre>
+
+<p>其实不添加项目也是可以的，需要为 svn 上的子项目添加 .podspec 文件，使项目可被 cocoapods 识别并管理，并为你自己的项目添加 Podfile 文件。</p>
+
+<h4>第一步：为你用到的所有子项目，添加 podspec</h4>
+
+<p><code>pod spec create my-svn-repo</code></p>
+
+<p>编辑 libname.podspec 文件，主要设置好 s.source, s.source_files, s.exclude_files, s.framework, s.library 字段。</p>
+
+<p>其中 <code>s.source</code> 的字段需要把地址改成 <code>:svn =&gt; "http://svnurl/"</code></p>
+
+<h4>第二步：编辑 Podfiles</h4>
+
+<p>加上 <code>pod 'my-svn-repo', :svn =&gt; "http://10.255.223.227:81/svn/readersdk/cppsdk/branches/2.2.1_buildReaderKit"</code></p>
+
+<p>现在，就可以享受 cocoapods 为你的 svn 项目带来自动化配置管理了。</p>
+
+<p><a href="http://www.dehengxu.com/%E4%BD%BF%E7%94%A8-cocoapods-%E6%9D%A5%E7%AE%A1%E7%90%86%E5%9F%BA%E4%BA%8E-svn-%E9%A1%B9%E7%9B%AE/">这里可以讨论一些问题</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Use Cocoapods Publish Your Podspec]]></title>
