@@ -36,17 +36,23 @@ https://git.coding.net/headwindx/Specs.git
 
 ### xgit 一些 git 快捷命令:
 
+https://github.com/xudeheng/xgit
+
 ```
 curl -sSL https://raw.githubusercontent.com/xudeheng/xgit/master/install.sh | bash
 ```
 
 ### gitbash git 缩略语:
 
+https://github.com/xudeheng/gitbash
+
 ```
 curl -sSL https://raw.githubusercontent.com/xudeheng/gitbash/master/install.sh | bash
 ```
 
 ### mybashrc shell 环境配置
+
+https://github.com/xudeheng/mybashrc
 
 ```
 curl -sSL https://raw.githubusercontent.com/xudeheng/mybashrc/master/install.sh | bash
@@ -55,6 +61,8 @@ curl -sSL https://raw.githubusercontent.com/xudeheng/mybashrc/master/install.sh 
 ### ios dev tools:
 
 include: cocoapods
+
+https://github.com/xudeheng/ios_dev_tools
 
 ```
 curl -sSL https://raw.githubusercontent.com/xudeheng/ios_dev_tools/master/install.sh | bash
