@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | 逆风@[iOS,nil]]]></title>
   <link href="http://ios.dehengxu.com/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://ios.dehengxu.com/"/>
-  <updated>2015-09-14T16:41:35+08:00</updated>
+  <updated>2015-09-15T18:04:30+08:00</updated>
   <id>http://ios.dehengxu.com/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
@@ -39,9 +39,11 @@
 
 <p>Define your own task</p>
 
-<p><div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">task</span> <span class="ss">:taskName</span> <span class="k">do</span>
-    <span class="c1">#Your task code in ruby syntax.</span>
-<span class="k">end</span></code></pre></div></p>
+<p>{% highlight ruby %}
+task :taskName do
+    #Your task code in ruby syntax.
+end
+{% endhighlight %}</p>
 
 <h3>Task with params.</h3>
 
