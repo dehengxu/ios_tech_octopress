@@ -4,7 +4,7 @@
   <title><![CDATA[逆风@[iOS,nil]]]></title>
   <link href="http://ios.dehengxu.com/atom.xml" rel="self"/>
   <link href="http://ios.dehengxu.com/"/>
-  <updated>2015-09-14T16:41:35+08:00</updated>
+  <updated>2015-09-15T18:09:57+08:00</updated>
   <id>http://ios.dehengxu.com/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
@@ -12,6 +12,67 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Gitsh 的安装和使用]]></title>
+    <link href="http://ios.dehengxu.com/blog/gitsh-de-an-zhuang-he-shi-yong/"/>
+    <updated>2015-09-15T17:50:13+08:00</updated>
+    <id>http://ios.dehengxu.com/blog/gitsh-de-an-zhuang-he-shi-yong</id>
+    <content type="html"><![CDATA[<p>项目地址:  <a href="https://github.com/thoughtbot/gitsh">https://github.com/thoughtbot/gitsh</a></p>
+
+<h3>前提：</h3>
+
+<ol>
+<li><p>需要安装 ruby 环境</p></li>
+<li><p>安装 m4 编译工具</p></li>
+</ol>
+
+
+<h3>安装步骤：</h3>
+
+<ol>
+<li>下载项目</li>
+</ol>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git clone https://github.com/thoughtbot/gitsh.git</span></code></pre></td></tr></table></div></figure>
+
+
+<ol>
+<li>安装 gems</li>
+</ol>
+
+
+<p>国内用户可以修改  Gemfile 中的 <code>source 'https://rubygems.org'</code> 为 source &lsquo;<a href="http://ruby.taobao.org">http://ruby.taobao.org</a>&rsquo;</p>
+
+<p>因为某些原因使用淘宝的 ruby gems 源可达性更有保障</p>
+
+<p>执行  <code>bundle install</code></p>
+
+<ol>
+<li><p>执行 <code>./autogen.sh</code></p></li>
+<li><p>配置环境</p></li>
+</ol>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>export PATH="$PATH:/PROJECT/gitsh/bin"</span></code></pre></td></tr></table></div></figure>
+
+
+<p>最后终于可以使用了</p>
+
+<h3>使用</h3>
+
+<p>任何位置输入 <code>gitsh</code> 会进入到 git 命令行环境中，最大的优点是，git 命令可以只输入子命令就可以了。</p>
+
+<p>比如：<code>git branch</code> 可以改用 <code>branch</code>，就这么简单。</p>
+
+<p>直接回车会提示当前文件的变化情况，一切都变得容易了很多。</p>
+
+<p>如果不想使用 gitsh 也可以安装  <code>zsh</code> 命令行终端 <a href="http://www.zsh.org/">zsh</a>；再配合我的 <a href="https://github.com/xudeheng/gitbash">gitbash</a> 简易别名系统简化 git 命令，安装命令 <code>curl -sSL https://raw.githubusercontent.com/xudeheng/gitbash/master/install.sh | bash</code>。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[使用 Cocoapods 来管理基于 Svn 的子项目]]></title>
@@ -1939,41 +2000,6 @@ Xcode 4.1 和以前的版本不支持 ARC。</p>
     <updated>2015-08-19T23:24:42+08:00</updated>
     <id>http://ios.dehengxu.com/blog/nsmutablecopying-and-nscopying</id>
     <content type="html"><![CDATA[
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Jekyll Site Class Available Attr]]></title>
-    <link href="http://ios.dehengxu.com/blog/jekyll-site-class-available-attr/"/>
-    <updated>2015-08-19T11:35:34+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/jekyll-site-class-available-attr</id>
-    <content type="html"><![CDATA[<p><a href="https://docs.shopify.com/themes/liquid-documentation/basics" target="_blank">LiquidDocument</a></p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>  class Site
-</span><span class='line'>    attr_reader   :source, :dest, :config
-</span><span class='line'>    attr_accessor :layouts, :posts, :pages, :static_files, :drafts,
-</span><span class='line'>                  :exclude, :include, :lsi, :highlighter, :permalink_style,
-</span><span class='line'>                  :time, :future, :unpublished, :safe, :plugins, :limit_posts,
-</span><span class='line'>                  :show_drafts, :keep_files, :baseurl, :data, :file_read_opts,
-</span><span class='line'>                  :gems, :plugin_manager
-</span><span class='line'>
-</span><span class='line'>    attr_accessor :converters, :generators, :reader
-</span><span class='line'>    attr_reader   :regenerator, :liquid_renderer
-</span><span class='line'>
-</span><span class='line'>  ...</span></code></pre></td></tr></table></div></figure>
-
 ]]></content>
   </entry>
   

@@ -5,12 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Keys for Using Jekyll on github.com - 逆风@[iOS,nil]</title>
+  <title>Gitsh 的安装和使用 - 逆风@[iOS,nil]</title>
   <meta name="author" content="Deheng Xu">
 
   
-  <meta name="description" content="Why choose jekyll? First, it&rsquo;s an static blog system, so it can response huge accessing.
-You don&rsquo;t need configure your http server, sql &hellip;">
+  <meta name="description" content="项目地址: https://github.com/thoughtbot/gitsh 前提： 需要安装 ruby 环境
+安装 m4 编译工具 安装步骤： 下载项目 1
+git clone https://github.com/thoughtbot/gitsh.git 安装 gems 国内用户可以修改 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +20,7 @@ You don&rsquo;t need configure your http server, sql &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://ios.dehengxu.com/blog/keys-for-using-jekyll-on-github-dot-com/">
+  <link rel="canonical" href="http://ios.dehengxu.com/blog/gitsh-de-an-zhuang-he-shi-yong/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="逆风@[iOS,nil]" type="application/atom+xml">
@@ -82,7 +83,7 @@ You don&rsquo;t need configure your http server, sql &hellip;">
   
   <header>
     
-      <h1 class="entry-title">Keys for Using Jekyll on github.com</h1>
+      <h1 class="entry-title">Gitsh 的安装和使用</h1>
     
     
       <p class="meta">
@@ -91,7 +92,7 @@ You don&rsquo;t need configure your http server, sql &hellip;">
 
 
 
-<time class='entry-date' datetime='2014-08-31T11:48:21+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>31</span><span class='date-suffix'>st</span>, <span class='date-year'>2014</span></span> <span class='time'>11:48 am</span></time>
+<time class='entry-date' datetime='2015-09-15T17:50:13+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>5:50 pm</span></time>
         
            | <a href="#disqus_thread"
              data-disqus-identifier="http://ios.dehengxu.com">Comments</a>
@@ -101,58 +102,59 @@ You don&rsquo;t need configure your http server, sql &hellip;">
   </header>
 
 
-<div class="entry-content"><h2>Why choose jekyll?</h2>
+<div class="entry-content"><p>项目地址:  <a href="https://github.com/thoughtbot/gitsh">https://github.com/thoughtbot/gitsh</a></p>
+
+<h3>前提：</h3>
 
 <ol>
-<li>First, it&rsquo;s an static blog system, so it can response huge accessing.</li>
-<li>You don&rsquo;t need configure your http server, sql server, and blog system, you can host your own blog site only depend <code>rvm</code>.</li>
-<li>If you don&rsquo;t wanna maintance your own server, you can use github&rsquo;s : )</li>
+<li><p>需要安装 ruby 环境</p></li>
+<li><p>安装 m4 编译工具</p></li>
 </ol>
 
 
-<h2>How to install all of jekyll.</h2>
+<h3>安装步骤：</h3>
 
-<h4>Install rvm a ruby version management tool.</h4>
+<ol>
+<li>下载项目</li>
+</ol>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"></pre></td><td class='code'><pre><code class=''></code></pre></td></tr></table></div></figure>
-
-
-<h4>Install jekyll gem.</h4>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>gem install jekyll</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git clone https://github.com/thoughtbot/gitsh.git</span></code></pre></td></tr></table></div></figure>
 
 
-<h4>Install depended gems</h4>
+<ol>
+<li>安装 gems</li>
+</ol>
+
+
+<p>国内用户可以修改  Gemfile 中的 <code>source 'https://rubygems.org'</code> 为 source &lsquo;<a href="http://ruby.taobao.org">http://ruby.taobao.org</a>&rsquo;</p>
+
+<p>因为某些原因使用淘宝的 ruby gems 源可达性更有保障</p>
+
+<p>执行  <code>bundle install</code></p>
+
+<ol>
+<li><p>执行 <code>./autogen.sh</code></p></li>
+<li><p>配置环境</p></li>
+</ol>
+
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>gem install bundle
-</span><span class='line'>
-</span><span class='line'>bundle install</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>export PATH="$PATH:/PROJECT/gitsh/bin"</span></code></pre></td></tr></table></div></figure>
 
 
-<p>All done, you can take rest.</p>
+<p>最后终于可以使用了</p>
 
-<h2>How to use jekyll with github.com</h2>
+<h3>使用</h3>
 
-<p>You can find some tips on this page:<br/>
-<a href="https://help.github.com/articles/using-jekyll-with-pages">https://help.github.com/articles/using-jekyll-with-pages</a>.</p>
+<p>任何位置输入 <code>gitsh</code> 会进入到 git 命令行环境中，最大的优点是，git 命令可以只输入子命令就可以了。</p>
 
-<h2>Why your blog looks poorly.</h2>
+<p>比如：<code>git branch</code> 可以改用 <code>branch</code>，就这么简单。</p>
 
-<p>Follow this link <a href="http://jekyllrb.com/docs/github-pages/">http://jekyllrb.com/docs/github-pages/</a></p>
+<p>直接回车会提示当前文件的变化情况，一切都变得容易了很多。</p>
 
-<blockquote><p>It figure out you should modify _config.yml, filed <code>base_url</code> value to <code>/your_repository_name</code>, the slash must be there.</p></blockquote>
-
-<h2>Use your own domain</h2>
-
-<p>Add CNAME file to your repostory root dirctory. Writre your domain in one line.</p>
-
-<h2>Final</h2>
-
-<p>That&rsquo;s all, just go writing valuable articles.</p>
+<p>如果不想使用 gitsh 也可以安装  <code>zsh</code> 命令行终端 <a href="http://www.zsh.org/">zsh</a>；再配合我的 <a href="https://github.com/xudeheng/gitbash">gitbash</a> 简易别名系统简化 git 命令，安装命令 <code>curl -sSL https://raw.githubusercontent.com/xudeheng/gitbash/master/install.sh | bash</code>。</p>
 </div>
 
 
@@ -168,14 +170,8 @@ You don&rsquo;t need configure your http server, sql &hellip;">
 
 
 
-<time class='entry-date' datetime='2014-08-31T11:48:21+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>31</span><span class='date-suffix'>st</span>, <span class='date-year'>2014</span></span> <span class='time'>11:48 am</span></time>
+<time class='entry-date' datetime='2015-09-15T17:50:13+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>5:50 pm</span></time>
       
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/blog/'>blog,</a>, <a class='category' href='/blog/categories/github-dot-com/'>github.com</a>, <a class='category' href='/blog/categories/jekyll/'>jekyll,</a>
-  
-</span>
 
 
     </p>
@@ -189,10 +185,8 @@ You don&rsquo;t need configure your http server, sql &hellip;">
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/config-java-envir-on-osx/" title="Previous Post: Config java envir on OSX">&laquo; Config java envir on OSX</a>
+        <a class="basic-alignment left" href="/blog/shi-yong-cocoapods-lai-guan-li-ji-yu-svn-de-zi-xiang-mu/" title="Previous Post: 使用 cocoapods 来管理基于 svn 的子项目">&laquo; 使用 cocoapods 来管理基于 svn 的子项目</a>
       
-      
-        <a class="basic-alignment right" href="/blog/welcome-to-jekyll/" title="Next Post: Welcome to Jekyll!">Welcome to Jekyll! &raquo;</a>
       
     </p>
   </footer>
@@ -326,8 +320,8 @@ You don&rsquo;t need configure your http server, sql &hellip;">
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://ios.dehengxu.com/blog/keys-for-using-jekyll-on-github-dot-com/';
-        var disqus_url = 'http://ios.dehengxu.com/blog/keys-for-using-jekyll-on-github-dot-com/';
+        var disqus_identifier = 'http://ios.dehengxu.com/blog/gitsh-de-an-zhuang-he-shi-yong/';
+        var disqus_url = 'http://ios.dehengxu.com/blog/gitsh-de-an-zhuang-he-shi-yong/';
         var disqus_script = 'embed.js';
       
     (function () {
