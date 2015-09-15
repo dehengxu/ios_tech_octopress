@@ -41,5 +41,5 @@ footer: true
 
 [gitsh](https://github.com/thoughtbot/gitsh)
 
-安装方法见: []({{site.url}/blog/gitsh-de-an-zhuang-he-shi-yong})
+安装方法见: [gitsh安装方法]({{site.url}}/blog/gitsh-de-an-zhuang-he-shi-yong)
 
