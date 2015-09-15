@@ -39,4 +39,7 @@ footer: true
 
 <a href="http://www.ibm.com/developerworks/cn/views/web/libraryview.jsp?sort_by=&show_abstract=true&show_all=&search_flag=&contentarea_by=Web+development&search_by=&topic_by=-1&type_by=%E6%89%80%E6%9C%89%E7%B1%BB%E5%88%AB&ib" target="_blank">IBM文档</a>
 
+[gitsh](https://github.com/thoughtbot/gitsh)
+
+安装方法见: []({{site.url}/blog/gitsh-de-an-zhuang-he-shi-yong})
 
