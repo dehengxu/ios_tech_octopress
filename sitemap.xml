@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://ios.dehengxu.com/blog/useful-tools-for-xcode/</loc>
+    <lastmod>2015-09-16T11:15:21+08:00</lastmod>
+  </url>
+  <url>
     <loc>http://ios.dehengxu.com/blog/ios-chang-yong-di-san-fang-ku/</loc>
     <lastmod>2015-09-16T10:59:10+08:00</lastmod>
   </url>
@@ -113,7 +117,7 @@
     <lastmod>2015-08-16T15:32:41+08:00</lastmod>
   </url>
   <url>
-    <loc>http://ios.dehengxu.com/blog/useful-plugins-and-tools-for-xcode/</loc>
+    <loc>http://ios.dehengxu.com/blog/useful-plugins-for-xcode/</loc>
     <lastmod>2015-08-16T08:13:33+08:00</lastmod>
   </url>
   <url>

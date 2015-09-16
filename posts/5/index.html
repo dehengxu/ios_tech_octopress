@@ -9,7 +9,7 @@
   <meta name="author" content="Deheng Xu">
 
   
-  <meta name="description" content="Useful Plugins & Tools for Xcode Aug 16th, 2015 8:13 am | Comments 设计模式-访问者模式 Aug 16th, 2015 8:05 am | Comments Objective-C中的协议引用头文件的问题 Aug 16th, &hellip;">
+  <meta name="description" content="使用现代Objective-C Aug 16th, 2015 3:32 pm | Comments Useful Plugins & Tools for Xcode Aug 16th, 2015 8:13 am | Comments 设计模式-访问者模式 Aug 16th, 2015 8:05 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -84,7 +84,57 @@
       
   <header>
     
-      <h1 class="entry-title" ><a href="/blog/useful-plugins-and-tools-for-xcode/">Useful Plugins & Tools for Xcode</a></h1>
+      <h1 class="entry-title" ><a href="/blog/shi-yong-xian-dai-objective-c/">使用现代Objective-C</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-08-16T15:32:41+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>16</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>3:32 pm</span></time>
+        
+           | <a href="/blog/shi-yong-xian-dai-objective-c/#disqus_thread"
+             data-disqus-identifier="http://ios.dehengxu.com/blog/shi-yong-xian-dai-objective-c/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+
+<!-- <div class="entry-content"><p>现代 Objective-C 比传统 Objective-C 增加了很多优雅的语法和特性。</p>
+
+<h3>instancetype</h3>
+
+<p>instancetype 和 id de区别在于 instancetype 返回值在编译时会将对象与对应的类进行方法匹配，而 id 则作为万用类型，不会提示任何的警告，因为 id 类型包含所有类型，所以发送任何消息，编译器都认为是正确的。这就造成了安全隐患，也是Apple 极力推荐使用 instancetype 的原因。</p>
+
+<h3>Properties</h3>
+
+<h3>枚举宏</h3>
+
+<p>将 enum 换成 NS_ENUM 和 NS_OPTIONS</p>
+
+<h3>对象初始化</h3>
+
+<blockquote><p>宏 NS_DESIGNATED_INITIALIZER</p></blockquote>
+
+<h3>自动引用计数 ARC</h3>
+</div> -->
+
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" ><a href="/blog/useful-plugins-for-xcode/">Useful Plugins & Tools for Xcode</a></h1>
     
     
       <p class="meta">
@@ -95,8 +145,8 @@
 
 <time class='entry-date' datetime='2015-08-16T08:13:33+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>16</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>8:13 am</span></time>
         
-           | <a href="/blog/useful-plugins-and-tools-for-xcode/#disqus_thread"
-             data-disqus-identifier="http://ios.dehengxu.com/blog/useful-plugins-and-tools-for-xcode/">Comments</a>
+           | <a href="/blog/useful-plugins-for-xcode/#disqus_thread"
+             data-disqus-identifier="http://ios.dehengxu.com/blog/useful-plugins-for-xcode/">Comments</a>
         
       </p>
     
@@ -104,78 +154,11 @@
 
 
 
-<!-- <div class="entry-content"><h2>Tools</h2>
+<!-- <div class="entry-content"><h2>Plugins</h2>
 
-<h3>Cocoapods</h3>
+<p><a href="https://github.com/supermarin/alcatraz">Alcatraz</a></p>
 
-<p><a href="http://cocoapods.org/">Cocoapods</a></p>
-
-<blockquote><p>说到 iOS 中的以来管理系统就不得不说 Cocoapods 了，它不仅提供了依赖包的管理，更提供了对项目的自动化配置功能。是一个相当好用的工具，据我所知 支付宝，美团等各大公司都在使用之。安装方式为:<code>gem install cocoapods</code> ，使用方式为 <code>pods + 子命令</code>。需要有一定的 ruby 基础，gems 的使用经验。</p></blockquote>
-
-<h3>Carthage</h3>
-
-<p><a href="https://github.com/Carthage/Carthage">Carthage</a></p>
-
-<blockquote><p>一个 Cocoa 上简单，分散的依赖管理工具</p></blockquote>
-
-<h3>xcodeproj</h3>
-
-<p><a href="http://www.rubydoc.info/gems/xcodeproj">xcodeproj</a></p>
-
-<blockquote><p>一个可以编程操作 .xcodeproj 的gem</p></blockquote>
-
-<h3>liftoff</h3>
-
-<p><a href="https://github.com/thoughtbot/liftoff">liftoff</a></p>
-
-<blockquote><p>CLI for creating and configuring new Xcode projects</p></blockquote>
-
-<h3>OCUnit2JUnit</h3>
-
-<p><a href="https://github.com/ciryon/OCUnit2JUnit">OCUnit2JUnit</a></p>
-
-<blockquote><p>A script that converts output from OCUnit in xcodebuild to the XML format used by JUnit. This allows for XCode builds on continuos integration servers like Jenkins, complete with test reports!</p></blockquote>
-
-<h3>cocoapods-repo-svn</h3>
-
-<p><a href="https://github.com/clarkda/cocoapods-repo-svn">cocoapods-repo-svn</a></p>
-
-<blockquote><p>svn support for cocoapods spec-repos</p></blockquote>
-
-<h3>iOS-Framework</h3>
-
-<p><a href="https://github.com/jverkoey/iOS-Framework">iOS-Framework</a></p>
-
-<blockquote><p>How to create, develop, and distribute iOS Static Frameworks quickly and efficiently</p></blockquote>
-
-<h3>Synx</h3>
-
-<blockquote><p>A command line tool used for reform folder hierachy of Xcode, it can make a real folder for &lsquo;Group&rsquo; in Xcode project and make folder hierachy looks pretty.</p></blockquote>
-
-<p>Usage:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>synx SomeProject.xcodeproj
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Dash</h3>
-
-<blockquote><p>一个 OSX 上的开发文档工具，支持多种文档格式。可以到官网去找 <a href="https://kapeli.com/">https://kapeli.com/</a></p></blockquote>
-
-<h3>Alfred</h3>
-
-<blockquote><p>一个 OSX 上的效率工具，不多说了，google 下吧。</p></blockquote>
-
-<p><a href="https://github.com/facebook/xctool">xctool</a></p>
-
-<blockquote><p>A replacement for Apple&rsquo;s xcodebuild that makes it easier to build and test iOS or OSX apps.</p></blockquote>
-
-<p><a href="https://github.com/facebook/origami">origami</a></p>
-
-<blockquote><p>A Quartz Composer framework that enables interactive design prototyping without programming.</p></blockquote>
-
-<h2>Plugins</h2>
+<blockquote><p>永远置顶的插件，是一款用来安装插件的插件。</p></blockquote>
 
 <p><a href="https://github.com/omz/Dash-Plugin-for-Xcode">Dash plugin for xcode</a></p>
 
@@ -534,40 +517,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" ><a href="/blog/hello-rake/">Hello, Rake</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-08-15T00:00:00+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>12:00 am</span></time>
-        
-           | <a href="/blog/hello-rake/#disqus_thread"
-             data-disqus-identifier="http://ios.dehengxu.com/blog/hello-rake/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-
-<!-- <div class="entry-content">
-</div> -->
-
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/6">&larr; Older</a>
@@ -583,6 +532,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/useful-tools-for-xcode/">Useful Tools for Xcode</a>
+      </li>
     
       <li class="post">
         <a href="/blog/ios-chang-yong-di-san-fang-ku/">iOS 常用第三方库</a>
@@ -658,10 +611,6 @@
     
       <li class="post">
         <a href="/blog/jin-cheng-jian-tong-xin-fang-shi/">进程间通信方式</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/gitchang-jian-yong-fa/">Git常见用法</a>
       </li>
     
   </ul>
