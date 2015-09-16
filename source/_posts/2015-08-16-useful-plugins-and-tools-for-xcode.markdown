@@ -81,6 +81,10 @@ synx SomeProject.xcodeproj
 
 ## Plugins
 
+[Dash plugin for xcode](https://github.com/omz/Dash-Plugin-for-Xcode)
+
+> Dash plugin for xcode; usage: `option` + `Click`
+
 [ClangFormat-Xcode](https://github.com/travisjeffery/ClangFormat-Xcode)
 
 > Xcode plug-in to to use clang-format from in Xcode and consistently format your code with Clang
