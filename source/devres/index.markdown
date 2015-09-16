@@ -11,7 +11,9 @@ footer: true
 
 [iOS 开发库]({{site.url}}/blog/ios-chang-yong-di-san-fang-ku)
 
-[iOS 开发工具]({{site.url}}/blog/useful-plugins-and-tools-for-xcode)
+[iOS 开发工具]({{site.url}}/blog/useful-tools-for-xcode)
+
+[Xcode 插件]({{site.url}}/blog/userful-plugins-for-xcode)
 
 <a href="https://developer.apple.com/library/" target="_blank">苹果官方开发文档</a>
 

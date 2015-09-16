@@ -1,10 +1,12 @@
 ---
 layout: post
-title: "Useful plugins & tools for Xcode"
-date: 2015-08-16 08:13:33 +0800
+title: "useful tools for xcode"
+date: 2015-09-16 11:15:21 +0800
 comments: true
 published: true
-categories: utilities
+sharing: true
+footer: true
+categories: 
 ---
 
 ## Tools
@@ -77,17 +79,4 @@ synx SomeProject.xcodeproj
 [origami](https://github.com/facebook/origami)
 
 > A Quartz Composer framework that enables interactive design prototyping without programming.
-
-
-## Plugins
-
-[Dash plugin for xcode](https://github.com/omz/Dash-Plugin-for-Xcode)
-
-> Dash plugin for xcode; usage: `option` + `Click`
-
-[ClangFormat-Xcode](https://github.com/travisjeffery/ClangFormat-Xcode)
-
-> Xcode plug-in to to use clang-format from in Xcode and consistently format your code with Clang
-
-
 
