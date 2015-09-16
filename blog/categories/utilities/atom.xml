@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Utilities | 逆风@[iOS,nil]]]></title>
   <link href="http://ios.dehengxu.com/blog/categories/utilities/atom.xml" rel="self"/>
   <link href="http://ios.dehengxu.com/"/>
-  <updated>2015-09-16T11:05:37+08:00</updated>
+  <updated>2015-09-16T11:07:58+08:00</updated>
   <id>http://ios.dehengxu.com/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
@@ -88,6 +88,10 @@
 <blockquote><p>A Quartz Composer framework that enables interactive design prototyping without programming.</p></blockquote>
 
 <h2>Plugins</h2>
+
+<p><a href="https://github.com/omz/Dash-Plugin-for-Xcode">Dash plugin for xcode</a></p>
+
+<blockquote><p>Dash plugin for xcode; usage: <code>option</code> + <code>Click</code></p></blockquote>
 
 <p><a href="https://github.com/travisjeffery/ClangFormat-Xcode">ClangFormat-Xcode</a></p>
 
