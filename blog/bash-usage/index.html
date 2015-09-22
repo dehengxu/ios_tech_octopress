@@ -220,9 +220,31 @@ if [ condition1 ]; then elif [ condition2 ]; then else &hellip;">
 
 <h2>数组</h2>
 
-<h3>定义</h3>
+<ol>
+<li>声明数组: <code>declare -a array_name</code></li>
+<li>定义: <code>array_name=(value1 value2 value3)</code></li>
+<li>内部指令:</li>
+</ol>
 
-<p>array_name=(value1, value2, value3);</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>${name[i]}: Use element i of array name. i can be any arithmetic expression as described under let.
+</span><span class='line'>${name}: Use element 0 of array name.
+</span><span class='line'>${name[*]}: Use all elements of array name.
+</span><span class='line'>${name[@]}: Same as previous.
+</span><span class='line'>${#name[*]}: Use the number of elements in array name.
+</span><span class='line'>${#name[@]}: Same as previous.</span></code></pre></td></tr></table></div></figure>
+
+
+<ol>
+<li>关联数组: `array_name=([key1]=value1 [key2]=value2 [key3]=value3)``</li>
+</ol>
+
 
 <h3>使用</h3>
 
