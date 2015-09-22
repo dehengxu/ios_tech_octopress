@@ -145,17 +145,50 @@
 <h3>条件表达式</h3>
 
 <ol>
-<li><code>[ -z var_name ]</code>，判断变量是否为空</li>
+<li><code>[ -z var_name ]</code>，变量是否为空字符串</li>
+<li><code>[ -n var_name ]</code>，变量是否为空值</li>
 </ol>
 
 
 <h2>字符串处理</h2>
 
-<h2>文件夹处理</h2>
+<h2>文件，文件夹处理</h2>
 
 <ol>
-<li><code>if [ -d path ];</code> 路径是否存在，反之 <code>if [ ! -d path ];</code> 路径是否不存在</li>
+<li><code>if [ -d $path ];</code> 目录是否存在，反之 <code>if [ ! -d path ];</code> 目录是否不存在</li>
+<li><code>if [ -f $file ];</code> 文件是否存在，同上 <code>if [ ! -f file ];</code></li>
+<li><code>if [ -x $path ];</code> 是否有执行权限</li>
 </ol>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>   –b 当file存在并且是块文件时返回真
+</span><span class='line'>　　-c 当file存在并且是字符文件时返回真
+</span><span class='line'>　　-d 当pathname存在并且是一个目录时返回真
+</span><span class='line'>　　-e 当pathname指定的文件或目录存在时返回真
+</span><span class='line'>　　-f 当file存在并且是正规文件时返回真
+</span><span class='line'>　　-g 当由pathname指定的文件或目录存在并且设置了SGID位时返回为真
+</span><span class='line'>　　-h 当file存在并且是符号链接文件时返回真，该选项在一些老系统上无效
+</span><span class='line'>　　-k 当由pathname指定的文件或目录存在并且设置了“粘滞”位时返回真
+</span><span class='line'>　　-p 当file存在并且是命令管道时返回为真
+</span><span class='line'>　　-r 当由pathname指定的文件或目录存在并且可读时返回为真
+</span><span class='line'>　　-s 当file存在文件大小大于0时返回真
+</span><span class='line'>　　-u 当由pathname指定的文件或目录存在并且设置了SUID位时返回真
+</span><span class='line'>　　-w 当由pathname指定的文件或目录存在并且可执行时返回真。一个目录为了它的内容被访问必然是可执行的。
+</span><span class='line'>　　-o 当由pathname指定的文件或目录存在并且被子当前进程的有效用户ID所指定的用户拥有时返回真。</span></code></pre></td></tr></table></div></figure>
 
 
 <h2>循环控制</h2>
