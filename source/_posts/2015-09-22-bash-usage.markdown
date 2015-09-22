@@ -85,9 +85,18 @@ fi
 
 ## 数组
 
-### 定义
-
-array_name=(value1, value2, value3);
+1. 声明数组: `declare -a array_name`
+2. 定义: `array_name=(value1 value2 value3)`
+3. 内部指令:
+```
+${name[i]}: Use element i of array name. i can be any arithmetic expression as described under let.
+${name}: Use element 0 of array name.
+${name[*]}: Use all elements of array name.
+${name[@]}: Same as previous.
+${#name[*]}: Use the number of elements in array name.
+${#name[@]}: Same as previous.
+```
+4. 关联数组: `array_name=([key1]=value1 [key2]=value2 [key3]=value3)``
 
 ### 使用
 
