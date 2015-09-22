@@ -9,7 +9,7 @@
   <meta name="author" content="Deheng Xu">
 
   
-  <meta name="description" content="Useful Tools for Xcode Sep 16th, 2015 11:15 am | Comments iOS 常用第三方库 Sep 16th, 2015 10:59 am | Comments Gitsh 的安装和使用 Sep 15th, 2015 5:50 pm | &hellip;">
+  <meta name="description" content="Bash Usage Sep 22nd, 2015 9:48 am | Comments Useful Tools for Xcode Sep 16th, 2015 11:15 am | Comments iOS 常用第三方库 Sep 16th, 2015 10:59 am | Comments &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,104 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" ><a href="/blog/bash-usage/">Bash Usage</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-09-22T09:48:42+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>22</span><span class='date-suffix'>nd</span>, <span class='date-year'>2015</span></span> <span class='time'>9:48 am</span></time>
+        
+           | <a href="/blog/bash-usage/#disqus_thread"
+             data-disqus-identifier="http://ios.dehengxu.com/blog/bash-usage/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+
+<!-- <div class="entry-content"><h2>基础</h2>
+
+<h3>变量定义</h3>
+
+<p><code>var_name=var_value</code>，注意等号两边不能留下空格</p>
+
+<h3>输入参数</h3>
+
+<p>参数以空格分开分别是<code>$1</code>, <code>$2</code>, 到 <code>$9</code></p>
+
+<h2>条件控制处理</h2>
+
+<h3>if 语句</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>if [ condition1 ]; then
+</span><span class='line'>
+</span><span class='line'>elif [ condition2 ]; then
+</span><span class='line'>
+</span><span class='line'>else
+</span><span class='line'>
+</span><span class='line'>fi</span></code></pre></td></tr></table></div></figure>
+
+
+<ol>
+<li>方括号内的条件和方括号之间至少有一个空格的距离</li>
+<li>每个方括号结束后通过<code>;</code>分隔</li>
+<li>不论 <code>if</code>, <code>else</code> 还是 <code>elif</code>，除最后一个条件外，都需要以 <code>then</code> 结尾</li>
+<li>最后以 <code>fi</code> 结尾。<code>fi</code> 是 <code>if</code> 的逆序写法，表示和<code>if</code>对应。</li>
+</ol>
+
+
+<h3>条件表达式</h3>
+
+<ol>
+<li><code>[ -z var_name ]</code>，判断变量是否为空</li>
+</ol>
+
+
+<h2>字符串处理</h2>
+
+<h2>文件夹处理</h2>
+
+<ol>
+<li><code>if [ -d path ];</code> 路径是否存在，反之 <code>if [ ! -d path ];</code> 路径是否不存在</li>
+</ol>
+
+
+<h2>循环控制</h2>
+
+<h2>数组</h2>
+
+<h3>定义</h3>
+
+<p>array_name=(value1, value2, value3);</p>
+
+<h3>使用</h3>
+
+<p>${array_name[0]}</p>
+</div> -->
+
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -879,74 +977,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" ><a href="/blog/objc-msgsend-bian-yi-cuo-wu-de-jie-jue-fang-fa/">Runtime 在新版本 Xcode 中引起的编译错误，及解决方法</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-08-30T12:13:22+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>12:13 pm</span></time>
-        
-           | <a href="/blog/objc-msgsend-bian-yi-cuo-wu-de-jie-jue-fang-fa/#disqus_thread"
-             data-disqus-identifier="http://ios.dehengxu.com/blog/objc-msgsend-bian-yi-cuo-wu-de-jie-jue-fang-fa/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-
-<!-- <div class="entry-content"><h2>objc_msgSend</h2>
-
-<p>最近在 Xcode6.4 上编译一个老旧的库时，出现了运行时函数 <code>objc_msgSend</code> 的编译错误，提示:</p>
-
-<p><code>Too many arguments to function call, excepted 0, have 7</code>，说函数不需要参数，却传入了7个参数。</p>
-
-<p>原来是预编译指令的问题:</p>
-
-<p>找到编译出错的那个库，选中 target -> Build Settings 搜索框中输入 <code>objc</code></p>
-
-<p>定位到这里:</p>
-
-<p><img src="/images/refered/runtime_msgsend_fix.png" alt="msgSend_fix" /></p>
-
-<p>将 <code>Enable Strict Checking of objc_msgSend Calls</code>  字段设为 <code>NO</code></p>
-
-<p>关闭 <code>objc_msgSend</code> 的严格调用检查。</p>
-
-<h2>object->isa</h2>
-
-<p>最近在 Xcode6.4 上编译依赖 JSONKit 的时候，对于 JSONKit 内部通过指针访问 <code>isa</code> 变量代码，引起编译错误，提示:</p>
-
-<p><code>Assignment to Objective-C's isa is deprecated in favor of object_setClass()</code> 或者 <code>Assignment to Objective-C's isa is deprecated in favor of object_getClass()</code></p>
-
-<p>如图:</p>
-
-<p><img src="/images/refered/runtime_isa_error.png" alt="isa_err" /></p>
-
-<p>解决办法：找到 JSONKit 项目 target -> Build Settings 搜索框中输入 <code>isa</code></p>
-
-<p>定位到:</p>
-
-<p><img src="/images/refered/runtime_isa_fix.png" alt="isa_err" /></p>
-
-<p>修改为 <code>NO</code> 即可。</p>
-</div> -->
-
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -960,6 +990,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/bash-usage/">Bash Usage</a>
+      </li>
     
       <li class="post">
         <a href="/blog/useful-tools-for-xcode/">Useful Tools for Xcode</a>
@@ -1035,10 +1069,6 @@
     
       <li class="post">
         <a href="/blog/arc-nei-cun-guan-li/">ARC 内存管理</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/jin-cheng-jian-tong-xin-fang-shi/">进程间通信方式</a>
       </li>
     
   </ul>

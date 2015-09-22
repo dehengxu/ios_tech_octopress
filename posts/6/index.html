@@ -9,7 +9,7 @@
   <meta name="author" content="Deheng Xu">
 
   
-  <meta name="description" content="Hello, Rake Aug 15th, 2015 12:00 am | Comments Welcome to Jekyll! Aug 6th, 2015 10:19 pm | Comments Keys for Using Jekyll on github.com Aug 31st, &hellip;">
+  <meta name="description" content="Objective-C Block Usage Aug 15th, 2015 2:43 pm | Comments Hello, Rake Aug 15th, 2015 12:00 am | Comments Welcome to Jekyll! Aug 6th, 2015 10:19 pm &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,162 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" ><a href="/blog/objective-c-block-usage/">Objective-C Block Usage</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-08-15T14:43:40+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>2:43 pm</span></time>
+        
+           | <a href="/blog/objective-c-block-usage/#disqus_thread"
+             data-disqus-identifier="http://ios.dehengxu.com/blog/objective-c-block-usage/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+
+<!-- <div class="entry-content"><h2>Block syntax</h2>
+
+<blockquote><p>Block description</p></blockquote>
+
+<h3>1. Use block as callback</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>int (^maxBlock)(int, int);
+</span><span class='line'>maxBlock = ^(int a, int b) {
+</span><span class='line'>  return a &gt; b ? a : b;
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>NSLog(@"max is %d", maxBlock(89, 22));
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>2. Use block as parameter</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>- (void)someMethod:(void(^)(void))action;
+</span><span class='line'>
+</span><span class='line'>[self someMethod:^() {
+</span><span class='line'>  NSLog(@"Do some operation in block.");
+</span><span class='line'>}];
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>3. Use block in recurcive callback</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>void testFunc() {
+</span><span class='line'>  // It looks well.
+</span><span class='line'>  int(^fibonacci)(int) = ^(int n) {
+</span><span class='line'>      if (n &lt;= 1) return n;
+</span><span class='line'>
+</span><span class='line'>      return fibonacci(n - 1) + fibonacci(n - 2);
+</span><span class='line'>  }
+</span><span class='line'>
+</span><span class='line'>  fibonacci(10);
+</span><span class='line'>}
+</span><span class='line'>//It raise exception in runtme.
+</span><span class='line'>//CompositeTests testExample]_block_invoke(.block_descriptor=0x00007fe0da577710, folder=0x00007fe0da575c50) + 766 at CompositeTests.m:49, queue = 'com.apple.main-thread', stop reason = EXC_BAD_ACCESS (code=1, address=0x10)
+</span></code></pre></td></tr></table></div></figure>
+
+
+<blockquote><p>So, you should add <code>static</code> before block declaring, because at this time block is not created and it raise BAD_ACCESS to memory.</p></blockquote>
+
+<h3>4. <strong>block vs </strong>weak</h3>
+
+<p>我们为了防止 block 将对象进行自动强引用导致出现引用循环，有时候会使用 <strong>block 进行 weakRef 的声明，但是  </strong>weak 也可以达成这个目的，那么 <strong>block 和 </strong>weak 有什么区别呢?</p>
+
+<p>我们通常会这么做，这种情况 <strong>block 和 </strong>weak 似乎看不出什么区别</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>__block weskRef = obj
+</span><span class='line'>
+</span><span class='line'>void(^aBlock)() = ^() {
+</span><span class='line'>  NSLog@("%@", weakRef);
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>aBlock();
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>可是如果这样呢</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>__block weskRef = obj;
+</span><span class='line'>
+</span><span class='line'>void(^aBlock)() = ^() {
+</span><span class='line'>  NSLog@("%@", weakRef);
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>aBlock();
+</span><span class='line'>
+</span><span class='line'>obj = nil;</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>__block</h4>
+
+<blockquote><p>__block 会保证 weakRef 对象一直有效，直到 block 本身不再使用 weakRef 才会真正释放掉 obj</p></blockquote>
+
+<h4>__weak</h4>
+
+<blockquote><p>__weak 则会在 <code>obj = nil</code>  的同时将 weakRef 置为 <code>nil</code>。</p></blockquote>
+
+<p>这就是 <code>__block</code> 和 <code>__weak</code> 的区别。</p>
+</div> -->
+
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -418,6 +574,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/bash-usage/">Bash Usage</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/useful-tools-for-xcode/">Useful Tools for Xcode</a>
       </li>
     
@@ -491,10 +651,6 @@
     
       <li class="post">
         <a href="/blog/arc-nei-cun-guan-li/">ARC 内存管理</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/jin-cheng-jian-tong-xin-fang-shi/">进程间通信方式</a>
       </li>
     
   </ul>

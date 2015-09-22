@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://ios.dehengxu.com/blog/bash-usage/</loc>
+    <lastmod>2015-09-22T09:48:42+08:00</lastmod>
+  </url>
+  <url>
     <loc>http://ios.dehengxu.com/blog/useful-tools-for-xcode/</loc>
     <lastmod>2015-09-16T11:15:21+08:00</lastmod>
   </url>
