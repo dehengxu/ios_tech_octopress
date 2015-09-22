@@ -96,7 +96,7 @@ ${name[@]}: Same as previous.
 ${#name[*]}: Use the number of elements in array name.
 ${#name[@]}: Same as previous.
 ```
-4. 关联数组: `array_name=([key1]=value1 [key2]=value2 [key3]=value3)``
+4. 关联数组: `array_name=([key1]=value1 [key2]=value2 [key3]=value3)`
 
 ### 使用
 
