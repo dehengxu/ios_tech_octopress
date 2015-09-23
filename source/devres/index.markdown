@@ -37,11 +37,13 @@ footer: true
 
 <a href="http://developer.android.com/index.html" target="_blank">Android 官方开发文档</a>
 
+<a href="http://androidperformance.com/" target="_blank">一个专注于安卓性能的网站</a>
+
 ## 其他
 
-[Swift 负责人的个人主页](http://nondot.org/sabre/)
+[Swift 负责人的主页](http://nondot.org/sabre/)
 
-## 有心人的总结
+## 别人的总结
 
 https://github.com/leecade/ios-dev-flow
 
@@ -50,4 +52,3 @@ https://github.com/leecade/ios-dev-flow
 [gitsh](https://github.com/thoughtbot/gitsh)
 
 安装方法见: [gitsh安装方法]({{site.url}}/blog/gitsh-de-an-zhuang-he-shi-yong)
-
