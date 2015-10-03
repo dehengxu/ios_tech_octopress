@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+ls ./source/_posts/*|xargs grep -iI $1

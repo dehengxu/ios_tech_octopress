@@ -1,0 +1,84 @@
+---
+layout: post
+title: "KVC 机制"
+date: 2015-08-28 17:16:18 +0800
+comments: true
+published: true
+sharing: true
+footer: true
+categories: objc
+---
+
+## KVC : 键值编码 (Key-value coding)
+
+键值编码是一个通过字符串间接访问对象属性和关系的机制。它是 Cocoa编程中一些机制和技术的基石，在他们中间 Core Data, 应用程序脚本能力, 绑定技术，还有语言特性中的属性声明。 (脚本特性和绑定是指 OS X 上的 Cocoa。) 你也能使用键值编码来简化你的程序代码。
+
+### 对象属性和 KVC
+
+KVC 的核心是属性的通用概念。一个属性对应一个对象封装的状态单元。属性可以是这两种类型中的一个：一个属性(例如：name, subtotal, 或者 textColor) 或者相对于其他对象的关系。关系既可以是 一对一，也可以是一对多。一对多关系的值通常是一个数组或者集合，取决于关系是否有序。
+
+KVC 通过“键”来定位对象的属性，其实就是一个字符串标识。“键”常常代表一个访问器方法或者实例变量的名字。“键”必须符合某种规则：必须是 ASCII 编码，小写字母开头，还没有空格。Key path是由点与“键”分隔的字符串，它被用来指明一系列对象属性的链式访问。序列的第一个“键”是相对于指定的对象来说的(如下面图表中的 employee1)，并且每个子序列“键”是相对于前一个属性值来的。
+
+![sample](/images/refered/key_value_coding.jpg)
+
+### 使类支持 KVC
+
+NSKeyValueCoding 非正式的协议使 KVC 成为可能。其中两个方法： `valueForKey:` 和 `setValue:forKey:` 是特殊且重要的方法，因为他们能获取，设置给定 “键” 的属性值。 `NSObject` 为这两个方法提供了默认实现，并且如果类和 KVC 兼容，它可以依赖这个实现。
+
+你如何实现属性 KVC 的兼容性，依赖于属性是一个附属值，一对多或者一对一的关系。对于附属值，一对一关系来说，类必须至少实现一个以下给定顺序的配置(键 和属性的键关联)：
+
+1.  类使用“键”的名字来声明属性
+2.  实现以“键”命名的访问器，如果属性是可修改的，需要实现`setKey:`(如果属性是一个布尔值，`getter`访问起方法有 `isKey` 有形式。)
+3.  声明 `key` 或者 `_key`形式的实例变量。
+
+> PS: 这里我认为 `attribute`叫做附属值或者值，`property`称作属性更恰当。一般来说 attrubute 比 property 要轻量级一些。
+
+实现对多的 KVC 兼容是一个更复杂的过程。可以参考权关于 KVC 威性的文档来学习实现的过程。
+
+### 后话
+
+KVC 规则就是通过 `setValue:forKey:` 对 key 所对应的变量或者属性进行赋值操作，举个简单的例子：
+
+类 `People`
+
+```
+@interface People : NSObject
+{
+	NSString *_name;
+}
+
+```
+
+这种情况下你可以通过 `[people setValue:@"Nick" forKey:@"name"]` 或者 `[people setValue:@"Nick" forKey:@"_name"]` 为 `_name` 变量赋值。 就是说 KVC 会为 `key` 或者 `_key` 为名称的变量完成操作。  
+
+将代码改为：
+
+```
+@interface People : NSObject
+{
+	NSString *name;
+}
+
+```
+
+依然执行 `[people setValue:@"Nick" forKey:@"name"]` 或者 `[people setValue:@"Nick" forKey:@"_name"]` 方法，后者会提示错误 `this class is not key value coding-compliant for the key _name."` 
+
+说明 KVC 的逻辑是为名为 `_<name>` 的变量通过 `_<name>` 或 `<name>` 形式的 key 来进行 KVC 操作。除此之外针对 `<name>` 的变量, 一律通过 `<name>` 形式的 key 来做 KVC 操作。
+
+[KVC 兼容特性](/blog/zi-ding-yi-lei-ru-he-ti-gong-kvc-jian-rong-te-xing/)
+
+### 前提文章
+
+[Object modeling](https://developer.apple.com/library/ios/documentation/General/Conceptual/DevPedia-CocoaCore/ObjectModeling.html#//apple_ref/doc/uid/TP40008195-CH41-SW1)
+
+[Accessor method](https://developer.apple.com/library/ios/documentation/General/Conceptual/DevPedia-CocoaCore/AccessorMethod.html#//apple_ref/doc/uid/TP40008195-CH2-SW1)
+
+### 相关文章
+
+[Declared property](https://developer.apple.com/library/ios/documentation/General/Conceptual/DevPedia-CocoaCore/DeclaredProperty.html#//apple_ref/doc/uid/TP40008195-CH13-SW1)
+
+### 权威论述
+[Key-value Coding Programming Guide](https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/KeyValueCoding/Articles/KeyValueCoding.html#//apple_ref/doc/uid/10000107i)
+
+---
+[Ref](https://developer.apple.com/library/ios/documentation/General/Conceptual/DevPedia-CocoaCore/KeyValueCoding.html#//apple_ref/doc/uid/TP40008195-CH25-SW1)
