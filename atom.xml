@@ -4,7 +4,7 @@
   <title><![CDATA[逆风@[iOS,nil]]]></title>
   <link href="http://ios.dehengxu.com/atom.xml" rel="self"/>
   <link href="http://ios.dehengxu.com/"/>
-  <updated>2015-10-05T11:36:07+08:00</updated>
+  <updated>2015-10-05T11:37:37+08:00</updated>
   <id>http://ios.dehengxu.com/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
@@ -19,6 +19,10 @@
     <updated>2015-10-05T11:31:52+08:00</updated>
     <id>http://ios.dehengxu.com/blog/diagram-of-a-activitys-life-cycle</id>
     <content type="html"><![CDATA[<p>A diagram present Activity&rsquo;s life cycle</p>
+
+<p>Two Activity class named <code>A</code> and <code>B</code>, <code>A</code> is app entry.</p>
+
+<p>Calling order is A call B , then B back to A.</p>
 
 <p><img src="http://ios.dehengxu.com/images/refered/activity_life_cycle.png" alt="lifecycle" /></p>
 ]]></content>
