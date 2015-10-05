@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Android | 逆风@[iOS,nil]]]></title>
+  <link href="http://ios.dehengxu.com/blog/categories/android/atom.xml" rel="self"/>
+  <link href="http://ios.dehengxu.com/"/>
+  <updated>2015-10-05T11:38:13+08:00</updated>
+  <id>http://ios.dehengxu.com/</id>
+  <author>
+    <name><![CDATA[Deheng Xu]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Diagram of a Activity's Life Cycle]]></title>
+    <link href="http://ios.dehengxu.com/blog/diagram-of-a-activitys-life-cycle/"/>
+    <updated>2015-10-05T11:31:52+08:00</updated>
+    <id>http://ios.dehengxu.com/blog/diagram-of-a-activitys-life-cycle</id>
+    <content type="html"><![CDATA[<p>A diagram present Activity&rsquo;s life cycle</p>
+
+<p>Two Activity class named <code>A</code> and <code>B</code>, <code>A</code> is app entry.</p>
+
+<p>Calling order is A call B , then B back to A.</p>
+
+<p><img src="/images/refered/activity_life_cycle.png" alt="lifecycle" /></p>
+]]></content>
+  </entry>
+  
+</feed>
