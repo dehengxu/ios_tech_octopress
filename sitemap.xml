@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://ios.dehengxu.com/blog/diagram-of-a-activitys-life-cycle/</loc>
+    <lastmod>2015-10-05T11:31:52+08:00</lastmod>
+  </url>
+  <url>
     <loc>http://ios.dehengxu.com/blog/bash-usage/</loc>
     <lastmod>2015-09-22T09:48:42+08:00</lastmod>
   </url>
@@ -260,5 +264,8 @@
   </url>
   <url>
     <loc>http://ios.dehengxu.com/posts/6/</loc>
+  </url>
+  <url>
+    <loc>http://ios.dehengxu.com/posts/7/</loc>
   </url>
 </urlset>

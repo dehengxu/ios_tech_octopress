@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Devres - 逆风@[iOS,nil]</title>
+  <title>Diagram of a Activity's Life Cycle - 逆风@[iOS,nil]</title>
   <meta name="author" content="Deheng Xu">
 
   
-  <meta name="description" content="Devres Sep 10th, 2015 11:05 am iOS 开发相关资源 iOS 开发库 iOS 开发工具 Xcode 插件 苹果官方开发文档 苹果开发资源 What&rsquo;s New in iOS SecurityFrameworkReference NSHispter &hellip;">
+  <meta name="description" content="A diagram present Activity&rsquo;s life cycle ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://ios.dehengxu.com/devres/">
+  <link rel="canonical" href="http://ios.dehengxu.com/blog/diagram-of-a-activitys-life-cycle/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="逆风@[iOS,nil]" type="application/atom+xml">
@@ -77,87 +77,67 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Devres</h1>
-    <p class="meta">
-
-
-
-
-<time class='entry-date' datetime='2015-09-10T11:05:00+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>10</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>11:05 am</span></time></p>
-  </header>
-  
-  <h2>iOS 开发相关资源</h2>
-
-<p><a href="http://ios.dehengxu.com/blog/ios-chang-yong-di-san-fang-ku">iOS 开发库</a></p>
-
-<p><a href="http://ios.dehengxu.com/blog/useful-tools-for-xcode">iOS 开发工具</a></p>
-
-<p><a href="http://ios.dehengxu.com/blog/useful-plugins-for-xcode">Xcode 插件</a></p>
-
-<p><a href="https://developer.apple.com/library/" target="_blank">苹果官方开发文档</a></p>
-
-<p><a href="https://developer.apple.com/resources/" target="_blank">苹果开发资源</a></p>
-
-<p><a href="https://developer.apple.com/library/prerelease/ios/releasenotes/General/WhatsNewIniOS/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008244-SW1" target="_blank">What&rsquo;s New in iOS</a></p>
-
-<p><a href="https://developer.apple.com/library/ios/documentation/Security/Reference/certifkeytrustservices/index.html">SecurityFrameworkReference</a></p>
-
-<p><a href="http://nshipster.com/" target="_blank">NSHispter</a></p>
-
-<p><a href="http://nshipster.cn/" target="_blank">NSHipsterCN</a></p>
-
-<p><a href="http://ashfurrow.com/">Ashfurrow Cocoa开发者个人博客</a></p>
-
-<!-- [iOS 博客资源](/works/ios-ui-libs.html) -->
-
-
-<p><a href="http://www.raywenderlich.com/" target="_blank">Raywenderlich</a></p>
-
-<h2>Android 开发相关资源</h2>
-
-<p><a href="http://developer.android.com/index.html" target="_blank">Android 官方开发文档</a></p>
-
-<p><a href="http://androidperformance.com/" target="_blank">一个专注于安卓性能的网站</a></p>
-
-<h2>其他</h2>
-
-<p><a href="http://nondot.org/sabre/">Swift 负责人的主页</a></p>
-
-<h2>别人的总结</h2>
-
-<p><a href="https://github.com/leecade/ios-dev-flow">https://github.com/leecade/ios-dev-flow</a></p>
-
-<p><a href="http://www.ibm.com/developerworks/cn/views/web/libraryview.jsp?sort_by=&show_abstract=true&show_all=&search_flag=&contentarea_by=Web+development&search_by=&topic_by=-1&type_by=%E6%89%80%E6%9C%89%E7%B1%BB%E5%88%AB&ib" target="_blank">IBM文档</a></p>
-
-<p><a href="https://github.com/thoughtbot/gitsh">gitsh</a></p>
-
-<p>安装方法见: <a href="http://ios.dehengxu.com/blog/gitsh-de-an-zhuang-he-shi-yong">gitsh安装方法</a></p>
-
-  
-    <footer>
+    
+      <h1 class="entry-title">Diagram of a Activity's Life Cycle</h1>
+    
+    
       <p class="meta">
         
+
+
+
+
+<time class='entry-date' datetime='2015-10-05T11:31:52+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>11:31 am</span></time>
         
-
-
-
-
-<time class='entry-date' datetime='2015-09-10T11:05:00+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>10</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>11:05 am</span></time>
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://ios.dehengxu.com">Comments</a>
         
       </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>A diagram present Activity&rsquo;s life cycle</p>
+
+<p><img src="/images/refered/activity_life_cycle.png" alt="lifecycle" /></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
       
-        <div class="sharing">
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Deheng Xu</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2015-10-05T11:31:52+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>11:31 am</span></time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
   
   
   
 </div>
 
+    
+    <p class="meta">
       
-    </footer>
-  
+        <a class="basic-alignment left" href="/blog/bash-usage/" title="Previous Post: bash usage">&laquo; bash usage</a>
+      
+      
+    </p>
+  </footer>
 </article>
 
   <section>
@@ -288,8 +268,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://ios.dehengxu.com/devres/index.html';
-        var disqus_url = 'http://ios.dehengxu.com/devres/index.html';
+        var disqus_identifier = 'http://ios.dehengxu.com/blog/diagram-of-a-activitys-life-cycle/';
+        var disqus_url = 'http://ios.dehengxu.com/blog/diagram-of-a-activitys-life-cycle/';
         var disqus_script = 'embed.js';
       
     (function () {
