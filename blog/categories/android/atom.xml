@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Android | 逆风@[iOS,nil]]]></title>
   <link href="http://ios.dehengxu.com/blog/categories/android/atom.xml" rel="self"/>
   <link href="http://ios.dehengxu.com/"/>
-  <updated>2015-10-05T11:38:13+08:00</updated>
+  <updated>2015-10-05T12:21:02+08:00</updated>
   <id>http://ios.dehengxu.com/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
@@ -23,6 +23,17 @@
 <p>Two Activity class named <code>A</code> and <code>B</code>, <code>A</code> is app entry.</p>
 
 <p>Calling order is A call B , then B back to A.</p>
+
+<p>1) Action: Launch App
+  onCreate(A) -> onStart(A) -> onResume(A)</p>
+
+<p>2) Action: startActivity(B)
+  onPause(A) -> onCreate(B) -> onStart(B) -> onResume(B) -> onStop(A)</p>
+
+<p>3) Action: goBack to Activity A
+  onPause(B) -> onRestart(A) -> onStart(A) -> onResume(A) -> onStop(B) -> onDestory(B)</p>
+
+<blockquote><p>If B has been hold, it would not be onDestory(B)</p></blockquote>
 
 <p><img src="/images/refered/activity_life_cycle.png" alt="lifecycle" /></p>
 ]]></content>

@@ -110,6 +110,17 @@
 
 <p>Calling order is A call B , then B back to A.</p>
 
+<p>1) Action: Launch App
+  onCreate(A) -> onStart(A) -> onResume(A)</p>
+
+<p>2) Action: startActivity(B)
+  onPause(A) -> onCreate(B) -> onStart(B) -> onResume(B) -> onStop(A)</p>
+
+<p>3) Action: goBack to Activity A
+  onPause(B) -> onRestart(A) -> onStart(A) -> onResume(A) -> onStop(B) -> onDestory(B)</p>
+
+<blockquote><p>If B has been hold, it would not be onDestory(B)</p></blockquote>
+
 <p><img src="/images/refered/activity_life_cycle.png" alt="lifecycle" /></p>
 </div> -->
 

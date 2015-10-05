@@ -9,7 +9,7 @@
   <meta name="author" content="Deheng Xu">
 
   
-  <meta name="description" content="A diagram present Activity&rsquo;s life cycle Two Activity class named A and B, A is app entry. Calling order is A call B , then B back to A. ">
+  <meta name="description" content="A diagram present Activity&rsquo;s life cycle Two Activity class named A and B, A is app entry. Calling order is A call B , then B back to A. 1) &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -105,6 +105,17 @@
 <p>Two Activity class named <code>A</code> and <code>B</code>, <code>A</code> is app entry.</p>
 
 <p>Calling order is A call B , then B back to A.</p>
+
+<p>1) Action: Launch App
+  onCreate(A) -> onStart(A) -> onResume(A)</p>
+
+<p>2) Action: startActivity(B)
+  onPause(A) -> onCreate(B) -> onStart(B) -> onResume(B) -> onStop(A)</p>
+
+<p>3) Action: goBack to Activity A
+  onPause(B) -> onRestart(A) -> onStart(A) -> onResume(A) -> onStop(B) -> onDestory(B)</p>
+
+<blockquote><p>If B has been hold, it would not be onDestory(B)</p></blockquote>
 
 <p><img src="/images/refered/activity_life_cycle.png" alt="lifecycle" /></p>
 </div>
