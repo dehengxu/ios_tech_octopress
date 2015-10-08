@@ -15,6 +15,8 @@ footer: true
 
 [Xcode 插件]({{site.url}}/blog/useful-plugins-for-xcode)
 
+[豆瓣推荐](http://www.douban.com/note/276160185/)
+
 [code4app](http://code4app.com/)
 
 <a href="https://developer.apple.com/library/" target="_blank">苹果官方开发文档</a>
