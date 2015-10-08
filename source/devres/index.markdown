@@ -15,6 +15,8 @@ footer: true
 
 [Xcode 插件]({{site.url}}/blog/useful-plugins-for-xcode)
 
+[code4app](http://code4app.com/)
+
 <a href="https://developer.apple.com/library/" target="_blank">苹果官方开发文档</a>
 
 <a href="https://developer.apple.com/resources/" target="_blank">苹果开发资源</a>
@@ -39,9 +41,29 @@ footer: true
 
 <a href="http://androidperformance.com/" target="_blank">一个专注于安卓性能的网站</a>
 
+## 开发工具
+
+[Maven 5分钟起步](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html)
+
 ## 其他
 
 [Swift 负责人的主页](http://nondot.org/sabre/)
+
+[红黑联盟](http://www.2cto.com/)
+
+[方糖气球](http://ftqq.com/)
+
+[Cocoanetics](http://www.cocoanetics.com/)
+
+[Ashfurrow](http://ashfurrow.com/)
+
+[robnapier](http://robnapier.net/)
+
+[Maniacdev](https://maniacdev.com/)
+
+[xda](http://forum.xda-developers.com/)
+
+[简明魔法](http://www.nowamagic.net/)
 
 ## 别人的总结
 
