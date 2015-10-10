@@ -9,7 +9,7 @@
   <meta name="author" content="Deheng Xu">
 
   
-  <meta name="description" content="Diagram of a Activity's Life Cycle Oct 5th, 2015 11:31 am | Comments Bash Usage Sep 22nd, 2015 9:48 am | Comments Useful Tools for Xcode Sep 16th, &hellip;">
+  <meta name="description" content="第三方消息推送服务对比 Oct 10th, 2015 11:15 am | Comments Diagram of a Activity's Life Cycle Oct 5th, 2015 11:31 am | Comments Bash Usage Sep 22nd, 2015 9:48 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,72 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" ><a href="/blog/di-san-fang-xiao-xi-tui-song-fu-wu-dui-bi/">第三方消息推送服务对比</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-10-10T11:15:55+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>10</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>11:15 am</span></time>
+        
+           | <a href="/blog/di-san-fang-xiao-xi-tui-song-fu-wu-dui-bi/#disqus_thread"
+             data-disqus-identifier="http://ios.dehengxu.com/blog/di-san-fang-xiao-xi-tui-song-fu-wu-dui-bi/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+
+<!-- <div class="entry-content"><h3>友盟</h3>
+
+<p>客户端支持: iOS, Android</p>
+
+<p>服务端支持: Java, php, Python</p>
+
+<h3>极光</h3>
+
+<p>客户端支持: iOS, Android, WinPhone</p>
+
+<p>服务端支持: Java, php, python, ruby, C#, nodejs</p>
+
+<h3>百度云推送</h3>
+
+<p>客户端支持: iOS, Android</p>
+
+<p>服务端支持: Java, php</p>
+
+<h3>个推</h3>
+
+<p><a href="http://www.getui.com/">http://www.getui.com/</a></p>
+
+<p>客户端支持: iOS, Android</p>
+
+<p>服务端支持: java, php, c#, python, nodejs, c++</p>
+
+<h3>腾讯飞鸽</h3>
+
+<p><a href="http://xg.qq.com/xg">http://xg.qq.com/xg</a></p>
+
+<p>客户端支持: iOS, Android</p>
+
+<p>服务端支持: Java, php, python, nodejs</p>
+</div> -->
+
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -799,80 +865,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" ><a href="/blog/create-a-private-pods/">Create a Private Pods</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-08-31T22:20:30+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>31</span><span class='date-suffix'>st</span>, <span class='date-year'>2015</span></span> <span class='time'>10:20 pm</span></time>
-        
-           | <a href="/blog/create-a-private-pods/#disqus_thread"
-             data-disqus-identifier="http://ios.dehengxu.com/blog/create-a-private-pods/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-
-<!-- <div class="entry-content"><h3>1. 创建私有 Spec 仓库</h3>
-
-<p>没必要 fork CocoaPods 的Spec 主仓库。你可以建立自己的仓库，也不用公开。</p>
-
-<p>而且你也可以创建自己的私有本地仓库</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>cd /opt/git
-</span><span class='line'>mkdir Specs.git
-</span><span class='line'>cd Specs.git
-</span><span class='line'>git init --bare</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>2. 添加私有仓库到 CocoaPods 安装文件中</h3>
-
-<p><code>pod repo add REPO_NAME SOURCE_URL</code></p>
-
-<blockquote><p>如果你想检测是否安装成功，可以这样测试：</p></blockquote>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>cd ~/.cocoapods/repos/REPO_NAME
-</span><span class='line'>pod repo lint</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>3. 添加你的 podspec 到你自己的仓库</h3>
-
-<p>pod repo push REPO_NAME SPEC_NAME.podspec</p>
-
-<hr />
-
-<p>最后，你需要在 podfile 文件中通过 <code>source</code> 指令来使用你自己的仓库：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>source 'YOUR_REPO_URL'</span></code></pre></td></tr></table></div></figure>
-
-
-<p><a href="https://guides.cocoapods.org/making/private-cocoapods.html">REF</a></p>
-</div> -->
-
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -886,6 +878,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/di-san-fang-xiao-xi-tui-song-fu-wu-dui-bi/">第三方消息推送服务对比</a>
+      </li>
     
       <li class="post">
         <a href="/blog/diagram-of-a-activitys-life-cycle/">Diagram of a Activity's Life Cycle</a>
@@ -961,10 +957,6 @@
     
       <li class="post">
         <a href="/blog/tong-guo-clang-fen-xi-block-de-ji-zhi/">通过 Clang 分析 Block 的机制</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/guan-li-zi-you-qiao-jie-toll-free-bridging/">管理自由桥接(Toll-Free Bridging)</a>
       </li>
     
   </ul>

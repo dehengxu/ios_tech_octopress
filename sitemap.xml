@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://ios.dehengxu.com/blog/di-san-fang-xiao-xi-tui-song-fu-wu-dui-bi/</loc>
+    <lastmod>2015-10-10T11:15:55+08:00</lastmod>
+  </url>
+  <url>
     <loc>http://ios.dehengxu.com/blog/diagram-of-a-activitys-life-cycle/</loc>
     <lastmod>2015-10-05T11:31:52+08:00</lastmod>
   </url>
@@ -254,21 +258,6 @@
     <loc>http://ios.dehengxu.com/blog/categories/android/</loc>
   </url>
   <url>
-    <loc>http://ios.dehengxu.com/posts/2/</loc>
-  </url>
-  <url>
-    <loc>http://ios.dehengxu.com/posts/3/</loc>
-  </url>
-  <url>
-    <loc>http://ios.dehengxu.com/posts/4/</loc>
-  </url>
-  <url>
-    <loc>http://ios.dehengxu.com/posts/5/</loc>
-  </url>
-  <url>
-    <loc>http://ios.dehengxu.com/posts/6/</loc>
-  </url>
-  <url>
-    <loc>http://ios.dehengxu.com/posts/7/</loc>
+    <loc>http://ios.dehengxu.com/blog/categories/ios/</loc>
   </url>
 </urlset>

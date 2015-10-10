@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Android | 逆风@[iOS,android,nil]]]></title>
-  <link href="http://ios.dehengxu.com/blog/categories/android/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Ios, | 逆风@[iOS,android,nil]]]></title>
+  <link href="http://ios.dehengxu.com/blog/categories/ios/atom.xml" rel="self"/>
   <link href="http://ios.dehengxu.com/"/>
   <updated>2015-10-10T13:13:25+08:00</updated>
   <id>http://ios.dehengxu.com/</id>
@@ -51,32 +51,6 @@
 <p>客户端支持: iOS, Android</p>
 
 <p>服务端支持: Java, php, python, nodejs</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Diagram of a Activity's Life Cycle]]></title>
-    <link href="http://ios.dehengxu.com/blog/diagram-of-a-activitys-life-cycle/"/>
-    <updated>2015-10-05T11:31:52+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/diagram-of-a-activitys-life-cycle</id>
-    <content type="html"><![CDATA[<p>A diagram present Activity&rsquo;s life cycle</p>
-
-<p>Two Activity class named <code>A</code> and <code>B</code>, <code>A</code> is app entry.</p>
-
-<p>Calling order is A call B , then B back to A.</p>
-
-<p>1) Action: Launch App
-  onCreate(A) -> onStart(A) -> onResume(A)</p>
-
-<p>2) Action: startActivity(B)
-  onPause(A) -> onCreate(B) -> onStart(B) -> onResume(B) -> onStop(A)</p>
-
-<p>3) Action: goBack to Activity A
-  onPause(B) -> onRestart(A) -> onStart(A) -> onResume(A) -> onStop(B) -> onDestory(B)</p>
-
-<blockquote><p>If B has been hold, it would not be onDestory(B)</p></blockquote>
-
-<p><img src="/images/refered/activity_life_cycle.png" alt="lifecycle" /></p>
 ]]></content>
   </entry>
   
