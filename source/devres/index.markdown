@@ -11,7 +11,7 @@ footer: true
 
 iOS 个版本适配率 [Ref](http://www.macrumors.com/2015/09/17/early-ios-9-adoption-rate/)
 
-![ios_adoption_rate](/images/refered/ios_os_adoption_rate.png)
+![ios_adoption_rate](/images/refered/ios_os_adoption_rate.jpg)
 
 [iOS 开发库]({{site.url}}/blog/ios-chang-yong-di-san-fang-ku)
 
