@@ -39,6 +39,10 @@ footer: true
 
 ## Android 开发相关资源
 
+Android 系统分布律 [Ref](http://tech.163.com/15/0203/05/AHGP13N0000915BF.html)
+
+![android_rate](/images/refered/android_os_rate.png)
+
 <a href="http://developer.android.com/index.html" target="_blank">Android 官方开发文档</a>
 
 <a href="http://androidperformance.com/" target="_blank">一个专注于安卓性能的网站</a>
