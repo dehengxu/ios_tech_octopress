@@ -9,6 +9,10 @@ footer: true
 
 ## iOS 开发相关资源
 
+iOS 个版本适配率 [Ref](http://www.macrumors.com/2015/09/17/early-ios-9-adoption-rate/)
+
+![ios_adoption_rate](/images/refered/ios_os_adoption_rate.jpg)
+
 [iOS 开发库]({{site.url}}/blog/ios-chang-yong-di-san-fang-ku)
 
 [iOS 开发工具]({{site.url}}/blog/useful-tools-for-xcode)
@@ -38,6 +42,10 @@ footer: true
 <a href="http://www.raywenderlich.com/" target="_blank">Raywenderlich</a>
 
 ## Android 开发相关资源
+
+Android 系统分布律 [Ref](http://tech.163.com/15/0203/05/AHGP13N0000915BF.html)
+
+![android_adoption_rate](/images/refered/android_os_adoption_rate.png)
 
 <a href="http://developer.android.com/index.html" target="_blank">Android 官方开发文档</a>
 
