@@ -9,7 +9,7 @@
   <meta name="author" content="Deheng Xu">
 
   
-  <meta name="description" content="第三方消息推送服务对比 Oct 10th, 2015 11:15 am | Comments Diagram of a Activity's Life Cycle Oct 5th, 2015 11:31 am | Comments Bash Usage Sep 22nd, 2015 9:48 &hellip;">
+  <meta name="description" content="MQTT Resources Oct 12th, 2015 2:05 pm | Comments 第三方消息推送服务对比 Oct 10th, 2015 11:15 am | Comments Diagram of a Activity's Life Cycle Oct 5th, 2015 11: &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,46 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" ><a href="/blog/mqtt-resources/">MQTT Resources</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-10-12T14:05:57+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>2:05 pm</span></time>
+        
+           | <a href="/blog/mqtt-resources/#disqus_thread"
+             data-disqus-identifier="http://ios.dehengxu.com/blog/mqtt-resources/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+
+<!-- <div class="entry-content"><p><a href="https://github.com/mcollina/mosca/wiki/Mosca-as-a-standalone-service." target="_blank">mosca</a></p>
+
+<p><a href="https://github.com/vbotnaru/mqtt" target="_blank">mqtt a nodejs client</a></p>
+
+<p><a href="http://mosquitto.org/" target="_blank">mosquitto  MQTT server</a></p>
+
+<p><a href="https://github.com/mqttjs/mqtt-server" target="_blank">mqtt-server</a></p>
+</div> -->
+
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -792,79 +832,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" ><a href="/blog/shi-yong-cocoapods-lai-guan-li-ji-yu-svn-de-zi-xiang-mu/">使用 Cocoapods 来管理基于 Svn 的子项目</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-09-08T16:01:14+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>8</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>4:01 pm</span></time>
-        
-           | <a href="/blog/shi-yong-cocoapods-lai-guan-li-ji-yu-svn-de-zi-xiang-mu/#disqus_thread"
-             data-disqus-identifier="http://ios.dehengxu.com/blog/shi-yong-cocoapods-lai-guan-li-ji-yu-svn-de-zi-xiang-mu/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-
-<!-- <div class="entry-content"><p>首先，感谢 clarkda 为cocoapods 提供了这个 repo-svn 的 svn 支持插件。</p>
-
-<p>根据 <a href="https://github.com/clarkda/cocoapods-repo-svn">https://github.com/clarkda/cocoapods-repo-svn</a> 上的说明</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>
-</span><span class='line'>gem install cocoapods-repo-svn 来安装 repo-svn 插件。
-</span><span class='line'>
-</span><span class='line'>pod repo-svn add my-svn-repo http://svn-repo-url 添加你的私有 svn 项目仓库
-</span><span class='line'>
-</span><span class='line'>pod repo-svn update my-svn-repo 更新项目
-</span><span class='line'>
-</span><span class='line'>pod repo-svn remove my-svn-repo 删除项目
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>其实不添加项目也是可以的，需要为 svn 上的子项目添加 .podspec 文件，使项目可被 cocoapods 识别并管理，并为你自己的项目添加 Podfile 文件。</p>
-
-<h4>第一步：为你用到的所有子项目，添加 podspec</h4>
-
-<p><code>pod spec create my-svn-repo</code></p>
-
-<p>编辑 libname.podspec 文件，主要设置好 s.source, s.source_files, s.exclude_files, s.framework, s.library 字段。</p>
-
-<p>其中 <code>s.source</code> 的字段需要把地址改成 <code>:svn =&gt; "http://svnurl/"</code></p>
-
-<h4>第二步：编辑 Podfiles</h4>
-
-<p>加上 <code>pod 'my-svn-repo', :svn =&gt; "http://10.255.223.227:81/svn/readersdk/cppsdk/branches/2.2.1_buildReaderKit"</code></p>
-
-<p>现在，就可以享受 cocoapods 为你的 svn 项目带来自动化配置管理了。</p>
-
-<p><a href="http://www.dehengxu.com/%E4%BD%BF%E7%94%A8-cocoapods-%E6%9D%A5%E7%AE%A1%E7%90%86%E5%9F%BA%E4%BA%8E-svn-%E9%A1%B9%E7%9B%AE/">这里可以讨论一些问题</a></p>
-</div> -->
-
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -878,6 +845,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/mqtt-resources/">MQTT Resources</a>
+      </li>
     
       <li class="post">
         <a href="/blog/di-san-fang-xiao-xi-tui-song-fu-wu-dui-bi/">第三方消息推送服务对比</a>
@@ -953,10 +924,6 @@
     
       <li class="post">
         <a href="/blog/timer-hui-diao-shi-jian-bei-uijiao-hu-zu-sai-de-jie-jue-ban-fa/">Timer ⌚回调事件被UI交互阻塞的解决办法</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/tong-guo-clang-fen-xi-block-de-ji-zhi/">通过 Clang 分析 Block 的机制</a>
       </li>
     
   </ul>

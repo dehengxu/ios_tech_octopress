@@ -5,14 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Bash 使用技巧 - 逆风@[iOS,android,nil]</title>
+  <title>MQTT Resources - 逆风@[iOS,android,nil]</title>
   <meta name="author" content="Deheng Xu">
 
   
-  <meta name="description" content="递归搜索目录下所有文件内容 bash 1
-ls ./**/*.ext | xargs grep algorit 搜索当前目录下所有的 ext 文件，并且匹配是否包含关键词 algorit 查找进程 1
-es -ef|grep name 查找进程名包含 name 的进程 查看开启的端口 1
-lsof &hellip;">
+  <meta name="description" content="mosca mqtt a nodejs client mosquitto MQTT server mqtt-server
+">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -21,7 +19,7 @@ lsof &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://ios.dehengxu.com/blog/bash-shi-yong-ji-qiao/">
+  <link rel="canonical" href="http://ios.dehengxu.com/blog/mqtt-resources/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="逆风@[iOS,android,nil]" type="application/atom+xml">
@@ -84,7 +82,7 @@ lsof &hellip;">
   
   <header>
     
-      <h1 class="entry-title">Bash 使用技巧</h1>
+      <h1 class="entry-title">MQTT Resources</h1>
     
     
       <p class="meta">
@@ -93,7 +91,7 @@ lsof &hellip;">
 
 
 
-<time class='entry-date' datetime='2015-08-23T23:11:02+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2015</span></span> <span class='time'>11:11 pm</span></time>
+<time class='entry-date' datetime='2015-10-12T14:05:57+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>2:05 pm</span></time>
         
            | <a href="#disqus_thread"
              data-disqus-identifier="http://ios.dehengxu.com">Comments</a>
@@ -103,31 +101,13 @@ lsof &hellip;">
   </header>
 
 
-<div class="entry-content"><h4>递归搜索目录下所有文件内容</h4>
+<div class="entry-content"><p><a href="https://github.com/mcollina/mosca/wiki/Mosca-as-a-standalone-service." target="_blank">mosca</a></p>
 
-<p>bash</p>
+<p><a href="https://github.com/vbotnaru/mqtt" target="_blank">mqtt a nodejs client</a></p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>ls ./**/*.ext | xargs grep algorit</span></code></pre></td></tr></table></div></figure>
+<p><a href="http://mosquitto.org/" target="_blank">mosquitto  MQTT server</a></p>
 
-
-<blockquote><p>搜索当前目录下所有的 ext 文件，并且匹配是否包含关键词 <code>algorit</code></p></blockquote>
-
-<h4>查找进程</h4>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>es -ef|grep name</span></code></pre></td></tr></table></div></figure>
-
-
-<blockquote><p>查找进程名包含 <code>name</code> 的进程</p></blockquote>
-
-<h4>查看开启的端口</h4>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>lsof -i:8080</span></code></pre></td></tr></table></div></figure>
-
-
-<blockquote><p>查看使用端口 8080 的进程</p></blockquote>
+<p><a href="https://github.com/mqttjs/mqtt-server" target="_blank">mqtt-server</a></p>
 </div>
 
 
@@ -143,14 +123,8 @@ lsof &hellip;">
 
 
 
-<time class='entry-date' datetime='2015-08-23T23:11:02+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2015</span></span> <span class='time'>11:11 pm</span></time>
+<time class='entry-date' datetime='2015-10-12T14:05:57+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>2:05 pm</span></time>
       
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/bash/'>bash</a>
-  
-</span>
 
 
     </p>
@@ -164,10 +138,8 @@ lsof &hellip;">
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/gcd-de-chang-gui-yong-fa/" title="Previous Post: GCD 的常规用法">&laquo; GCD 的常规用法</a>
+        <a class="basic-alignment left" href="/blog/di-san-fang-xiao-xi-tui-song-fu-wu-dui-bi/" title="Previous Post: 第三方消息推送服务对比">&laquo; 第三方消息推送服务对比</a>
       
-      
-        <a class="basic-alignment right" href="/blog/use-dispatch-source-timer/" title="Next Post: Use dispatch source timer">Use dispatch source timer &raquo;</a>
       
     </p>
   </footer>
@@ -301,8 +273,8 @@ lsof &hellip;">
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://ios.dehengxu.com/blog/bash-shi-yong-ji-qiao/';
-        var disqus_url = 'http://ios.dehengxu.com/blog/bash-shi-yong-ji-qiao/';
+        var disqus_identifier = 'http://ios.dehengxu.com/blog/mqtt-resources/';
+        var disqus_url = 'http://ios.dehengxu.com/blog/mqtt-resources/';
         var disqus_script = 'embed.js';
       
     (function () {
