@@ -4,7 +4,7 @@
   <title><![CDATA[逆风@[iOS,android,nil]]]></title>
   <link href="http://ios.dehengxu.com/atom.xml" rel="self"/>
   <link href="http://ios.dehengxu.com/"/>
-  <updated>2015-10-19T19:21:46+08:00</updated>
+  <updated>2015-10-19T19:22:45+08:00</updated>
   <id>http://ios.dehengxu.com/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
@@ -23,17 +23,6 @@
 <blockquote><p>第三方图形库</p></blockquote>
 
 <p><a href="http://www.achartengine.org/">http://www.achartengine.org/</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Objection a Ioc Framework Like Guice in Ios Development]]></title>
-    <link href="http://ios.dehengxu.com/blog/objection-a-ioc-framework-like-guice-in-ios-development/"/>
-    <updated>2015-10-15T00:00:00+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/objection-a-ioc-framework-like-guice-in-ios-development</id>
-    <content type="html"><![CDATA[<p><a href="http://baike.baidu.com/link?url=4wvgPuB9JnOFcXEL60Odelojjm30-jHmoUDDOOwv5eBzVy9S1diIypWEYX45s4bBbS84H3UNWdWUaaLEBbHLua">Guice 百度百科</a></p>
-
-<p><a href="http://objection-framework.org/">Objection</a></p>
 ]]></content>
   </entry>
   
@@ -1497,6 +1486,15 @@ dispatch_async(q1, ^ {
 
 
 <p>但是 dispatch_barrier_async 只有提交到自己创建的并发队列时，才有上面的效果。如果是全局队列，或者串行队列，那么 dispatch_barrier_async 和 dispatch_async 是等效的。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[线程和进程间的区别]]></title>
+    <link href="http://ios.dehengxu.com/blog/xian-cheng-he-jin-cheng-jian-de-qu-bie/"/>
+    <updated>2015-08-23T15:13:25+08:00</updated>
+    <id>http://ios.dehengxu.com/blog/xian-cheng-he-jin-cheng-jian-de-qu-bie</id>
+    <content type="html"><![CDATA[<p><a href="http://www.programmerinterview.com/index.php/operating-systems/thread-vs-process/">译自</a></p>
 ]]></content>
   </entry>
   
