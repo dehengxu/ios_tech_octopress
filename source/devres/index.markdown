@@ -43,7 +43,9 @@ iOS 个版本适配率 [Ref](http://www.macrumors.com/2015/09/17/early-ios-9-ado
 
 ## Android 开发相关资源
 
-Android 系统分布律 [Ref](http://tech.163.com/15/0203/05/AHGP13N0000915BF.html)
+Android 系统分布 [Ref](http://tech.163.com/15/0203/05/AHGP13N0000915BF.html)
+
+[Android 第三方库](/blog/android-chang-yong-di-san-fang-ku)
 
 ![android_adoption_rate](/images/refered/android_os_adoption_rate.png)
 
