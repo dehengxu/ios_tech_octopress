@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ""Objection" a IoC framework like Guice in iOS development"
+title: "\"Objection\" a IoC framework like Guice in iOS development"
 date: 2015-10-15 15:16:10 +0800
 comments: true
 published: false
