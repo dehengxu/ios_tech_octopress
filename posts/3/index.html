@@ -9,7 +9,7 @@
   <meta name="author" content="Deheng Xu">
 
   
-  <meta name="description" content="KVC 机制 Aug 28th, 2015 5:16 pm | Comments Use Dispatch Source Timer Aug 27th, 2015 4:58 pm | Comments Bash 使用技巧 Aug 23rd, 2015 11:11 pm | Comments &hellip;">
+  <meta name="description" content="使用 NSValue 封装任意结构体 Aug 29th, 2015 12:55 pm | Comments KVO 机制 Aug 28th, 2015 6:36 pm | Comments KVC 机制 Aug 28th, 2015 5:16 pm | Comments Use Dispatch &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,178 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" ><a href="/blog/shi-yong-nsvalue-feng-zhuang-ren-yi-jie-gou-ti/">使用 NSValue 封装任意结构体</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-08-29T12:55:21+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>29</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>12:55 pm</span></time>
+        
+           | <a href="/blog/shi-yong-nsvalue-feng-zhuang-ren-yi-jie-gou-ti/#disqus_thread"
+             data-disqus-identifier="http://ios.dehengxu.com/blog/shi-yong-nsvalue-feng-zhuang-ren-yi-jie-gou-ti/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+
+<!-- <div class="entry-content"><h2>NSValue</h2>
+
+<p>装包，拆包，分别用到 <code>value:withObjCType:</code> 和 <code>getValue:</code>两个方法。</p>
+
+<p>第一个是通过 type 类型，将 value 封装成 NSValue 对象。</p>
+
+<p>后者是通过 NSValue 对象，获取值型数据</p>
+
+<p>假设有一个自定义结构体</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>struct Node {
+</span><span class='line'>    struct Node *next;
+</span><span class='line'>    char *name;
+</span><span class='line'>    int age;
+</span><span class='line'>};</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>struct Node *header = (struct Node *)malloc(sizeof(struct Node));
+</span><span class='line'>header-&gt;name = "Nicholasxu";
+</span><span class='line'>header-&gt;age = 89;    
+</span><span class='line'>NSValue *value = [NSValue value:header withObjCType:@encode(struct Node)];</span></code></pre></td></tr></table></div></figure>
+
+
+<p>通过 <code>@encode</code> 将C 类型转换成 Objective-C 能识别的 char * 形式。</p>
+
+<p>解包方法如下：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>struct Node *chain = (struct Node *)malloc(sizeof(struct Node));
+</span><span class='line'>[value getValue:chain];
+</span><span class='line'>NSLog(@"%s", chain-&gt;name);
+</span><span class='line'>NSLog(@"%s", chain-&gt;age);
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>先分配结构题内存 <code>chain</code>，再将数据解包出来，并填充 <code>chain</code> 的空间。</p>
+
+<h3>内存布局</h3>
+
+<p>上面的例子中，<code>value</code> 和 header 都是在堆上分配的空间并且 header 的内存和 value 内部的数据是同一个内存空间，要做好 header 的内存管理工作，否则会导致 value 无法访问内部数据(出现野指针)。而且 chain 的数据是从 value 中复制过来的。</p>
+</div> -->
+
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" ><a href="/blog/kvo-ji-zhi/">KVO 机制</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-08-28T18:36:18+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>6:36 pm</span></time>
+        
+           | <a href="/blog/kvo-ji-zhi/#disqus_thread"
+             data-disqus-identifier="http://ios.dehengxu.com/blog/kvo-ji-zhi/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+
+<!-- <div class="entry-content"><h2>KVO : 键值观察 (Key-value observing)</h2>
+
+<p>KVO 是一个允许一个对象直接接受来自另一个对象属性改变时发送的通知的机制。KVO 能成为应用内部重要的因素。它是采用了MVC设计模式的应用程序中对象间的一种通信模式。比如，你可以使用它来同步 view 和 controller 层中模型对象之间的状态。典型情况下，控制器对象观察模型对象，试图对象观察控制器对象或者模型对象。</p>
+
+<blockquote><p>注意：虽然 UIKit 框架通常不支持 KVO，你仍然能够在自定义的对象中实现它，包括自定义的视图。</p></blockquote>
+
+<p><img src="/images/refered/kvo.jpg" alt="kvo" /></p>
+
+<p>使用 KVO，一个对象可以观察另一个对象的任意的属性，包括简单的附属值，对一的关系和对多的关系。一个对象能找出当前属性先前的值。对多关系的观察者被通告的内容不仅有类型的改变，也被告知哪个对象在改变中被调用。</p>
+
+<p>作为一个通知机制，KVO 和 <code>NSNotification</code> 和 <code>NSNotificationCenter</code> 提供的机制类似，但是也有一些明显的不同。不同于中央对象来对所有注册为观察者的对象广播通知，当属性值的改变发生时，KVO 通知直接发送给观察对象。</p>
+
+<h3>实现 KVO</h3>
+
+<p>根类 <code>NSObject</code>，提供了基本的 KVO 实现，你很少需要重载它。因此所有的 Cocoa objects 都继承了 KVO 的能力。你必须按照这些步骤来接收某个属性的 KVO 通知。</p>
+
+<ul>
+<li><p>你必须确保被观察的类对于你想观察的属性是符合 KVO 规范。 KVO 兼容性需要被观察对象的类也是 KVO 兼容的，而且也允许为该属性自动发送观察者通知，或者手动实现该属性的 KVO 。</p></li>
+<li><p>添加一个观察者到一个值会发生改变的对象。你可以通过调用 <code>addObserver:forKeyPath:optios:context:</code> 来达到这个目的。观察者是应用中的另一个对象。</p></li>
+<li><p>在观察者对象中，实现方法 <code>observeValueForKeyPath:ofObject:change:context:</code> 。当被观察对象的属性值发生改变的时候这个方法会被调用。</p></li>
+</ul>
+
+
+<h3>KVO 是绑定(OS X)的必须部分</h3>
+
+<p>Cocoa 绑定是一个允许你不用写一些胶水代码就能确保模型中的值和你应用程序中的视图层同步的 OS X 技术。通过 Interface Builder 检查器中，你就能在视图属性和一些数据之间建立起协调链接，“绑定”他们就像其中一个发生改变会在其他身上反映出来。KVO，和 KVC 还有 KVB 都是 Cocoa 绑定的基础技术。</p>
+
+<h3>后话</h3>
+
+<p><img src="/images/refered/kvo_proj_snap1.png" alt="KVO runtime" /></p>
+
+<p>从上图可以看出 KVO 是一个同步调用过程通过 _NSSetObjectValueAndNotify 函数，在设置对象值的同时向观察对象发送变化通知，同时会通过 <code>NSKeyValueObservingOptions</code> 类型来区分 KVO 发生的类型，并在 <code>- (void)observeValueForKeyPath:(nullable NSString *)keyPath ofObject:(nullable id)object change:(nullable NSDictionary *)change context:(nullable void *)context</code> 的 change 字典对象中传递相关值的变化信息(old value, new value 等)。</p>
+
+<p>同时需要注意的是观察者是通过弱引用方式加入到被观察对象中的，所以当不需要继续观察的时候，请使用<code>removeObserver:forKeyPath:</code> 移除不再需要的观察者以免引起运行时异常。</p>
+
+<h3>前提文章</h3>
+
+<p><a href="https://developer.apple.com/library/ios/documentation/General/Conceptual/DevPedia-CocoaCore/KeyValueCoding.html#//apple_ref/doc/uid/TP40008195-CH25-SW1">Key-value coding</a></p>
+
+<h3>相关的文章</h3>
+
+<p><a href="https://developer.apple.com/library/ios/documentation/General/Conceptual/DevPedia-CocoaCore/MVC.html#//apple_ref/doc/uid/TP40008195-CH32-SW1">Model-View-Controller</a></p>
+
+<p><a href="https://developer.apple.com/library/ios/documentation/General/Conceptual/DevPedia-CocoaCore/DynamicBinding.html#//apple_ref/doc/uid/TP40008195-CH15-SW1">Dynamic binding</a></p>
+
+<h3>权威论述</h3>
+
+<p><a href="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/KeyValueObserving/KeyValueObserving.html#//apple_ref/doc/uid/10000177i">Key-value Observing Programming Guide</a></p>
+
+<hr />
+
+<p><a href="https://developer.apple.com/library/ios/documentation/General/Conceptual/DevPedia-CocoaCore/KVO.html#//apple_ref/doc/uid/TP40008195-CH16-SW1">Ref</a></p>
+</div> -->
+
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -568,583 +740,6 @@ dispatch_async(q1, ^ {
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" ><a href="/blog/timer-hui-diao-shi-jian-bei-uijiao-hu-zu-sai-de-jie-jue-ban-fa/">Timer ⌚回调事件被UI交互阻塞的解决办法</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-08-23T14:59:03+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2015</span></span> <span class='time'>2:59 pm</span></time>
-        
-           | <a href="/blog/timer-hui-diao-shi-jian-bei-uijiao-hu-zu-sai-de-jie-jue-ban-fa/#disqus_thread"
-             data-disqus-identifier="http://ios.dehengxu.com/blog/timer-hui-diao-shi-jian-bei-uijiao-hu-zu-sai-de-jie-jue-ban-fa/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-
-<!-- <div class="entry-content"><p>分析原因：</p>
-
-<p>UI 事件运行在主线程，并且UI 事件的运行模式下 runloop 过滤掉了 timer 事件。</p>
-
-<p>回顾一下 runloop 的运行机制我们知道，runloop 是一个处理事件的循环，为了提高效率和隔离事件，它将事件进行了模式划分，通过 Runloop mode 的方式进行分类，并提供了 <code>runMode:beforeDate:</code> 方法 或者 <code>CFRunLoopRunInMode(CFStringRef mode, CFTimeInterval seconds, Boolean returnAfterSourceHandled)</code> 函数。所以 runloop 在 UI 事件进行中，始终运行在 NSRunLoopCommonModes 模式下。</p>
-
-<h3>Runloop 的模式有这几种：</h3>
-
-<p><a href="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/Multithreading/RunLoopManagement/RunLoopManagement.html" target="_blank">Runloop modes</a></p>
-
-<h4>Default: NSDefaultRunLoopMode(Cocoa), kCFRunLoopDefaultMode(Core Foundation)</h4>
-
-<blockquote><p>The default mode is the one used for most operations. Most of the time, you should use this mode to start your run loop and configure your input sources.</p></blockquote>
-
-<h4>Connection: NSConnectionReplyMode (Cocoa)</h4>
-
-<blockquote><p>Cocoa uses this mode in conjunction with NSConnection objects to monitor replies. You should rarely need to use this mode yourself.</p></blockquote>
-
-<h4>Modal: NSModalPanelRunLoopMode (Cocoa)</h4>
-
-<blockquote><p>Cocoa uses this mode to identify events intended for modal panels.</p></blockquote>
-
-<h4>Event tracking: NSEventTrackingRunLoopMode (Cocoa)</h4>
-
-<blockquote><p>Cocoa uses this mode to restrict incoming events during mouse-dragging loops and other sorts of user interface tracking loops.</p></blockquote>
-
-<h4>Common modes: NSRunLoopCommonModes (Cocoa), kCFRunLoopCommonModes (Core Foundation)</h4>
-
-<blockquote><p>This is a configurable group of commonly used modes. Associating an input source with this mode also associates it with each of the modes in the group. For Cocoa applications, this set includes the default, modal, and event tracking modes by default. Core Foundation includes just the default mode initially. You can add custom modes to the set using the CFRunLoopAddCommonMode function.</p></blockquote>
-
-<h3>解决方案有以下两种：</h3>
-
-<h4>1. 在其他线程上运行 timer，并在需要的时候将操作发送到主线程</h4>
-
-<p>objc:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-</pre></td><td class='code'><pre><code class='Objective-C'><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">startTimer</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="bp">NSThread</span> <span class="o">*</span><span class="n">th</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">NSThread</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithTarget</span><span class="p">:</span><span class="nb">self</span> <span class="nl">selector</span><span class="p">:</span><span class="k">@selector</span><span class="p">(</span><span class="n">threadRun</span><span class="p">)</span> <span class="nl">object</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
-</span><span class='line'>    <span class="p">[</span><span class="n">th</span> <span class="n">start</span><span class="p">];</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">addInfinitTimerToCurrentRunloopWithTarget:</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nv">target</span> <span class="nf">selector:</span><span class="p">(</span><span class="kt">SEL</span><span class="p">)</span><span class="nv">selector</span> <span class="nf">inMode:</span><span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">mode</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="bp">NSTimer</span> <span class="o">*</span><span class="n">timer</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSTimer</span> <span class="nl">timerWithTimeInterval</span><span class="p">:</span><span class="mf">1.0</span> <span class="nl">target</span><span class="p">:</span><span class="nb">self</span> <span class="nl">selector</span><span class="p">:</span><span class="k">@selector</span><span class="p">(</span><span class="nl">timerRun</span><span class="p">:)</span> <span class="nl">userInfo</span><span class="p">:</span><span class="nb">nil</span> <span class="nl">repeats</span><span class="p">:</span><span class="nb">YES</span><span class="p">];</span>
-</span><span class='line'>    <span class="p">[[</span><span class="bp">NSRunLoop</span> <span class="n">currentRunLoop</span><span class="p">]</span> <span class="nl">addTimer</span><span class="p">:</span><span class="n">timer</span> <span class="nl">forMode</span><span class="p">:</span><span class="n">mode</span><span class="p">];</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">threadRun</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="p">[</span><span class="nb">self</span> <span class="nl">addInfinitTimerToCurrentRunloopWithTarget</span><span class="p">:</span><span class="nb">self</span> <span class="nl">selector</span><span class="p">:</span><span class="k">@selector</span><span class="p">(</span><span class="nl">timerRun</span><span class="p">:)</span> <span class="nl">inMode</span><span class="p">:</span><span class="s">@&quot;MyTimerMode&quot;</span><span class="p">];</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">while</span> <span class="p">(</span><span class="nb">YES</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>        <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%s while..&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span><span class="p">);</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="p">[[</span><span class="bp">NSRunLoop</span> <span class="n">currentRunLoop</span><span class="p">]</span> <span class="nl">runMode</span><span class="p">:</span><span class="s">@&quot;MyTimerMode&quot;</span> <span class="nl">beforeDate</span><span class="p">:[</span><span class="bp">NSDate</span> <span class="n">distantFuture</span><span class="p">]];</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">timerRun:</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nv">sender</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;~&quot;</span><span class="p">);</span>
-</span><span class='line'>    <span class="p">[</span><span class="nb">self</span> <span class="nl">performSelectorOnMainThread</span><span class="p">:</span><span class="k">@selector</span><span class="p">(</span><span class="n">someSelector</span><span class="p">)</span> <span class="nl">withObject</span><span class="p">:</span><span class="nb">nil</span> <span class="nl">waitUntilDone</span><span class="p">:</span><span class="nb">YES</span><span class="p">];</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">someSelector</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>  <span class="c1">//....</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>这里用 NSThread 和自定义的计时器模式 <code>@"MyTimerMode"</code> 来实现。</p>
-
-<h4>2.在主线程加入计时器</h4>
-
-<p>objc:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='Objective-C'><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">addInfinitTimerToCurrentRunloopWithTarget:</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nv">target</span> <span class="nf">selector:</span><span class="p">(</span><span class="kt">SEL</span><span class="p">)</span><span class="nv">selector</span> <span class="nf">inMode:</span><span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">mode</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="bp">NSTimer</span> <span class="o">*</span><span class="n">timer</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSTimer</span> <span class="nl">timerWithTimeInterval</span><span class="p">:</span><span class="mf">1.0</span> <span class="nl">target</span><span class="p">:</span><span class="nb">self</span> <span class="nl">selector</span><span class="p">:</span><span class="k">@selector</span><span class="p">(</span><span class="nl">timerRun</span><span class="p">:)</span> <span class="nl">userInfo</span><span class="p">:</span><span class="nb">nil</span> <span class="nl">repeats</span><span class="p">:</span><span class="nb">YES</span><span class="p">];</span>
-</span><span class='line'>    <span class="p">[[</span><span class="bp">NSRunLoop</span> <span class="n">currentRunLoop</span><span class="p">]</span> <span class="nl">addTimer</span><span class="p">:</span><span class="n">timer</span> <span class="nl">forMode</span><span class="p">:</span><span class="n">mode</span><span class="p">];</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">//运行在主线程上</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">[</span><span class="nb">self</span> <span class="nl">addInfinitTimerToCurrentRunloopWithTarget</span><span class="p">:</span><span class="nb">self</span> <span class="nl">selector</span><span class="p">:</span><span class="k">@selector</span><span class="p">(</span><span class="nl">timerRun</span><span class="p">:)</span> <span class="nl">inMode</span><span class="p">:</span><span class="n">NSRunLoopCommonModes</span><span class="p">];</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>让 timer 所运行的 Runloop mode 和UI 滚动事件的 Runloop mode 一致即可。</p>
-</div> -->
-
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" ><a href="/blog/tong-guo-clang-fen-xi-block-de-ji-zhi/">通过 Clang 分析 Block 的机制</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-08-23T08:35:18+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2015</span></span> <span class='time'>8:35 am</span></time>
-        
-           | <a href="/blog/tong-guo-clang-fen-xi-block-de-ji-zhi/#disqus_thread"
-             data-disqus-identifier="http://ios.dehengxu.com/blog/tong-guo-clang-fen-xi-block-de-ji-zhi/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-
-<!-- <div class="entry-content"><h3>简单看一下编译器对 __block 做了什么</h3>
-
-<h4>1. 普通变量在栈空间上</h4>
-
-<p>objc:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>- (void)useBlock
-</span><span class='line'>{
-</span><span class='line'>  int  = 2;
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
-
-
-<p>c++:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>static void _I_Block4Clang_useBlock(Block4Clang * self, SEL _cmd) {
-</span><span class='line'>    int i = 2;
-</span><span class='line'>
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
-
-
-<blockquote><p>很简单的处理——没有任何处理，变量依然分配在了栈空间上。</p></blockquote>
-
-<h4>2. __block 修饰的变量</h4>
-
-<p>objc:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>- (void)useBlock
-</span><span class='line'>{
-</span><span class='line'>  int __block i = 2;
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
-
-
-<p>c++:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>
-</span><span class='line'>struct __Block_byref_i_0 {
-</span><span class='line'>  void *__isa;
-</span><span class='line'>__Block_byref_i_0 *__forwarding;
-</span><span class='line'> int __flags;
-</span><span class='line'> int __size;
-</span><span class='line'> int i;
-</span><span class='line'>};
-</span><span class='line'>
-</span><span class='line'>static void _I_Block4Clang_useBlock(Block4Clang * self, SEL _cmd) {
-</span><span class='line'>    __attribute__((__blocks__(byref))) __Block_byref_i_0 i = {(void*)0,(__Block_byref_i_0 *)&i, 0, sizeof(__Block_byref_i_0), 2};
-</span><span class='line'>
-</span><span class='line'>}
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>我们看到如果是 block 修饰的变量，虽然定义在在栈空间上，但是编译器会将它分配到堆的空间上(编译器的做法是，通过 <code>__Block_byref_i_0</code> 结构来封装变量 <code>i</code>)，这样的好处是 block 可以通过 <code>__Block_byref_i_0 *</code> 指针访问堆上的变量 i 了。</p>
-
-<h3>再看一下编译器对 block 做了什么</h3>
-
-<h4>1. 空 block。</h4>
-
-<p>objc:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>- (void)useBlock
-</span><span class='line'>{
-</span><span class='line'>  ^(){};
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
-
-
-<p>c++:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>//这是 block 的c++定义
-</span><span class='line'>struct __Block4Clang__useBlock_block_impl_0 {
-</span><span class='line'>  //这是 block 实现的结构体类型
-</span><span class='line'>  struct __block_impl impl;
-</span><span class='line'>  //这是 block 描述信息的结构体类型
-</span><span class='line'>  struct __Block4Clang__useBlock_block_desc_0* Desc;
-</span><span class='line'>
-</span><span class='line'>  //这是构造函数
-</span><span class='line'>  __Block4Clang__useBlock_block_impl_0(void *fp, struct __Block4Clang__useBlock_block_desc_0 *desc, int flags=0) {
-</span><span class='line'>      //指明了 block 类型(分配在栈上的block)
-</span><span class='line'>    impl.isa = &_NSConcreteStackBlock;
-</span><span class='line'>    impl.Flags = flags;
-</span><span class='line'>    //对应的函数指针，这才是实际执行的代码
-</span><span class='line'>    impl.FuncPtr = fp;
-</span><span class='line'>    //block描述体，包含了数据信息
-</span><span class='line'>    Desc = desc;
-</span><span class='line'>  }
-</span><span class='line'>};
-</span><span class='line'>
-</span><span class='line'>/**
-</span><span class='line'> * block 被转成的 c++ 函数定义
-</span><span class='line'> * struct __Block4Clang__useBlock_block_impl_0 *__cself 指向 block 对象本身
-</span><span class='line'> */
-</span><span class='line'>static void __Block4Clang__useBlock_block_func_0(struct __Block4Clang__useBlock_block_impl_0 *__cself) {
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>    }
-</span><span class='line'>//block 描述信息的结构申明
-</span><span class='line'>static struct __Block4Clang__useBlock_block_desc_0 {
-</span><span class='line'>  size_t reserved;
-</span><span class='line'>  size_t Block_size;
-</span><span class='line'>} __Block4Clang__useBlock_block_desc_0_DATA = { 0, sizeof(struct __Block4Clang__useBlock_block_impl_0)};
-</span><span class='line'>
-</span><span class='line'>//实际调用 block 的函数
-</span><span class='line'>static void _I_Block4Clang_useBlock(Block4Clang * self, SEL _cmd) {
-</span><span class='line'>
-</span><span class='line'>    ((void (*)())&__Block4Clang__useBlock_block_impl_0((void *)__Block4Clang__useBlock_block_func_0, &__Block4Clang__useBlock_block_desc_0_DATA));
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>2.引用栈变量并修改它</h4>
-
-<p>objc:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>- (void)useBlock
-</span><span class='line'>{
-</span><span class='line'>    __block int i = 2;
-</span><span class='line'>    ^(){
-</span><span class='line'>        i = 8;
-</span><span class='line'>    };
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
-
-
-<p>c++:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>struct __Block_byref_i_0 {
-</span><span class='line'>  void *__isa;
-</span><span class='line'>__Block_byref_i_0 *__forwarding;
-</span><span class='line'> int __flags;
-</span><span class='line'> int __size;
-</span><span class='line'> int i;
-</span><span class='line'>};
-</span><span class='line'>
-</span><span class='line'>struct __Block4Clang__useBlock_block_impl_0 {
-</span><span class='line'>  struct __block_impl impl;
-</span><span class='line'>  struct __Block4Clang__useBlock_block_desc_0* Desc;
-</span><span class='line'>
-</span><span class='line'>  //i 变量被封装到了 __Block_byref_i_0 结构内部
-</span><span class='line'>  __Block_byref_i_0 *i; // by ref
-</span><span class='line'>  __Block4Clang__useBlock_block_impl_0(void *fp, struct __Block4Clang__useBlock_block_desc_0 *desc, __Block_byref_i_0 *_i, int flags=0) : i(_i-&gt;__forwarding) {
-</span><span class='line'>    impl.isa = &_NSConcreteStackBlock;
-</span><span class='line'>    impl.Flags = flags;
-</span><span class='line'>    impl.FuncPtr = fp;
-</span><span class='line'>    Desc = desc;
-</span><span class='line'>  }
-</span><span class='line'>};
-</span><span class='line'>static void __Block4Clang__useBlock_block_func_0(struct __Block4Clang__useBlock_block_impl_0 *__cself) {
-</span><span class='line'>  __Block_byref_i_0 *i = __cself-&gt;i; // bound by ref
-</span><span class='line'>          //访问堆上的变量i，达到 block 可以修改被引用的变量的目的。
-</span><span class='line'>        (i-&gt;__forwarding-&gt;i) = 8;
-</span><span class='line'>    }
-</span><span class='line'>
-</span><span class='line'>/*这里增加了一个 copy 函数，和 dispose 函数，分别用来复制 block 到堆中，释放堆上的 block 对象。*/
-</span><span class='line'>
-</span><span class='line'>//通过  _Block_object_assign 将src-&gt;i 内容复制到 dst-&gt;i（我们可以推测，src 就是栈上的空间，dst就是堆上的空间，只有这样才能解释当 useBlock 的生命周期结束后，为什么 block 依然还能够执行）
-</span><span class='line'>static void __Block4Clang__useBlock_block_copy_0(struct __Block4Clang__useBlock_block_impl_0*dst, struct __Block4Clang__useBlock_block_impl_0*src) {_Block_object_assign((void*)&dst-&gt;i, (void*)src-&gt;i, 8/*BLOCK_FIELD_IS_BYREF*/);}
-</span><span class='line'>//dispose 工具函数通过 _Block_object_dispose 来释放 src-&gt;i
-</span><span class='line'>static void __Block4Clang__useBlock_block_dispose_0(struct __Block4Clang__useBlock_block_impl_0*src) {_Block_object_dispose((void*)src-&gt;i, 8/*BLOCK_FIELD_IS_BYREF*/);}
-</span><span class='line'>
-</span><span class='line'>static struct __Block4Clang__useBlock_block_desc_0 {
-</span><span class='line'>  size_t reserved;
-</span><span class='line'>  size_t Block_size;
-</span><span class='line'>  void (*copy)(struct __Block4Clang__useBlock_block_impl_0*, struct __Block4Clang__useBlock_block_impl_0*);
-</span><span class='line'>  void (*dispose)(struct __Block4Clang__useBlock_block_impl_0*);
-</span><span class='line'>} __Block4Clang__useBlock_block_desc_0_DATA = { 0, sizeof(struct __Block4Clang__useBlock_block_impl_0), __Block4Clang__useBlock_block_copy_0, __Block4Clang__useBlock_block_dispose_0};
-</span><span class='line'>
-</span><span class='line'>//编译器将 useBlock 方法，转换成了 c++ 函数，和runtime的风格一样
-</span><span class='line'>static void _I_Block4Clang_useBlock(Block4Clang * self, SEL _cmd) {
-</span><span class='line'>  //在这里将 i 封装到了 __Block_byref_i_0 结构中
-</span><span class='line'>    __attribute__((__blocks__(byref))) __Block_byref_i_0 i = {(void*)0,(__Block_byref_i_0 *)&i, 0, sizeof(__Block_byref_i_0), 2};
-</span><span class='line'>    //这里才最终执行了 block 调用过程，并将函数指针(__Block4Clang__useBlock_block_func_0)，数据描述指针(&__Block4Clang__useBlock_block_desc_0_DATA)，数据封装(&i，这里的 i 是 __Block_byref_i_0 对象地址)
-</span><span class='line'>    ((void (*)())&__Block4Clang__useBlock_block_impl_0((void *)__Block4Clang__useBlock_block_func_0, &__Block4Clang__useBlock_block_desc_0_DATA, (__Block_byref_i_0 *)&i, 570425344));
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>3.引用栈变量，但不修改它</h4>
-
-<p>objc:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>- (void)useBlock
-</span><span class='line'>{
-</span><span class='line'>    int i = 2;
-</span><span class='line'>    ^(){
-</span><span class='line'>        int j = i;
-</span><span class='line'>        j++;
-</span><span class='line'>        printf("i = %d, j = %d\n", i, j);
-</span><span class='line'>    }();
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
-
-
-<p>c++:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>struct __Block4Clang__useBlock_block_impl_0 {
-</span><span class='line'>  struct __block_impl impl;
-</span><span class='line'>  struct __Block4Clang__useBlock_block_desc_0* Desc;
-</span><span class='line'>  int i;
-</span><span class='line'>  __Block4Clang__useBlock_block_impl_0(void *fp, struct __Block4Clang__useBlock_block_desc_0 *desc, int _i, int flags=0) : i(_i) {
-</span><span class='line'>    impl.isa = &_NSConcreteStackBlock;
-</span><span class='line'>    impl.Flags = flags;
-</span><span class='line'>    impl.FuncPtr = fp;
-</span><span class='line'>    Desc = desc;
-</span><span class='line'>  }
-</span><span class='line'>};
-</span><span class='line'>static void __Block4Clang__useBlock_block_func_0(struct __Block4Clang__useBlock_block_impl_0 *__cself) {
-</span><span class='line'>  int i = __cself-&gt;i; // bound by copy
-</span><span class='line'>
-</span><span class='line'>        int j = i;
-</span><span class='line'>        j++;
-</span><span class='line'>        printf("i = %d, j = %d\n", i, j);
-</span><span class='line'>    }
-</span><span class='line'>
-</span><span class='line'>static struct __Block4Clang__useBlock_block_desc_0 {
-</span><span class='line'>  size_t reserved;
-</span><span class='line'>  size_t Block_size;
-</span><span class='line'>} __Block4Clang__useBlock_block_desc_0_DATA = { 0, sizeof(struct __Block4Clang__useBlock_block_impl_0)};
-</span><span class='line'>
-</span><span class='line'>static void _I_Block4Clang_useBlock(Block4Clang * self, SEL _cmd) {
-</span><span class='line'>    int i = 2;
-</span><span class='line'>    ((void (*)())&__Block4Clang__useBlock_block_impl_0((void *)__Block4Clang__useBlock_block_func_0, &__Block4Clang__useBlock_block_desc_0_DATA, i))();
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
-
-
-
-</div> -->
-
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/4">&larr; Older</a>
@@ -1160,6 +755,14 @@ dispatch_async(q1, ^ {
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/android-chang-yong-di-san-fang-ku/">Android 常用第三方库</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/objection-a-ioc-framework-like-guice-in-ios-development/">Objection a Ioc Framework Like Guice in Ios Development</a>
+      </li>
     
       <li class="post">
         <a href="/blog/mqtt-resources/">MQTT Resources</a>
@@ -1231,14 +834,6 @@ dispatch_async(q1, ^ {
     
       <li class="post">
         <a href="/blog/gcd-de-chang-gui-yong-fa/">GCD 的常规用法</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/xian-cheng-he-jin-cheng-jian-de-qu-bie/">线程和进程间的区别</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/timer-hui-diao-shi-jian-bei-uijiao-hu-zu-sai-de-jie-jue-ban-fa/">Timer ⌚回调事件被UI交互阻塞的解决办法</a>
       </li>
     
   </ul>
