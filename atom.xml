@@ -4,7 +4,7 @@
   <title><![CDATA[逆风@[iOS,android,nil]]]></title>
   <link href="http://ios.dehengxu.com/atom.xml" rel="self"/>
   <link href="http://ios.dehengxu.com/"/>
-  <updated>2015-10-25T21:25:57+08:00</updated>
+  <updated>2015-11-03T15:26:34+08:00</updated>
   <id>http://ios.dehengxu.com/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
@@ -23,6 +23,18 @@
 <blockquote><p>第三方图形库</p></blockquote>
 
 <p><a href="http://www.achartengine.org/">http://www.achartengine.org/</a></p>
+
+<h2>MPAndroidChart</h2>
+
+<blockquote><p>多功能图形库</p></blockquote>
+
+<p><a href="https://github.com/PhilJay/MPAndroidChart">https://github.com/PhilJay/MPAndroidChart</a></p>
+
+<h2>EazeGraph</h2>
+
+<blockquote><p>简单图形库</p></blockquote>
+
+<p><a href="https://github.com/blackfizz/EazeGraph">https://github.com/blackfizz/EazeGraph</a></p>
 ]]></content>
   </entry>
   
