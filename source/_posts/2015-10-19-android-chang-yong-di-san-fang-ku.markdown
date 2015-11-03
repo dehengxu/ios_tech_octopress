@@ -14,3 +14,16 @@ categories:
 > 第三方图形库
 
 http://www.achartengine.org/
+
+## MPAndroidChart
+
+> 多功能图形库
+
+https://github.com/PhilJay/MPAndroidChart
+
+## EazeGraph
+
+> 简单图形库
+
+https://github.com/blackfizz/EazeGraph
+
