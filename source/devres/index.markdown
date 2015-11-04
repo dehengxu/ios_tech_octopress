@@ -9,7 +9,7 @@ footer: true
 
 ## iOS 开发相关资源
 
-iOS 个版本适配率 [Ref](http://www.macrumors.com/2015/09/17/early-ios-9-adoption-rate/)
+iOS 各版本适配率 [Ref](http://www.macrumors.com/2015/09/17/early-ios-9-adoption-rate/)
 
 ![ios_adoption_rate](/images/refered/ios_os_adoption_rate.jpg)
 
