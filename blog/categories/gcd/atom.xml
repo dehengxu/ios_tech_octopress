@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Gcd | 逆风@[iOS,android,nil]]]></title>
-  <link href="http://ios.dehengxu.com/blog/categories/gcd/atom.xml" rel="self"/>
-  <link href="http://ios.dehengxu.com/"/>
-  <updated>2015-11-03T15:26:34+08:00</updated>
-  <id>http://ios.dehengxu.com/</id>
+  <link href="http://tech.dehengxu.com/blog/categories/gcd/atom.xml" rel="self"/>
+  <link href="http://tech.dehengxu.com/"/>
+  <updated>2015-11-04T10:45:34+08:00</updated>
+  <id>http://tech.dehengxu.com/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[GCD 的常规用法]]></title>
-    <link href="http://ios.dehengxu.com/blog/gcd-de-chang-gui-yong-fa/"/>
+    <link href="http://tech.dehengxu.com/blog/gcd-de-chang-gui-yong-fa/"/>
     <updated>2015-08-23T15:56:50+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/gcd-de-chang-gui-yong-fa</id>
+    <id>http://tech.dehengxu.com/blog/gcd-de-chang-gui-yong-fa</id>
     <content type="html"><![CDATA[<p>GCD 通过将多线程抽象为 <code>dispatch_queue_t</code> 类型的对象，以 Block 作为计算单元实现的一套基于 C 语言的开源多线程库 <code>libdispatch</code>。</p>
 
 <p>GCD 让多线程开发变的更加方便，简洁。</p>

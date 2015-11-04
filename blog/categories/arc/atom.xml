@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Arc | 逆风@[iOS,android,nil]]]></title>
-  <link href="http://ios.dehengxu.com/blog/categories/arc/atom.xml" rel="self"/>
-  <link href="http://ios.dehengxu.com/"/>
-  <updated>2015-11-03T15:26:34+08:00</updated>
-  <id>http://ios.dehengxu.com/</id>
+  <link href="http://tech.dehengxu.com/blog/categories/arc/atom.xml" rel="self"/>
+  <link href="http://tech.dehengxu.com/"/>
+  <updated>2015-11-04T10:45:34+08:00</updated>
+  <id>http://tech.dehengxu.com/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[管理自由桥接(Toll-Free Bridging)]]></title>
-    <link href="http://ios.dehengxu.com/blog/guan-li-zi-you-qiao-jie-toll-free-bridging/"/>
+    <link href="http://tech.dehengxu.com/blog/guan-li-zi-you-qiao-jie-toll-free-bridging/"/>
     <updated>2015-08-22T18:21:12+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/guan-li-zi-you-qiao-jie-toll-free-bridging</id>
+    <id>http://tech.dehengxu.com/blog/guan-li-zi-you-qiao-jie-toll-free-bridging</id>
     <content type="html"><![CDATA[<p>在很多 Cocoa 应用程序中，你需要使用 Core Foundation 风格的对象，有的来自 Core Foundation 框架自己(像：<a href="https://developer.apple.com/library/ios/documentation/CoreFoundation/Reference/CFArrayRef/index.html#//apple_ref/c/tdef/CFArrayRef">CFArrayRef</a> 或 <a href="https://developer.apple.com/library/ios/documentation/CoreFoundation/Reference/CFMutableDictionaryRef/index.html#//apple_ref/c/tdef/CFMutableDictionaryRef">CFMutaleDictionaryRef</a>) 或者来自于适配了 Core Foudation 大会例如 Core Graphics (你可能使用这些类型：<a href="https://developer.apple.com/library/ios/documentation/GraphicsImaging/Reference/CGColorSpace/index.html#//apple_ref/c/tdef/CGColorSpaceRef">CGColorSpaceRef</a> 和  <a href="https://developer.apple.com/library/ios/documentation/GraphicsImaging/Reference/CGGradient/index.html#//apple_ref/c/tdef/CGGradientRef">CGGradientRef</a>)。</p>
 
 <p>编译器不会自动管理 Core Foundation 对象的生命期；你必须调用 <a href="https://developer.apple.com/library/ios/documentation/CoreFoundation/Reference/CFTypeRef/index.html#//apple_ref/c/func/CFRetain">CFRetain</a> 和 <a href="https://developer.apple.com/library/ios/documentation/CoreFoundation/Reference/CFTypeRef/index.html#//apple_ref/c/func/CFRelease">CFRelease</a> (或者响应类型指定的变体) 就像 Core Foundation 内存管理规则中描述的(见 <a href="https://developer.apple.com/library/ios/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/CFMemoryMgmt.html#//apple_ref/doc/uid/10000127i">Memory Management Programming</a>)。</p>

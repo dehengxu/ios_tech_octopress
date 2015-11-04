@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Xcode | 逆风@[iOS,android,nil]]]></title>
-  <link href="http://ios.dehengxu.com/blog/categories/xcode/atom.xml" rel="self"/>
-  <link href="http://ios.dehengxu.com/"/>
-  <updated>2015-11-03T15:26:34+08:00</updated>
-  <id>http://ios.dehengxu.com/</id>
+  <link href="http://tech.dehengxu.com/blog/categories/xcode/atom.xml" rel="self"/>
+  <link href="http://tech.dehengxu.com/"/>
+  <updated>2015-11-04T10:45:34+08:00</updated>
+  <id>http://tech.dehengxu.com/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Runtime 在新版本 Xcode 中引起的编译错误，及解决方法]]></title>
-    <link href="http://ios.dehengxu.com/blog/objc-msgsend-bian-yi-cuo-wu-de-jie-jue-fang-fa/"/>
+    <link href="http://tech.dehengxu.com/blog/objc-msgsend-bian-yi-cuo-wu-de-jie-jue-fang-fa/"/>
     <updated>2015-08-30T12:13:22+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/objc-msgsend-bian-yi-cuo-wu-de-jie-jue-fang-fa</id>
+    <id>http://tech.dehengxu.com/blog/objc-msgsend-bian-yi-cuo-wu-de-jie-jue-fang-fa</id>
     <content type="html"><![CDATA[<h2>objc_msgSend</h2>
 
 <p>最近在 Xcode6.4 上编译一个老旧的库时，出现了运行时函数 <code>objc_msgSend</code> 的编译错误，提示:</p>

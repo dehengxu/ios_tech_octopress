@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Cocoapods | 逆风@[iOS,android,nil]]]></title>
-  <link href="http://ios.dehengxu.com/blog/categories/cocoapods/atom.xml" rel="self"/>
-  <link href="http://ios.dehengxu.com/"/>
-  <updated>2015-11-03T15:26:34+08:00</updated>
-  <id>http://ios.dehengxu.com/</id>
+  <link href="http://tech.dehengxu.com/blog/categories/cocoapods/atom.xml" rel="self"/>
+  <link href="http://tech.dehengxu.com/"/>
+  <updated>2015-11-04T10:45:34+08:00</updated>
+  <id>http://tech.dehengxu.com/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[使用 Cocoapods 来管理基于 Svn 的子项目]]></title>
-    <link href="http://ios.dehengxu.com/blog/shi-yong-cocoapods-lai-guan-li-ji-yu-svn-de-zi-xiang-mu/"/>
+    <link href="http://tech.dehengxu.com/blog/shi-yong-cocoapods-lai-guan-li-ji-yu-svn-de-zi-xiang-mu/"/>
     <updated>2015-09-08T16:01:14+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/shi-yong-cocoapods-lai-guan-li-ji-yu-svn-de-zi-xiang-mu</id>
+    <id>http://tech.dehengxu.com/blog/shi-yong-cocoapods-lai-guan-li-ji-yu-svn-de-zi-xiang-mu</id>
     <content type="html"><![CDATA[<p>首先，感谢 clarkda 为cocoapods 提供了这个 repo-svn 的 svn 支持插件。</p>
 
 <p>根据 <a href="https://github.com/clarkda/cocoapods-repo-svn">https://github.com/clarkda/cocoapods-repo-svn</a> 上的说明</p>
@@ -54,9 +54,9 @@ pod repo-svn remove my-svn-repo 删除项目
   
   <entry>
     <title type="html"><![CDATA[Use Cocoapods Publish Your Podspec]]></title>
-    <link href="http://ios.dehengxu.com/blog/use-cocoapods-publish-your-podspec/"/>
+    <link href="http://tech.dehengxu.com/blog/use-cocoapods-publish-your-podspec/"/>
     <updated>2015-08-31T22:10:34+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/use-cocoapods-publish-your-podspec</id>
+    <id>http://tech.dehengxu.com/blog/use-cocoapods-publish-your-podspec</id>
     <content type="html"><![CDATA[<h3>创建 podspec</h3>
 
 <p>pod spec create NAME</p>

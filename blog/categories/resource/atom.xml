@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Resource | 逆风@[iOS,android,nil]]]></title>
-  <link href="http://ios.dehengxu.com/blog/categories/resource/atom.xml" rel="self"/>
-  <link href="http://ios.dehengxu.com/"/>
-  <updated>2015-11-03T15:26:34+08:00</updated>
-  <id>http://ios.dehengxu.com/</id>
+  <link href="http://tech.dehengxu.com/blog/categories/resource/atom.xml" rel="self"/>
+  <link href="http://tech.dehengxu.com/"/>
+  <updated>2015-11-04T10:45:34+08:00</updated>
+  <id>http://tech.dehengxu.com/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Apple Source Code & Documents]]></title>
-    <link href="http://ios.dehengxu.com/blog/apple-source-code-&-documents/"/>
+    <link href="http://tech.dehengxu.com/blog/apple-source-code-&-documents/"/>
     <updated>2015-08-17T10:04:40+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/apple-source-code-&-documents</id>
+    <id>http://tech.dehengxu.com/blog/apple-source-code-&-documents</id>
     <content type="html"><![CDATA[<p><a href="http://opensource.apple.com/tarballs/" target="_blank">Apple Open Source</a></p>
 
 <p><a href="https://developer.apple.com/resources/" target="_blank">Apple Developer Resources</a></p>

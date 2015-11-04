@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Update | 逆风@[iOS,android,nil]]]></title>
-  <link href="http://ios.dehengxu.com/blog/categories/update/atom.xml" rel="self"/>
-  <link href="http://ios.dehengxu.com/"/>
-  <updated>2015-11-03T15:26:34+08:00</updated>
-  <id>http://ios.dehengxu.com/</id>
+  <link href="http://tech.dehengxu.com/blog/categories/update/atom.xml" rel="self"/>
+  <link href="http://tech.dehengxu.com/"/>
+  <updated>2015-11-04T10:45:34+08:00</updated>
+  <id>http://tech.dehengxu.com/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Welcome to Jekyll!]]></title>
-    <link href="http://ios.dehengxu.com/blog/welcome-to-jekyll/"/>
+    <link href="http://tech.dehengxu.com/blog/welcome-to-jekyll/"/>
     <updated>2015-08-06T22:19:25+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/welcome-to-jekyll</id>
+    <id>http://tech.dehengxu.com/blog/welcome-to-jekyll</id>
     <content type="html"><![CDATA[<p>You’ll find this post in your <code>_posts</code> directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run <code>jekyll serve</code>, which launches a web server and auto-regenerates your site when a file is updated.</p>
 
 <p>To add new posts, simply add a file in the <code>_posts</code> directory that follows the convention <code>YYYY-MM-DD-name-of-post.ext</code> and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.</p>
@@ -39,9 +39,9 @@
   
   <entry>
     <title type="html"><![CDATA[Welcome to Jekyll!]]></title>
-    <link href="http://ios.dehengxu.com/blog/welcome-to-jekyll/"/>
+    <link href="http://tech.dehengxu.com/blog/welcome-to-jekyll/"/>
     <updated>2014-08-29T21:46:06+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/welcome-to-jekyll</id>
+    <id>http://tech.dehengxu.com/blog/welcome-to-jekyll</id>
     <content type="html"><![CDATA[<p>You’ll find this post in your <code>_posts</code> directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run <code>jekyll serve --watch</code>, which launches a web server and auto-regenerates your site when a file is updated.</p>
 
 <p>To add new posts, simply add a file in the <code>_posts</code> directory that follows the convention <code>YYYY-MM-DD-name-of-post.ext</code> and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.</p>

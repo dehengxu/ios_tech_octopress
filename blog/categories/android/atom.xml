@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Android | 逆风@[iOS,android,nil]]]></title>
-  <link href="http://ios.dehengxu.com/blog/categories/android/atom.xml" rel="self"/>
-  <link href="http://ios.dehengxu.com/"/>
-  <updated>2015-11-03T15:26:34+08:00</updated>
-  <id>http://ios.dehengxu.com/</id>
+  <link href="http://tech.dehengxu.com/blog/categories/android/atom.xml" rel="self"/>
+  <link href="http://tech.dehengxu.com/"/>
+  <updated>2015-11-04T10:45:34+08:00</updated>
+  <id>http://tech.dehengxu.com/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[第三方消息推送服务对比]]></title>
-    <link href="http://ios.dehengxu.com/blog/di-san-fang-xiao-xi-tui-song-fu-wu-dui-bi/"/>
+    <link href="http://tech.dehengxu.com/blog/di-san-fang-xiao-xi-tui-song-fu-wu-dui-bi/"/>
     <updated>2015-10-10T11:15:55+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/di-san-fang-xiao-xi-tui-song-fu-wu-dui-bi</id>
+    <id>http://tech.dehengxu.com/blog/di-san-fang-xiao-xi-tui-song-fu-wu-dui-bi</id>
     <content type="html"><![CDATA[<h3>友盟</h3>
 
 <p>客户端支持: iOS, Android</p>
@@ -56,9 +56,9 @@
   
   <entry>
     <title type="html"><![CDATA[Diagram of a Activity's Life Cycle]]></title>
-    <link href="http://ios.dehengxu.com/blog/diagram-of-a-activitys-life-cycle/"/>
+    <link href="http://tech.dehengxu.com/blog/diagram-of-a-activitys-life-cycle/"/>
     <updated>2015-10-05T11:31:52+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/diagram-of-a-activitys-life-cycle</id>
+    <id>http://tech.dehengxu.com/blog/diagram-of-a-activitys-life-cycle</id>
     <content type="html"><![CDATA[<p>A diagram present Activity&rsquo;s life cycle</p>
 
 <p>Two Activity class named <code>A</code> and <code>B</code>, <code>A</code> is app entry.</p>

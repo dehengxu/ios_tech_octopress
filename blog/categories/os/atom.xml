@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Os | 逆风@[iOS,android,nil]]]></title>
-  <link href="http://ios.dehengxu.com/blog/categories/os/atom.xml" rel="self"/>
-  <link href="http://ios.dehengxu.com/"/>
-  <updated>2015-11-03T15:26:34+08:00</updated>
-  <id>http://ios.dehengxu.com/</id>
+  <link href="http://tech.dehengxu.com/blog/categories/os/atom.xml" rel="self"/>
+  <link href="http://tech.dehengxu.com/"/>
+  <updated>2015-11-04T10:45:34+08:00</updated>
+  <id>http://tech.dehengxu.com/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[线程和进程间的区别]]></title>
-    <link href="http://ios.dehengxu.com/blog/xian-cheng-he-jin-cheng-jian-de-qu-bie/"/>
+    <link href="http://tech.dehengxu.com/blog/xian-cheng-he-jin-cheng-jian-de-qu-bie/"/>
     <updated>2015-08-23T15:13:25+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/xian-cheng-he-jin-cheng-jian-de-qu-bie</id>
+    <id>http://tech.dehengxu.com/blog/xian-cheng-he-jin-cheng-jian-de-qu-bie</id>
     <content type="html"><![CDATA[<p><a href="http://www.programmerinterview.com/index.php/operating-systems/thread-vs-process/">译自</a></p>
 ]]></content>
   </entry>

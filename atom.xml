@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[逆风@[iOS,android,nil]]]></title>
-  <link href="http://ios.dehengxu.com/atom.xml" rel="self"/>
-  <link href="http://ios.dehengxu.com/"/>
-  <updated>2015-11-03T15:26:34+08:00</updated>
-  <id>http://ios.dehengxu.com/</id>
+  <link href="http://tech.dehengxu.com/atom.xml" rel="self"/>
+  <link href="http://tech.dehengxu.com/"/>
+  <updated>2015-11-04T10:45:34+08:00</updated>
+  <id>http://tech.dehengxu.com/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Android 常用第三方库]]></title>
-    <link href="http://ios.dehengxu.com/blog/android-chang-yong-di-san-fang-ku/"/>
+    <link href="http://tech.dehengxu.com/blog/android-chang-yong-di-san-fang-ku/"/>
     <updated>2015-10-19T19:19:15+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/android-chang-yong-di-san-fang-ku</id>
+    <id>http://tech.dehengxu.com/blog/android-chang-yong-di-san-fang-ku</id>
     <content type="html"><![CDATA[<h2>AChartEngine</h2>
 
 <blockquote><p>第三方图形库</p></blockquote>
@@ -40,9 +40,9 @@
   
   <entry>
     <title type="html"><![CDATA[MQTT Resources]]></title>
-    <link href="http://ios.dehengxu.com/blog/mqtt-resources/"/>
+    <link href="http://tech.dehengxu.com/blog/mqtt-resources/"/>
     <updated>2015-10-12T14:05:57+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/mqtt-resources</id>
+    <id>http://tech.dehengxu.com/blog/mqtt-resources</id>
     <content type="html"><![CDATA[<p><a href="https://github.com/mcollina/mosca/wiki/Mosca-as-a-standalone-service." target="_blank">mosca</a></p>
 
 <p><a href="https://github.com/vbotnaru/mqtt" target="_blank">mqtt a nodejs client</a></p>
@@ -55,9 +55,9 @@
   
   <entry>
     <title type="html"><![CDATA[第三方消息推送服务对比]]></title>
-    <link href="http://ios.dehengxu.com/blog/di-san-fang-xiao-xi-tui-song-fu-wu-dui-bi/"/>
+    <link href="http://tech.dehengxu.com/blog/di-san-fang-xiao-xi-tui-song-fu-wu-dui-bi/"/>
     <updated>2015-10-10T11:15:55+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/di-san-fang-xiao-xi-tui-song-fu-wu-dui-bi</id>
+    <id>http://tech.dehengxu.com/blog/di-san-fang-xiao-xi-tui-song-fu-wu-dui-bi</id>
     <content type="html"><![CDATA[<h3>友盟</h3>
 
 <p>客户端支持: iOS, Android</p>
@@ -96,9 +96,9 @@
   
   <entry>
     <title type="html"><![CDATA[Diagram of a Activity's Life Cycle]]></title>
-    <link href="http://ios.dehengxu.com/blog/diagram-of-a-activitys-life-cycle/"/>
+    <link href="http://tech.dehengxu.com/blog/diagram-of-a-activitys-life-cycle/"/>
     <updated>2015-10-05T11:31:52+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/diagram-of-a-activitys-life-cycle</id>
+    <id>http://tech.dehengxu.com/blog/diagram-of-a-activitys-life-cycle</id>
     <content type="html"><![CDATA[<p>A diagram present Activity&rsquo;s life cycle</p>
 
 <p>Two Activity class named <code>A</code> and <code>B</code>, <code>A</code> is app entry.</p>
@@ -116,15 +116,15 @@
 
 <blockquote><p>If B has been hold, it would not be onDestory(B)</p></blockquote>
 
-<p><img src="http://ios.dehengxu.com/images/refered/activity_life_cycle.png" alt="lifecycle" /></p>
+<p><img src="http://tech.dehengxu.com/images/refered/activity_life_cycle.png" alt="lifecycle" /></p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Bash Usage]]></title>
-    <link href="http://ios.dehengxu.com/blog/bash-usage/"/>
+    <link href="http://tech.dehengxu.com/blog/bash-usage/"/>
     <updated>2015-09-22T09:48:42+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/bash-usage</id>
+    <id>http://tech.dehengxu.com/blog/bash-usage</id>
     <content type="html"><![CDATA[<h2>基础</h2>
 
 <h3>变量定义</h3>
@@ -272,9 +272,9 @@
   
   <entry>
     <title type="html"><![CDATA[Useful Tools for Xcode]]></title>
-    <link href="http://ios.dehengxu.com/blog/useful-tools-for-xcode/"/>
+    <link href="http://tech.dehengxu.com/blog/useful-tools-for-xcode/"/>
     <updated>2015-09-16T11:15:21+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/useful-tools-for-xcode</id>
+    <id>http://tech.dehengxu.com/blog/useful-tools-for-xcode</id>
     <content type="html"><![CDATA[<h2>Tools</h2>
 
 <h3>Cocoapods</h3>
@@ -350,9 +350,9 @@
   
   <entry>
     <title type="html"><![CDATA[iOS 常用第三方库]]></title>
-    <link href="http://ios.dehengxu.com/blog/ios-chang-yong-di-san-fang-ku/"/>
+    <link href="http://tech.dehengxu.com/blog/ios-chang-yong-di-san-fang-ku/"/>
     <updated>2015-09-16T10:59:10+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/ios-chang-yong-di-san-fang-ku</id>
+    <id>http://tech.dehengxu.com/blog/ios-chang-yong-di-san-fang-ku</id>
     <content type="html"><![CDATA[<h2>iOS UI</h2>
 
 <p><a href="https://github.com/cjwirth/awesome-ios-ui">awesome-ios-ui</a></p>
@@ -557,9 +557,9 @@
   
   <entry>
     <title type="html"><![CDATA[Gitsh 的安装和使用]]></title>
-    <link href="http://ios.dehengxu.com/blog/gitsh-de-an-zhuang-he-shi-yong/"/>
+    <link href="http://tech.dehengxu.com/blog/gitsh-de-an-zhuang-he-shi-yong/"/>
     <updated>2015-09-15T17:50:13+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/gitsh-de-an-zhuang-he-shi-yong</id>
+    <id>http://tech.dehengxu.com/blog/gitsh-de-an-zhuang-he-shi-yong</id>
     <content type="html"><![CDATA[<p>项目地址:  <a href="https://github.com/thoughtbot/gitsh">https://github.com/thoughtbot/gitsh</a></p>
 
 <h3>前提：</h3>
@@ -618,9 +618,9 @@
   
   <entry>
     <title type="html"><![CDATA[使用 Cocoapods 来管理基于 Svn 的子项目]]></title>
-    <link href="http://ios.dehengxu.com/blog/shi-yong-cocoapods-lai-guan-li-ji-yu-svn-de-zi-xiang-mu/"/>
+    <link href="http://tech.dehengxu.com/blog/shi-yong-cocoapods-lai-guan-li-ji-yu-svn-de-zi-xiang-mu/"/>
     <updated>2015-09-08T16:01:14+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/shi-yong-cocoapods-lai-guan-li-ji-yu-svn-de-zi-xiang-mu</id>
+    <id>http://tech.dehengxu.com/blog/shi-yong-cocoapods-lai-guan-li-ji-yu-svn-de-zi-xiang-mu</id>
     <content type="html"><![CDATA[<p>首先，感谢 clarkda 为cocoapods 提供了这个 repo-svn 的 svn 支持插件。</p>
 
 <p>根据 <a href="https://github.com/clarkda/cocoapods-repo-svn">https://github.com/clarkda/cocoapods-repo-svn</a> 上的说明</p>
@@ -666,9 +666,9 @@
   
   <entry>
     <title type="html"><![CDATA[Create a Private Pods]]></title>
-    <link href="http://ios.dehengxu.com/blog/create-a-private-pods/"/>
+    <link href="http://tech.dehengxu.com/blog/create-a-private-pods/"/>
     <updated>2015-08-31T22:20:30+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/create-a-private-pods</id>
+    <id>http://tech.dehengxu.com/blog/create-a-private-pods</id>
     <content type="html"><![CDATA[<h3>1. 创建私有 Spec 仓库</h3>
 
 <p>没必要 fork CocoaPods 的Spec 主仓库。你可以建立自己的仓库，也不用公开。</p>
@@ -715,9 +715,9 @@
   
   <entry>
     <title type="html"><![CDATA[Use Cocoapods Publish Your Podspec]]></title>
-    <link href="http://ios.dehengxu.com/blog/use-cocoapods-publish-your-podspec/"/>
+    <link href="http://tech.dehengxu.com/blog/use-cocoapods-publish-your-podspec/"/>
     <updated>2015-08-31T22:10:34+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/use-cocoapods-publish-your-podspec</id>
+    <id>http://tech.dehengxu.com/blog/use-cocoapods-publish-your-podspec</id>
     <content type="html"><![CDATA[<h3>创建 podspec</h3>
 
 <p>pod spec create NAME</p>
@@ -922,9 +922,9 @@
   
   <entry>
     <title type="html"><![CDATA[Runtime 在新版本 Xcode 中引起的编译错误，及解决方法]]></title>
-    <link href="http://ios.dehengxu.com/blog/objc-msgsend-bian-yi-cuo-wu-de-jie-jue-fang-fa/"/>
+    <link href="http://tech.dehengxu.com/blog/objc-msgsend-bian-yi-cuo-wu-de-jie-jue-fang-fa/"/>
     <updated>2015-08-30T12:13:22+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/objc-msgsend-bian-yi-cuo-wu-de-jie-jue-fang-fa</id>
+    <id>http://tech.dehengxu.com/blog/objc-msgsend-bian-yi-cuo-wu-de-jie-jue-fang-fa</id>
     <content type="html"><![CDATA[<h2>objc_msgSend</h2>
 
 <p>最近在 Xcode6.4 上编译一个老旧的库时，出现了运行时函数 <code>objc_msgSend</code> 的编译错误，提示:</p>
@@ -937,7 +937,7 @@
 
 <p>定位到这里:</p>
 
-<p><img src="http://ios.dehengxu.com/images/refered/runtime_msgsend_fix.png" alt="msgSend_fix" /></p>
+<p><img src="http://tech.dehengxu.com/images/refered/runtime_msgsend_fix.png" alt="msgSend_fix" /></p>
 
 <p>将 <code>Enable Strict Checking of objc_msgSend Calls</code>  字段设为 <code>NO</code></p>
 
@@ -951,13 +951,13 @@
 
 <p>如图:</p>
 
-<p><img src="http://ios.dehengxu.com/images/refered/runtime_isa_error.png" alt="isa_err" /></p>
+<p><img src="http://tech.dehengxu.com/images/refered/runtime_isa_error.png" alt="isa_err" /></p>
 
 <p>解决办法：找到 JSONKit 项目 target -> Build Settings 搜索框中输入 <code>isa</code></p>
 
 <p>定位到:</p>
 
-<p><img src="http://ios.dehengxu.com/images/refered/runtime_isa_fix.png" alt="isa_err" /></p>
+<p><img src="http://tech.dehengxu.com/images/refered/runtime_isa_fix.png" alt="isa_err" /></p>
 
 <p>修改为 <code>NO</code> 即可。</p>
 ]]></content>
@@ -965,9 +965,9 @@
   
   <entry>
     <title type="html"><![CDATA[自定义类如何提供 KVC 兼容特性]]></title>
-    <link href="http://ios.dehengxu.com/blog/zi-ding-yi-lei-ru-he-ti-gong-kvc-jian-rong-te-xing/"/>
+    <link href="http://tech.dehengxu.com/blog/zi-ding-yi-lei-ru-he-ti-gong-kvc-jian-rong-te-xing/"/>
     <updated>2015-08-29T15:10:33+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/zi-ding-yi-lei-ru-he-ti-gong-kvc-jian-rong-te-xing</id>
+    <id>http://tech.dehengxu.com/blog/zi-ding-yi-lei-ru-he-ti-gong-kvc-jian-rong-te-xing</id>
     <content type="html"><![CDATA[<h3>KVC 兼容性</h3>
 
 <h4>对一的关系</h4>
@@ -1026,9 +1026,9 @@
   
   <entry>
     <title type="html"><![CDATA[使用 NSValue 封装任意结构体]]></title>
-    <link href="http://ios.dehengxu.com/blog/shi-yong-nsvalue-feng-zhuang-ren-yi-jie-gou-ti/"/>
+    <link href="http://tech.dehengxu.com/blog/shi-yong-nsvalue-feng-zhuang-ren-yi-jie-gou-ti/"/>
     <updated>2015-08-29T12:55:21+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/shi-yong-nsvalue-feng-zhuang-ren-yi-jie-gou-ti</id>
+    <id>http://tech.dehengxu.com/blog/shi-yong-nsvalue-feng-zhuang-ren-yi-jie-gou-ti</id>
     <content type="html"><![CDATA[<h2>NSValue</h2>
 
 <p>装包，拆包，分别用到 <code>value:withObjCType:</code> 和 <code>getValue:</code>两个方法。</p>
@@ -1088,16 +1088,16 @@
   
   <entry>
     <title type="html"><![CDATA[KVO 机制]]></title>
-    <link href="http://ios.dehengxu.com/blog/kvo-ji-zhi/"/>
+    <link href="http://tech.dehengxu.com/blog/kvo-ji-zhi/"/>
     <updated>2015-08-28T18:36:18+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/kvo-ji-zhi</id>
+    <id>http://tech.dehengxu.com/blog/kvo-ji-zhi</id>
     <content type="html"><![CDATA[<h2>KVO : 键值观察 (Key-value observing)</h2>
 
 <p>KVO 是一个允许一个对象直接接受来自另一个对象属性改变时发送的通知的机制。KVO 能成为应用内部重要的因素。它是采用了MVC设计模式的应用程序中对象间的一种通信模式。比如，你可以使用它来同步 view 和 controller 层中模型对象之间的状态。典型情况下，控制器对象观察模型对象，试图对象观察控制器对象或者模型对象。</p>
 
 <blockquote><p>注意：虽然 UIKit 框架通常不支持 KVO，你仍然能够在自定义的对象中实现它，包括自定义的视图。</p></blockquote>
 
-<p><img src="http://ios.dehengxu.com/images/refered/kvo.jpg" alt="kvo" /></p>
+<p><img src="http://tech.dehengxu.com/images/refered/kvo.jpg" alt="kvo" /></p>
 
 <p>使用 KVO，一个对象可以观察另一个对象的任意的属性，包括简单的附属值，对一的关系和对多的关系。一个对象能找出当前属性先前的值。对多关系的观察者被通告的内容不仅有类型的改变，也被告知哪个对象在改变中被调用。</p>
 
@@ -1120,7 +1120,7 @@
 
 <h3>后话</h3>
 
-<p><img src="http://ios.dehengxu.com/images/refered/kvo_proj_snap1.png" alt="KVO runtime" /></p>
+<p><img src="http://tech.dehengxu.com/images/refered/kvo_proj_snap1.png" alt="KVO runtime" /></p>
 
 <p>从上图可以看出 KVO 是一个同步调用过程通过 _NSSetObjectValueAndNotify 函数，在设置对象值的同时向观察对象发送变化通知，同时会通过 <code>NSKeyValueObservingOptions</code> 类型来区分 KVO 发生的类型，并在 <code>- (void)observeValueForKeyPath:(nullable NSString *)keyPath ofObject:(nullable id)object change:(nullable NSDictionary *)change context:(nullable void *)context</code> 的 change 字典对象中传递相关值的变化信息(old value, new value 等)。</p>
 
@@ -1148,9 +1148,9 @@
   
   <entry>
     <title type="html"><![CDATA[KVC 机制]]></title>
-    <link href="http://ios.dehengxu.com/blog/kvc-ji-zhi/"/>
+    <link href="http://tech.dehengxu.com/blog/kvc-ji-zhi/"/>
     <updated>2015-08-28T17:16:18+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/kvc-ji-zhi</id>
+    <id>http://tech.dehengxu.com/blog/kvc-ji-zhi</id>
     <content type="html"><![CDATA[<h2>KVC : 键值编码 (Key-value coding)</h2>
 
 <p>键值编码是一个通过字符串间接访问对象属性和关系的机制。它是 Cocoa编程中一些机制和技术的基石，在他们中间 Core Data, 应用程序脚本能力, 绑定技术，还有语言特性中的属性声明。 (脚本特性和绑定是指 OS X 上的 Cocoa。) 你也能使用键值编码来简化你的程序代码。</p>
@@ -1161,7 +1161,7 @@
 
 <p>KVC 通过“键”来定位对象的属性，其实就是一个字符串标识。“键”常常代表一个访问器方法或者实例变量的名字。“键”必须符合某种规则：必须是 ASCII 编码，小写字母开头，还没有空格。Key path是由点与“键”分隔的字符串，它被用来指明一系列对象属性的链式访问。序列的第一个“键”是相对于指定的对象来说的(如下面图表中的 employee1)，并且每个子序列“键”是相对于前一个属性值来的。</p>
 
-<p><img src="http://ios.dehengxu.com/images/refered/key_value_coding.jpg" alt="sample" /></p>
+<p><img src="http://tech.dehengxu.com/images/refered/key_value_coding.jpg" alt="sample" /></p>
 
 <h3>使类支持 KVC</h3>
 
@@ -1216,7 +1216,7 @@
 
 <p>说明 KVC 的逻辑是为名为 <code>_&lt;name&gt;</code> 的变量通过 <code>_&lt;name&gt;</code> 或 <code>&lt;name&gt;</code> 形式的 key 来进行 KVC 操作。除此之外针对 <code>&lt;name&gt;</code> 的变量, 一律通过 <code>&lt;name&gt;</code> 形式的 key 来做 KVC 操作。</p>
 
-<p><a href="http://ios.dehengxu.com/blog/zi-ding-yi-lei-ru-he-ti-gong-kvc-jian-rong-te-xing/">KVC 兼容特性</a></p>
+<p><a href="http://tech.dehengxu.com/blog/zi-ding-yi-lei-ru-he-ti-gong-kvc-jian-rong-te-xing/">KVC 兼容特性</a></p>
 
 <h3>前提文章</h3>
 
@@ -1240,9 +1240,9 @@
   
   <entry>
     <title type="html"><![CDATA[Use Dispatch Source Timer]]></title>
-    <link href="http://ios.dehengxu.com/blog/use-dispatch-source-timer/"/>
+    <link href="http://tech.dehengxu.com/blog/use-dispatch-source-timer/"/>
     <updated>2015-08-27T16:58:03+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/use-dispatch-source-timer</id>
+    <id>http://tech.dehengxu.com/blog/use-dispatch-source-timer</id>
     <content type="html"><![CDATA[<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -1280,9 +1280,9 @@
   
   <entry>
     <title type="html"><![CDATA[Bash 使用技巧]]></title>
-    <link href="http://ios.dehengxu.com/blog/bash-shi-yong-ji-qiao/"/>
+    <link href="http://tech.dehengxu.com/blog/bash-shi-yong-ji-qiao/"/>
     <updated>2015-08-23T23:11:02+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/bash-shi-yong-ji-qiao</id>
+    <id>http://tech.dehengxu.com/blog/bash-shi-yong-ji-qiao</id>
     <content type="html"><![CDATA[<h4>递归搜索目录下所有文件内容</h4>
 
 <p>bash</p>
@@ -1313,9 +1313,9 @@
   
   <entry>
     <title type="html"><![CDATA[GCD 的常规用法]]></title>
-    <link href="http://ios.dehengxu.com/blog/gcd-de-chang-gui-yong-fa/"/>
+    <link href="http://tech.dehengxu.com/blog/gcd-de-chang-gui-yong-fa/"/>
     <updated>2015-08-23T15:56:50+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/gcd-de-chang-gui-yong-fa</id>
+    <id>http://tech.dehengxu.com/blog/gcd-de-chang-gui-yong-fa</id>
     <content type="html"><![CDATA[<p>GCD 通过将多线程抽象为 <code>dispatch_queue_t</code> 类型的对象，以 Block 作为计算单元实现的一套基于 C 语言的开源多线程库 <code>libdispatch</code>。</p>
 
 <p>GCD 让多线程开发变的更加方便，简洁。</p>
@@ -1503,9 +1503,9 @@ dispatch_async(q1, ^ {
   
   <entry>
     <title type="html"><![CDATA[线程和进程间的区别]]></title>
-    <link href="http://ios.dehengxu.com/blog/xian-cheng-he-jin-cheng-jian-de-qu-bie/"/>
+    <link href="http://tech.dehengxu.com/blog/xian-cheng-he-jin-cheng-jian-de-qu-bie/"/>
     <updated>2015-08-23T15:13:25+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/xian-cheng-he-jin-cheng-jian-de-qu-bie</id>
+    <id>http://tech.dehengxu.com/blog/xian-cheng-he-jin-cheng-jian-de-qu-bie</id>
     <content type="html"><![CDATA[<p><a href="http://www.programmerinterview.com/index.php/operating-systems/thread-vs-process/">译自</a></p>
 ]]></content>
   </entry>

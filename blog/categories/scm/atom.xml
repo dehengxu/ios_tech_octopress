@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Scm, | 逆风@[iOS,android,nil]]]></title>
-  <link href="http://ios.dehengxu.com/blog/categories/scm/atom.xml" rel="self"/>
-  <link href="http://ios.dehengxu.com/"/>
-  <updated>2015-11-03T15:26:34+08:00</updated>
-  <id>http://ios.dehengxu.com/</id>
+  <link href="http://tech.dehengxu.com/blog/categories/scm/atom.xml" rel="self"/>
+  <link href="http://tech.dehengxu.com/"/>
+  <updated>2015-11-04T10:45:34+08:00</updated>
+  <id>http://tech.dehengxu.com/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Git常见用法]]></title>
-    <link href="http://ios.dehengxu.com/blog/gitchang-jian-yong-fa/"/>
+    <link href="http://tech.dehengxu.com/blog/gitchang-jian-yong-fa/"/>
     <updated>2015-08-21T13:52:39+08:00</updated>
-    <id>http://ios.dehengxu.com/blog/gitchang-jian-yong-fa</id>
+    <id>http://tech.dehengxu.com/blog/gitchang-jian-yong-fa</id>
     <content type="html"><![CDATA[<h3>1.checkout</h3>
 
 <h4>切换到指定 commit</h4>

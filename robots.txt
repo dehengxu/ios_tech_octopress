@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: http://ios.dehengxu.com/sitemap.xml 
+Sitemap: http://tech.dehengxu.com/sitemap.xml 
