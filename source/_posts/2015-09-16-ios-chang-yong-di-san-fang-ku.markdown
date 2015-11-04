@@ -21,7 +21,7 @@ categories:
 
 [股票图](https://github.com/dangfm/stockChart)
 
-[PPiAwesomeButton]](https://github.com/pepibumur/PPiAwesomeButton)
+[PPiAwesomeButton](https://github.com/pepibumur/PPiAwesomeButton)
 
 [MAConfirmButton](https://github.com/mikeahmarani/MAConfirmButton)
 
