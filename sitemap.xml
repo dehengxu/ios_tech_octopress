@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://tech.dehengxu.com/blog/app-transport-security-ji-zhu/</loc>
+    <lastmod>2015-11-05T10:18:25+08:00</lastmod>
+  </url>
+  <url>
     <loc>http://tech.dehengxu.com/blog/android-chang-yong-di-san-fang-ku/</loc>
     <lastmod>2015-10-19T19:19:15+08:00</lastmod>
   </url>
@@ -264,6 +268,9 @@
   </url>
   <url>
     <loc>http://tech.dehengxu.com/blog/categories/android/</loc>
+  </url>
+  <url>
+    <loc>http://tech.dehengxu.com/blog/categories/ios/</loc>
   </url>
   <url>
     <loc>http://tech.dehengxu.com/blog/categories/ios/</loc>

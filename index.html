@@ -9,7 +9,7 @@
   <meta name="author" content="Deheng Xu">
 
   
-  <meta name="description" content="Android 常用第三方库 Oct 19th, 2015 7:19 pm | Comments MQTT Resources Oct 12th, 2015 2:05 pm | Comments 第三方消息推送服务对比 Oct 10th, 2015 11:15 am | Comments &hellip;">
+  <meta name="description" content="App Transport Security 技术 Nov 5th, 2015 10:18 am | Comments Android 常用第三方库 Oct 19th, 2015 7:19 pm | Comments MQTT Resources Oct 12th, 2015 2:05 pm &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,124 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" ><a href="/blog/app-transport-security-ji-zhu/">App Transport Security 技术</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-11-05T10:18:25+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>10:18 am</span></time>
+        
+           | <a href="/blog/app-transport-security-ji-zhu/#disqus_thread"
+             data-disqus-identifier="http://tech.dehengxu.com/blog/app-transport-security-ji-zhu/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+
+<!-- <div class="entry-content"><p>App Transport Security is a feature that improves the security of connections between an app and web services. The feature consists of default connection requirements that conform to best practices for secure connections. Apps can override this default behavior and turn off transport security.</p>
+
+<p>Transport security is available in iOS 9.0 or later, and in OS X v10.11 and later.</p>
+
+<h2>Default behavior</h2>
+
+<p>All connections using the NSURLConnection, CFURL, or NSURLSession APIs use App Transport Security default behavior in apps built for iOS 9.0 or later, and OS X v10.11 or later. Connections that do not follow the requirements will fail. For more information on various the connection methods, see NSURLConnection Class Reference, CFURL Reference, or NSURLSession Class Reference.</p>
+
+<p>Info.plist can use <code>NSAppTransportSecurity</code> key to configurate ATS</p>
+
+<ul>
+<li>NSAllowsArbitraryLoads   <code>Yes</code> to disable ATS checking, <code>No</code> to enable ATS checking.</li>
+</ul>
+
+
+<p>The property keys are defined next.</p>
+
+<p>NSAppTransportSecurity
+A dictionary containing the settings for overriding default App Transport Security behaviors. The top level key for the app’s Info.plist file.</p>
+
+<p>NSAllowsArbitraryLoads
+A Boolean value used to disable App Transport Security for any domains not listed in the NSExceptionDomains dictionary. Listed domains use the settings specified for that domain.</p>
+
+<p>The default value of NO requires the default App Transport Security behavior for all connections.</p>
+
+<p>NSExceptionDomains
+A dictionary of App Transport Security exceptions for specific domains. Each key is a string containing the domain name for the exceptions.</p>
+
+<p><domain-name-for-exception-as-string>
+A dictionary of exceptions for the named domain. The name of the key is the name of the domain–for example, www.apple.com.</p>
+
+<h4>NSExceptionMinimumTLSVersion</h4>
+
+<p>A string that specifies a the minimum TLS version for connections. Valid values are:</p>
+
+<pre><code>TLSv1.0
+TLSv1.1
+TLSv1.2
+</code></pre>
+
+<p><code>TLSV1.2</code> is the default value.</p>
+
+<h4>NSExceptionRequiresForwardSecrecy</h4>
+
+<p>A Boolean value for overriding the requirement that the domain support forward secrecy using ciphers.</p>
+
+<p>YES is the default value and limits the ciphers to those shown in Default Behavior.</p>
+
+<p>Setting the value to NO adds the following the list of accepted ciphers:</p>
+
+<ul>
+<li>TLS_RSA_WITH_AES_256_GCM_SHA384</li>
+<li>TLS_RSA_WITH_AES_128_GCM_SHA256</li>
+<li>TLS_RSA_WITH_AES_256_CBC_SHA256</li>
+<li>TLS_RSA_WITH_AES_256_CBC_SHA</li>
+<li>TLS_RSA_WITH_AES_128_CBC_SHA256</li>
+<li>TLS_RSA_WITH_AES_128_CBC_SHA</li>
+</ul>
+
+
+<h4>NSExceptionAllowsInsecureHTTPLoads</h4>
+
+<p>A Boolean value for overriding the requirement that all connections use HTTPS. Use this key to access domains with no certificate, or with an error for a self-signed, expired, or hostname-mismatch certificate.</p>
+
+<p>NO is the default value.</p>
+
+<h4>NSIncludesSubdomains</h4>
+
+<p>A Boolean value for applying the overrides to all subdomains of the top-level domain.</p>
+
+<p>NO is the default value.</p>
+
+<h4>NSThirdPartyExceptionMinimumTLSVersion</h4>
+
+<p>A version of NSExceptionMinimumTLSVersion used when the domain is an app service that is not controlled by the developer.</p>
+
+<h4>NSThirdPartyExceptionRequiresForwardSecrecy</h4>
+
+<p>A version of NSExceptionRequiresForwardSecrecy used when the domain is an app service that is not controlled by the developer.</p>
+
+<h4>NSThirdPartyExceptionAllowsInsecureHTTPLoads</h4>
+
+<p>A version of NSExceptionAllowsInsecureHTTPLoads used when the domain is an app service that is not controlled by the developer.</p>
+
+<p><a href="https://developer.apple.com/library/prerelease/ios/documentation/General/Reference/InfoPlistKeyReference/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009248-SW1">Infomation Property List Key Reference</a></p>
+</div> -->
+
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -564,238 +682,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" ><a href="/blog/ios-chang-yong-di-san-fang-ku/">iOS 常用第三方库</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-09-16T10:59:10+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>16</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>10:59 am</span></time>
-        
-           | <a href="/blog/ios-chang-yong-di-san-fang-ku/#disqus_thread"
-             data-disqus-identifier="http://tech.dehengxu.com/blog/ios-chang-yong-di-san-fang-ku/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-
-<!-- <div class="entry-content"><h2>iOS UI</h2>
-
-<p><a href="https://github.com/cjwirth/awesome-ios-ui">awesome-ios-ui</a></p>
-
-<p><a href="https://github.com/fpt-software/Material-Controls-For-iOS">Google Material UI</a></p>
-
-<p><a href="https://github.com/zhiyu/chartee">chartee</a></p>
-
-<p><a href="https://github.com/core-plot/core-plot">Core-Plot 图形库</a></p>
-
-<p><a href="https://github.com/dangfm/stockChart">股票图</a></p>
-
-<p><a href="https://github.com/pepibumur/PPiAwesomeButton">PPiAwesomeButton</a></p>
-
-<p><a href="https://github.com/mikeahmarani/MAConfirmButton">MAConfirmButton</a></p>
-
-<p><a href="https://github.com/fastred/AHKBendableView">AHKBendableView</a></p>
-
-<p><a href="https://github.com/facebook/pop">pop</a></p>
-
-<blockquote><p>An extensible iOS and OS X animation library, useful for physics-based interactions.</p></blockquote>
-
-<p><a href="https://github.com/SVGKit/SVGKit">SVGKit</a></p>
-
-<blockquote><p>Display and interact with SVG Images on iOS / OS X, using native rendering (CoreAnimation)</p></blockquote>
-
-<p><a href="https://github.com/mattgibbs/MGLinePlot">MGLinePlot</a></p>
-
-<hr />
-
-<h3>Serialization</h3>
-
-<p><a href="https://github.com/azu/JSONAccelerator">JSONAccelerator</a></p>
-
-<p><a href="https://github.com/PonyCui/PPJSONSerialization">PPJSONSerialization</a></p>
-
-<blockquote><p>PPJSONSerialization is a Swift JSON Helper Library, it helps you to convert JSON string to Swift Class.</p></blockquote>
-
-<p><a href="https://github.com/google/protobuf">Protobuf</a></p>
-
-<p><a href="https://github.com/71squared/TBXML">TBXML</a></p>
-
-<blockquote><p>JSON Accelerator helps developers from all programming language persuasions get data, verify it, and write model objects - Objective C, Java, or Python. It’s complexity, simplified.</p></blockquote>
-
-<hr />
-
-<h3>Database</h3>
-
-<p><a href="https://github.com/gitdoapp/SugarRecord">SugarRecord</a></p>
-
-<blockquote><p>CoreData management library written in Swift</p></blockquote>
-
-<p><a href="https://github.com/paracycle/ObjectiveEntity">ObjectiveEntity</a></p>
-
-<p><a href="https://github.com/hillegass/BNRPersistence">BNRPersistence</a></p>
-
-<blockquote><p>A set of classes which use Tokyo Cabinet to save and load Objective-C objects</p></blockquote>
-
-<p><a href="https://github.com/yapstudios/YapDatabase">YapDatabase</a></p>
-
-<blockquote><p>YapDatabase is an extensible database for iOS &amp; Mac</p></blockquote>
-
-<p><a href="https://github.com/ziminji/objective-c-sql-query-builder">objective-c-sql-query-builder</a></p>
-
-<blockquote><p>An easy-to-use lightweight SQLite 3 library written in Objective-C for Mac OS and iOS 4+ that will build SQL statements and manage database connections, plus an active record based ORM.</p></blockquote>
-
-<p><a href="https://github.com/cpjolicoeur/mojo-database">mojo-database</a></p>
-
-<blockquote><p>ActiveRecord-like ORM interface for Sqlite in Objective-C for use in iOS applications.</p></blockquote>
-
-<hr />
-
-<h3>Testing</h3>
-
-<p><a href="https://github.com/kif-framework/KIF">KIF</a></p>
-
-<blockquote><p>Keep It Functional - An iOS Functional Testing Framework</p></blockquote>
-
-<p><a href="https://github.com/icanzilb/MTLog">MTLog</a></p>
-
-<blockquote><p>NSLog replacement for coders!</p></blockquote>
-
-<p><a href="https://github.com/kiwi-bdd/Kiwi">Kiwi</a></p>
-
-<blockquote><p>Simple BDD for iOS</p></blockquote>
-
-<p><a href="https://github.com/pivotal/cedar">cedar</a></p>
-
-<blockquote><p>BDD-style testing using Objective-C</p></blockquote>
-
-<p><a href="https://github.com/jonreid/OCMockito">OCMockito</a></p>
-
-<blockquote><p>Mockito for Objective-C: creation, verification and stubbing of mock objects</p></blockquote>
-
-<p><a href="https://github.com/erikdoe/ocmock">ocmock</a></p>
-
-<blockquote><p>Mock objects for Objective-C</p></blockquote>
-
-<p><a href="https://github.com/mikr/RestartLessOften">RestartLessOften</a></p>
-
-<blockquote><p>modify parameters, colors, images and code of your app without restart on iOS and OS X with Objective-C</p></blockquote>
-
-<p><a href="https://github.com/DyCI/dyci-main">dyci-main</a></p>
-
-<blockquote><p>Dynamic Code Injection Tool for Objective-C</p></blockquote>
-
-<p><a href="https://github.com/johnno1962/Xtrace">Xtrace</a></p>
-
-<blockquote><p>Trace Objective-C method calls by class or instance</p></blockquote>
-
-<p><a href="https://github.com/johnno1962/XcodeColors">XcodeColors</a></p>
-
-<blockquote><p>XcodeColors allows you to use colors in the Xcode debugging console. Fork with minor optimisation.</p></blockquote>
-
-<p><a href="https://github.com/facebook/Tweaks">Tweaks</a></p>
-
-<blockquote><p>An easy way to fine-tune, and adjust parameters for iOS apps in development.</p></blockquote>
-
-<hr />
-
-<h3>Network</h3>
-
-<p><a href="https://github.com/RestKit/RestKit">RestKit</a></p>
-
-<blockquote><p>RestKit is a framework for consuming and modeling RESTful web resources on iOS and OS X</p></blockquote>
-
-<p><a href="https://github.com/twitter/CocoaSPDY">CocoaSPDY</a></p>
-
-<blockquote><p>SPDY for iOS and OS X.  SPDY was originally designed at Google as an experimental successor to HTTP. It&rsquo;s a binary protocol (rather than human-readable, like HTTP), but is fully compatible with HTTP. In fact, current draft work on HTTP/2.0 is largely based on the SPDY protocol and its real-world success.</p></blockquote>
-
-<p><a href="https://github.com/rnapier/RNCachingURLProtocol">RNCachingURLProtocol</a></p>
-
-<blockquote><p>Simple offline caching for UIWebView and other NSURLConnection clients</p></blockquote>
-
-<hr />
-
-<h3>3rd Framework</h3>
-
-<p><a href="https://github.com/real-prometheus/CDI">CDI</a></p>
-
-<blockquote><p>Context and Dependency Injection for Objective-C.</p></blockquote>
-
-<p><a href="https://github.com/tomekc/Syringe">Syringe</a></p>
-
-<blockquote><p>Dependency injection framework for Objective-C (on iOS and OS X)</p></blockquote>
-
-<p><a href="https://github.com/mivasi/Objective-IOC">Objective-IOC</a></p>
-
-<blockquote><p>Dependency injection implementation for objective-c</p></blockquote>
-
-<p><a href="https://github.com/tomersh/AppleGuice">AppleGuice</a></p>
-
-<blockquote><p>Effortless dependency injection framework for Objective-C</p></blockquote>
-
-<p><a href="https://github.com/alibaba/MBMvc">MBMvc</a></p>
-
-<blockquote><p>An iOS Message Based MVC framework</p></blockquote>
-
-<p><a href="https://github.com/facebook/KVOController">KVOController</a></p>
-
-<blockquote><p>Simple, modern, thread-safe key-value observing for iOS and OS X.</p></blockquote>
-
-<p><a href="https://github.com/johnno1962/injectionforxcode">injectionforxcode</a></p>
-
-<blockquote><p>Runtime Code Injection for Objective-C &amp; Swift</p></blockquote>
-
-<p><a href="https://github.com/robbiehanson/XMPPFramework">XMPPFramework</a></p>
-
-<blockquote><p>An XMPP Framework in Objective-C for Mac and iOS</p></blockquote>
-
-<p><a href="https://github.com/TouchCode/TouchHTTPD">TouchHTTPD</a></p>
-
-<blockquote><p>An iOS compatible Cocoa Web Server.</p></blockquote>
-
-<hr />
-
-<h3>Utilities</h3>
-
-<p><a href="https://github.com/thoughtbot/NSString-TBEncryption">NSString-TBEncryption</a></p>
-
-<blockquote><p>Tiny CocoaPod for NSString Encryption methods</p></blockquote>
-
-<p><a href="https://github.com/thoughtbot/TBMath">TBMath</a></p>
-
-<blockquote><p>Objective-C math library written on top of accelerate.</p></blockquote>
-
-<p><a href="https://github.com/log4cplus/log4cplus">log4cplus</a></p>
-
-<p><a href="https://github.com/mmin18/WaxPatch">WaxPatch</a></p>
-
-<p><a href="https://github.com/cloudwu/coroutine">coroutine</a></p>
-
-<blockquote><p>A asymmetric coroutine library for C.</p></blockquote>
-
-<p><a href="https://github.com/mattconnolly/ZipArchive">ZipArchive</a></p>
-
-<p><a href="https://github.com/st3fan/ios-openssl">ios-openssl</a></p>
-
-<p><a href="https://github.com/secondgear/SGKeychain">SGKeychain</a></p>
-</div> -->
-
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -809,6 +695,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/app-transport-security-ji-zhu/">App Transport Security 技术</a>
+      </li>
     
       <li class="post">
         <a href="/blog/android-chang-yong-di-san-fang-ku/">Android 常用第三方库</a>
@@ -884,10 +774,6 @@
     
       <li class="post">
         <a href="/blog/gcd-de-chang-gui-yong-fa/">GCD 的常规用法</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/xian-cheng-he-jin-cheng-jian-de-qu-bie/">线程和进程间的区别</a>
       </li>
     
   </ul>

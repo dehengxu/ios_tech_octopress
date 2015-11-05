@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Ios, | 逆风@[iOS,android,nil]]]></title>
+  <title><![CDATA[Category: Ios | 逆风@[iOS,android,nil]]]></title>
   <link href="http://tech.dehengxu.com/blog/categories/ios/atom.xml" rel="self"/>
   <link href="http://tech.dehengxu.com/"/>
-  <updated>2015-11-04T14:21:48+08:00</updated>
+  <updated>2015-11-05T10:34:09+08:00</updated>
   <id>http://tech.dehengxu.com/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
@@ -14,43 +14,95 @@
 
   
   <entry>
-    <title type="html"><![CDATA[第三方消息推送服务对比]]></title>
-    <link href="http://tech.dehengxu.com/blog/di-san-fang-xiao-xi-tui-song-fu-wu-dui-bi/"/>
-    <updated>2015-10-10T11:15:55+08:00</updated>
-    <id>http://tech.dehengxu.com/blog/di-san-fang-xiao-xi-tui-song-fu-wu-dui-bi</id>
-    <content type="html"><![CDATA[<h3>友盟</h3>
+    <title type="html"><![CDATA[App Transport Security 技术]]></title>
+    <link href="http://tech.dehengxu.com/blog/app-transport-security-ji-zhu/"/>
+    <updated>2015-11-05T10:18:25+08:00</updated>
+    <id>http://tech.dehengxu.com/blog/app-transport-security-ji-zhu</id>
+    <content type="html"><![CDATA[<p>App Transport Security is a feature that improves the security of connections between an app and web services. The feature consists of default connection requirements that conform to best practices for secure connections. Apps can override this default behavior and turn off transport security.</p>
 
-<p>客户端支持: iOS, Android</p>
+<p>Transport security is available in iOS 9.0 or later, and in OS X v10.11 and later.</p>
 
-<p>服务端支持: Java, php, Python</p>
+<h2>Default behavior</h2>
 
-<h3>极光</h3>
+<p>All connections using the NSURLConnection, CFURL, or NSURLSession APIs use App Transport Security default behavior in apps built for iOS 9.0 or later, and OS X v10.11 or later. Connections that do not follow the requirements will fail. For more information on various the connection methods, see NSURLConnection Class Reference, CFURL Reference, or NSURLSession Class Reference.</p>
 
-<p>客户端支持: iOS, Android, WinPhone</p>
+<p>Info.plist can use <code>NSAppTransportSecurity</code> key to configurate ATS</p>
 
-<p>服务端支持: Java, php, python, ruby, C#, nodejs</p>
+<ul>
+<li>NSAllowsArbitraryLoads   <code>Yes</code> to disable ATS checking, <code>No</code> to enable ATS checking.</li>
+</ul>
 
-<h3>百度云推送</h3>
 
-<p>客户端支持: iOS, Android</p>
+<p>The property keys are defined next.</p>
 
-<p>服务端支持: Java, php</p>
+<p>NSAppTransportSecurity
+A dictionary containing the settings for overriding default App Transport Security behaviors. The top level key for the app’s Info.plist file.</p>
 
-<h3>个推</h3>
+<p>NSAllowsArbitraryLoads
+A Boolean value used to disable App Transport Security for any domains not listed in the NSExceptionDomains dictionary. Listed domains use the settings specified for that domain.</p>
 
-<p><a href="http://www.getui.com/">http://www.getui.com/</a></p>
+<p>The default value of NO requires the default App Transport Security behavior for all connections.</p>
 
-<p>客户端支持: iOS, Android</p>
+<p>NSExceptionDomains
+A dictionary of App Transport Security exceptions for specific domains. Each key is a string containing the domain name for the exceptions.</p>
 
-<p>服务端支持: java, php, c#, python, nodejs, c++</p>
+<p><domain-name-for-exception-as-string>
+A dictionary of exceptions for the named domain. The name of the key is the name of the domain–for example, www.apple.com.</p>
 
-<h3>腾讯飞鸽</h3>
+<h4>NSExceptionMinimumTLSVersion</h4>
 
-<p><a href="http://xg.qq.com/xg">http://xg.qq.com/xg</a></p>
+<p>A string that specifies a the minimum TLS version for connections. Valid values are:</p>
 
-<p>客户端支持: iOS, Android</p>
+<pre><code>TLSv1.0
+TLSv1.1
+TLSv1.2
+</code></pre>
 
-<p>服务端支持: Java, php, python, nodejs</p>
+<p><code>TLSV1.2</code> is the default value.</p>
+
+<h4>NSExceptionRequiresForwardSecrecy</h4>
+
+<p>A Boolean value for overriding the requirement that the domain support forward secrecy using ciphers.</p>
+
+<p>YES is the default value and limits the ciphers to those shown in Default Behavior.</p>
+
+<p>Setting the value to NO adds the following the list of accepted ciphers:</p>
+
+<ul>
+<li>TLS_RSA_WITH_AES_256_GCM_SHA384</li>
+<li>TLS_RSA_WITH_AES_128_GCM_SHA256</li>
+<li>TLS_RSA_WITH_AES_256_CBC_SHA256</li>
+<li>TLS_RSA_WITH_AES_256_CBC_SHA</li>
+<li>TLS_RSA_WITH_AES_128_CBC_SHA256</li>
+<li>TLS_RSA_WITH_AES_128_CBC_SHA</li>
+</ul>
+
+
+<h4>NSExceptionAllowsInsecureHTTPLoads</h4>
+
+<p>A Boolean value for overriding the requirement that all connections use HTTPS. Use this key to access domains with no certificate, or with an error for a self-signed, expired, or hostname-mismatch certificate.</p>
+
+<p>NO is the default value.</p>
+
+<h4>NSIncludesSubdomains</h4>
+
+<p>A Boolean value for applying the overrides to all subdomains of the top-level domain.</p>
+
+<p>NO is the default value.</p>
+
+<h4>NSThirdPartyExceptionMinimumTLSVersion</h4>
+
+<p>A version of NSExceptionMinimumTLSVersion used when the domain is an app service that is not controlled by the developer.</p>
+
+<h4>NSThirdPartyExceptionRequiresForwardSecrecy</h4>
+
+<p>A version of NSExceptionRequiresForwardSecrecy used when the domain is an app service that is not controlled by the developer.</p>
+
+<h4>NSThirdPartyExceptionAllowsInsecureHTTPLoads</h4>
+
+<p>A version of NSExceptionAllowsInsecureHTTPLoads used when the domain is an app service that is not controlled by the developer.</p>
+
+<p><a href="https://developer.apple.com/library/prerelease/ios/documentation/General/Reference/InfoPlistKeyReference/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009248-SW1">Infomation Property List Key Reference</a></p>
 ]]></content>
   </entry>
   
