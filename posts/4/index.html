@@ -1247,6 +1247,26 @@ Xcode 4.1 和以前的版本不支持 ARC。</p>
 <p>复位基线，将两个分支的提交纪录，合并到一条基线路线上。功能作用上和 merge 类似，但是不会产生新的提交节点，而且不存在多个提交路线。</p>
 
 <p>当出现冲突的时候，先去解决冲突，完成后，使用 <code>rebase --continue</code> 继续 <code>rebase</code> 操作。如果冲突不重要也可以 <code>rebase --skip</code> 忽略冲突。</p>
+
+<h3>3. diff</h3>
+
+<p>git diff</p>
+
+<p>查看当前未暂存的文件与已暂存的文件中不同的部分。</p>
+
+<p>git diff &ndash;cached|&ndash;staged</p>
+
+<p>查看已暂存的文件与已提交的文件中不同的部分。</p>
+
+<h3>4. rm</h3>
+
+<p>git rm &ndash;cached</p>
+
+<p>将已暂存的文件从从暂存区中移除，但不删除文件</p>
+
+<p>git rm</p>
+
+<p>将文件从git 暂存区中移除，并且不再跟踪此文件，最后还需要提交此次删除操作。</p>
 </div> -->
 
   
