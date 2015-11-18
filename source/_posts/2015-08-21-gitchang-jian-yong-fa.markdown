@@ -127,6 +127,24 @@ git commit --amend 修改并更新最后一次提交内容
 
 git reset head <file>   取消暂存到 head 版本
 
+### 9. diff
+
+git diff 
+
+git diff target_branch_name
+
+### 10. bundle
+
+#### 打包
+
+git bundle create bundle_name HEAD branch_name
+
+#### 解包
+
+git clone bundle_name folder_name
+
+
+
 
 
 
