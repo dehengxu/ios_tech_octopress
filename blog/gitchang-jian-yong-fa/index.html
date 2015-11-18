@@ -202,6 +202,60 @@ git merge test 合并结果 &hellip;">
 <p>git rm</p>
 
 <p>将文件从git 暂存区中移除，并且不再跟踪此文件，最后还需要提交此次删除操作。</p>
+
+<h3>5. mv</h3>
+
+<p>git mv 移动文件&amp;文件改名</p>
+
+<p>git mv name1 name2 相当于执行了三条指令</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mv name1 name2
+</span><span class='line'>git rm name1
+</span><span class='line'>git add name2</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>6. log</h3>
+
+<p>git log 查看提交记录</p>
+
+<p>git log &ndash;graph 按照图形的方式显示日志记录</p>
+
+<p>git log &ndash;oneline 按照单行的简化方案显示日志记录</p>
+
+<p>git log -p  展开显示每次提交的内容变更</p>
+
+<p>git log -p &ndash;word-diff 以单词为目标观察内容变更</p>
+
+<p>git log &ndash;stat  显示增改行数统计</p>
+
+<h3>7. commit</h3>
+
+<p>git commit &ndash;amend 修改并更新最后一次提交内容</p>
+
+<blockquote><p>&ndash;amend 参数相当于给你修改最后一次提交的机会</p></blockquote>
+
+<h3>8. reset</h3>
+
+<p>git reset head <file>   取消暂存到 head 版本</p>
+
+<h3>9. diff</h3>
+
+<p>git diff</p>
+
+<p>git diff target_branch_name</p>
+
+<h3>10. bundle</h3>
+
+<h4>打包</h4>
+
+<p>git bundle create bundle_name HEAD branch_name</p>
+
+<h4>解包</h4>
+
+<p>git clone bundle_name folder_name</p>
 </div>
 
 
