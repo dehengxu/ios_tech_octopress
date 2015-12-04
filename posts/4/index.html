@@ -9,7 +9,7 @@
   <meta name="author" content="Deheng Xu">
 
   
-  <meta name="description" content="线程和进程间的区别 Aug 23rd, 2015 3:13 pm | Comments Timer ⌚回调事件被UI交互阻塞的解决办法 Aug 23rd, 2015 2:59 pm | Comments 通过 Clang 分析 Block 的机制 Aug 23rd, 2015 8:35 am &hellip;">
+  <meta name="description" content="Bash 使用技巧 Aug 23rd, 2015 11:11 pm | Comments GCD 的常规用法 Aug 23rd, 2015 3:56 pm | Comments 线程和进程间的区别 Aug 23rd, 2015 3:13 pm | Comments Timer ⌚ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,279 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" ><a href="/blog/bash-shi-yong-ji-qiao/">Bash 使用技巧</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-08-23T23:11:02+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2015</span></span> <span class='time'>11:11 pm</span></time>
+        
+           | <a href="/blog/bash-shi-yong-ji-qiao/#disqus_thread"
+             data-disqus-identifier="http://tech.dehengxu.com/blog/bash-shi-yong-ji-qiao/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+
+<!-- <div class="entry-content"><h4>递归搜索目录下所有文件内容</h4>
+
+<p>bash</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ls ./**/*.ext | xargs grep algorit</span></code></pre></td></tr></table></div></figure>
+
+
+<blockquote><p>搜索当前目录下所有的 ext 文件，并且匹配是否包含关键词 <code>algorit</code></p></blockquote>
+
+<h4>查找进程</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>es -ef|grep name</span></code></pre></td></tr></table></div></figure>
+
+
+<blockquote><p>查找进程名包含 <code>name</code> 的进程</p></blockquote>
+
+<h4>查看开启的端口</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>lsof -i:8080</span></code></pre></td></tr></table></div></figure>
+
+
+<blockquote><p>查看使用端口 8080 的进程</p></blockquote>
+</div> -->
+
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" ><a href="/blog/gcd-de-chang-gui-yong-fa/">GCD 的常规用法</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-08-23T15:56:50+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2015</span></span> <span class='time'>3:56 pm</span></time>
+        
+           | <a href="/blog/gcd-de-chang-gui-yong-fa/#disqus_thread"
+             data-disqus-identifier="http://tech.dehengxu.com/blog/gcd-de-chang-gui-yong-fa/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+
+<!-- <div class="entry-content"><p>GCD 通过将多线程抽象为 <code>dispatch_queue_t</code> 类型的对象，以 Block 作为计算单元实现的一套基于 C 语言的开源多线程库 <code>libdispatch</code>。</p>
+
+<p>GCD 让多线程开发变的更加方便，简洁。</p>
+
+<p>首先明确几个 GCD 中的特性:</p>
+
+<ol>
+<li>全局队列都是异步的。</li>
+<li>主队列是同步的。</li>
+<li>串行队列中在当前上下文执行同步计算会产生死锁。</li>
+</ol>
+
+
+<h3>创建并行，串行队列</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>dispatch_queue_create("q1", DISPATCH_QUEUE_CONCURRENT);</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>dispatch_queue_create("q1", DISPATCH_QUEUE_SERIAL);</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>异步执行任务</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>disaptch_async(queue, ^() {
+</span><span class='line'>  //Todo....
+</span><span class='line'>});</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>同步执行任务的方式</h3>
+
+<ol>
+<li><p>dispatch_semaphor_t</p>
+
+<pre><code>dispatch_semaphor_t semaphor = disaptch_semaphor_create(1);
+
+dispatch_async(queue, ^() {
+    dispatch_semaphor_wait(semaphor);
+    //Todo...
+
+    //Finished.
+    dispatch_semaphor_signal(semaphor);
+});
+</code></pre>
+
+<p>创建一个只允许一个线程访问的信号量 <code>disaptch_semaphor_create(1);</code></p>
+
+<p>通知其他访问对象等待 <code>dispatch_semaphor_wait(semaphor);</code></p>
+
+<p>资源访问结束后，退回占用的资源，并通知其他访问对象可以进行访问。 <code>dispatch_semaphor_signal(semaphor);</code></p></li>
+<li><p>dispatch_group_wait</p>
+
+<pre><code>dispatch_group_t group = dispatch_group_create();
+
+dispatch_group_async(group, q1, ^ {
+    //Task 1.
+});
+
+dispatch_group_async(group, q1, ^ {
+    //Task 2.
+});
+
+dispatch_group_async(group, q1, ^ {
+    //Task 3.
+});
+
+dispatch_async(queue, ^() {
+    dispatch_group_wait(group);
+    //Todo....
+
+});
+</code></pre>
+
+<p><code>dispatch_group_async</code>: 添加任务到分组中。</p>
+
+<p><code>dispatch_group_wait(group);</code> 等待 group 里的所有任务完成后方可继续。</p></li>
+<li><p>dispatch_group_notify</p>
+
+<pre><code>dispatch_group_notify(group, q1, ^ {
+    //Todo...
+
+});
+</code></pre>
+
+<p><code>dispatch_group_notify</code>: group中的所有任务完成后，执行 block 中的代码。</p></li>
+<li><p>dispatch_group_enter, dispatch_group_leave</p>
+
+<pre><code>dispatch_group_enter(group);
+
+dispatch_async(q1, ^ {
+    //Todo...
+
+    dispatch_group_leave(group);
+});
+</code></pre>
+
+<p>该代码等价于:</p>
+
+<pre><code>dispatch_group_async(q1, ^ {
+    //Todo...
+});
+</code></pre>
+
+<p>作用也是将任务放入到 q1 队列中，同时也添加到分组中。</p></li>
+</ol>
+
+
+<h3>使用 apply 来提高并行效率</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>dispatch_apply(5000, q1, ^(size_t i) {
+</span><span class='line'>    NSLog(@"%zu",  i);
+</span><span class='line'>});</span></code></pre></td></tr></table></div></figure>
+
+
+<p>你会发现如果 q1 是并发队列，输出的数字是无序的状态。这就是 dispatch_apply 带来的好处，它能快速将当前的迭代任务立刻发送到队列中执行，如果是并发队列，这个效率是很高的。如果你对任务的顺序有要求，或者队列是串行队列，那就不需要使用 dispatch_apply 了。</p>
+
+<h3>dispatch_barrier_async</h3>
+
+<p>阻碍异步，意思是通过 dispatch_barrier_async 提交的任务，不会立刻执行，而是会阻碍它之后提交的任务，直到它之前的任务全部完成，它才会执行，并且它执行完毕后，其后提交的任务才能继续进行。</p>
+
+<p>而在 dispatch_barrier_async 之前或者之后的任务都是并发执行的。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>dispatch_queue_t q = dispatch_queue_create("test", DISPATCH_QUEUE_CONCURRENT);
+</span><span class='line'>
+</span><span class='line'>dispatch_async(q, ^() {printf("A\n");});
+</span><span class='line'>dispatch_async(q, ^() {printf("B\n");});
+</span><span class='line'>dispatch_async(q, ^() {printf("C\n");});
+</span><span class='line'>dispatch_async(q, ^() {printf("D\n");});
+</span><span class='line'>
+</span><span class='line'>dispatch_barrier_async(q, ^() {printf("barrier\n");});
+</span><span class='line'>
+</span><span class='line'>dispatch_async(q, ^() {printf("E\n");});
+</span><span class='line'>dispatch_async(q, ^() {printf("F\n");});
+</span><span class='line'>dispatch_async(q, ^() {printf("G\n");});
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>输出结果是:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>A --
+</span><span class='line'>C  |  
+</span><span class='line'>D  |--&gt; //顺序随机产生
+</span><span class='line'>B _|
+</span><span class='line'>barrier //这里的输出位置不会变化
+</span><span class='line'>F --
+</span><span class='line'>E  |--&gt; //顺序随机产生
+</span><span class='line'>G --
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>但是 dispatch_barrier_async 只有提交到自己创建的并发队列时，才有上面的效果。如果是全局队列，或者串行队列，那么 dispatch_barrier_async 和 dispatch_async 是等效的。</p>
+</div> -->
+
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1119,250 +1392,6 @@ Xcode 4.1 和以前的版本不支持 ARC。</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" ><a href="/blog/jin-cheng-jian-tong-xin-fang-shi/">进程间通信方式</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-08-21T15:23:01+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>21</span><span class='date-suffix'>st</span>, <span class='date-year'>2015</span></span> <span class='time'>3:23 pm</span></time>
-        
-           | <a href="/blog/jin-cheng-jian-tong-xin-fang-shi/#disqus_thread"
-             data-disqus-identifier="http://tech.dehengxu.com/blog/jin-cheng-jian-tong-xin-fang-shi/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-
-<!-- <div class="entry-content"><h3>序</h3>
-
-<p>linux下的进程通信手段基本上是从Unix平台上的进程通信手段继承而来的。而对Unix发展做出重大贡献的两大主力AT&amp;T的贝尔实验室及BSD（加州大学伯克利分校的伯克利软件发布中心）在进程间通信方面的侧重点有所不同。前者对Unix早期的进程间通信手段进行了系统的改进和扩充，形成了“system V IPC”，通信进程局限在单个计算机内；后者则跳过了该限制，形成了基于套接口（socket）的进程间通信机制。Linux则把两者继承了下来，如图示：</p>
-
-<p>其中，最初Unix IPC包括：管道、FIFO、信号；System V IPC包括：System V消息队列、System V信号灯、System V共享内存区；Posix IPC包括：   Posix消息队列、Posix信号灯、Posix共享内存区。有两点需要简单说明一下：1）由于Unix版本的多样性，电子电气工程协会（IEEE）开发了一个独立的Unix标准，这个新的ANSI Unix标准被称为计算机环境的可移植性操作系统界面（PSOIX）。现有大部分Unix和流行版本都是遵循POSIX标准的，而Linux从一开始就遵循POSIX标准；2）BSD并不是没有涉足单机内的进程间通信（socket本身就可以用于单机内的进程间通信）。事实上，很多Unix版本的单机IPC留有BSD的痕迹，如4.4BSD支持的匿名内存映射、4.3+BSD对可靠信号语义的实现等等。
-图一给出了linux 所支持的各种IPC手段，在本文接下来的讨论中，为了避免概念上的混淆，在尽可能少提及Unix的各个版本的情况下，所有问题的讨论最终都会归结到Linux环境下的进程间通信上来。并且，对于Linux所支持通信手段的不同实现版本（如对于共享内存来说，有Posix共享内存区以及System V共享内存区两个实现版本），将主要介绍Posix API。</p>
-
-<p>linux下进程间通信的几种主要手段简介：</p>
-
-<p>管道（Pipe）及有名管道（named pipe）：管道可用于具有亲缘关系进程间的通信，有名管道克服了管道没有名字的限制，因此，除具有管道所具有的功能外，它还允许无亲缘关系进程间的通信；
-信号（Signal）：信号是比较复杂的通信方式，用于通知接受进程有某种事件发生，除了用于进程间通信外，进程还可以发送信号给进程本身；linux除了支持Unix早期信号语义函数sigal外，还支持语义符合Posix.1标准的信号函数sigaction（实际上，该函数是基于BSD的，BSD为了实现可靠信号机制，又能够统一对外接口，用sigaction函数重新实现了signal函数）；</p>
-
-<p>报文（Message）队列（消息队列）：消息队列是消息的链接表，包括Posix消息队列system V消息队列。有足够权限的进程可以向队列中添加消息，被赋予读权限的进程则可以读走队列中的消息。消息队列克服了信号承载信息量少，管道只能承载无格式字节流以及缓冲区大小受限等缺点。
-共享内存：使得多个进程可以访问同一块内存空间，是最快的可用IPC形式。是针对其他通信机制运行效率较低而设计的。往往与其它通信机制，如信号量结合使用，来达到进程间的同步及互斥。</p>
-
-<p>信号量（semaphore）：主要作为进程间以及同一进程不同线程之间的同步手段。</p>
-
-<p>套接口（Socket）：更为一般的进程间通信机制，可用于不同机器之间的进程间通信。起初是由Unix系统的BSD分支开发出来的，但现在一般可以移植到其它类Unix系统上：Linux和System V的变种都支持套接字。
-下面将对上述通信机制做具体阐述。</p>
-
-<p>附1：参考文献[2]中对linux环境下的进程进行了概括说明：
-一般来说，linux下的进程包含以下几个关键要素：
-有一段可执行程序；
-有专用的系统堆栈空间；
-内核中有它的控制块（进程控制块），描述进程所占用的资源，这样，进程才能接受内核的调度；
-具有独立的存储空间
-进程和线程有时候并不完全区分，而往往根据上下文理解其含义。</p>
-
-<p><a href="http://www.ibm.com/developerworks/cn/linux/l-ipc/" target="_blank">IBM 参考</a></p>
-</div> -->
-
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" ><a href="/blog/gitchang-jian-yong-fa/">Git常见用法</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-08-21T13:52:39+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>21</span><span class='date-suffix'>st</span>, <span class='date-year'>2015</span></span> <span class='time'>1:52 pm</span></time>
-        
-           | <a href="/blog/gitchang-jian-yong-fa/#disqus_thread"
-             data-disqus-identifier="http://tech.dehengxu.com/blog/gitchang-jian-yong-fa/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-
-<!-- <div class="entry-content"><h3>1.checkout</h3>
-
-<h4>切换到指定 commit</h4>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>checkout sha-1</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>切换到分支</h4>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>checkout branch_name</span></code></pre></td></tr></table></div></figure>
-
-
-<hr />
-
-<h3>2.merge</h3>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>   D--------E
-</span><span class='line'>  /
-</span><span class='line'> /
-</span><span class='line'>A---B---C---F----G master</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>git merge test</span></code></pre></td></tr></table></div></figure>
-
-
-<p>合并结果：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>   D-------------E
-</span><span class='line'>  /               \
-</span><span class='line'> /                 \
-</span><span class='line'>A---B---C---F----G test, master</span></code></pre></td></tr></table></div></figure>
-
-
-<hr />
-
-<h3>3.rebase</h3>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>   D--------E
-</span><span class='line'>  /
-</span><span class='line'> /
-</span><span class='line'>A---B---C---F----G master</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>git rebase dev</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>A---B---D---C---E---F----G  test, master</span></code></pre></td></tr></table></div></figure>
-
-
-<p>复位基线，将两个分支的提交纪录，合并到一条基线路线上。功能作用上和 merge 类似，但是不会产生新的提交节点，而且不存在多个提交路线。</p>
-
-<p>当出现冲突的时候，先去解决冲突，完成后，使用 <code>rebase --continue</code> 继续 <code>rebase</code> 操作。如果冲突不重要也可以 <code>rebase --skip</code> 忽略冲突。</p>
-
-<h3>3. diff</h3>
-
-<p>git diff</p>
-
-<p>查看当前未暂存的文件与已暂存的文件中不同的部分。</p>
-
-<p>git diff &ndash;cached|&ndash;staged</p>
-
-<p>查看已暂存的文件与已提交的文件中不同的部分。</p>
-
-<h3>4. rm</h3>
-
-<p>git rm &ndash;cached</p>
-
-<p>将已暂存的文件从从暂存区中移除，但不删除文件</p>
-
-<p>git rm</p>
-
-<p>将文件从git 暂存区中移除，并且不再跟踪此文件，最后还需要提交此次删除操作。</p>
-
-<h3>5. mv</h3>
-
-<p>git mv 移动文件&amp;文件改名</p>
-
-<p>git mv name1 name2 相当于执行了三条指令</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>mv name1 name2
-</span><span class='line'>git rm name1
-</span><span class='line'>git add name2</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>6. log</h3>
-
-<p>git log 查看提交记录</p>
-
-<p>git log &ndash;graph 按照图形的方式显示日志记录</p>
-
-<p>git log &ndash;oneline 按照单行的简化方案显示日志记录</p>
-
-<p>git log -p  展开显示每次提交的内容变更</p>
-
-<p>git log -p &ndash;word-diff 以单词为目标观察内容变更</p>
-
-<p>git log &ndash;stat  显示增改行数统计</p>
-
-<h3>7. commit</h3>
-
-<p>git commit &ndash;amend 修改并更新最后一次提交内容</p>
-
-<blockquote><p>&ndash;amend 参数相当于给你修改最后一次提交的机会</p></blockquote>
-
-<h3>8. reset</h3>
-
-<p>git reset head <file>   取消暂存到 head 版本</p>
-
-<h3>9. diff</h3>
-
-<p>git diff</p>
-
-<p>git diff target_branch_name</p>
-
-<h3>10. bundle</h3>
-
-<h4>打包</h4>
-
-<p>git bundle create bundle_name HEAD branch_name</p>
-
-<h4>解包</h4>
-
-<p>git clone bundle_name folder_name</p>
-</div> -->
-
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/5">&larr; Older</a>
@@ -1380,6 +1409,10 @@ Xcode 4.1 和以前的版本不支持 ARC。</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/ios-mapping-lib/">iOS Mapping Lib</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/web-protocol-collection/">Web Protocol Collection</a>
       </li>
     
@@ -1393,6 +1426,10 @@ Xcode 4.1 和以前的版本不支持 ARC。</p>
     
       <li class="post">
         <a href="/blog/mqtt-resources/">MQTT Resources</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/shi-yong-guo-nei-yuan-ti-gao-android-sdk-manager-su-du/">使用国内源提高Android SDK Manager 速度</a>
       </li>
     
       <li class="post">
@@ -1449,14 +1486,6 @@ Xcode 4.1 和以前的版本不支持 ARC。</p>
     
       <li class="post">
         <a href="/blog/kvc-ji-zhi/">KVC 机制</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/use-dispatch-source-timer/">Use Dispatch Source Timer</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/bash-shi-yong-ji-qiao/">Bash 使用技巧</a>
       </li>
     
   </ul>
