@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Use jenkins with "Self-Organizing Swarm Plug-in Modules""
+title: 'Use jenkins with "Self-Organizing Swarm Plug-in Modules"'
 date: 2015-12-29 16:15:39 +0800
 comments: true
 published: true

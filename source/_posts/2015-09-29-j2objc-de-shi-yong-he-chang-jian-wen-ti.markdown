@@ -9,9 +9,6 @@ footer: true
 categories: 
 ---
 
-
-
-
 Issues:
 
 `_u_charDirection", referenced from:  _JavaLangCharacter_getDirectionalityWithInt_ in libjre_emul.a`
