@@ -1,315 +1,294 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>http://tech.dehengxu.com/blog/use-jenkins-with-self-organizing-swarm-plug-in-modules/</loc>
-    <lastmod>2015-12-29T00:00:00+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/ios-mapping-lib/</loc>
-    <lastmod>2015-12-03T23:26:40+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/web-protocol-collection/</loc>
-    <lastmod>2015-12-01T10:42:15+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/app-transport-security-ji-zhu/</loc>
-    <lastmod>2015-11-05T10:18:25+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/android-chang-yong-di-san-fang-ku/</loc>
-    <lastmod>2015-10-19T19:19:15+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/mqtt-resources/</loc>
-    <lastmod>2015-10-12T14:05:57+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/shi-yong-guo-nei-yuan-ti-gao-android-sdk-manager-su-du/</loc>
-    <lastmod>2015-10-11T21:54:10+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/di-san-fang-xiao-xi-tui-song-fu-wu-dui-bi/</loc>
-    <lastmod>2015-10-10T11:15:55+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/diagram-of-a-activitys-life-cycle/</loc>
-    <lastmod>2015-10-05T11:31:52+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/bash-usage/</loc>
-    <lastmod>2015-09-22T09:48:42+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/useful-tools-for-xcode/</loc>
-    <lastmod>2015-09-16T11:15:21+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/ios-chang-yong-di-san-fang-ku/</loc>
-    <lastmod>2015-09-16T10:59:10+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/gitsh-de-an-zhuang-he-shi-yong/</loc>
-    <lastmod>2015-09-15T17:50:13+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/shi-yong-cocoapods-lai-guan-li-ji-yu-svn-de-zi-xiang-mu/</loc>
-    <lastmod>2015-09-08T16:01:14+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/create-a-private-pods/</loc>
-    <lastmod>2015-08-31T22:20:30+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/use-cocoapods-publish-your-podspec/</loc>
-    <lastmod>2015-08-31T22:10:34+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/objc-msgsend-bian-yi-cuo-wu-de-jie-jue-fang-fa/</loc>
-    <lastmod>2015-08-30T12:13:22+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/zi-ding-yi-lei-ru-he-ti-gong-kvc-jian-rong-te-xing/</loc>
-    <lastmod>2015-08-29T15:10:33+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/shi-yong-nsvalue-feng-zhuang-ren-yi-jie-gou-ti/</loc>
-    <lastmod>2015-08-29T12:55:21+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/kvo-ji-zhi/</loc>
-    <lastmod>2015-08-28T18:36:18+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/kvc-ji-zhi/</loc>
-    <lastmod>2015-08-28T17:16:18+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/use-dispatch-source-timer/</loc>
-    <lastmod>2015-08-27T16:58:03+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/bash-shi-yong-ji-qiao/</loc>
-    <lastmod>2015-08-23T23:11:02+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/gcd-de-chang-gui-yong-fa/</loc>
-    <lastmod>2015-08-23T15:56:50+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/xian-cheng-he-jin-cheng-jian-de-qu-bie/</loc>
-    <lastmod>2015-08-23T15:13:25+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/timer-hui-diao-shi-jian-bei-uijiao-hu-zu-sai-de-jie-jue-ban-fa/</loc>
-    <lastmod>2015-08-23T14:59:03+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/tong-guo-clang-fen-xi-block-de-ji-zhi/</loc>
-    <lastmod>2015-08-23T08:35:18+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/guan-li-zi-you-qiao-jie-toll-free-bridging/</loc>
-    <lastmod>2015-08-22T18:21:12+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/arc-nei-cun-guan-li/</loc>
-    <lastmod>2015-08-21T23:06:08+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/jin-cheng-jian-tong-xin-fang-shi/</loc>
-    <lastmod>2015-08-21T15:23:01+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/gitchang-jian-yong-fa/</loc>
-    <lastmod>2015-08-21T13:52:39+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/nsmutablecopying-and-nscopying/</loc>
-    <lastmod>2015-08-19T23:24:42+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/jekyll-site-class-available-attr/</loc>
-    <lastmod>2015-08-19T11:35:34+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/jekyll-configuration-fileds/</loc>
-    <lastmod>2015-08-19T11:32:06+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/blockzai-clangzhong-de-shi-xian/</loc>
-    <lastmod>2015-08-19T06:00:02+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/autoreleasefang-fa-deyuan-ma-fen-xi/</loc>
-    <lastmod>2015-08-18T10:51:06+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/libdispatch-yuan-ma-fen-xi/</loc>
-    <lastmod>2015-08-18T08:57:37+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/apple-source-code-&-documents/</loc>
-    <lastmod>2015-08-17T10:04:40+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/shi-yong-xian-dai-objective-c/</loc>
-    <lastmod>2015-08-16T15:32:41+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/useful-plugins-for-xcode/</loc>
-    <lastmod>2015-08-16T08:13:33+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/design-pattern-visitor/</loc>
-    <lastmod>2015-08-16T08:05:25+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/objective-czhong-de-xie-yi-yin-yong-tou-wen-jian-de-wen-ti/</loc>
-    <lastmod>2015-08-16T00:59:41+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/chang-yong-23chong-she-ji-mo-shi-jian-jie/</loc>
-    <lastmod>2015-08-15T23:47:51+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/design-pattern-observer/</loc>
-    <lastmod>2015-08-15T23:46:46+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/objective-c-block-usage/</loc>
-    <lastmod>2015-08-15T14:43:40+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/hello-rake/</loc>
-    <lastmod>2015-08-15T00:00:00+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/welcome-to-jekyll/</loc>
-    <lastmod>2015-08-06T22:19:25+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/keys-for-using-jekyll-on-github-dot-com/</loc>
-    <lastmod>2014-08-31T11:48:21+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/config-java-envir-on-osx/</loc>
-    <lastmod>2014-08-30T14:45:49+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/welcome-to-jekyll/</loc>
-    <lastmod>2014-08-29T21:46:06+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/rake-usage/</loc>
-    <lastmod>2014-08-29T14:42:06+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/archives/</loc>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/</loc>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/works/</loc>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/devres/</loc>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/categories/ruby/</loc>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/categories/jekyll/</loc>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/categories/update/</loc>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/categories/java/</loc>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/categories/jekyll/</loc>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/categories/blog/</loc>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/categories/github-dot-com/</loc>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/categories/objc/</loc>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/categories/she-ji-mo-shi/</loc>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/categories/utilities/</loc>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/categories/resource/</loc>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/categories/scm/</loc>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/categories/git/</loc>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/categories/process/</loc>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/categories/arc/</loc>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/categories/objc/</loc>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/categories/arc/</loc>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/categories/os/</loc>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/categories/gcd/</loc>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/categories/bash/</loc>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/categories/xcode/</loc>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/categories/cocoapods/</loc>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/categories/android/</loc>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/categories/ios/</loc>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/blog/categories/ios/</loc>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/posts/2/</loc>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/posts/3/</loc>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/posts/4/</loc>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/posts/5/</loc>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/posts/6/</loc>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/posts/7/</loc>
-  </url>
-  <url>
-    <loc>http://tech.dehengxu.com/posts/8/</loc>
-  </url>
+<url>
+<loc>http://tech.dehengxu.com/blog/use-jenkins-with-self-organizing-swarm-plug-in-modules/</loc>
+<lastmod>2015-12-29T00:00:00+08:00</lastmod>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/ios-mapping-lib/</loc>
+<lastmod>2015-12-03T23:26:40+08:00</lastmod>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/web-protocol-collection/</loc>
+<lastmod>2015-12-01T10:42:15+08:00</lastmod>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/app-transport-security-ji-zhu/</loc>
+<lastmod>2015-11-05T10:18:25+08:00</lastmod>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/android-chang-yong-di-san-fang-ku/</loc>
+<lastmod>2015-10-19T19:19:15+08:00</lastmod>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/mqtt-resources/</loc>
+<lastmod>2015-10-12T14:05:57+08:00</lastmod>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/shi-yong-guo-nei-yuan-ti-gao-android-sdk-manager-su-du/</loc>
+<lastmod>2015-10-11T21:54:10+08:00</lastmod>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/di-san-fang-xiao-xi-tui-song-fu-wu-dui-bi/</loc>
+<lastmod>2015-10-10T11:15:55+08:00</lastmod>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/diagram-of-a-activitys-life-cycle/</loc>
+<lastmod>2015-10-05T11:31:52+08:00</lastmod>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/bash-usage/</loc>
+<lastmod>2015-09-22T09:48:42+08:00</lastmod>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/useful-tools-for-xcode/</loc>
+<lastmod>2015-09-16T11:15:21+08:00</lastmod>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/ios-chang-yong-di-san-fang-ku/</loc>
+<lastmod>2015-09-16T10:59:10+08:00</lastmod>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/gitsh-de-an-zhuang-he-shi-yong/</loc>
+<lastmod>2015-09-15T17:50:13+08:00</lastmod>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/shi-yong-cocoapods-lai-guan-li-ji-yu-svn-de-zi-xiang-mu/</loc>
+<lastmod>2015-09-08T16:01:14+08:00</lastmod>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/create-a-private-pods/</loc>
+<lastmod>2015-08-31T22:20:30+08:00</lastmod>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/use-cocoapods-publish-your-podspec/</loc>
+<lastmod>2015-08-31T22:10:34+08:00</lastmod>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/objc-msgsend-bian-yi-cuo-wu-de-jie-jue-fang-fa/</loc>
+<lastmod>2015-08-30T12:13:22+08:00</lastmod>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/zi-ding-yi-lei-ru-he-ti-gong-kvc-jian-rong-te-xing/</loc>
+<lastmod>2015-08-29T15:10:33+08:00</lastmod>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/shi-yong-nsvalue-feng-zhuang-ren-yi-jie-gou-ti/</loc>
+<lastmod>2015-08-29T12:55:21+08:00</lastmod>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/kvo-ji-zhi/</loc>
+<lastmod>2015-08-28T18:36:18+08:00</lastmod>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/kvc-ji-zhi/</loc>
+<lastmod>2015-08-28T17:16:18+08:00</lastmod>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/use-dispatch-source-timer/</loc>
+<lastmod>2015-08-27T16:58:03+08:00</lastmod>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/bash-shi-yong-ji-qiao/</loc>
+<lastmod>2015-08-23T23:11:02+08:00</lastmod>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/gcd-de-chang-gui-yong-fa/</loc>
+<lastmod>2015-08-23T15:56:50+08:00</lastmod>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/xian-cheng-he-jin-cheng-jian-de-qu-bie/</loc>
+<lastmod>2015-08-23T15:13:25+08:00</lastmod>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/timer-hui-diao-shi-jian-bei-uijiao-hu-zu-sai-de-jie-jue-ban-fa/</loc>
+<lastmod>2015-08-23T14:59:03+08:00</lastmod>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/tong-guo-clang-fen-xi-block-de-ji-zhi/</loc>
+<lastmod>2015-08-23T08:35:18+08:00</lastmod>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/guan-li-zi-you-qiao-jie-toll-free-bridging/</loc>
+<lastmod>2015-08-22T18:21:12+08:00</lastmod>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/arc-nei-cun-guan-li/</loc>
+<lastmod>2015-08-21T23:06:08+08:00</lastmod>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/jin-cheng-jian-tong-xin-fang-shi/</loc>
+<lastmod>2015-08-21T15:23:01+08:00</lastmod>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/gitchang-jian-yong-fa/</loc>
+<lastmod>2015-08-21T13:52:39+08:00</lastmod>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/nsmutablecopying-and-nscopying/</loc>
+<lastmod>2015-08-19T23:24:42+08:00</lastmod>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/jekyll-site-class-available-attr/</loc>
+<lastmod>2015-08-19T11:35:34+08:00</lastmod>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/jekyll-configuration-fileds/</loc>
+<lastmod>2015-08-19T11:32:06+08:00</lastmod>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/blockzai-clangzhong-de-shi-xian/</loc>
+<lastmod>2015-08-19T06:00:02+08:00</lastmod>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/autoreleasefang-fa-deyuan-ma-fen-xi/</loc>
+<lastmod>2015-08-18T10:51:06+08:00</lastmod>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/libdispatch-yuan-ma-fen-xi/</loc>
+<lastmod>2015-08-18T08:57:37+08:00</lastmod>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/apple-source-code-&-documents/</loc>
+<lastmod>2015-08-17T10:04:40+08:00</lastmod>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/shi-yong-xian-dai-objective-c/</loc>
+<lastmod>2015-08-16T15:32:41+08:00</lastmod>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/useful-plugins-for-xcode/</loc>
+<lastmod>2015-08-16T08:13:33+08:00</lastmod>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/design-pattern-visitor/</loc>
+<lastmod>2015-08-16T08:05:25+08:00</lastmod>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/objective-czhong-de-xie-yi-yin-yong-tou-wen-jian-de-wen-ti/</loc>
+<lastmod>2015-08-16T00:59:41+08:00</lastmod>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/chang-yong-23chong-she-ji-mo-shi-jian-jie/</loc>
+<lastmod>2015-08-15T23:47:51+08:00</lastmod>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/design-pattern-observer/</loc>
+<lastmod>2015-08-15T23:46:46+08:00</lastmod>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/objective-c-block-usage/</loc>
+<lastmod>2015-08-15T14:43:40+08:00</lastmod>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/hello-rake/</loc>
+<lastmod>2015-08-15T00:00:00+08:00</lastmod>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/welcome-to-jekyll/</loc>
+<lastmod>2015-08-06T22:19:25+08:00</lastmod>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/keys-for-using-jekyll-on-github-dot-com/</loc>
+<lastmod>2014-08-31T11:48:21+08:00</lastmod>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/config-java-envir-on-osx/</loc>
+<lastmod>2014-08-30T14:45:49+08:00</lastmod>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/welcome-to-jekyll/</loc>
+<lastmod>2014-08-29T21:46:06+08:00</lastmod>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/rake-usage/</loc>
+<lastmod>2014-08-29T14:42:06+08:00</lastmod>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/archives/</loc>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/</loc>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/works/</loc>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/devres/</loc>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/categories/ruby/</loc>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/categories/jekyll/</loc>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/categories/update/</loc>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/categories/java/</loc>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/categories/jekyll/</loc>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/categories/blog/</loc>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/categories/github-dot-com/</loc>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/categories/objc/</loc>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/categories/she-ji-mo-shi/</loc>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/categories/utilities/</loc>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/categories/resource/</loc>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/categories/scm/</loc>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/categories/git/</loc>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/categories/process/</loc>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/categories/arc/</loc>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/categories/objc/</loc>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/categories/arc/</loc>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/categories/os/</loc>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/categories/gcd/</loc>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/categories/bash/</loc>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/categories/xcode/</loc>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/categories/cocoapods/</loc>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/categories/android/</loc>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/categories/ios/</loc>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/categories/ios/</loc>
+</url>
 </urlset>

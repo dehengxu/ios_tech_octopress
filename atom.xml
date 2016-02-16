@@ -4,7 +4,7 @@
   <title><![CDATA[逆风@[iOS,android,nil]]]></title>
   <link href="http://tech.dehengxu.com/atom.xml" rel="self"/>
   <link href="http://tech.dehengxu.com/"/>
-  <updated>2015-12-29T16:46:17+08:00</updated>
+  <updated>2016-02-16T13:19:46+08:00</updated>
   <id>http://tech.dehengxu.com/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
@@ -23,6 +23,24 @@
 <p>Jenkins 自带有一个叫做 Self-Origanzing Swarm Plug-in Modules 的插件，可以完成服务器自管理工作。这和从服务器有区别的地方在于，从服务器的工作方式是 Jenkins 作为主服务器直接登录从服务器进行主动工作；而自管理模式则是在“从”服务器上运行一个服务反向搜寻 Jenkins 的服务，自己登记到 Jenkins 的从节点中。然后 Jenkins 就可以为它分配任务了。</p>
 
 <p>可以到这个地址：<a href="http://maven.jenkins-ci.org/content/repositories/releases/org/jenkins-ci/plugins/swarm-client/">http://maven.jenkins-ci.org/content/repositories/releases/org/jenkins-ci/plugins/swarm-client/</a>  下载对应版本的swarm-client jar 包，如果想独立使用，可以直接下载 with-dependency.jar 的文件（自带所有依赖包）的版本。</p>
+
+<p>启动 swarm-client 的脚本</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>#!/usr/bin/env bash
+</span><span class='line'>java -jar swarm-client-2.0-jar-with-dependencies.jar \
+</span><span class='line'>-name MacMini-compiling-server \
+</span><span class='line'>-username xxx \
+</span><span class='line'>-password xxxxxxx \
+</span><span class='line'>-master http://localhost:8080/</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这里的 <code>http://localhost:8080/</code> 可以改成你的 jenkins 服务器地址。</p>
 ]]></content>
   </entry>
   
