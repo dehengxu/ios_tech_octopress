@@ -4,7 +4,7 @@
   <title><![CDATA[逆风@[iOS,android,nil]]]></title>
   <link href="http://tech.dehengxu.com/atom.xml" rel="self"/>
   <link href="http://tech.dehengxu.com/"/>
-  <updated>2016-02-16T13:19:46+08:00</updated>
+  <updated>2016-02-16T13:23:31+08:00</updated>
   <id>http://tech.dehengxu.com/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
@@ -14,9 +14,9 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Use Jenkins With Self Organizing Swarm Plug in Modules]]></title>
+    <title type="html"><![CDATA[Use Jenkins With "Self-Organizing Swarm Plug-in Modules"]]></title>
     <link href="http://tech.dehengxu.com/blog/use-jenkins-with-self-organizing-swarm-plug-in-modules/"/>
-    <updated>2015-12-29T00:00:00+08:00</updated>
+    <updated>2015-12-29T16:15:39+08:00</updated>
     <id>http://tech.dehengxu.com/blog/use-jenkins-with-self-organizing-swarm-plug-in-modules</id>
     <content type="html"><![CDATA[<p>使用 Jenkins 做 ci，如果你的编译服务器和 Jenkins 服务器是分离的，那么你需要通过设置成 从节点 让需要执行 ci 任务的机器被 Jenkins 管理。</p>
 
