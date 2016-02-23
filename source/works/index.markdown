@@ -19,6 +19,10 @@ https://engineering.twitter.com/opensource
 
 https://engineering.linkedin.com/open-source
 
+## Yahoo! opensource projects
+
+http://yahoo.github.io/
+
 ## Specs
 
 Cocoapods offical :
