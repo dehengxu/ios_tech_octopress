@@ -57,3 +57,9 @@ describe "Static Pages" do
 end
 
 ```
+
+At last, you could run test
+
+```
+bundle exec rspec spec
+```
