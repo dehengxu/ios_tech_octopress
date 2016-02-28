@@ -4,7 +4,7 @@
   <title><![CDATA[逆风@[iOS,android,nil]]]></title>
   <link href="http://tech.dehengxu.com/atom.xml" rel="self"/>
   <link href="http://tech.dehengxu.com/"/>
-  <updated>2016-02-28T18:47:04+08:00</updated>
+  <updated>2016-02-28T18:55:22+08:00</updated>
   <id>http://tech.dehengxu.com/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
@@ -20,52 +20,78 @@
     <id>http://tech.dehengxu.com/blog/use-rails-with-rspec</id>
     <content type="html"><![CDATA[<p>First:</p>
 
-<p>Add to <code>Gemfile</code>
-<code>
-group :test do
-    gem 'selenium-webdriver'#, '2.0.0'
-    gem 'capybara', '2.1.0'
-    gem 'test-unit'
-end
-</code></p>
+<p>Add to <code>Gemfile</code></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>group :test do
+</span><span class='line'>    gem 'selenium-webdriver'#, '2.0.0'
+</span><span class='line'>    gem 'capybara', '2.1.0'
+</span><span class='line'>    gem 'test-unit'
+</span><span class='line'>end</span></code></pre></td></tr></table></div></figure>
+
 
 <p>Second modify file named <code>spec_helper.rb</code></p>
 
-<p>`
-require &lsquo;capybara/rspec&rsquo;
-require &lsquo;capybara/rails&rsquo;</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>require 'capybara/rspec'
+</span><span class='line'>require 'capybara/rails'
+</span><span class='line'>
+</span><span class='line'>RSpec.configure do |config|
+</span><span class='line'>    ...
+</span><span class='line'>
+</span><span class='line'>    config.include Capybara::DSL
+</span><span class='line'>
+</span><span class='line'>    ...
+</span><span class='line'>end</span></code></pre></td></tr></table></div></figure>
 
-<p>RSpec.configure do |config|
-    &hellip;</p>
-
-<pre><code>config.include Capybara::DSL
-
-...
-</code></pre>
-
-<p>end
-`</p>
 
 <p>Then create Unit-testing source with this command <code>rails generate integration_test static_pages</code></p>
 
-<p>`
-require &lsquo;spec_helper&rsquo;</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>require 'spec_helper'
+</span><span class='line'>
+</span><span class='line'>describe "Static Pages" do
+</span><span class='line'>  describe "Home pages" do
+</span><span class='line'>    it "shoul be " do
+</span><span class='line'>      # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
+</span><span class='line'>      # These are test-unit framework syntaxs
+</span><span class='line'>    #   get static_pages_index_path
+</span><span class='line'>    #   response.status.should be(200)
+</span><span class='line'>      # These are feature syntaxs supplied by Capybara.
+</span><span class='line'>        visit '/static_pages/help'
+</span><span class='line'>        expect(page).to have_content 'Sample App'
+</span><span class='line'>    end
+</span><span class='line'>  end
+</span><span class='line'>end
+</span></code></pre></td></tr></table></div></figure>
 
-<p>describe &ldquo;Static Pages&rdquo; do
-  describe &ldquo;Home pages&rdquo; do
-    it &ldquo;shoul be &rdquo; do
-      # Run the generator again with the &ndash;webrat flag if you want to use webrat methods/matchers
-      # These are test-unit framework syntaxs
-    #   get static_pages_index_path
-    #   response.status.should be(200)
-      # These are feature syntaxs supplied by Capybara.
-        visit &lsquo;/static_pages/help&rsquo;
-        expect(page).to have_content &lsquo;Sample App&rsquo;
-    end
-  end
-end</p>
-
-<p>`</p>
 ]]></content>
   </entry>
   
