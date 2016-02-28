@@ -4,7 +4,7 @@
   <title><![CDATA[逆风@[iOS,android,nil]]]></title>
   <link href="http://tech.dehengxu.com/atom.xml" rel="self"/>
   <link href="http://tech.dehengxu.com/"/>
-  <updated>2016-02-23T17:59:29+08:00</updated>
+  <updated>2016-02-28T18:47:04+08:00</updated>
   <id>http://tech.dehengxu.com/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
@@ -12,6 +12,62 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Use Rails With Rspec]]></title>
+    <link href="http://tech.dehengxu.com/blog/use-rails-with-rspec/"/>
+    <updated>2016-02-27T23:47:04+08:00</updated>
+    <id>http://tech.dehengxu.com/blog/use-rails-with-rspec</id>
+    <content type="html"><![CDATA[<p>First:</p>
+
+<p>Add to <code>Gemfile</code>
+<code>
+group :test do
+    gem 'selenium-webdriver'#, '2.0.0'
+    gem 'capybara', '2.1.0'
+    gem 'test-unit'
+end
+</code></p>
+
+<p>Second modify file named <code>spec_helper.rb</code></p>
+
+<p>`
+require &lsquo;capybara/rspec&rsquo;
+require &lsquo;capybara/rails&rsquo;</p>
+
+<p>RSpec.configure do |config|
+    &hellip;</p>
+
+<pre><code>config.include Capybara::DSL
+
+...
+</code></pre>
+
+<p>end
+`</p>
+
+<p>Then create Unit-testing source with this command <code>rails generate integration_test static_pages</code></p>
+
+<p>`
+require &lsquo;spec_helper&rsquo;</p>
+
+<p>describe &ldquo;Static Pages&rdquo; do
+  describe &ldquo;Home pages&rdquo; do
+    it &ldquo;shoul be &rdquo; do
+      # Run the generator again with the &ndash;webrat flag if you want to use webrat methods/matchers
+      # These are test-unit framework syntaxs
+    #   get static_pages_index_path
+    #   response.status.should be(200)
+      # These are feature syntaxs supplied by Capybara.
+        visit &lsquo;/static_pages/help&rsquo;
+        expect(page).to have_content &lsquo;Sample App&rsquo;
+    end
+  end
+end</p>
+
+<p>`</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Use Jenkins With "Self-Organizing Swarm Plug-in Modules"]]></title>
@@ -1303,66 +1359,6 @@ mirrors.opencas.cn  dl-ssl.google.com</p>
 <h3>内存布局</h3>
 
 <p>上面的例子中，<code>value</code> 和 header 都是在堆上分配的空间并且 header 的内存和 value 内部的数据是同一个内存空间，要做好 header 的内存管理工作，否则会导致 value 无法访问内部数据(出现野指针)。而且 chain 的数据是从 value 中复制过来的。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[KVO 机制]]></title>
-    <link href="http://tech.dehengxu.com/blog/kvo-ji-zhi/"/>
-    <updated>2015-08-28T18:36:18+08:00</updated>
-    <id>http://tech.dehengxu.com/blog/kvo-ji-zhi</id>
-    <content type="html"><![CDATA[<h2>KVO : 键值观察 (Key-value observing)</h2>
-
-<p>KVO 是一个允许一个对象直接接受来自另一个对象属性改变时发送的通知的机制。KVO 能成为应用内部重要的因素。它是采用了MVC设计模式的应用程序中对象间的一种通信模式。比如，你可以使用它来同步 view 和 controller 层中模型对象之间的状态。典型情况下，控制器对象观察模型对象，试图对象观察控制器对象或者模型对象。</p>
-
-<blockquote><p>注意：虽然 UIKit 框架通常不支持 KVO，你仍然能够在自定义的对象中实现它，包括自定义的视图。</p></blockquote>
-
-<p><img src="http://tech.dehengxu.com/images/refered/kvo.jpg" alt="kvo" /></p>
-
-<p>使用 KVO，一个对象可以观察另一个对象的任意的属性，包括简单的附属值，对一的关系和对多的关系。一个对象能找出当前属性先前的值。对多关系的观察者被通告的内容不仅有类型的改变，也被告知哪个对象在改变中被调用。</p>
-
-<p>作为一个通知机制，KVO 和 <code>NSNotification</code> 和 <code>NSNotificationCenter</code> 提供的机制类似，但是也有一些明显的不同。不同于中央对象来对所有注册为观察者的对象广播通知，当属性值的改变发生时，KVO 通知直接发送给观察对象。</p>
-
-<h3>实现 KVO</h3>
-
-<p>根类 <code>NSObject</code>，提供了基本的 KVO 实现，你很少需要重载它。因此所有的 Cocoa objects 都继承了 KVO 的能力。你必须按照这些步骤来接收某个属性的 KVO 通知。</p>
-
-<ul>
-<li><p>你必须确保被观察的类对于你想观察的属性是符合 KVO 规范。 KVO 兼容性需要被观察对象的类也是 KVO 兼容的，而且也允许为该属性自动发送观察者通知，或者手动实现该属性的 KVO 。</p></li>
-<li><p>添加一个观察者到一个值会发生改变的对象。你可以通过调用 <code>addObserver:forKeyPath:optios:context:</code> 来达到这个目的。观察者是应用中的另一个对象。</p></li>
-<li><p>在观察者对象中，实现方法 <code>observeValueForKeyPath:ofObject:change:context:</code> 。当被观察对象的属性值发生改变的时候这个方法会被调用。</p></li>
-</ul>
-
-
-<h3>KVO 是绑定(OS X)的必须部分</h3>
-
-<p>Cocoa 绑定是一个允许你不用写一些胶水代码就能确保模型中的值和你应用程序中的视图层同步的 OS X 技术。通过 Interface Builder 检查器中，你就能在视图属性和一些数据之间建立起协调链接，“绑定”他们就像其中一个发生改变会在其他身上反映出来。KVO，和 KVC 还有 KVB 都是 Cocoa 绑定的基础技术。</p>
-
-<h3>后话</h3>
-
-<p><img src="http://tech.dehengxu.com/images/refered/kvo_proj_snap1.png" alt="KVO runtime" /></p>
-
-<p>从上图可以看出 KVO 是一个同步调用过程通过 _NSSetObjectValueAndNotify 函数，在设置对象值的同时向观察对象发送变化通知，同时会通过 <code>NSKeyValueObservingOptions</code> 类型来区分 KVO 发生的类型，并在 <code>- (void)observeValueForKeyPath:(nullable NSString *)keyPath ofObject:(nullable id)object change:(nullable NSDictionary *)change context:(nullable void *)context</code> 的 change 字典对象中传递相关值的变化信息(old value, new value 等)。</p>
-
-<p>同时需要注意的是观察者是通过弱引用方式加入到被观察对象中的，所以当不需要继续观察的时候，请使用<code>removeObserver:forKeyPath:</code> 移除不再需要的观察者以免引起运行时异常。</p>
-
-<h3>前提文章</h3>
-
-<p><a href="https://developer.apple.com/library/ios/documentation/General/Conceptual/DevPedia-CocoaCore/KeyValueCoding.html#//apple_ref/doc/uid/TP40008195-CH25-SW1">Key-value coding</a></p>
-
-<h3>相关的文章</h3>
-
-<p><a href="https://developer.apple.com/library/ios/documentation/General/Conceptual/DevPedia-CocoaCore/MVC.html#//apple_ref/doc/uid/TP40008195-CH32-SW1">Model-View-Controller</a></p>
-
-<p><a href="https://developer.apple.com/library/ios/documentation/General/Conceptual/DevPedia-CocoaCore/DynamicBinding.html#//apple_ref/doc/uid/TP40008195-CH15-SW1">Dynamic binding</a></p>
-
-<h3>权威论述</h3>
-
-<p><a href="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/KeyValueObserving/KeyValueObserving.html#//apple_ref/doc/uid/10000177i">Key-value Observing Programming Guide</a></p>
-
-<hr />
-
-<p><a href="https://developer.apple.com/library/ios/documentation/General/Conceptual/DevPedia-CocoaCore/KVO.html#//apple_ref/doc/uid/TP40008195-CH16-SW1">Ref</a></p>
 ]]></content>
   </entry>
   

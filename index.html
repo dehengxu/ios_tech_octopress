@@ -9,7 +9,7 @@
   <meta name="author" content="Deheng Xu">
 
   
-  <meta name="description" content="Use Jenkins With "Self-Organizing Swarm Plug-in Modules" Dec 29th, 2015 4:15 pm | Comments iOS Mapping Lib Dec 3rd, 2015 11:26 pm | Comments Web &hellip;">
+  <meta name="description" content="Use Rails With Rspec Feb 27th, 2016 11:47 pm | Comments Use Jenkins With "Self-Organizing Swarm Plug-in Modules" Dec 29th, 2015 4:15 pm | Comments &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,87 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" ><a href="/blog/use-rails-with-rspec/">Use Rails With Rspec</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2016-02-27T23:47:04+08:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>27</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>11:47 pm</span></time>
+        
+           | <a href="/blog/use-rails-with-rspec/#disqus_thread"
+             data-disqus-identifier="http://tech.dehengxu.com/blog/use-rails-with-rspec/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+
+<!-- <div class="entry-content"><p>First:</p>
+
+<p>Add to <code>Gemfile</code>
+<code>
+group :test do
+    gem 'selenium-webdriver'#, '2.0.0'
+    gem 'capybara', '2.1.0'
+    gem 'test-unit'
+end
+</code></p>
+
+<p>Second modify file named <code>spec_helper.rb</code></p>
+
+<p>`
+require &lsquo;capybara/rspec&rsquo;
+require &lsquo;capybara/rails&rsquo;</p>
+
+<p>RSpec.configure do |config|
+    &hellip;</p>
+
+<pre><code>config.include Capybara::DSL
+
+...
+</code></pre>
+
+<p>end
+`</p>
+
+<p>Then create Unit-testing source with this command <code>rails generate integration_test static_pages</code></p>
+
+<p>`
+require &lsquo;spec_helper&rsquo;</p>
+
+<p>describe &ldquo;Static Pages&rdquo; do
+  describe &ldquo;Home pages&rdquo; do
+    it &ldquo;shoul be &rdquo; do
+      # Run the generator again with the &ndash;webrat flag if you want to use webrat methods/matchers
+      # These are test-unit framework syntaxs
+    #   get static_pages_index_path
+    #   response.status.should be(200)
+      # These are feature syntaxs supplied by Capybara.
+        visit &lsquo;/static_pages/help&rsquo;
+        expect(page).to have_content &lsquo;Sample App&rsquo;
+    end
+  end
+end</p>
+
+<p>`</p>
+</div> -->
+
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -463,57 +544,6 @@ TLSv1.2
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" ><a href="/blog/shi-yong-guo-nei-yuan-ti-gao-android-sdk-manager-su-du/">使用国内源提高Android SDK Manager 速度</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-10-11T21:54:10+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>11</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>9:54 pm</span></time>
-        
-           | <a href="/blog/shi-yong-guo-nei-yuan-ti-gao-android-sdk-manager-su-du/#disqus_thread"
-             data-disqus-identifier="http://tech.dehengxu.com/blog/shi-yong-guo-nei-yuan-ti-gao-android-sdk-manager-su-du/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-
-<!-- <div class="entry-content"><h3>/etc/hosts</h3>
-
-<p>mirrors.opencas.cn  dl.google.com
-mirrors.opencas.cn  dl-ssl.google.com</p>
-
-<h1>mirrors.neusoft.edu.cn dl.google.com</h1>
-
-<h1>mirrors.neusoft.edu.cn dl-ssl.google.com</h1>
-
-<h3>Android SDK Manager</h3>
-
-<p>Keep bellow field empty</p>
-
-<ol>
-<li>Tools -> Options -> Http Proxy Server|Http Proxy Port</li>
-<li>Managed Add-on Sites -> Official Add-on Sites (Disable All)</li>
-</ol>
-
-</div> -->
-
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -527,6 +557,10 @@ mirrors.opencas.cn  dl-ssl.google.com</p>
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/use-rails-with-rspec/">Use Rails With Rspec</a>
+      </li>
     
       <li class="post">
         <a href="/blog/use-jenkins-with-self-organizing-swarm-plug-in-modules/">Use Jenkins With "Self-Organizing Swarm Plug-in Modules"</a>
@@ -602,10 +636,6 @@ mirrors.opencas.cn  dl-ssl.google.com</p>
     
       <li class="post">
         <a href="/blog/shi-yong-nsvalue-feng-zhuang-ren-yi-jie-gou-ti/">使用 NSValue 封装任意结构体</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/kvo-ji-zhi/">KVO 机制</a>
       </li>
     
   </ul>
