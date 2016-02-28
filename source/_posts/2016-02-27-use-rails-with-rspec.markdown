@@ -12,17 +12,18 @@ categories:
 First:
 
 Add to `Gemfile`
-`
+
+```
 group :test do
     gem 'selenium-webdriver'#, '2.0.0'
     gem 'capybara', '2.1.0'
     gem 'test-unit'
 end
-`
+```
 
 Second modify file named `spec_helper.rb`
 
-`
+```
 require 'capybara/rspec'
 require 'capybara/rails'
 
@@ -33,12 +34,12 @@ RSpec.configure do |config|
 
     ...
 end
-`
+```
 
 
 Then create Unit-testing source with this command `rails generate integration_test static_pages`
 
-`
+```
 require 'spec_helper'
 
 describe "Static Pages" do
@@ -55,4 +56,4 @@ describe "Static Pages" do
   end
 end
 
-`
+```
