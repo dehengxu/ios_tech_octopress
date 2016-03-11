@@ -63,3 +63,9 @@ At last, you could run test
 ```
 bundle exec rspec spec
 ```
+
+```
+SmallTest: this test doesn't interact with any file system or network.
+MediumTest: Accesses file systems on box which is running tests.
+LargeTest: Accesses external file systems, networks, etc.
+```
