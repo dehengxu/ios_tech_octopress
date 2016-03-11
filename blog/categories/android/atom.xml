@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Android | 逆风@[iOS,android,nil]]]></title>
   <link href="http://tech.dehengxu.com/blog/categories/android/atom.xml" rel="self"/>
   <link href="http://tech.dehengxu.com/"/>
-  <updated>2016-02-28T19:15:56+08:00</updated>
+  <updated>2016-03-11T23:02:17+08:00</updated>
   <id>http://tech.dehengxu.com/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
@@ -12,6 +12,81 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Testing in Android]]></title>
+    <link href="http://tech.dehengxu.com/blog/testing-in-android/"/>
+    <updated>2016-03-01T18:27:11+08:00</updated>
+    <id>http://tech.dehengxu.com/blog/testing-in-android</id>
+    <content type="html"><![CDATA[<p>IDE: AndroidStudio</p>
+
+<p>AndroidStudio 中将测试分为了本地测试(Local test) 和设备测试 (Instrumented Test) 两大类。</p>
+
+<h2>Local Unit Tests</h2>
+
+<p>本地测试，直接在本地开发者电脑上运行测试，主要用来测试纯逻辑部分的代码，不涉及任何 Android 系统框架或真机。</p>
+
+<p>本地测试的代码保存在 <code>src/test/java/</code> 下。</p>
+
+<p>配置如下：</p>
+
+<pre><code>dependencies {
+    ...
+    testCompile (
+            'junit:junit:4.12',
+            'org.mockito:mockito-core:1.10.19'
+    )
+    ...
+}
+</code></pre>
+
+<p>以上分别引入了 junit 和 mockito 两个测试用框架，前者是单元测试运行框架，后者是单元测试需要用到的模拟框架，更多信息可以参考<a href="http://developer.android.com/training/testing/unit-testing/local-unit-tests.html#mocking-dependencies">Mocking Android dependencies </a></p>
+
+<h2>Instrumented Unit Test</h2>
+
+<p>设备测试 <a href="http://developer.android.com/training/testing/start/index.html#run-instrumented-tests">Instrumented tests</a>，可以在真机或模拟器上运行相关的测试代码，主要用来测试包含 Android 平台库的代码。</p>
+
+<p>设备测试的代码保存在 <code>src/androidTest/java</code> 下。</p>
+
+<p>要想运行设备测试，需要进行如下的gradle 配置：</p>
+
+<pre><code>dependencies {
+    ...
+    //!!这里是设备测试需要用到的注解，运行器和规则依赖库。
+    androidTestCompile 'com.android.support:support-annotations:23.0.1'
+    androidTestCompile 'com.android.support.test:runner:0.4.1'
+    androidTestCompile 'com.android.support.test:rules:0.4.1'
+
+    // Optional -- Hamcrest library
+    androidTestCompile 'org.hamcrest:hamcrest-library:1.3'
+    // Optional -- UI testing with Espresso
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.1'
+    // Optional -- UI testing with UI Automator
+    //androidTestCompile 'com.android.support.test.uiautomator:uiautomator-v18:2.1.1'
+    ...
+}
+</code></pre>
+
+<p>设备测试中还可以细分为两类测试，逻辑测试 和 UI 测试。逻辑测试是在 JUnit3/JUnit4 的基础上通过 Test runner 库来完成的；而UI测试是通过 Espresso 和 uiautomator 来提供支持的。</p>
+
+<!-- InstrumentationTestRunner   AndroidJUnitRunner  MonitoringInstrumentation -->
+
+
+<h3>Logic Unit Tests (逻辑测试)</h3>
+
+<h3>Automationg User Interface Tests (UI测试)</h3>
+
+<h4>Espresso</h4>
+
+<pre><code>
+androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.1'
+</code></pre>
+
+<h4>UIAutomator</h4>
+
+<h3>Testing App Component Integration (集成测试)</h3>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[第三方消息推送服务对比]]></title>

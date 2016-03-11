@@ -9,7 +9,7 @@
   <meta name="author" content="Deheng Xu">
 
   
-  <meta name="description" content="使用 Cocoapods 来管理基于 Svn 的子项目 Sep 8th, 2015 4:01 pm | Comments Create a Private Pods Aug 31st, 2015 10:20 pm | Comments Use Cocoapods Publish Your &hellip;">
+  <meta name="description" content="Gitsh 的安装和使用 Sep 15th, 2015 5:50 pm | Comments 使用 Cocoapods 来管理基于 Svn 的子项目 Sep 8th, 2015 4:01 pm | Comments Create a Private Pods Aug 31st, 2015 10: &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,92 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" ><a href="/blog/gitsh-de-an-zhuang-he-shi-yong/">Gitsh 的安装和使用</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-09-15T17:50:13+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>5:50 pm</span></time>
+        
+           | <a href="/blog/gitsh-de-an-zhuang-he-shi-yong/#disqus_thread"
+             data-disqus-identifier="http://tech.dehengxu.com/blog/gitsh-de-an-zhuang-he-shi-yong/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+
+<!-- <div class="entry-content"><p>项目地址:  <a href="https://github.com/thoughtbot/gitsh">https://github.com/thoughtbot/gitsh</a></p>
+
+<h3>前提：</h3>
+
+<ol>
+<li><p>需要安装 ruby 环境</p></li>
+<li><p>安装 m4 编译工具</p></li>
+</ol>
+
+
+<h3>安装步骤：</h3>
+
+<ol>
+<li>下载项目</li>
+</ol>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git clone https://github.com/thoughtbot/gitsh.git</span></code></pre></td></tr></table></div></figure>
+
+
+<ol>
+<li>安装 gems</li>
+</ol>
+
+
+<p>国内用户可以修改  Gemfile 中的 <code>source 'https://rubygems.org'</code> 为 source &lsquo;<a href="http://ruby.taobao.org">http://ruby.taobao.org</a>&rsquo;</p>
+
+<p>因为某些原因使用淘宝的 ruby gems 源可达性更有保障</p>
+
+<p>执行  <code>bundle install</code></p>
+
+<ol>
+<li><p>执行 <code>./autogen.sh</code></p></li>
+<li><p>配置环境</p></li>
+</ol>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>export PATH="$PATH:/PROJECT/gitsh/bin"</span></code></pre></td></tr></table></div></figure>
+
+
+<p>最后终于可以使用了</p>
+
+<h3>使用</h3>
+
+<p>任何位置输入 <code>gitsh</code> 会进入到 git 命令行环境中，最大的优点是，git 命令可以只输入子命令就可以了。</p>
+
+<p>比如：<code>git branch</code> 可以改用 <code>branch</code>，就这么简单。</p>
+
+<p>直接回车会提示当前文件的变化情况，一切都变得容易了很多。</p>
+
+<p>如果不想使用 gitsh 也可以安装  <code>zsh</code> 命令行终端 <a href="http://www.zsh.org/">zsh</a>；再配合我的 <a href="https://github.com/xudeheng/gitbash">gitbash</a> 简易别名系统简化 git 命令，安装命令 <code>curl -sSL https://raw.githubusercontent.com/xudeheng/gitbash/master/install.sh | bash</code>。</p>
+</div> -->
+
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -699,91 +785,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" ><a href="/blog/kvo-ji-zhi/">KVO 机制</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-08-28T18:36:18+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>6:36 pm</span></time>
-        
-           | <a href="/blog/kvo-ji-zhi/#disqus_thread"
-             data-disqus-identifier="http://tech.dehengxu.com/blog/kvo-ji-zhi/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-
-<!-- <div class="entry-content"><h2>KVO : 键值观察 (Key-value observing)</h2>
-
-<p>KVO 是一个允许一个对象直接接受来自另一个对象属性改变时发送的通知的机制。KVO 能成为应用内部重要的因素。它是采用了MVC设计模式的应用程序中对象间的一种通信模式。比如，你可以使用它来同步 view 和 controller 层中模型对象之间的状态。典型情况下，控制器对象观察模型对象，试图对象观察控制器对象或者模型对象。</p>
-
-<blockquote><p>注意：虽然 UIKit 框架通常不支持 KVO，你仍然能够在自定义的对象中实现它，包括自定义的视图。</p></blockquote>
-
-<p><img src="/images/refered/kvo.jpg" alt="kvo" /></p>
-
-<p>使用 KVO，一个对象可以观察另一个对象的任意的属性，包括简单的附属值，对一的关系和对多的关系。一个对象能找出当前属性先前的值。对多关系的观察者被通告的内容不仅有类型的改变，也被告知哪个对象在改变中被调用。</p>
-
-<p>作为一个通知机制，KVO 和 <code>NSNotification</code> 和 <code>NSNotificationCenter</code> 提供的机制类似，但是也有一些明显的不同。不同于中央对象来对所有注册为观察者的对象广播通知，当属性值的改变发生时，KVO 通知直接发送给观察对象。</p>
-
-<h3>实现 KVO</h3>
-
-<p>根类 <code>NSObject</code>，提供了基本的 KVO 实现，你很少需要重载它。因此所有的 Cocoa objects 都继承了 KVO 的能力。你必须按照这些步骤来接收某个属性的 KVO 通知。</p>
-
-<ul>
-<li><p>你必须确保被观察的类对于你想观察的属性是符合 KVO 规范。 KVO 兼容性需要被观察对象的类也是 KVO 兼容的，而且也允许为该属性自动发送观察者通知，或者手动实现该属性的 KVO 。</p></li>
-<li><p>添加一个观察者到一个值会发生改变的对象。你可以通过调用 <code>addObserver:forKeyPath:optios:context:</code> 来达到这个目的。观察者是应用中的另一个对象。</p></li>
-<li><p>在观察者对象中，实现方法 <code>observeValueForKeyPath:ofObject:change:context:</code> 。当被观察对象的属性值发生改变的时候这个方法会被调用。</p></li>
-</ul>
-
-
-<h3>KVO 是绑定(OS X)的必须部分</h3>
-
-<p>Cocoa 绑定是一个允许你不用写一些胶水代码就能确保模型中的值和你应用程序中的视图层同步的 OS X 技术。通过 Interface Builder 检查器中，你就能在视图属性和一些数据之间建立起协调链接，“绑定”他们就像其中一个发生改变会在其他身上反映出来。KVO，和 KVC 还有 KVB 都是 Cocoa 绑定的基础技术。</p>
-
-<h3>后话</h3>
-
-<p><img src="/images/refered/kvo_proj_snap1.png" alt="KVO runtime" /></p>
-
-<p>从上图可以看出 KVO 是一个同步调用过程通过 _NSSetObjectValueAndNotify 函数，在设置对象值的同时向观察对象发送变化通知，同时会通过 <code>NSKeyValueObservingOptions</code> 类型来区分 KVO 发生的类型，并在 <code>- (void)observeValueForKeyPath:(nullable NSString *)keyPath ofObject:(nullable id)object change:(nullable NSDictionary *)change context:(nullable void *)context</code> 的 change 字典对象中传递相关值的变化信息(old value, new value 等)。</p>
-
-<p>同时需要注意的是观察者是通过弱引用方式加入到被观察对象中的，所以当不需要继续观察的时候，请使用<code>removeObserver:forKeyPath:</code> 移除不再需要的观察者以免引起运行时异常。</p>
-
-<h3>前提文章</h3>
-
-<p><a href="https://developer.apple.com/library/ios/documentation/General/Conceptual/DevPedia-CocoaCore/KeyValueCoding.html#//apple_ref/doc/uid/TP40008195-CH25-SW1">Key-value coding</a></p>
-
-<h3>相关的文章</h3>
-
-<p><a href="https://developer.apple.com/library/ios/documentation/General/Conceptual/DevPedia-CocoaCore/MVC.html#//apple_ref/doc/uid/TP40008195-CH32-SW1">Model-View-Controller</a></p>
-
-<p><a href="https://developer.apple.com/library/ios/documentation/General/Conceptual/DevPedia-CocoaCore/DynamicBinding.html#//apple_ref/doc/uid/TP40008195-CH15-SW1">Dynamic binding</a></p>
-
-<h3>权威论述</h3>
-
-<p><a href="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/KeyValueObserving/KeyValueObserving.html#//apple_ref/doc/uid/10000177i">Key-value Observing Programming Guide</a></p>
-
-<hr />
-
-<p><a href="https://developer.apple.com/library/ios/documentation/General/Conceptual/DevPedia-CocoaCore/KVO.html#//apple_ref/doc/uid/TP40008195-CH16-SW1">Ref</a></p>
-</div> -->
-
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/4">&larr; Older</a>
@@ -799,6 +800,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/testing-in-android/">Testing in Android</a>
+      </li>
     
       <li class="post">
         <a href="/blog/use-rails-with-rspec/">Use Rails With Rspec</a>
@@ -874,10 +879,6 @@
     
       <li class="post">
         <a href="/blog/zi-ding-yi-lei-ru-he-ti-gong-kvc-jian-rong-te-xing/">自定义类如何提供 KVC 兼容特性</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/shi-yong-nsvalue-feng-zhuang-ren-yi-jie-gou-ti/">使用 NSValue 封装任意结构体</a>
       </li>
     
   </ul>

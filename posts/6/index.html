@@ -9,7 +9,7 @@
   <meta name="author" content="Deheng Xu">
 
   
-  <meta name="description" content="Block在Clang中的实现 Aug 19th, 2015 6:00 am | Comments Autorelease方法的源码分析 Aug 18th, 2015 10:51 am | Comments Libdispatch 源码分析 Aug 18th, 2015 8:57 am | &hellip;">
+  <meta name="description" content="Jekyll Configuration Fileds Aug 19th, 2015 11:32 am | Comments Block在Clang中的实现 Aug 19th, 2015 6:00 am | Comments Autorelease方法的源码分析 Aug 18th, 2015 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,199 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" ><a href="/blog/jekyll-configuration-fileds/">Jekyll Configuration Fileds</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-08-19T11:32:06+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>19</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>11:32 am</span></time>
+        
+           | <a href="/blog/jekyll-configuration-fileds/#disqus_thread"
+             data-disqus-identifier="http://tech.dehengxu.com/blog/jekyll-configuration-fileds/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+
+<!-- <div class="entry-content"><p>This is Jekyll configuration source file:</p>
+
+<p>For configurating _config.yml use.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># Default options. Overridden by values in _config.yml.
+</span><span class='line'># Strings rather than symbols are used for compatibility with YAML.
+</span><span class='line'>DEFAULTS = {
+</span><span class='line'>  # Where things are
+</span><span class='line'>  'source'        =&gt; Dir.pwd,
+</span><span class='line'>  'destination'   =&gt; File.join(Dir.pwd, '_site'),
+</span><span class='line'>  'plugins'       =&gt; '_plugins',
+</span><span class='line'>  'layouts'       =&gt; '_layouts',
+</span><span class='line'>  'data_source'   =&gt;  '_data',
+</span><span class='line'>  'collections'   =&gt; nil,
+</span><span class='line'>
+</span><span class='line'>  # Handling Reading
+</span><span class='line'>  'safe'          =&gt; false,
+</span><span class='line'>  'include'       =&gt; ['.htaccess'],
+</span><span class='line'>  'exclude'       =&gt; [],
+</span><span class='line'>  'keep_files'    =&gt; ['.git','.svn'],
+</span><span class='line'>  'encoding'      =&gt; 'utf-8',
+</span><span class='line'>  'markdown_ext'  =&gt; 'markdown,mkdown,mkdn,mkd,md',
+</span><span class='line'>  'full_rebuild'  =&gt; false,
+</span><span class='line'>
+</span><span class='line'>  # Filtering Content
+</span><span class='line'>  'show_drafts'   =&gt; nil,
+</span><span class='line'>  'limit_posts'   =&gt; 0,
+</span><span class='line'>  'future'        =&gt; true,           # remove and make true just default
+</span><span class='line'>  'unpublished'   =&gt; false,
+</span><span class='line'>
+</span><span class='line'>  # Plugins
+</span><span class='line'>  'whitelist'     =&gt; [],
+</span><span class='line'>  'gems'          =&gt; [],
+</span><span class='line'>
+</span><span class='line'>  # Conversion
+</span><span class='line'>  'markdown'      =&gt; 'kramdown',
+</span><span class='line'>  'highlighter'   =&gt; 'rouge',
+</span><span class='line'>  'lsi'           =&gt; false,
+</span><span class='line'>  'excerpt_separator' =&gt; "\n\n",
+</span><span class='line'>
+</span><span class='line'>  # Serving
+</span><span class='line'>  'detach'        =&gt; false,          # default to not detaching the server
+</span><span class='line'>  'port'          =&gt; '4000',
+</span><span class='line'>  'host'          =&gt; '127.0.0.1',
+</span><span class='line'>  'baseurl'       =&gt; '',
+</span><span class='line'>
+</span><span class='line'>  # Output Configuration
+</span><span class='line'>  'permalink'     =&gt; 'date',
+</span><span class='line'>  'paginate_path' =&gt; '/page:num',
+</span><span class='line'>  'timezone'      =&gt; nil,           # use the local timezone
+</span><span class='line'>
+</span><span class='line'>  'quiet'         =&gt; false,
+</span><span class='line'>  'verbose'       =&gt; false,
+</span><span class='line'>  'defaults'      =&gt; [],
+</span><span class='line'>
+</span><span class='line'>  'rdiscount' =&gt; {
+</span><span class='line'>    'extensions' =&gt; []
+</span><span class='line'>  },
+</span><span class='line'>
+</span><span class='line'>  'redcarpet' =&gt; {
+</span><span class='line'>    'extensions' =&gt; []
+</span><span class='line'>  },
+</span><span class='line'>
+</span><span class='line'>  'kramdown' =&gt; {
+</span><span class='line'>    'auto_ids'       =&gt; true,
+</span><span class='line'>    'footnote_nr'    =&gt; 1,
+</span><span class='line'>    'entity_output'  =&gt; 'as_char',
+</span><span class='line'>    'toc_levels'     =&gt; '1..6',
+</span><span class='line'>    'smart_quotes'   =&gt; 'lsquo,rsquo,ldquo,rdquo',
+</span><span class='line'>    'enable_coderay' =&gt; false,
+</span><span class='line'>
+</span><span class='line'>    'coderay' =&gt; {
+</span><span class='line'>      'coderay_wrap'              =&gt; 'div',
+</span><span class='line'>      'coderay_line_numbers'      =&gt; 'inline',
+</span><span class='line'>      'coderay_line_number_start' =&gt; 1,
+</span><span class='line'>      'coderay_tab_width'         =&gt; 4,
+</span><span class='line'>      'coderay_bold_every'        =&gt; 10,
+</span><span class='line'>      'coderay_css'               =&gt; 'style'
+</span><span class='line'>    }
+</span><span class='line'>  }
+</span><span class='line'>}
+</span></code></pre></td></tr></table></div></figure>
+
+</div> -->
+
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1129,56 +1322,6 @@ return _dispatch_get_root_queue(qos, flags &amp; DISPATCH_QUEUE_OVERCOMMIT);
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" ><a href="/blog/design-pattern-visitor/">设计模式-访问者模式</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-08-16T08:05:25+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>16</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>8:05 am</span></time>
-        
-           | <a href="/blog/design-pattern-visitor/#disqus_thread"
-             data-disqus-identifier="http://tech.dehengxu.com/blog/design-pattern-visitor/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-
-<!-- <div class="entry-content"><h3>模式说明：</h3>
-
-<blockquote><p>访问者模式(Visitor Pattern)，是一种具有双分派能力的模式，它通过 Visitor 接口约定为已有类 Element 进行扩展，扩展的目标是尽可能少的修改已有类 Element ，在 Visitor 中增加新扩展的接口，对 Element 中的现有接口进行访问。而 Visitor 以外的部分，不需要知道 Element 的具体实现和操作，进行了封装。
-所谓<code>双分派</code>指的是，该模式可以通过不同的 <code>Visitor</code> 对不同的 <code>Element</code> 进行访问。</p></blockquote>
-
-<p>举例：</p>
-
-<blockquote><p>场景介绍，以学校为背景，引入 Teacher, Student, Parent 三类人作为已有类型， 引入 ConcreteVisitor 作为 Visitor 的具体实现类，对以上三者进行扩展。</p>
-
-<p><code>ElementProtocol</code> 作为 Teacher, Student, Parent 的公共接口协议。
-<code>VisitorProtocol</code> 作为访问者的公共接口协议。
-<code>Teacher, Student, Parent</code> 三者是具体的 Element 实现。
-<code>ConcreteVisitor</code> 是具体的 Visitor 实现。</p></blockquote>
-
-<p>当学校外面的人需要访问 <code>Teacher</code> 的时候，不需要直接与 <code>Teacher</code> 交流，而是去找 <code>ConcreteVisitor</code> 通过它与 <code>Teacher</code> 进行交流。</p>
-
-<p><a href="https://github.com/xudeheng/ObjcDesignPatterns">Objective-c源码</a></p>
-</div> -->
-
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/7">&larr; Older</a>
@@ -1194,6 +1337,10 @@ return _dispatch_get_root_queue(qos, flags &amp; DISPATCH_QUEUE_OVERCOMMIT);
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/testing-in-android/">Testing in Android</a>
+      </li>
     
       <li class="post">
         <a href="/blog/use-rails-with-rspec/">Use Rails With Rspec</a>
@@ -1269,10 +1416,6 @@ return _dispatch_get_root_queue(qos, flags &amp; DISPATCH_QUEUE_OVERCOMMIT);
     
       <li class="post">
         <a href="/blog/zi-ding-yi-lei-ru-he-ti-gong-kvc-jian-rong-te-xing/">自定义类如何提供 KVC 兼容特性</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/shi-yong-nsvalue-feng-zhuang-ren-yi-jie-gou-ti/">使用 NSValue 封装任意结构体</a>
       </li>
     
   </ul>
