@@ -4,7 +4,7 @@
   <title><![CDATA[逆风@[iOS,android,nil]]]></title>
   <link href="http://tech.dehengxu.com/atom.xml" rel="self"/>
   <link href="http://tech.dehengxu.com/"/>
-  <updated>2016-03-11T23:02:17+08:00</updated>
+  <updated>2016-04-17T18:56:12+08:00</updated>
   <id>http://tech.dehengxu.com/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
@@ -12,6 +12,85 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Pip 使用国内的源]]></title>
+    <link href="http://tech.dehengxu.com/blog/pip-use-china-sources/"/>
+    <updated>2016-04-02T00:23:47+08:00</updated>
+    <id>http://tech.dehengxu.com/blog/pip-use-china-sources</id>
+    <content type="html"><![CDATA[<h1>修改 ~/.pip/pip.conf 文件</h1>
+
+<p>添加</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>[global]
+</span><span class='line'>index-url=http://mirrors.aliyun.com/pypi/simple/
+</span><span class='line'># 或者 http://pypi.douban.com/simple/
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>添加 &ndash;trusted-host 信任站点</h1>
+
+<p>pip 会每次都提示使用 <code>--trusted-host</code> 来设置信任站点，这样未免太繁琐了</p>
+
+<p>我们可以在 ~/.pip/pip.conf 中添加一下内容</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>[install]
+</span><span class='line'>trusted-host=mirrors.aliyun.com
+</span><span class='line'># 或者 pypi.douban.com</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Missing iOS Distribution Signing Identity 问题的解决方法]]></title>
+    <link href="http://tech.dehengxu.com/blog/missing-ios-distribution-signing-identity-wen-ti-de-jie-jue-fang-fa/"/>
+    <updated>2016-04-01T12:58:55+08:00</updated>
+    <id>http://tech.dehengxu.com/blog/missing-ios-distribution-signing-identity-wen-ti-de-jie-jue-fang-fa</id>
+    <content type="html"><![CDATA[<p><a href="http://www.360doc.com/content/16/0216/11/30589292_534972810.shtml">http://www.360doc.com/content/16/0216/11/30589292_534972810.shtml</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[让 Atom 文本编辑器支持运行 Swift 源文件的方法]]></title>
+    <link href="http://tech.dehengxu.com/blog/rang-atom-wen-ben-bian-ji-qi-zhi-chi-yun-xing-swift-yuan-wen-jian-de-fang-fa/"/>
+    <updated>2016-03-23T23:51:38+08:00</updated>
+    <id>http://tech.dehengxu.com/blog/rang-atom-wen-ben-bian-ji-qi-zhi-chi-yun-xing-swift-yuan-wen-jian-de-fang-fa</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[编译安装 Kotlin 的方法]]></title>
+    <link href="http://tech.dehengxu.com/blog/bian-yi-an-zhuang-kotlin-de-fang-fa/"/>
+    <updated>2016-03-23T23:50:49+08:00</updated>
+    <id>http://tech.dehengxu.com/blog/bian-yi-an-zhuang-kotlin-de-fang-fa</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[编译安装 Swift 的方法]]></title>
+    <link href="http://tech.dehengxu.com/blog/bian-yi-an-zhuang-swift-de-fang-fa/"/>
+    <updated>2016-03-23T23:50:33+08:00</updated>
+    <id>http://tech.dehengxu.com/blog/bian-yi-an-zhuang-swift-de-fang-fa</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Use Launchctl Create Daemon Task Step by Step]]></title>
+    <link href="http://tech.dehengxu.com/blog/use-launchctl-create-daemon-task-step-by-step/"/>
+    <updated>2016-03-16T18:40:33+08:00</updated>
+    <id>http://tech.dehengxu.com/blog/use-launchctl-create-daemon-task-step-by-step</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Testing in Android]]></title>
@@ -971,475 +1050,6 @@ mirrors.opencas.cn  dl-ssl.google.com</p>
 <p><a href="https://github.com/st3fan/ios-openssl">ios-openssl</a></p>
 
 <p><a href="https://github.com/secondgear/SGKeychain">SGKeychain</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Gitsh 的安装和使用]]></title>
-    <link href="http://tech.dehengxu.com/blog/gitsh-de-an-zhuang-he-shi-yong/"/>
-    <updated>2015-09-15T17:50:13+08:00</updated>
-    <id>http://tech.dehengxu.com/blog/gitsh-de-an-zhuang-he-shi-yong</id>
-    <content type="html"><![CDATA[<p>项目地址:  <a href="https://github.com/thoughtbot/gitsh">https://github.com/thoughtbot/gitsh</a></p>
-
-<h3>前提：</h3>
-
-<ol>
-<li><p>需要安装 ruby 环境</p></li>
-<li><p>安装 m4 编译工具</p></li>
-</ol>
-
-
-<h3>安装步骤：</h3>
-
-<ol>
-<li>下载项目</li>
-</ol>
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>git clone https://github.com/thoughtbot/gitsh.git</span></code></pre></td></tr></table></div></figure>
-
-
-<ol>
-<li>安装 gems</li>
-</ol>
-
-
-<p>国内用户可以修改  Gemfile 中的 <code>source 'https://rubygems.org'</code> 为 source &lsquo;<a href="http://ruby.taobao.org">http://ruby.taobao.org</a>&rsquo;</p>
-
-<p>因为某些原因使用淘宝的 ruby gems 源可达性更有保障</p>
-
-<p>执行  <code>bundle install</code></p>
-
-<ol>
-<li><p>执行 <code>./autogen.sh</code></p></li>
-<li><p>配置环境</p></li>
-</ol>
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>export PATH="$PATH:/PROJECT/gitsh/bin"</span></code></pre></td></tr></table></div></figure>
-
-
-<p>最后终于可以使用了</p>
-
-<h3>使用</h3>
-
-<p>任何位置输入 <code>gitsh</code> 会进入到 git 命令行环境中，最大的优点是，git 命令可以只输入子命令就可以了。</p>
-
-<p>比如：<code>git branch</code> 可以改用 <code>branch</code>，就这么简单。</p>
-
-<p>直接回车会提示当前文件的变化情况，一切都变得容易了很多。</p>
-
-<p>如果不想使用 gitsh 也可以安装  <code>zsh</code> 命令行终端 <a href="http://www.zsh.org/">zsh</a>；再配合我的 <a href="https://github.com/xudeheng/gitbash">gitbash</a> 简易别名系统简化 git 命令，安装命令 <code>curl -sSL https://raw.githubusercontent.com/xudeheng/gitbash/master/install.sh | bash</code>。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[使用 Cocoapods 来管理基于 Svn 的子项目]]></title>
-    <link href="http://tech.dehengxu.com/blog/shi-yong-cocoapods-lai-guan-li-ji-yu-svn-de-zi-xiang-mu/"/>
-    <updated>2015-09-08T16:01:14+08:00</updated>
-    <id>http://tech.dehengxu.com/blog/shi-yong-cocoapods-lai-guan-li-ji-yu-svn-de-zi-xiang-mu</id>
-    <content type="html"><![CDATA[<p>首先，感谢 clarkda 为cocoapods 提供了这个 repo-svn 的 svn 支持插件。</p>
-
-<p>根据 <a href="https://github.com/clarkda/cocoapods-repo-svn">https://github.com/clarkda/cocoapods-repo-svn</a> 上的说明</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>
-</span><span class='line'>gem install cocoapods-repo-svn 来安装 repo-svn 插件。
-</span><span class='line'>
-</span><span class='line'>pod repo-svn add my-svn-repo http://svn-repo-url 添加你的私有 svn 项目仓库
-</span><span class='line'>
-</span><span class='line'>pod repo-svn update my-svn-repo 更新项目
-</span><span class='line'>
-</span><span class='line'>pod repo-svn remove my-svn-repo 删除项目
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>其实不添加项目也是可以的，需要为 svn 上的子项目添加 .podspec 文件，使项目可被 cocoapods 识别并管理，并为你自己的项目添加 Podfile 文件。</p>
-
-<h4>第一步：为你用到的所有子项目，添加 podspec</h4>
-
-<p><code>pod spec create my-svn-repo</code></p>
-
-<p>编辑 libname.podspec 文件，主要设置好 s.source, s.source_files, s.exclude_files, s.framework, s.library 字段。</p>
-
-<p>其中 <code>s.source</code> 的字段需要把地址改成 <code>:svn =&gt; "http://svnurl/"</code></p>
-
-<h4>第二步：编辑 Podfiles</h4>
-
-<p>加上 <code>pod 'my-svn-repo', :svn =&gt; "http://10.255.223.227:81/svn/readersdk/cppsdk/branches/2.2.1_buildReaderKit"</code></p>
-
-<p>现在，就可以享受 cocoapods 为你的 svn 项目带来自动化配置管理了。</p>
-
-<p><a href="http://www.dehengxu.com/%E4%BD%BF%E7%94%A8-cocoapods-%E6%9D%A5%E7%AE%A1%E7%90%86%E5%9F%BA%E4%BA%8E-svn-%E9%A1%B9%E7%9B%AE/">这里可以讨论一些问题</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Create a Private Pods]]></title>
-    <link href="http://tech.dehengxu.com/blog/create-a-private-pods/"/>
-    <updated>2015-08-31T22:20:30+08:00</updated>
-    <id>http://tech.dehengxu.com/blog/create-a-private-pods</id>
-    <content type="html"><![CDATA[<h3>1. 创建私有 Spec 仓库</h3>
-
-<p>没必要 fork CocoaPods 的Spec 主仓库。你可以建立自己的仓库，也不用公开。</p>
-
-<p>而且你也可以创建自己的私有本地仓库</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>cd /opt/git
-</span><span class='line'>mkdir Specs.git
-</span><span class='line'>cd Specs.git
-</span><span class='line'>git init --bare</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>2. 添加私有仓库到 CocoaPods 安装文件中</h3>
-
-<p><code>pod repo add REPO_NAME SOURCE_URL</code></p>
-
-<blockquote><p>如果你想检测是否安装成功，可以这样测试：</p></blockquote>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>cd ~/.cocoapods/repos/REPO_NAME
-</span><span class='line'>pod repo lint</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>3. 添加你的 podspec 到你自己的仓库</h3>
-
-<p>pod repo push REPO_NAME SPEC_NAME.podspec</p>
-
-<hr />
-
-<p>最后，你需要在 podfile 文件中通过 <code>source</code> 指令来使用你自己的仓库：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>source 'YOUR_REPO_URL'</span></code></pre></td></tr></table></div></figure>
-
-
-<p><a href="https://guides.cocoapods.org/making/private-cocoapods.html">REF</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Use Cocoapods Publish Your Podspec]]></title>
-    <link href="http://tech.dehengxu.com/blog/use-cocoapods-publish-your-podspec/"/>
-    <updated>2015-08-31T22:10:34+08:00</updated>
-    <id>http://tech.dehengxu.com/blog/use-cocoapods-publish-your-podspec</id>
-    <content type="html"><![CDATA[<h3>创建 podspec</h3>
-
-<p>pod spec create NAME</p>
-
-<h3>补完 podspec 文件</h3>
-
-<p>参考例子：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='Ruby'><span class='line'><span class="no">Pod</span><span class="o">::</span><span class="no">Spec</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">spec</span><span class="o">|</span>
-</span><span class='line'>  <span class="n">spec</span><span class="o">.</span><span class="n">name</span>             <span class="o">=</span> <span class="s1">&#39;Reachability&#39;</span>
-</span><span class='line'>  <span class="n">spec</span><span class="o">.</span><span class="n">version</span>          <span class="o">=</span> <span class="s1">&#39;3.1.0&#39;</span>
-</span><span class='line'>  <span class="n">spec</span><span class="o">.</span><span class="n">license</span>          <span class="o">=</span> <span class="p">{</span> <span class="ss">:type</span> <span class="o">=&gt;</span> <span class="s1">&#39;BSD&#39;</span> <span class="p">}</span>
-</span><span class='line'>  <span class="n">spec</span><span class="o">.</span><span class="n">homepage</span>         <span class="o">=</span> <span class="s1">&#39;https://github.com/tonymillion/Reachability&#39;</span>
-</span><span class='line'>  <span class="n">spec</span><span class="o">.</span><span class="n">authors</span>          <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;Tony Million&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;tonymillion@gmail.com&#39;</span> <span class="p">}</span>
-</span><span class='line'>  <span class="n">spec</span><span class="o">.</span><span class="n">summary</span>          <span class="o">=</span> <span class="s1">&#39;ARC and GCD Compatible Reachability Class for iOS and OS X.&#39;</span>
-</span><span class='line'>  <span class="n">spec</span><span class="o">.</span><span class="n">source</span>           <span class="o">=</span> <span class="p">{</span> <span class="ss">:git</span> <span class="o">=&gt;</span> <span class="s1">&#39;https://github.com/tonymillion/Reachability.git&#39;</span><span class="p">,</span> <span class="ss">:tag</span> <span class="o">=&gt;</span> <span class="s1">&#39;v3.1.0&#39;</span> <span class="p">}</span>
-</span><span class='line'>  <span class="n">spec</span><span class="o">.</span><span class="n">source_files</span>     <span class="o">=</span> <span class="s1">&#39;Reachability.h,m&#39;</span>
-</span><span class='line'>  <span class="n">spec</span><span class="o">.</span><span class="n">framework</span>        <span class="o">=</span> <span class="s1">&#39;SystemConfiguration&#39;</span>
-</span><span class='line'>  <span class="n">spec</span><span class="o">.</span><span class="n">requires_arc</span>     <span class="o">=</span> <span class="kp">true</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><a href="https://guides.cocoapods.org/making/specs-and-specs-repo.html">Offical Docs</a></p>
-
-<h3>验证代码</h3>
-
-<p><code>pod lib lint CoreDataEnvir.podspec</code></p>
-
-<p>如果你将 source 路径设置为 git@github.com&hellip;..，会出现这种警告提示：<code>- WARN  | Git SSH URLs will NOT work for people behind firewalls configured to only allow HTTP, therefore HTTPS is preferred.</code>。将 source 地址设置为 <a href="https://github.com....">https://github.com....</a> 的形式，可以解决此问题。</p>
-
-<h3>验证 podspec</h3>
-
-<p><code>pod spec lint CoreDataEnvir.podspec</code></p>
-
-<h3>注册 Cocoapods 会话</h3>
-
-<p>为了保证与 Cocoapods 通信的合法性，需要在你的电脑上注册一个会话，方法如下：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='Bash'><span class='line'>pod trunk register orta@cocoapods.org <span class="s1">&#39;Orta Therox&#39;</span> --description<span class="o">=</span><span class="s1">&#39;macbook air&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>执行完后，你的邮箱会收到一封激活邮件，点击其中的激活链接后，你的会话就算是合法了。</p>
-
-<h3>提交你的 podspec</h3>
-
-<p><code>pod trunk push CoreDataEnvir.podspec</code> 这条命令会把你的 podspec 提交到公共库中。</p>
-
-<p>这个步骤第一次执行，会比较慢，做好相应准备，比如翻好墙，以防长时间无响应。</p>
-
-<p>比如我最近提交的: CoreDataEnvir</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-</pre></td><td class='code'><pre><code class='Bash'><span class='line'>pod trunk push CoreDataEnvir.podspec --verbose
-</span><span class='line'>/usr/bin/git pull --ff-only
-</span><span class='line'>    From https://github.com/CocoaPods/Specs
-</span><span class='line'>        c812aae..c4e2a00  master     -&gt; origin/master
-</span><span class='line'>    Updating c812aae..c4e2a00
-</span><span class='line'>    Fast-forward
-</span><span class='line'>    CocoaPods-version.yml                              <span class="p">|</span>    <span class="m">2</span> +-
-</span><span class='line'>    .../1.5/1PasswordExtension.podspec.json            <span class="p">|</span>   <span class="m">37</span> +
-</span><span class='line'>    .../1.1/ABFRealmMapView.podspec.json               <span class="p">|</span>   <span class="m">31</span> +
-</span><span class='line'>    .../1.1/ABFRealmSearchViewController.podspec.json  <span class="p">|</span>   <span class="m">31</span> +
-</span><span class='line'>...
-</span><span class='line'>    Specs/wpxmlrpc/0.8.1/wpxmlrpc.podspec.json         <span class="p">|</span>   <span class="m">27</span> +
-</span><span class='line'>    .../0.1.4/youtube-ios-player-helper.podspec.json   <span class="p">|</span>   <span class="m">35</span> +
-</span><span class='line'>    .../0.2.2/youtube-parser.podspec.json              <span class="p">|</span>   <span class="m">20</span> +
-</span><span class='line'>    Specs/yuntongxun/0.0.1/yuntongxun.podspec.json     <span class="p">|</span>   <span class="m">36</span> +
-</span><span class='line'>    <span class="m">2832</span> files changed, <span class="m">118838</span> insertions<span class="o">(</span>+<span class="o">)</span>, <span class="m">323</span> deletions<span class="o">(</span>-<span class="o">)</span>
-</span><span class='line'>    create mode <span class="m">100644</span> Specs/1PasswordExtension/1.5/1PasswordExtension
-</span><span class='line'>    create mode <span class="m">100644</span> Specs/ABFRealmMapView/1.1/ABFRealmMapView.podsp
-</span><span class='line'>    create mode <span class="m">100644</span> Specs/ABFRealmSearchViewController/1.1/ABFRealm
-</span><span class='line'>    create mode <span class="m">100644</span> Specs/ABFRealmTableViewController/1.0/ABFRealmT
-</span><span class='line'>    create mode <span class="m">100644</span> Specs/ABLoader/0.0.2/ABLoader.podspec.json
-</span><span class='line'>...
-</span><span class='line'>    create mode <span class="m">100644</span> Specs/tw10n/1.1.1/tw10n.podspec.json
-</span><span class='line'>    create mode <span class="m">100644</span> Specs/twitter-text/1.13.0/twitter-text.podspec.json
-</span><span class='line'>    create mode <span class="m">100644</span> Specs/wpxmlrpc/0.8.1/wpxmlrpc.podspec.json
-</span><span class='line'>    create mode <span class="m">100644</span> Specs/youtube-ios-player-helper/0.1.4/youtube-ios-player-helper.podspec.json
-</span><span class='line'>    create mode <span class="m">100644</span> Specs/youtube-parser/0.2.2/youtube-parser.podspec.json
-</span><span class='line'>    create mode <span class="m">100644</span> Specs/yuntongxun/0.0.1/yuntongxun.podspec.json
-</span><span class='line'>
-</span><span class='line'> CocoaPods 0.39.0.beta.3 is available.
-</span><span class='line'> To update use: <span class="sb">`</span>sudo gem install cocoapods --pre<span class="sb">`</span>
-</span><span class='line'> <span class="o">[</span>!<span class="o">]</span> This is a <span class="nb">test </span>version we<span class="err">&#39;</span>d love you to try.
-</span><span class='line'>
-</span><span class='line'> For more information see http://blog.cocoapods.org
-</span><span class='line'> and the CHANGELOG <span class="k">for</span> this version http://git.io/BaH8pQ.
-</span><span class='line'>
-</span><span class='line'> Validating podspec
-</span><span class='line'>     CoreDataEnvir <span class="o">(</span>0.4<span class="o">)</span> - Analyzing on iOS platform.
-</span><span class='line'>   Preparing
-</span><span class='line'>
-</span><span class='line'> Analyzing dependencies
-</span><span class='line'>
-</span><span class='line'> Fetching external sources
-</span><span class='line'> -&gt; Fetching podspec <span class="k">for</span> <span class="sb">`</span>CoreDataEnvir<span class="sb">`</span> from <span class="sb">`</span>/Users/nicholasxu/Projects/iOS/XFramework/CoreDataEnvir/CoreDataEnvir.podspec<span class="sb">`</span>
-</span><span class='line'>
-</span><span class='line'> Resolving dependencies of
-</span><span class='line'>
-</span><span class='line'> Comparing resolved specification to the sandbox manifest
-</span><span class='line'>   A CoreDataEnvir
-</span><span class='line'>
-</span><span class='line'> Downloading dependencies
-</span><span class='line'>
-</span><span class='line'> -&gt; Installing CoreDataEnvir <span class="o">(</span>0.4<span class="o">)</span>
-</span><span class='line'>   &gt; Copying CoreDataEnvir from
-</span><span class='line'>   <span class="sb">`</span>/Users/nicholasxu/Library/Caches/CocoaPods/Pods/External/CoreDataEnvir/25047baf5458c8928d40aa32eccec759-043e4<span class="sb">`</span> to
-</span><span class='line'>   <span class="sb">`</span>../../../../../../private/var/folders/6r/flwjnj4x4wsb8wcbmjj88_z40000gn/T/CocoaPods/Lint/Pods/CoreDataEnvir<span class="sb">`</span>
-</span><span class='line'>   - Running pre install hooks
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>经过了漫长的 Pods master specs 的下载过程，才开始进行库的验证过程，每一个 tag 都会验证，这个过程也很漫长，好在过去的每一个 tag 我都执行过验证。</p>
-
-<blockquote><p>PS:如果需要提交到私有库，你需要执行 <code>pod trunk push CoreDataEnvir.podspec</code></p></blockquote>
-
-<h3>如果你的验证阶段经常 failed，有两种解决办法：</h3>
-
-<ol>
-<li>解决所有的 warning, 配置好 podspec 文件。</li>
-<li>在lint 后面增加一个参数 <code>--allow-warning</code>，为了看清楚出错的原因你也可以增加  <code>--verbose</code>。</li>
-</ol>
-
-
-<hr />
-
-<p><a href="https://guides.cocoapods.org/making/getting-setup-with-trunk.html">Ref</a>
-<a href="https://guides.cocoapods.org/syntax/podspec.html">podspec</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Runtime 在新版本 Xcode 中引起的编译错误，及解决方法]]></title>
-    <link href="http://tech.dehengxu.com/blog/objc-msgsend-bian-yi-cuo-wu-de-jie-jue-fang-fa/"/>
-    <updated>2015-08-30T12:13:22+08:00</updated>
-    <id>http://tech.dehengxu.com/blog/objc-msgsend-bian-yi-cuo-wu-de-jie-jue-fang-fa</id>
-    <content type="html"><![CDATA[<h2>objc_msgSend</h2>
-
-<p>最近在 Xcode6.4 上编译一个老旧的库时，出现了运行时函数 <code>objc_msgSend</code> 的编译错误，提示:</p>
-
-<p><code>Too many arguments to function call, excepted 0, have 7</code>，说函数不需要参数，却传入了7个参数。</p>
-
-<p>原来是预编译指令的问题:</p>
-
-<p>找到编译出错的那个库，选中 target -> Build Settings 搜索框中输入 <code>objc</code></p>
-
-<p>定位到这里:</p>
-
-<p><img src="http://tech.dehengxu.com/images/refered/runtime_msgsend_fix.png" alt="msgSend_fix" /></p>
-
-<p>将 <code>Enable Strict Checking of objc_msgSend Calls</code>  字段设为 <code>NO</code></p>
-
-<p>关闭 <code>objc_msgSend</code> 的严格调用检查。</p>
-
-<h2>object->isa</h2>
-
-<p>最近在 Xcode6.4 上编译依赖 JSONKit 的时候，对于 JSONKit 内部通过指针访问 <code>isa</code> 变量代码，引起编译错误，提示:</p>
-
-<p><code>Assignment to Objective-C's isa is deprecated in favor of object_setClass()</code> 或者 <code>Assignment to Objective-C's isa is deprecated in favor of object_getClass()</code></p>
-
-<p>如图:</p>
-
-<p><img src="http://tech.dehengxu.com/images/refered/runtime_isa_error.png" alt="isa_err" /></p>
-
-<p>解决办法：找到 JSONKit 项目 target -> Build Settings 搜索框中输入 <code>isa</code></p>
-
-<p>定位到:</p>
-
-<p><img src="http://tech.dehengxu.com/images/refered/runtime_isa_fix.png" alt="isa_err" /></p>
-
-<p>修改为 <code>NO</code> 即可。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[自定义类如何提供 KVC 兼容特性]]></title>
-    <link href="http://tech.dehengxu.com/blog/zi-ding-yi-lei-ru-he-ti-gong-kvc-jian-rong-te-xing/"/>
-    <updated>2015-08-29T15:10:33+08:00</updated>
-    <id>http://tech.dehengxu.com/blog/zi-ding-yi-lei-ru-he-ti-gong-kvc-jian-rong-te-xing</id>
-    <content type="html"><![CDATA[<h3>KVC 兼容性</h3>
-
-<h4>对一的关系</h4>
-
-<p>对于属性来说，附属值会存在一对一的关系，这就需要你的类拥有一下特征：</p>
-
-<ul>
-<li><p>实现 <code>-key</code>, <code>-is&lt;Key&gt;</code> 方法类，或者存在有一个叫 <code>key</code> 或者 <code>_key</code> 的实例对象。(显然，这是 getter 访问器的规则)。虽然 key 名字常常以小写字母开头，KVC 也支持 key名称以大写字母开头，例如：<code>URL</code>。</p></li>
-<li><p>如果该属性是可以修改的，那么就应该实现 <code>-set&lt;Key&gt;:</code> 方法。PS:框架会自动寻找 <code>key</code> 或者 <code>_key</code>形式的变量来完成对应操作。</p></li>
-<li><p>你的 <code>-set&lt;Key&gt;:</code> 实现方法不应该执行验证操作。</p></li>
-<li><p>如果你需要验证 <code>key</code> 的话，你需要实现 <code>-validate&lt;key&gt;:error:</code> 的方法。</p></li>
-</ul>
-
-
-<h4>索引化的对多关系</h4>
-
-<p>对于索引化的对多关系而言，KVC 兼容性需要你的类拥有这些特征：</p>
-
-<ul>
-<li><p>实现名为 <code>-&lt;key&gt;</code> 并返回数组的方法。</p></li>
-<li><p>或者拥有一个名为 <code>key</code> 或 <code>_key</code> 的数组实例对象变量。</p></li>
-<li><p>或者实现 <code>-countOf&lt;key&gt;</code> 方法，并且实现 <code>-objectIn&lt;key&gt;AtIndex:</code> 和 <code>-&lt;key&gt;AtIndexes:</code> 两个方法中的一个或所有方法。</p></li>
-<li><p>你也能可选的实现 <code>-get&lt;key&gt;:range:</code> 方法来提高性能表现。</p></li>
-</ul>
-
-
-<p>对于可修改的索引化有序对多关系，KVC 兼容性也需要你的类提供这些特征：</p>
-
-<ul>
-<li><p>实现 <code>-insertObject:in&lt;key&gt;AtIndex:</code> 和 <code>-insert&lt;Key&gt;:atIndexex:</code> 中的一个或所有方法。</p></li>
-<li><p>当然如果愿意，你可也可以实现 <code>-replaceObjectIn&lt;key&gt;AtIndex:withObject:</code> 或 <code>-replace&lt;key&gt;AtIndexes:with&lt;key&gt;:</code> 来提高性能表现。这仅仅是个可选项。 :)</p></li>
-</ul>
-
-
-<h4>无序的对多关系兼容性</h4>
-
-<p>对于无序的对多关系来说，KVC 兼容性需要你的类提供这些特征：</p>
-
-<ul>
-<li><p>实现能返回集合的名为 <code>-&lt;key&gt;</code> 的方法。</p></li>
-<li><p>或者包含一个名为 <code>key</code> 或 <code>_key</code> 的实例变量。</p></li>
-<li><p>或者实现 <code>-countOf&lt;key&gt;</code>，<code>-enumeratorOf&lt;key&gt;</code> 和 <code>-memberOf&lt;key&gt;:</code> 方法。</p></li>
-</ul>
-
-
-<p>对于可变的无序对多关系而言，KVC 兼容性需要你的类也提供这些：</p>
-
-<ul>
-<li><p>实现方法 <code>-add&lt;key&gt;Object:</code> 或 <code>-add&lt;key&gt;:</code> 中的一个或所有。</p></li>
-<li><p>实现方法 <code>-remove&lt;key&gt;Object:</code> 或 <code>-remove&lt;key&gt;:</code>中的一个或所有。</p></li>
-<li><p>你也可以实现 <code>-intersect&lt;key&gt;:</code> 和 <code>-set&lt;key&gt;:</code> 来提高性能表现，不过这是个可选项，根据你面临的情况自己选择吧。</p></li>
-</ul>
-
 ]]></content>
   </entry>
   

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Git | 逆风@[iOS,android,nil]]]></title>
   <link href="http://tech.dehengxu.com/blog/categories/git/atom.xml" rel="self"/>
   <link href="http://tech.dehengxu.com/"/>
-  <updated>2016-03-11T23:02:17+08:00</updated>
+  <updated>2016-04-17T18:56:12+08:00</updated>
   <id>http://tech.dehengxu.com/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
@@ -141,6 +141,10 @@ git add name2
 <h4>解包</h4>
 
 <p>git clone bundle_name folder_name</p>
+
+<h4>Config</h4>
+
+<p>  <a href="https://jk.gs/git-config.html">https://jk.gs/git-config.html</a></p>
 ]]></content>
   </entry>
   

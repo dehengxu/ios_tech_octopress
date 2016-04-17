@@ -9,7 +9,7 @@
   <meta name="author" content="Deheng Xu">
 
   
-  <meta name="description" content="设计模式-访问者模式 Aug 16th, 2015 8:05 am | Comments Objective-C中的协议引用头文件的问题 Aug 16th, 2015 12:59 am | Comments 常用23种设计模式简介 Aug 15th, 2015 11:47 pm | &hellip;">
+  <meta name="description" content="Block在Clang中的实现 Aug 19th, 2015 6:00 am | Comments Autorelease方法的源码分析 Aug 18th, 2015 10:51 am | Comments Libdispatch 源码分析 Aug 18th, 2015 8:57 am | &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -84,6 +84,1056 @@
       
   <header>
     
+      <h1 class="entry-title" ><a href="/blog/blockzai-clangzhong-de-shi-xian/">Block在Clang中的实现</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-08-19T06:00:02+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>19</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>6:00 am</span></time>
+        
+           | <a href="/blog/blockzai-clangzhong-de-shi-xian/#disqus_thread"
+             data-disqus-identifier="http://tech.dehengxu.com/blog/blockzai-clangzhong-de-shi-xian/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+
+<!-- <div class="entry-content"><h3>被导入的变量</h3>
+
+<h4>被导入成 const copy 变量</h4>
+
+<p>未被 <code>__block</code> 修饰的自变量会被导入成 <code>const</code> 拷贝。</p>
+
+<p>这个例子就导入了一个 <code>int</code> 类型变量:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>int x = 10;
+</span><span class='line'>void (^vv)(void) = ^{ printf("x is %d\n", x); }
+</span><span class='line'>x = 11;
+</span><span class='line'>vv();</span></code></pre></td></tr></table></div></figure>
+
+
+<p>上面这段代码将会被编译成下面这2段内容:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>struct __block_literal_2 {
+</span><span class='line'>    void *isa;
+</span><span class='line'>    int flags;
+</span><span class='line'>    int reserved;
+</span><span class='line'>    void (*invoke)(struct __block_literal_2 *);
+</span><span class='line'>    struct __block_descriptor_2 *descriptor;
+</span><span class='line'>    const int x;
+</span><span class='line'>};
+</span><span class='line'>
+</span><span class='line'>void __block_invoke_2(struct __block_literal_2 *_block) {
+</span><span class='line'>    printf("x is %d\n", _block-&gt;x);
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>static struct __block_descriptor_2 {
+</span><span class='line'>    unsigned long int reserved;
+</span><span class='line'>    unsigned long int Block_size;
+</span><span class='line'>} __block_descriptor_2 = { 0, sizeof(struct __block_literal_2) };</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>struct __block_literal_2 __block_literal_2 = {
+</span><span class='line'>      &_NSConcreteStackBlock,
+</span><span class='line'>      (1&lt;&lt;29), &lt;uninitialized&gt;,
+</span><span class='line'>      __block_invoke_2,
+</span><span class='line'>      &__block_descriptor_2,
+</span><span class='line'>      x
+</span><span class='line'> };</span></code></pre></td></tr></table></div></figure>
+
+
+<p>概括来说，标量(应该是指 int, float 这类值类型)，结构体，联合体 和 函数指针通常会被导入成 <code>const</code> 拷贝。</p>
+
+<h4>将 Block 引用导入成 <code>const</code> 拷贝</h4>
+
+<p>第一种情况，当一个 <code>Block</code> 自身被导入的时候，copy 和 dispose 工具函数会使用到。这种情况下会需要用到一个 <code>copy_helper</code> 函数和一个 <code>dispose_helper</code> 函数。<code>copy_helper</code> 函数被传入当前栈的基指针和指向新的堆版本的指针，并被回调到运行时在 <code>Block</code> 中对被导入的域执行拷贝操作。运行时函数在这里有描述<a href="http://clang.llvm.org/docs/Block-ABI-Apple.html#runtimehelperfunctions" target="__blank">Runtime Helper Functions</a>.</p>
+
+<p>简单的例子:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>void (^existingBlock)(void) = ...;
+</span><span class='line'>void (^vv)(void) = ^{ existingBlock(); }
+</span><span class='line'>vv();
+</span><span class='line'>
+</span><span class='line'>struct __block_literal_3 {
+</span><span class='line'>   ...; // existing block
+</span><span class='line'>};
+</span><span class='line'>
+</span><span class='line'>struct __block_literal_4 {
+</span><span class='line'>    void *isa;
+</span><span class='line'>    int flags;
+</span><span class='line'>    int reserved;
+</span><span class='line'>    void (*invoke)(struct __block_literal_4 *);
+</span><span class='line'>    struct __block_literal_3 *const existingBlock;
+</span><span class='line'>};
+</span><span class='line'>
+</span><span class='line'>void __block_invoke_4(struct __block_literal_2 *_block) {
+</span><span class='line'>   __block-&gt;existingBlock-&gt;invoke(__block-&gt;existingBlock);
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>void __block_copy_4(struct __block_literal_4 *dst, struct __block_literal_4 *src) {
+</span><span class='line'>     //_Block_copy_assign(&dst-&gt;existingBlock, src-&gt;existingBlock, 0);
+</span><span class='line'>     _Block_object_assign(&dst-&gt;existingBlock, src-&gt;existingBlock, BLOCK_FIELD_IS_BLOCK);
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>void __block_dispose_4(struct __block_literal_4 *src) {
+</span><span class='line'>     // was _Block_destroy
+</span><span class='line'>     _Block_object_dispose(src-&gt;existingBlock, BLOCK_FIELD_IS_BLOCK);
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>static struct __block_descriptor_4 {
+</span><span class='line'>    unsigned long int reserved;
+</span><span class='line'>    unsigned long int Block_size;
+</span><span class='line'>    void (*copy_helper)(struct __block_literal_4 *dst, struct __block_literal_4 *src);
+</span><span class='line'>    void (*dispose_helper)(struct __block_literal_4 *);
+</span><span class='line'>} __block_descriptor_4 = {
+</span><span class='line'>    0,
+</span><span class='line'>    sizeof(struct __block_literal_4),
+</span><span class='line'>    __block_copy_4,
+</span><span class='line'>    __block_dispose_4,
+</span><span class='line'>};</span></code></pre></td></tr></table></div></figure>
+
+
+<p>_Block_object_assign 的 flag 参数有这几个:</p>
+
+<p><code>BLOCK_FIELD_IS_OBJECT， 3</code>，<code>BLOCK_FIELD_IS_BYREF， 8</code> 和 <code>BLOCK_FIELD_IS_BLOCK</code></p>
+
+<p>这里描述了 Block 如何被使用:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>struct __block_literal_4 _block_literal = {
+</span><span class='line'>      &_NSConcreteStackBlock,
+</span><span class='line'>      (1&lt;&lt;25)|(1&lt;&lt;29), &lt;uninitialized&gt;
+</span><span class='line'>      __block_invoke_4,
+</span><span class='line'>      & __block_descriptor_4
+</span><span class='line'>      existingBlock,
+</span><span class='line'>};</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>导入 <strong>attribute</strong>((NSObject)) 变量</h4>
+
+<p>GCC 在结构指针里引入饿了 <code>__attribute__((NSObject))</code> 概念，表示 “这是一个对象”。它很有用，因为很多低级别的数据结构被声明为透明的结构指针，例如<code>CFStringRef</code>, <code>CFArrayRef</code>, 等等。当在 C 里面使用的时候，仍然会有真实的对象存在，并且在第二种情况会请求拷贝，生成工具函数。编译器生成的贝工具函数需要使用运行时工具函数 <code>_Block_object_assign</code> ，并且在调用工具函数的时候，运行时函数 <code>_Block_object_dispose</code> 会被调用。</p>
+
+<p>举个例子，下面的<code>Block</code> foo:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>struct Opaque *__attribute__((NSObject)) objectPointer = ...;
+</span><span class='line'>...
+</span><span class='line'>void (^foo)(void) = ^{  CFPrint(objectPointer); };</span></code></pre></td></tr></table></div></figure>
+
+
+<p>会生成下面的工具函数:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>void __block_copy_foo(struct __block_literal_5 *dst, struct __block_literal_5 *src) {
+</span><span class='line'>     _Block_object_assign(&dst-&gt;objectPointer, src-&gt; objectPointer, BLOCK_FIELD_IS_OBJECT);
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>void __block_dispose_foo(struct __block_literal_5 *src) {
+</span><span class='line'>     _Block_object_dispose(src-&gt;objectPointer, BLOCK_FIELD_IS_OBJECT);
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>导入 <code>__block</code> 修饰的变量</h3>
+
+<h4><code>__block</code>修饰的变量的布局</h4>
+
+<p>编译器必须将 <code>__block</code> 修饰的变量放置到一个特殊的结构体中:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>struct _block_byref_foo {
+</span><span class='line'>    void *isa;
+</span><span class='line'>    struct Block_byref *forwarding;
+</span><span class='line'>    int flags;   //refcount;
+</span><span class='line'>    int size;
+</span><span class='line'>    typeof(marked_variable) marked_variable;
+</span><span class='line'>};</span></code></pre></td></tr></table></div></figure>
+
+
+<p>当对一个 Block 引用进行 <code>Block_copy()</code> 和  <code>Block_release()</code> 操作的时候， 某种类型的变量会需要用到工具函数。在“C”级别只有<code>Block</code>类型的变量，或者 <code>__attribute__((NSObject))</code> 修饰的变量需要工具函数。在 Objective-C 中的对象 和 C++ 中栈上的对象也需要工具函数。需要工具函数的变量使用这种形式:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>struct _block_byref_foo {
+</span><span class='line'>    void *isa;
+</span><span class='line'>    struct _block_byref_foo *forwarding;
+</span><span class='line'>    int flags;   //refcount;
+</span><span class='line'>    int size;
+</span><span class='line'>    // helper functions called via Block_copy() and Block_release()
+</span><span class='line'>    void (*byref_keep)(void  *dst, void *src);
+</span><span class='line'>    void (*byref_dispose)(void *);
+</span><span class='line'>    typeof(marked_variable) marked_variable;
+</span><span class='line'>};</span></code></pre></td></tr></table></div></figure>
+
+
+<p>结构体会像这样初始化:</p>
+
+<blockquote><ol type="a">
+<li><code>forwarding</code> 指针指向外围结构体的开头。</li>
+<li><code>size</code> 域被初始化为外围结构体的总大小。</li>
+<li><code>flags</code> 域当没有工具函数的时候设置为0，反之被设置成 (1&lt;&lt;25)。</li>
+<li>工具函数被初始化（如果是当前）。</li>
+<li>变量自身呗设置为初始值。</li>
+<li><code>isa</code> 域被设置为 <code>NULL</code>。</li>
+</ol>
+</blockquote>
+
+<h4>在词法范围内访问<code>__block</code>变量</h4>
+
+<p>为了通过 <code>copy_helper</code> 操作编译器 “移动” 变量到堆里面，必须简介通过结构体指针<code>forwarding</code>来重写访问这个变量。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>int __block i = 10;
+</span><span class='line'>i = 11;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>会被重写成:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>struct _block_byref_i {
+</span><span class='line'>  void *isa;
+</span><span class='line'>  struct _block_byref_i *forwarding;
+</span><span class='line'>  int flags;   //refcount;
+</span><span class='line'>  int size;
+</span><span class='line'>  int captured_i;
+</span><span class='line'>} i = { NULL, &i, 0, sizeof(struct _block_byref_i), 10 };
+</span><span class='line'>
+</span><span class='line'>i.forwarding-&gt;captured_i = 11;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在 Block 引用变量被 <code>__block</code> 修饰后，工具代码必须用到 <code>_Block_object_assign</code> 和 <code>_Block_object_dispose</code> 这两个运行时提供的配套函数来进行拷贝。例如:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>__block void (voidBlock)(void) = blockA;
+</span><span class='line'>voidBlock = blockB;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>会被转换成:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>struct _block_byref_voidBlock {
+</span><span class='line'>    void *isa;
+</span><span class='line'>    struct _block_byref_voidBlock *forwarding;
+</span><span class='line'>    int flags;   //refcount;
+</span><span class='line'>    int size;
+</span><span class='line'>    void (*byref_keep)(struct _block_byref_voidBlock *dst, struct _block_byref_voidBlock *src);
+</span><span class='line'>    void (*byref_dispose)(struct _block_byref_voidBlock *);
+</span><span class='line'>    void (^captured_voidBlock)(void);
+</span><span class='line'>};
+</span><span class='line'>
+</span><span class='line'>void _block_byref_keep_helper(struct _block_byref_voidBlock *dst, struct _block_byref_voidBlock *src) {
+</span><span class='line'>    //_Block_copy_assign(&dst-&gt;captured_voidBlock, src-&gt;captured_voidBlock, 0);
+</span><span class='line'>    _Block_object_assign(&dst-&gt;captured_voidBlock, src-&gt;captured_voidBlock, BLOCK_FIELD_IS_BLOCK | BLOCK_BYREF_CALLER);
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>void _block_byref_dispose_helper(struct _block_byref_voidBlock *param) {
+</span><span class='line'>    //_Block_destroy(param-&gt;captured_voidBlock, 0);
+</span><span class='line'>    _Block_object_dispose(param-&gt;captured_voidBlock, BLOCK_FIELD_IS_BLOCK | BLOCK_BYREF_CALLER)}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>和</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>struct _block_byref_voidBlock voidBlock = {( .forwarding=&voidBlock, .flags=(1&lt;&lt;25), .size=sizeof(struct _block_byref_voidBlock *),
+</span><span class='line'>    .byref_keep=_block_byref_keep_helper, .byref_dispose=_block_byref_dispose_helper,
+</span><span class='line'>    .captured_voidBlock=blockA )};
+</span><span class='line'>
+</span><span class='line'>voidBlock.forwarding-&gt;captured_voidBlock = blockB;</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>向 <code>Blocks</code> 中导入 <code>__block</code> 变量</h4>
+
+<p><a href="http://clang.llvm.org/docs/Block-ABI-Apple.html" target="_blank">block底层实现的官方文档</a></p>
+</div> -->
+
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" ><a href="/blog/autoreleasefang-fa-deyuan-ma-fen-xi/">Autorelease方法的源码分析</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-08-18T10:51:06+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>18</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>10:51 am</span></time>
+        
+           | <a href="/blog/autoreleasefang-fa-deyuan-ma-fen-xi/#disqus_thread"
+             data-disqus-identifier="http://tech.dehengxu.com/blog/autoreleasefang-fa-deyuan-ma-fen-xi/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+
+<!-- <div class="entry-content"><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>static inline id autorelease(id obj)
+</span><span class='line'>{
+</span><span class='line'>    assert(obj);
+</span><span class='line'>    assert(!obj-&gt;isTaggedPointer());
+</span><span class='line'>    id *dest __unused = autoreleaseFast(obj);
+</span><span class='line'>    assert(!dest  ||  *dest == obj);
+</span><span class='line'>    return obj;
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如果指针没有被标记，则进行 autoreleaseFast 处理过程</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>static inline id *autoreleaseFast(id obj)
+</span><span class='line'>{
+</span><span class='line'>    AutoreleasePoolPage *page = hotPage();
+</span><span class='line'>    if (page && !page-&gt;full()) {
+</span><span class='line'>        return page-&gt;add(obj);
+</span><span class='line'>    } else if (page) {
+</span><span class='line'>        return autoreleaseFullPage(obj, page);
+</span><span class='line'>    } else {
+</span><span class='line'>        return autoreleaseNoPage(obj);
+</span><span class='line'>    }
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>static __attribute__((noinline))
+</span><span class='line'>id *autoreleaseFullPage(id obj, AutoreleasePoolPage *page)
+</span><span class='line'>{
+</span><span class='line'>    // The hot page is full. 
+</span><span class='line'>    // Step to the next non-full page, adding a new page if necessary.
+</span><span class='line'>    // Then add the object to that page.
+</span><span class='line'>    assert(page == hotPage()  &&  page-&gt;full());
+</span><span class='line'>
+</span><span class='line'>    do {
+</span><span class='line'>        if (page-&gt;child) page = page-&gt;child;
+</span><span class='line'>        else page = new AutoreleasePoolPage(page);
+</span><span class='line'>    } while (page-&gt;full());
+</span><span class='line'>
+</span><span class='line'>    setHotPage(page);
+</span><span class='line'>    return page-&gt;add(obj);
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>static __attribute__((noinline))
+</span><span class='line'>id *autoreleaseNoPage(id obj)
+</span><span class='line'>{
+</span><span class='line'>    // No pool in place.
+</span><span class='line'>    assert(!hotPage());
+</span><span class='line'>
+</span><span class='line'>    if (obj != POOL_SENTINEL  &&  DebugMissingPools) {
+</span><span class='line'>        // We are pushing an object with no pool in place, 
+</span><span class='line'>        // and no-pool debugging was requested by environment.
+</span><span class='line'>        _objc_inform("MISSING POOLS: Object %p of class %s "
+</span><span class='line'>                     "autoreleased with no pool in place - "
+</span><span class='line'>                     "just leaking - break on "
+</span><span class='line'>                     "objc_autoreleaseNoPool() to debug", 
+</span><span class='line'>                     (void*)obj, object_getClassName(obj));
+</span><span class='line'>        objc_autoreleaseNoPool(obj);
+</span><span class='line'>        return nil;
+</span><span class='line'>    }
+</span><span class='line'>
+</span><span class='line'>    // Install the first page.
+</span><span class='line'>    AutoreleasePoolPage *page = new AutoreleasePoolPage(nil);
+</span><span class='line'>    setHotPage(page);
+</span><span class='line'>
+</span><span class='line'>    // Push an autorelease pool boundary if it wasn't already requested.
+</span><span class='line'>    if (obj != POOL_SENTINEL) {
+</span><span class='line'>        page-&gt;add(POOL_SENTINEL);
+</span><span class='line'>    }
+</span><span class='line'>
+</span><span class='line'>    // Push the requested object.
+</span><span class='line'>    return page-&gt;add(obj);
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>每个 page  的大小是 4096 ，指的是能存储 4096 个对象地址。</p>
+
+<p>如果 <code>page-&gt;full()</code> 已满，则(通过 <code>autoreleaseFullPage(obj, page);</code>)自动从子节点中寻找一个未满的 page 添加新的对象，如果所有子节点都满了，就会创建一个新的page 并让 hotPage 指向这个新的 page，最后添加进新的对象。</p>
+
+<p>如果没有任何的 page，则创建第一个 page，并添加一个 POOL_SENTINEL 作为边界，然后添加这个新的 obj 对象。</p>
+</div> -->
+
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" ><a href="/blog/libdispatch-yuan-ma-fen-xi/">Libdispatch 源码分析</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-08-18T08:57:37+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>18</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>8:57 am</span></time>
+        
+           | <a href="/blog/libdispatch-yuan-ma-fen-xi/#disqus_thread"
+             data-disqus-identifier="http://tech.dehengxu.com/blog/libdispatch-yuan-ma-fen-xi/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+
+<!-- <div class="entry-content"><p>GCD 是苹果的多线程框架，提供了大量便捷的特性，允许用户利用多核 cpu 技术 ，使用中，最常接触的是</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>dispatch_queue_t dispatch_get_global_queue()
+</span><span class='line'>
+</span><span class='line'>dispatch_queue_t dispatch_queue_create()
+</span><span class='line'>
+</span><span class='line'>void dispatch_async()
+</span><span class='line'>
+</span><span class='line'>dispatch_semaphore_t dispatch_semaphor_create()
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>关键词</h3>
+
+<p>后面的描述中会用到一下几个关键词:</p>
+
+<p><code>dq</code>: dispatch_queue 的简写</p>
+
+<p><code>qos</code>: quality of service 的简写</p>
+
+<p>GCD 虽然好用，但对于 GCD 的底层实现我们却知之甚少，好在苹果开源了 GCD 的源码项目 libdispatch，我们可以在这里下载目前最新的版本 <a href="http://opensource.apple.com/tarballs/libdispatch/libdispatch-442.1.4.tar.gz">libdispatch</a></p>
+
+<h3>dispatch_queue_create() 函数</h3>
+
+<p>我们来看看 dispatch_queue_create 函数的定义</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>dispatch_queue_t
+</span><span class='line'>dispatch_queue_create(const char *label, dispatch_queue_attr_t attr)
+</span><span class='line'>{
+</span><span class='line'>  return dispatch_queue_create_with_target(label, attr,
+</span><span class='line'>          DISPATCH_TARGET_QUEUE_DEFAULT);
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>可以看到，其实 dispatch_queue_create 调用了私有函数 dispatch_queue_create_with_target ，移步到源码</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>// skip zero
+</span><span class='line'>// 1 - main_q
+</span><span class='line'>// 2 - mgr_q
+</span><span class='line'>// 3 - mgr_root_q
+</span><span class='line'>// 4,5,6,7,8,9,10,11,12,13,14,15 - global queues
+</span><span class='line'>// we use 'xadd' on Intel, so the initial value == next assigned
+</span><span class='line'>unsigned long volatile _dispatch_queue_serial_numbers = 16;
+</span><span class='line'>
+</span><span class='line'>dispatch_queue_t
+</span><span class='line'>dispatch_queue_create_with_target(const char *label, dispatch_queue_attr_t dqa,
+</span><span class='line'>      dispatch_queue_t tq)
+</span><span class='line'>{
+</span><span class='line'>#if DISPATCH_USE_NOQOS_WORKQUEUE_FALLBACK
+</span><span class='line'>  // Be sure the root queue priorities are set
+</span><span class='line'>  dispatch_once_f(&_dispatch_root_queues_pred, NULL,
+</span><span class='line'>          _dispatch_root_queues_init);
+</span><span class='line'>#endif
+</span><span class='line'>  bool disallow_tq = (slowpath(dqa) && dqa != DISPATCH_QUEUE_CONCURRENT);
+</span><span class='line'>  if (!slowpath(dqa)) {
+</span><span class='line'>      dqa = _dispatch_get_queue_attr(0, 0, false, false);
+</span><span class='line'>  } else if (dqa-&gt;do_vtable != DISPATCH_VTABLE(queue_attr)) {
+</span><span class='line'>      DISPATCH_CLIENT_CRASH("Invalid queue attribute");
+</span><span class='line'>  }
+</span><span class='line'>  dispatch_queue_t dq = _dispatch_alloc(DISPATCH_VTABLE(queue),
+</span><span class='line'>          sizeof(struct dispatch_queue_s) - DISPATCH_QUEUE_CACHELINE_PAD);
+</span><span class='line'>  _dispatch_queue_init(dq);
+</span><span class='line'>  if (label) {
+</span><span class='line'>      dq-&gt;dq_label = strdup(label);
+</span><span class='line'>  }
+</span><span class='line'>  qos_class_t qos = dqa-&gt;dqa_qos_class;
+</span><span class='line'>  bool overcommit = dqa-&gt;dqa_overcommit;
+</span><span class='line'>#if HAVE_PTHREAD_WORKQUEUE_QOS
+</span><span class='line'>  dq-&gt;dq_priority = _pthread_qos_class_encode(qos, dqa-&gt;dqa_relative_priority,
+</span><span class='line'>          overcommit);
+</span><span class='line'>#endif
+</span><span class='line'>  if (dqa-&gt;dqa_concurrent) {
+</span><span class='line'>      dq-&gt;dq_width = DISPATCH_QUEUE_WIDTH_MAX;
+</span><span class='line'>  } else {
+</span><span class='line'>      // Default serial queue target queue is overcommit!
+</span><span class='line'>      overcommit = true;
+</span><span class='line'>  }
+</span><span class='line'>  if (!tq) {
+</span><span class='line'>      if (qos == _DISPATCH_QOS_CLASS_UNSPECIFIED) {
+</span><span class='line'>          qos = _DISPATCH_QOS_CLASS_DEFAULT;
+</span><span class='line'>      }
+</span><span class='line'>#if DISPATCH_USE_NOQOS_WORKQUEUE_FALLBACK
+</span><span class='line'>      if (qos == _DISPATCH_QOS_CLASS_USER_INTERACTIVE &&
+</span><span class='line'>              !_dispatch_root_queues[
+</span><span class='line'>              DISPATCH_ROOT_QUEUE_IDX_USER_INTERACTIVE_QOS].dq_priority) {
+</span><span class='line'>          qos = _DISPATCH_QOS_CLASS_USER_INITIATED;
+</span><span class='line'>      }
+</span><span class='line'>#endif
+</span><span class='line'>      bool maintenance_fallback = false;
+</span><span class='line'>#if DISPATCH_USE_NOQOS_WORKQUEUE_FALLBACK
+</span><span class='line'>      maintenance_fallback = true;
+</span><span class='line'>#endif // DISPATCH_USE_NOQOS_WORKQUEUE_FALLBACK
+</span><span class='line'>      if (maintenance_fallback) {
+</span><span class='line'>          if (qos == _DISPATCH_QOS_CLASS_MAINTENANCE &&
+</span><span class='line'>                  !_dispatch_root_queues[
+</span><span class='line'>                  DISPATCH_ROOT_QUEUE_IDX_MAINTENANCE_QOS].dq_priority) {
+</span><span class='line'>              qos = _DISPATCH_QOS_CLASS_BACKGROUND;
+</span><span class='line'>          }
+</span><span class='line'>      }
+</span><span class='line'>
+</span><span class='line'>      tq = _dispatch_get_root_queue(qos, overcommit);
+</span><span class='line'>      if (slowpath(!tq)) {
+</span><span class='line'>          DISPATCH_CLIENT_CRASH("Invalid queue attribute");
+</span><span class='line'>      }
+</span><span class='line'>  } else {
+</span><span class='line'>      _dispatch_retain(tq);
+</span><span class='line'>      if (disallow_tq) {
+</span><span class='line'>          // TODO: override target queue's qos/overcommit ?
+</span><span class='line'>          DISPATCH_CLIENT_CRASH("Invalid combination of target queue & "
+</span><span class='line'>                  "queue attribute");
+</span><span class='line'>      }
+</span><span class='line'>      _dispatch_queue_priority_inherit_from_target(dq, tq);
+</span><span class='line'>  }
+</span><span class='line'>  _dispatch_queue_set_override_priority(dq);
+</span><span class='line'>  dq-&gt;do_targetq = tq;
+</span><span class='line'>  _dispatch_object_debug(dq, "%s", __func__);
+</span><span class='line'>  return _dispatch_introspection_queue_create(dq);
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>看几个关键的地方</p>
+
+<p><code>_dispatch_queue_init(dq);</code></p>
+
+<p><code>dq-&gt;dq_width = DISPATCH_QUEUE_WIDTH_MAX;</code></p>
+
+<h3>dispatch_async()</h3>
+
+<p><code>dispatch_async()</code> 会调用 <code>_dispatch_async_f()</code> 完成真正的异步派发任务的操作。</p>
+
+<p>_dispatch_async_f() 中</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>if (dq-&gt;dq_width == 1 || flags & DISPATCH_BLOCK_BARRIER) {
+</span><span class='line'>  return _dispatch_barrier_async_f(dq, ctxt, func, pp, flags);
+</span><span class='line'>}
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>说明当队列宽度为1 的时候，会自动通过 <code>_dispatch_barrier_async_f</code> 加入到等待队列中。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>dc = fastpath(_dispatch_continuation_alloc_cacheonly());
+</span><span class='line'>if (!dc) {
+</span><span class='line'>  return _dispatch_async_f_slow(dq, ctxt, func, pp, flags);
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>从缓存中获取继续运行的队列如果没有，就通过 _dispatch_async_f_slow 从堆上面创建一个队列</p>
+
+<h3>dispatch_sync</h3>
+
+<h3>dispatch_get_global_queue</h3>
+
+<p><code>
+return _dispatch_get_root_queue(qos, flags &amp; DISPATCH_QUEUE_OVERCOMMIT);
+</code></p>
+
+<p>通过全局 dq 的优先级别设置好 qos 属性，在从队列池 <code>_dispatch_root_queues[]</code> 中，取出一个 dq 出来，类似于这样:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>return &_dispatch_root_queues[
+</span><span class='line'>              DISPATCH_ROOT_QUEUE_IDX_MAINTENANCE_QOS_OVERCOMMIT];</span></code></pre></td></tr></table></div></figure>
+
+
+<p>得到的队列底层代码信息:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>[DISPATCH_ROOT_QUEUE_IDX_MAINTENANCE_QOS_OVERCOMMIT] = {
+</span><span class='line'>      .do_vtable = DISPATCH_VTABLE(queue_root),
+</span><span class='line'>      .do_ref_cnt = DISPATCH_OBJECT_GLOBAL_REFCNT,
+</span><span class='line'>      .do_xref_cnt = DISPATCH_OBJECT_GLOBAL_REFCNT,
+</span><span class='line'>      .do_suspend_cnt = DISPATCH_OBJECT_SUSPEND_LOCK,
+</span><span class='line'>      .do_ctxt = &_dispatch_root_queue_contexts[
+</span><span class='line'>              DISPATCH_ROOT_QUEUE_IDX_MAINTENANCE_QOS_OVERCOMMIT],
+</span><span class='line'>      .dq_label = "com.apple.root.maintenance-qos.overcommit",
+</span><span class='line'>      .dq_running = 2,
+</span><span class='line'>      .dq_width = DISPATCH_QUEUE_WIDTH_MAX,
+</span><span class='line'>      .dq_serialnum = 5,
+</span><span class='line'>  }</span></code></pre></td></tr></table></div></figure>
+
+</div> -->
+
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" ><a href="/blog/apple-source-code-&-documents/">Apple Source Code & Documents</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-08-17T10:04:40+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>10:04 am</span></time>
+        
+           | <a href="/blog/apple-source-code-&-documents/#disqus_thread"
+             data-disqus-identifier="http://tech.dehengxu.com/blog/apple-source-code-&-documents/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+
+<!-- <div class="entry-content"><p><a href="http://opensource.apple.com/tarballs/" target="_blank">Apple Open Source</a></p>
+
+<p><a href="https://developer.apple.com/resources/" target="_blank">Apple Developer Resources</a></p>
+
+<p><a href="https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/Collections/Collections.html" target="_blank">Collections Programming Topics</a></p>
+</div> -->
+
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" ><a href="/blog/shi-yong-xian-dai-objective-c/">使用现代Objective-C</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-08-16T15:32:41+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>16</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>3:32 pm</span></time>
+        
+           | <a href="/blog/shi-yong-xian-dai-objective-c/#disqus_thread"
+             data-disqus-identifier="http://tech.dehengxu.com/blog/shi-yong-xian-dai-objective-c/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+
+<!-- <div class="entry-content"><p>现代 Objective-C 比传统 Objective-C 增加了很多优雅的语法和特性。</p>
+
+<h3>instancetype</h3>
+
+<p>instancetype 和 id de区别在于 instancetype 返回值在编译时会将对象与对应的类进行方法匹配，而 id 则作为万用类型，不会提示任何的警告，因为 id 类型包含所有类型，所以发送任何消息，编译器都认为是正确的。这就造成了安全隐患，也是Apple 极力推荐使用 instancetype 的原因。</p>
+
+<h3>Properties</h3>
+
+<h3>枚举宏</h3>
+
+<p>将 enum 换成 NS_ENUM 和 NS_OPTIONS</p>
+
+<h3>对象初始化</h3>
+
+<blockquote><p>宏 NS_DESIGNATED_INITIALIZER</p></blockquote>
+
+<h3>自动引用计数 ARC</h3>
+</div> -->
+
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" ><a href="/blog/useful-plugins-for-xcode/">Useful Plugins & Tools for Xcode</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-08-16T08:13:33+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>16</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>8:13 am</span></time>
+        
+           | <a href="/blog/useful-plugins-for-xcode/#disqus_thread"
+             data-disqus-identifier="http://tech.dehengxu.com/blog/useful-plugins-for-xcode/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+
+<!-- <div class="entry-content"><h2>Plugins</h2>
+
+<p><a href="https://github.com/supermarin/alcatraz">Alcatraz</a></p>
+
+<blockquote><p>永远置顶的插件，是一款用来安装插件的插件。</p></blockquote>
+
+<p><a href="https://github.com/omz/Dash-Plugin-for-Xcode">Dash plugin for xcode</a></p>
+
+<blockquote><p>Dash plugin for xcode; usage: <code>option</code> + <code>Click</code></p></blockquote>
+
+<p><a href="https://github.com/travisjeffery/ClangFormat-Xcode">ClangFormat-Xcode</a></p>
+
+<blockquote><p>Xcode plug-in to to use clang-format from in Xcode and consistently format your code with Clang</p></blockquote>
+</div> -->
+
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title" ><a href="/blog/design-pattern-visitor/">设计模式-访问者模式</a></h1>
     
     
@@ -129,379 +1179,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" ><a href="/blog/objective-czhong-de-xie-yi-yin-yong-tou-wen-jian-de-wen-ti/">Objective-C中的协议引用头文件的问题</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-08-16T00:59:41+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>16</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>12:59 am</span></time>
-        
-           | <a href="/blog/objective-czhong-de-xie-yi-yin-yong-tou-wen-jian-de-wen-ti/#disqus_thread"
-             data-disqus-identifier="http://tech.dehengxu.com/blog/objective-czhong-de-xie-yi-yin-yong-tou-wen-jian-de-wen-ti/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-
-<!-- <div class="entry-content"><p>Objective-C 中循环引用头文件，会导致，头文件中声明的符号无法识别的问题。典型的问题是:</p>
-
-<p>类 <code>SomeClass</code> 不被识别，必须在头文件中通过前导生命的方式让编译器认识该类 <code>@class SomeClass;</code></p>
-</div> -->
-
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" ><a href="/blog/chang-yong-23chong-she-ji-mo-shi-jian-jie/">常用23种设计模式简介</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-08-15T23:47:51+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>11:47 pm</span></time>
-        
-           | <a href="/blog/chang-yong-23chong-she-ji-mo-shi-jian-jie/#disqus_thread"
-             data-disqus-identifier="http://tech.dehengxu.com/blog/chang-yong-23chong-she-ji-mo-shi-jian-jie/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-
-<!-- <div class="entry-content"><p>根据设计模式的作用分类，23种设计模式可以分为以下几类:</p>
-
-<h3>对象创建</h3>
-
-<p>单例模式，工厂模式，抽象工厂，原型模式，生成器模式</p>
-
-<h3>接口适配</h3>
-
-<p>适配器模式，桥接模式，外观模式</p>
-
-<h3>对象解耦</h3>
-
-<p>中介者模式，观察者模式</p>
-
-<h3>抽象集合</h3>
-
-<p>组合模式，迭代器模式</p>
-
-<h3>行为</h3>
-
-<p>访问者模式, 装饰器模式，责任链模式</p>
-
-<h3>逻辑封装</h3>
-
-<p>模板方法，策略模式，命令模式</p>
-
-<h3>对象访问</h3>
-
-<p>享元模式，代理模式</p>
-
-<h3>对象状态</h3>
-
-<p>备忘录模式</p>
-</div> -->
-
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" ><a href="/blog/design-pattern-observer/">设计模式-观察者模式</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-08-15T23:46:46+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>11:46 pm</span></time>
-        
-           | <a href="/blog/design-pattern-observer/#disqus_thread"
-             data-disqus-identifier="http://tech.dehengxu.com/blog/design-pattern-observer/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-
-<!-- <div class="entry-content">
-</div> -->
-
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" ><a href="/blog/objective-c-block-usage/">Objective-C Block Usage</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-08-15T14:43:40+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>2:43 pm</span></time>
-        
-           | <a href="/blog/objective-c-block-usage/#disqus_thread"
-             data-disqus-identifier="http://tech.dehengxu.com/blog/objective-c-block-usage/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-
-<!-- <div class="entry-content"><h2>Block syntax</h2>
-
-<blockquote><p>Block description</p></blockquote>
-
-<h3>1. Use block as callback</h3>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>int (^maxBlock)(int, int);
-</span><span class='line'>maxBlock = ^(int a, int b) {
-</span><span class='line'>  return a &gt; b ? a : b;
-</span><span class='line'>}
-</span><span class='line'>
-</span><span class='line'>NSLog(@"max is %d", maxBlock(89, 22));
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>2. Use block as parameter</h3>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>- (void)someMethod:(void(^)(void))action;
-</span><span class='line'>
-</span><span class='line'>[self someMethod:^() {
-</span><span class='line'>  NSLog(@"Do some operation in block.");
-</span><span class='line'>}];
-</span><span class='line'>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>3. Use block in recurcive callback</h3>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>void testFunc() {
-</span><span class='line'>  // It looks well.
-</span><span class='line'>  int(^fibonacci)(int) = ^(int n) {
-</span><span class='line'>      if (n &lt;= 1) return n;
-</span><span class='line'>
-</span><span class='line'>      return fibonacci(n - 1) + fibonacci(n - 2);
-</span><span class='line'>  }
-</span><span class='line'>
-</span><span class='line'>  fibonacci(10);
-</span><span class='line'>}
-</span><span class='line'>//It raise exception in runtme.
-</span><span class='line'>//CompositeTests testExample]_block_invoke(.block_descriptor=0x00007fe0da577710, folder=0x00007fe0da575c50) + 766 at CompositeTests.m:49, queue = 'com.apple.main-thread', stop reason = EXC_BAD_ACCESS (code=1, address=0x10)
-</span></code></pre></td></tr></table></div></figure>
-
-
-<blockquote><p>So, you should add <code>static</code> before block declaring, because at this time block is not created and it raise BAD_ACCESS to memory.</p></blockquote>
-
-<h3>4. <strong>block vs </strong>weak</h3>
-
-<p>我们为了防止 block 将对象进行自动强引用导致出现引用循环，有时候会使用 <strong>block 进行 weakRef 的声明，但是  </strong>weak 也可以达成这个目的，那么 <strong>block 和 </strong>weak 有什么区别呢?</p>
-
-<p>我们通常会这么做，这种情况 <strong>block 和 </strong>weak 似乎看不出什么区别</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>__block weskRef = obj
-</span><span class='line'>
-</span><span class='line'>void(^aBlock)() = ^() {
-</span><span class='line'>  NSLog@("%@", weakRef);
-</span><span class='line'>}
-</span><span class='line'>
-</span><span class='line'>aBlock();
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>可是如果这样呢</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>__block weskRef = obj;
-</span><span class='line'>
-</span><span class='line'>void(^aBlock)() = ^() {
-</span><span class='line'>  NSLog@("%@", weakRef);
-</span><span class='line'>}
-</span><span class='line'>
-</span><span class='line'>aBlock();
-</span><span class='line'>
-</span><span class='line'>obj = nil;</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>__block</h4>
-
-<blockquote><p>__block 会保证 weakRef 对象一直有效，直到 block 本身不再使用 weakRef 才会真正释放掉 obj</p></blockquote>
-
-<h4>__weak</h4>
-
-<blockquote><p>__weak 则会在 <code>obj = nil</code>  的同时将 weakRef 置为 <code>nil</code>。</p></blockquote>
-
-<p>这就是 <code>__block</code> 和 <code>__weak</code> 的区别。</p>
-</div> -->
-
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" ><a href="/blog/hello-rake/">Hello, Rake</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-08-15T00:00:00+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>12:00 am</span></time>
-        
-           | <a href="/blog/hello-rake/#disqus_thread"
-             data-disqus-identifier="http://tech.dehengxu.com/blog/hello-rake/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-
-<!-- <div class="entry-content">
-</div> -->
-
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" ><a href="/blog/welcome-to-jekyll/">Welcome to Jekyll!</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-08-06T22:19:25+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>6</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>10:19 pm</span></time>
-        
-           | <a href="/blog/welcome-to-jekyll/#disqus_thread"
-             data-disqus-identifier="http://tech.dehengxu.com/blog/welcome-to-jekyll/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-
-<!-- <div class="entry-content"><p>You’ll find this post in your <code>_posts</code> directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run <code>jekyll serve</code>, which launches a web server and auto-regenerates your site when a file is updated.</p>
-
-<p>To add new posts, simply add a file in the <code>_posts</code> directory that follows the convention <code>YYYY-MM-DD-name-of-post.ext</code> and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.</p>
-
-<p>Jekyll also offers powerful support for code snippets:</p>
-
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">print_hi</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
-  <span class="nb">puts</span> <span class="s2">&quot;Hi, </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">&quot;</span>
-<span class="k">end</span>
-<span class="n">print_hi</span><span class="p">(</span><span class="s1">&#39;Tom&#39;</span><span class="p">)</span>
-<span class="c1">#=&gt; prints &#39;Hi, Tom&#39; to STDOUT.</span></code></pre></div>
-
-
-<p>Check out the <a href="http://jekyllrb.com">Jekyll docs</a> for more info on how to get the most out of Jekyll. File all bugs/feature requests at <a href="https://github.com/jekyll/jekyll">Jekyll’s GitHub repo</a>. If you have questions, you can ask them on <a href="https://github.com/jekyll/jekyll-help">Jekyll’s dedicated Help repository</a>.</p>
-</div> -->
-
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/8">&larr; Older</a>
@@ -517,6 +1194,30 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/pip-use-china-sources/">Pip 使用国内的源</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/missing-ios-distribution-signing-identity-wen-ti-de-jie-jue-fang-fa/">Missing iOS Distribution Signing Identity 问题的解决方法</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/rang-atom-wen-ben-bian-ji-qi-zhi-chi-yun-xing-swift-yuan-wen-jian-de-fang-fa/">让 Atom 文本编辑器支持运行 Swift 源文件的方法</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/bian-yi-an-zhuang-kotlin-de-fang-fa/">编译安装 Kotlin 的方法</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/bian-yi-an-zhuang-swift-de-fang-fa/">编译安装 Swift 的方法</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/use-launchctl-create-daemon-task-step-by-step/">Use Launchctl Create Daemon Task Step by Step</a>
+      </li>
     
       <li class="post">
         <a href="/blog/testing-in-android/">Testing in Android</a>
@@ -572,30 +1273,6 @@
     
       <li class="post">
         <a href="/blog/ios-chang-yong-di-san-fang-ku/">iOS 常用第三方库</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/gitsh-de-an-zhuang-he-shi-yong/">Gitsh 的安装和使用</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/shi-yong-cocoapods-lai-guan-li-ji-yu-svn-de-zi-xiang-mu/">使用 Cocoapods 来管理基于 Svn 的子项目</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/create-a-private-pods/">Create a Private Pods</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/use-cocoapods-publish-your-podspec/">Use Cocoapods Publish Your Podspec</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/objc-msgsend-bian-yi-cuo-wu-de-jie-jue-fang-fa/">Runtime 在新版本 Xcode 中引起的编译错误，及解决方法</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/zi-ding-yi-lei-ru-he-ti-gong-kvc-jian-rong-te-xing/">自定义类如何提供 KVC 兼容特性</a>
       </li>
     
   </ul>

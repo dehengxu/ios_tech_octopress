@@ -9,7 +9,7 @@
   <meta name="author" content="Deheng Xu">
 
   
-  <meta name="description" content="KVO 机制 Aug 28th, 2015 6:36 pm | Comments KVC 机制 Aug 28th, 2015 5:16 pm | Comments Use Dispatch Source Timer Aug 27th, 2015 4:58 pm | Comments Bash &hellip;">
+  <meta name="description" content="使用 Cocoapods 来管理基于 Svn 的子项目 Sep 8th, 2015 4:01 pm | Comments Create a Private Pods Aug 31st, 2015 10:20 pm | Comments Use Cocoapods Publish Your &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,626 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" ><a href="/blog/shi-yong-cocoapods-lai-guan-li-ji-yu-svn-de-zi-xiang-mu/">使用 Cocoapods 来管理基于 Svn 的子项目</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-09-08T16:01:14+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>8</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>4:01 pm</span></time>
+        
+           | <a href="/blog/shi-yong-cocoapods-lai-guan-li-ji-yu-svn-de-zi-xiang-mu/#disqus_thread"
+             data-disqus-identifier="http://tech.dehengxu.com/blog/shi-yong-cocoapods-lai-guan-li-ji-yu-svn-de-zi-xiang-mu/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+
+<!-- <div class="entry-content"><p>首先，感谢 clarkda 为cocoapods 提供了这个 repo-svn 的 svn 支持插件。</p>
+
+<p>根据 <a href="https://github.com/clarkda/cocoapods-repo-svn">https://github.com/clarkda/cocoapods-repo-svn</a> 上的说明</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>
+</span><span class='line'>gem install cocoapods-repo-svn 来安装 repo-svn 插件。
+</span><span class='line'>
+</span><span class='line'>pod repo-svn add my-svn-repo http://svn-repo-url 添加你的私有 svn 项目仓库
+</span><span class='line'>
+</span><span class='line'>pod repo-svn update my-svn-repo 更新项目
+</span><span class='line'>
+</span><span class='line'>pod repo-svn remove my-svn-repo 删除项目
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>其实不添加项目也是可以的，需要为 svn 上的子项目添加 .podspec 文件，使项目可被 cocoapods 识别并管理，并为你自己的项目添加 Podfile 文件。</p>
+
+<h4>第一步：为你用到的所有子项目，添加 podspec</h4>
+
+<p><code>pod spec create my-svn-repo</code></p>
+
+<p>编辑 libname.podspec 文件，主要设置好 s.source, s.source_files, s.exclude_files, s.framework, s.library 字段。</p>
+
+<p>其中 <code>s.source</code> 的字段需要把地址改成 <code>:svn =&gt; "http://svnurl/"</code></p>
+
+<h4>第二步：编辑 Podfiles</h4>
+
+<p>加上 <code>pod 'my-svn-repo', :svn =&gt; "http://10.255.223.227:81/svn/readersdk/cppsdk/branches/2.2.1_buildReaderKit"</code></p>
+
+<p>现在，就可以享受 cocoapods 为你的 svn 项目带来自动化配置管理了。</p>
+
+<p><a href="http://www.dehengxu.com/%E4%BD%BF%E7%94%A8-cocoapods-%E6%9D%A5%E7%AE%A1%E7%90%86%E5%9F%BA%E4%BA%8E-svn-%E9%A1%B9%E7%9B%AE/">这里可以讨论一些问题</a></p>
+</div> -->
+
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" ><a href="/blog/create-a-private-pods/">Create a Private Pods</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-08-31T22:20:30+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>31</span><span class='date-suffix'>st</span>, <span class='date-year'>2015</span></span> <span class='time'>10:20 pm</span></time>
+        
+           | <a href="/blog/create-a-private-pods/#disqus_thread"
+             data-disqus-identifier="http://tech.dehengxu.com/blog/create-a-private-pods/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+
+<!-- <div class="entry-content"><h3>1. 创建私有 Spec 仓库</h3>
+
+<p>没必要 fork CocoaPods 的Spec 主仓库。你可以建立自己的仓库，也不用公开。</p>
+
+<p>而且你也可以创建自己的私有本地仓库</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cd /opt/git
+</span><span class='line'>mkdir Specs.git
+</span><span class='line'>cd Specs.git
+</span><span class='line'>git init --bare</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>2. 添加私有仓库到 CocoaPods 安装文件中</h3>
+
+<p><code>pod repo add REPO_NAME SOURCE_URL</code></p>
+
+<blockquote><p>如果你想检测是否安装成功，可以这样测试：</p></blockquote>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cd ~/.cocoapods/repos/REPO_NAME
+</span><span class='line'>pod repo lint</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>3. 添加你的 podspec 到你自己的仓库</h3>
+
+<p>pod repo push REPO_NAME SPEC_NAME.podspec</p>
+
+<hr />
+
+<p>最后，你需要在 podfile 文件中通过 <code>source</code> 指令来使用你自己的仓库：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>source 'YOUR_REPO_URL'</span></code></pre></td></tr></table></div></figure>
+
+
+<p><a href="https://guides.cocoapods.org/making/private-cocoapods.html">REF</a></p>
+</div> -->
+
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" ><a href="/blog/use-cocoapods-publish-your-podspec/">Use Cocoapods Publish Your Podspec</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-08-31T22:10:34+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>31</span><span class='date-suffix'>st</span>, <span class='date-year'>2015</span></span> <span class='time'>10:10 pm</span></time>
+        
+           | <a href="/blog/use-cocoapods-publish-your-podspec/#disqus_thread"
+             data-disqus-identifier="http://tech.dehengxu.com/blog/use-cocoapods-publish-your-podspec/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+
+<!-- <div class="entry-content"><h3>创建 podspec</h3>
+
+<p>pod spec create NAME</p>
+
+<h3>补完 podspec 文件</h3>
+
+<p>参考例子：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='Ruby'><span class='line'><span class="no">Pod</span><span class="o">::</span><span class="no">Spec</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">spec</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">spec</span><span class="o">.</span><span class="n">name</span>             <span class="o">=</span> <span class="s1">&#39;Reachability&#39;</span>
+</span><span class='line'>  <span class="n">spec</span><span class="o">.</span><span class="n">version</span>          <span class="o">=</span> <span class="s1">&#39;3.1.0&#39;</span>
+</span><span class='line'>  <span class="n">spec</span><span class="o">.</span><span class="n">license</span>          <span class="o">=</span> <span class="p">{</span> <span class="ss">:type</span> <span class="o">=&gt;</span> <span class="s1">&#39;BSD&#39;</span> <span class="p">}</span>
+</span><span class='line'>  <span class="n">spec</span><span class="o">.</span><span class="n">homepage</span>         <span class="o">=</span> <span class="s1">&#39;https://github.com/tonymillion/Reachability&#39;</span>
+</span><span class='line'>  <span class="n">spec</span><span class="o">.</span><span class="n">authors</span>          <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;Tony Million&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;tonymillion@gmail.com&#39;</span> <span class="p">}</span>
+</span><span class='line'>  <span class="n">spec</span><span class="o">.</span><span class="n">summary</span>          <span class="o">=</span> <span class="s1">&#39;ARC and GCD Compatible Reachability Class for iOS and OS X.&#39;</span>
+</span><span class='line'>  <span class="n">spec</span><span class="o">.</span><span class="n">source</span>           <span class="o">=</span> <span class="p">{</span> <span class="ss">:git</span> <span class="o">=&gt;</span> <span class="s1">&#39;https://github.com/tonymillion/Reachability.git&#39;</span><span class="p">,</span> <span class="ss">:tag</span> <span class="o">=&gt;</span> <span class="s1">&#39;v3.1.0&#39;</span> <span class="p">}</span>
+</span><span class='line'>  <span class="n">spec</span><span class="o">.</span><span class="n">source_files</span>     <span class="o">=</span> <span class="s1">&#39;Reachability.h,m&#39;</span>
+</span><span class='line'>  <span class="n">spec</span><span class="o">.</span><span class="n">framework</span>        <span class="o">=</span> <span class="s1">&#39;SystemConfiguration&#39;</span>
+</span><span class='line'>  <span class="n">spec</span><span class="o">.</span><span class="n">requires_arc</span>     <span class="o">=</span> <span class="kp">true</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><a href="https://guides.cocoapods.org/making/specs-and-specs-repo.html">Offical Docs</a></p>
+
+<h3>验证代码</h3>
+
+<p><code>pod lib lint CoreDataEnvir.podspec</code></p>
+
+<p>如果你将 source 路径设置为 git@github.com&hellip;..，会出现这种警告提示：<code>- WARN  | Git SSH URLs will NOT work for people behind firewalls configured to only allow HTTP, therefore HTTPS is preferred.</code>。将 source 地址设置为 <a href="https://github.com....">https://github.com....</a> 的形式，可以解决此问题。</p>
+
+<h3>验证 podspec</h3>
+
+<p><code>pod spec lint CoreDataEnvir.podspec</code></p>
+
+<h3>注册 Cocoapods 会话</h3>
+
+<p>为了保证与 Cocoapods 通信的合法性，需要在你的电脑上注册一个会话，方法如下：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='Bash'><span class='line'>pod trunk register orta@cocoapods.org <span class="s1">&#39;Orta Therox&#39;</span> --description<span class="o">=</span><span class="s1">&#39;macbook air&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>执行完后，你的邮箱会收到一封激活邮件，点击其中的激活链接后，你的会话就算是合法了。</p>
+
+<h3>提交你的 podspec</h3>
+
+<p><code>pod trunk push CoreDataEnvir.podspec</code> 这条命令会把你的 podspec 提交到公共库中。</p>
+
+<p>这个步骤第一次执行，会比较慢，做好相应准备，比如翻好墙，以防长时间无响应。</p>
+
+<p>比如我最近提交的: CoreDataEnvir</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+</pre></td><td class='code'><pre><code class='Bash'><span class='line'>pod trunk push CoreDataEnvir.podspec --verbose
+</span><span class='line'>/usr/bin/git pull --ff-only
+</span><span class='line'>    From https://github.com/CocoaPods/Specs
+</span><span class='line'>        c812aae..c4e2a00  master     -&gt; origin/master
+</span><span class='line'>    Updating c812aae..c4e2a00
+</span><span class='line'>    Fast-forward
+</span><span class='line'>    CocoaPods-version.yml                              <span class="p">|</span>    <span class="m">2</span> +-
+</span><span class='line'>    .../1.5/1PasswordExtension.podspec.json            <span class="p">|</span>   <span class="m">37</span> +
+</span><span class='line'>    .../1.1/ABFRealmMapView.podspec.json               <span class="p">|</span>   <span class="m">31</span> +
+</span><span class='line'>    .../1.1/ABFRealmSearchViewController.podspec.json  <span class="p">|</span>   <span class="m">31</span> +
+</span><span class='line'>...
+</span><span class='line'>    Specs/wpxmlrpc/0.8.1/wpxmlrpc.podspec.json         <span class="p">|</span>   <span class="m">27</span> +
+</span><span class='line'>    .../0.1.4/youtube-ios-player-helper.podspec.json   <span class="p">|</span>   <span class="m">35</span> +
+</span><span class='line'>    .../0.2.2/youtube-parser.podspec.json              <span class="p">|</span>   <span class="m">20</span> +
+</span><span class='line'>    Specs/yuntongxun/0.0.1/yuntongxun.podspec.json     <span class="p">|</span>   <span class="m">36</span> +
+</span><span class='line'>    <span class="m">2832</span> files changed, <span class="m">118838</span> insertions<span class="o">(</span>+<span class="o">)</span>, <span class="m">323</span> deletions<span class="o">(</span>-<span class="o">)</span>
+</span><span class='line'>    create mode <span class="m">100644</span> Specs/1PasswordExtension/1.5/1PasswordExtension
+</span><span class='line'>    create mode <span class="m">100644</span> Specs/ABFRealmMapView/1.1/ABFRealmMapView.podsp
+</span><span class='line'>    create mode <span class="m">100644</span> Specs/ABFRealmSearchViewController/1.1/ABFRealm
+</span><span class='line'>    create mode <span class="m">100644</span> Specs/ABFRealmTableViewController/1.0/ABFRealmT
+</span><span class='line'>    create mode <span class="m">100644</span> Specs/ABLoader/0.0.2/ABLoader.podspec.json
+</span><span class='line'>...
+</span><span class='line'>    create mode <span class="m">100644</span> Specs/tw10n/1.1.1/tw10n.podspec.json
+</span><span class='line'>    create mode <span class="m">100644</span> Specs/twitter-text/1.13.0/twitter-text.podspec.json
+</span><span class='line'>    create mode <span class="m">100644</span> Specs/wpxmlrpc/0.8.1/wpxmlrpc.podspec.json
+</span><span class='line'>    create mode <span class="m">100644</span> Specs/youtube-ios-player-helper/0.1.4/youtube-ios-player-helper.podspec.json
+</span><span class='line'>    create mode <span class="m">100644</span> Specs/youtube-parser/0.2.2/youtube-parser.podspec.json
+</span><span class='line'>    create mode <span class="m">100644</span> Specs/yuntongxun/0.0.1/yuntongxun.podspec.json
+</span><span class='line'>
+</span><span class='line'> CocoaPods 0.39.0.beta.3 is available.
+</span><span class='line'> To update use: <span class="sb">`</span>sudo gem install cocoapods --pre<span class="sb">`</span>
+</span><span class='line'> <span class="o">[</span>!<span class="o">]</span> This is a <span class="nb">test </span>version we<span class="err">&#39;</span>d love you to try.
+</span><span class='line'>
+</span><span class='line'> For more information see http://blog.cocoapods.org
+</span><span class='line'> and the CHANGELOG <span class="k">for</span> this version http://git.io/BaH8pQ.
+</span><span class='line'>
+</span><span class='line'> Validating podspec
+</span><span class='line'>     CoreDataEnvir <span class="o">(</span>0.4<span class="o">)</span> - Analyzing on iOS platform.
+</span><span class='line'>   Preparing
+</span><span class='line'>
+</span><span class='line'> Analyzing dependencies
+</span><span class='line'>
+</span><span class='line'> Fetching external sources
+</span><span class='line'> -&gt; Fetching podspec <span class="k">for</span> <span class="sb">`</span>CoreDataEnvir<span class="sb">`</span> from <span class="sb">`</span>/Users/nicholasxu/Projects/iOS/XFramework/CoreDataEnvir/CoreDataEnvir.podspec<span class="sb">`</span>
+</span><span class='line'>
+</span><span class='line'> Resolving dependencies of
+</span><span class='line'>
+</span><span class='line'> Comparing resolved specification to the sandbox manifest
+</span><span class='line'>   A CoreDataEnvir
+</span><span class='line'>
+</span><span class='line'> Downloading dependencies
+</span><span class='line'>
+</span><span class='line'> -&gt; Installing CoreDataEnvir <span class="o">(</span>0.4<span class="o">)</span>
+</span><span class='line'>   &gt; Copying CoreDataEnvir from
+</span><span class='line'>   <span class="sb">`</span>/Users/nicholasxu/Library/Caches/CocoaPods/Pods/External/CoreDataEnvir/25047baf5458c8928d40aa32eccec759-043e4<span class="sb">`</span> to
+</span><span class='line'>   <span class="sb">`</span>../../../../../../private/var/folders/6r/flwjnj4x4wsb8wcbmjj88_z40000gn/T/CocoaPods/Lint/Pods/CoreDataEnvir<span class="sb">`</span>
+</span><span class='line'>   - Running pre install hooks
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>经过了漫长的 Pods master specs 的下载过程，才开始进行库的验证过程，每一个 tag 都会验证，这个过程也很漫长，好在过去的每一个 tag 我都执行过验证。</p>
+
+<blockquote><p>PS:如果需要提交到私有库，你需要执行 <code>pod trunk push CoreDataEnvir.podspec</code></p></blockquote>
+
+<h3>如果你的验证阶段经常 failed，有两种解决办法：</h3>
+
+<ol>
+<li>解决所有的 warning, 配置好 podspec 文件。</li>
+<li>在lint 后面增加一个参数 <code>--allow-warning</code>，为了看清楚出错的原因你也可以增加  <code>--verbose</code>。</li>
+</ol>
+
+
+<hr />
+
+<p><a href="https://guides.cocoapods.org/making/getting-setup-with-trunk.html">Ref</a>
+<a href="https://guides.cocoapods.org/syntax/podspec.html">podspec</a></p>
+</div> -->
+
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" ><a href="/blog/objc-msgsend-bian-yi-cuo-wu-de-jie-jue-fang-fa/">Runtime 在新版本 Xcode 中引起的编译错误，及解决方法</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-08-30T12:13:22+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>12:13 pm</span></time>
+        
+           | <a href="/blog/objc-msgsend-bian-yi-cuo-wu-de-jie-jue-fang-fa/#disqus_thread"
+             data-disqus-identifier="http://tech.dehengxu.com/blog/objc-msgsend-bian-yi-cuo-wu-de-jie-jue-fang-fa/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+
+<!-- <div class="entry-content"><h2>objc_msgSend</h2>
+
+<p>最近在 Xcode6.4 上编译一个老旧的库时，出现了运行时函数 <code>objc_msgSend</code> 的编译错误，提示:</p>
+
+<p><code>Too many arguments to function call, excepted 0, have 7</code>，说函数不需要参数，却传入了7个参数。</p>
+
+<p>原来是预编译指令的问题:</p>
+
+<p>找到编译出错的那个库，选中 target -> Build Settings 搜索框中输入 <code>objc</code></p>
+
+<p>定位到这里:</p>
+
+<p><img src="/images/refered/runtime_msgsend_fix.png" alt="msgSend_fix" /></p>
+
+<p>将 <code>Enable Strict Checking of objc_msgSend Calls</code>  字段设为 <code>NO</code></p>
+
+<p>关闭 <code>objc_msgSend</code> 的严格调用检查。</p>
+
+<h2>object->isa</h2>
+
+<p>最近在 Xcode6.4 上编译依赖 JSONKit 的时候，对于 JSONKit 内部通过指针访问 <code>isa</code> 变量代码，引起编译错误，提示:</p>
+
+<p><code>Assignment to Objective-C's isa is deprecated in favor of object_setClass()</code> 或者 <code>Assignment to Objective-C's isa is deprecated in favor of object_getClass()</code></p>
+
+<p>如图:</p>
+
+<p><img src="/images/refered/runtime_isa_error.png" alt="isa_err" /></p>
+
+<p>解决办法：找到 JSONKit 项目 target -> Build Settings 搜索框中输入 <code>isa</code></p>
+
+<p>定位到:</p>
+
+<p><img src="/images/refered/runtime_isa_fix.png" alt="isa_err" /></p>
+
+<p>修改为 <code>NO</code> 即可。</p>
+</div> -->
+
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" ><a href="/blog/zi-ding-yi-lei-ru-he-ti-gong-kvc-jian-rong-te-xing/">自定义类如何提供 KVC 兼容特性</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-08-29T15:10:33+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>29</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>3:10 pm</span></time>
+        
+           | <a href="/blog/zi-ding-yi-lei-ru-he-ti-gong-kvc-jian-rong-te-xing/#disqus_thread"
+             data-disqus-identifier="http://tech.dehengxu.com/blog/zi-ding-yi-lei-ru-he-ti-gong-kvc-jian-rong-te-xing/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+
+<!-- <div class="entry-content"><h3>KVC 兼容性</h3>
+
+<h4>对一的关系</h4>
+
+<p>对于属性来说，附属值会存在一对一的关系，这就需要你的类拥有一下特征：</p>
+
+<ul>
+<li><p>实现 <code>-key</code>, <code>-is&lt;Key&gt;</code> 方法类，或者存在有一个叫 <code>key</code> 或者 <code>_key</code> 的实例对象。(显然，这是 getter 访问器的规则)。虽然 key 名字常常以小写字母开头，KVC 也支持 key名称以大写字母开头，例如：<code>URL</code>。</p></li>
+<li><p>如果该属性是可以修改的，那么就应该实现 <code>-set&lt;Key&gt;:</code> 方法。PS:框架会自动寻找 <code>key</code> 或者 <code>_key</code>形式的变量来完成对应操作。</p></li>
+<li><p>你的 <code>-set&lt;Key&gt;:</code> 实现方法不应该执行验证操作。</p></li>
+<li><p>如果你需要验证 <code>key</code> 的话，你需要实现 <code>-validate&lt;key&gt;:error:</code> 的方法。</p></li>
+</ul>
+
+
+<h4>索引化的对多关系</h4>
+
+<p>对于索引化的对多关系而言，KVC 兼容性需要你的类拥有这些特征：</p>
+
+<ul>
+<li><p>实现名为 <code>-&lt;key&gt;</code> 并返回数组的方法。</p></li>
+<li><p>或者拥有一个名为 <code>key</code> 或 <code>_key</code> 的数组实例对象变量。</p></li>
+<li><p>或者实现 <code>-countOf&lt;key&gt;</code> 方法，并且实现 <code>-objectIn&lt;key&gt;AtIndex:</code> 和 <code>-&lt;key&gt;AtIndexes:</code> 两个方法中的一个或所有方法。</p></li>
+<li><p>你也能可选的实现 <code>-get&lt;key&gt;:range:</code> 方法来提高性能表现。</p></li>
+</ul>
+
+
+<p>对于可修改的索引化有序对多关系，KVC 兼容性也需要你的类提供这些特征：</p>
+
+<ul>
+<li><p>实现 <code>-insertObject:in&lt;key&gt;AtIndex:</code> 和 <code>-insert&lt;Key&gt;:atIndexex:</code> 中的一个或所有方法。</p></li>
+<li><p>当然如果愿意，你可也可以实现 <code>-replaceObjectIn&lt;key&gt;AtIndex:withObject:</code> 或 <code>-replace&lt;key&gt;AtIndexes:with&lt;key&gt;:</code> 来提高性能表现。这仅仅是个可选项。 :)</p></li>
+</ul>
+
+
+<h4>无序的对多关系兼容性</h4>
+
+<p>对于无序的对多关系来说，KVC 兼容性需要你的类提供这些特征：</p>
+
+<ul>
+<li><p>实现能返回集合的名为 <code>-&lt;key&gt;</code> 的方法。</p></li>
+<li><p>或者包含一个名为 <code>key</code> 或 <code>_key</code> 的实例变量。</p></li>
+<li><p>或者实现 <code>-countOf&lt;key&gt;</code>，<code>-enumeratorOf&lt;key&gt;</code> 和 <code>-memberOf&lt;key&gt;:</code> 方法。</p></li>
+</ul>
+
+
+<p>对于可变的无序对多关系而言，KVC 兼容性需要你的类也提供这些：</p>
+
+<ul>
+<li><p>实现方法 <code>-add&lt;key&gt;Object:</code> 或 <code>-add&lt;key&gt;:</code> 中的一个或所有。</p></li>
+<li><p>实现方法 <code>-remove&lt;key&gt;Object:</code> 或 <code>-remove&lt;key&gt;:</code>中的一个或所有。</p></li>
+<li><p>你也可以实现 <code>-intersect&lt;key&gt;:</code> 和 <code>-set&lt;key&gt;:</code> 来提高性能表现，不过这是个可选项，根据你面临的情况自己选择吧。</p></li>
+</ul>
+
+</div> -->
+
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" ><a href="/blog/shi-yong-nsvalue-feng-zhuang-ren-yi-jie-gou-ti/">使用 NSValue 封装任意结构体</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-08-29T12:55:21+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>29</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>12:55 pm</span></time>
+        
+           | <a href="/blog/shi-yong-nsvalue-feng-zhuang-ren-yi-jie-gou-ti/#disqus_thread"
+             data-disqus-identifier="http://tech.dehengxu.com/blog/shi-yong-nsvalue-feng-zhuang-ren-yi-jie-gou-ti/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+
+<!-- <div class="entry-content"><h2>NSValue</h2>
+
+<p>装包，拆包，分别用到 <code>value:withObjCType:</code> 和 <code>getValue:</code>两个方法。</p>
+
+<p>第一个是通过 type 类型，将 value 封装成 NSValue 对象。</p>
+
+<p>后者是通过 NSValue 对象，获取值型数据</p>
+
+<p>假设有一个自定义结构体</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>struct Node {
+</span><span class='line'>    struct Node *next;
+</span><span class='line'>    char *name;
+</span><span class='line'>    int age;
+</span><span class='line'>};</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>struct Node *header = (struct Node *)malloc(sizeof(struct Node));
+</span><span class='line'>header-&gt;name = "Nicholasxu";
+</span><span class='line'>header-&gt;age = 89;    
+</span><span class='line'>NSValue *value = [NSValue value:header withObjCType:@encode(struct Node)];</span></code></pre></td></tr></table></div></figure>
+
+
+<p>通过 <code>@encode</code> 将C 类型转换成 Objective-C 能识别的 char * 形式。</p>
+
+<p>解包方法如下：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>struct Node *chain = (struct Node *)malloc(sizeof(struct Node));
+</span><span class='line'>[value getValue:chain];
+</span><span class='line'>NSLog(@"%s", chain-&gt;name);
+</span><span class='line'>NSLog(@"%s", chain-&gt;age);
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>先分配结构题内存 <code>chain</code>，再将数据解包出来，并填充 <code>chain</code> 的空间。</p>
+
+<h3>内存布局</h3>
+
+<p>上面的例子中，<code>value</code> 和 header 都是在堆上分配的空间并且 header 的内存和 value 内部的数据是同一个内存空间，要做好 header 的内存管理工作，否则会导致 value 无法访问内部数据(出现野指针)。而且 chain 的数据是从 value 中复制过来的。</p>
+</div> -->
+
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -164,661 +784,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" ><a href="/blog/kvc-ji-zhi/">KVC 机制</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-08-28T17:16:18+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>5:16 pm</span></time>
-        
-           | <a href="/blog/kvc-ji-zhi/#disqus_thread"
-             data-disqus-identifier="http://tech.dehengxu.com/blog/kvc-ji-zhi/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-
-<!-- <div class="entry-content"><h2>KVC : 键值编码 (Key-value coding)</h2>
-
-<p>键值编码是一个通过字符串间接访问对象属性和关系的机制。它是 Cocoa编程中一些机制和技术的基石，在他们中间 Core Data, 应用程序脚本能力, 绑定技术，还有语言特性中的属性声明。 (脚本特性和绑定是指 OS X 上的 Cocoa。) 你也能使用键值编码来简化你的程序代码。</p>
-
-<h3>对象属性和 KVC</h3>
-
-<p>KVC 的核心是属性的通用概念。一个属性对应一个对象封装的状态单元。属性可以是这两种类型中的一个：一个属性(例如：name, subtotal, 或者 textColor) 或者相对于其他对象的关系。关系既可以是 一对一，也可以是一对多。一对多关系的值通常是一个数组或者集合，取决于关系是否有序。</p>
-
-<p>KVC 通过“键”来定位对象的属性，其实就是一个字符串标识。“键”常常代表一个访问器方法或者实例变量的名字。“键”必须符合某种规则：必须是 ASCII 编码，小写字母开头，还没有空格。Key path是由点与“键”分隔的字符串，它被用来指明一系列对象属性的链式访问。序列的第一个“键”是相对于指定的对象来说的(如下面图表中的 employee1)，并且每个子序列“键”是相对于前一个属性值来的。</p>
-
-<p><img src="/images/refered/key_value_coding.jpg" alt="sample" /></p>
-
-<h3>使类支持 KVC</h3>
-
-<p>NSKeyValueCoding 非正式的协议使 KVC 成为可能。其中两个方法： <code>valueForKey:</code> 和 <code>setValue:forKey:</code> 是特殊且重要的方法，因为他们能获取，设置给定 “键” 的属性值。 <code>NSObject</code> 为这两个方法提供了默认实现，并且如果类和 KVC 兼容，它可以依赖这个实现。</p>
-
-<p>你如何实现属性 KVC 的兼容性，依赖于属性是一个附属值，一对多或者一对一的关系。对于附属值，一对一关系来说，类必须至少实现一个以下给定顺序的配置(键 和属性的键关联)：</p>
-
-<ol>
-<li>类使用“键”的名字来声明属性</li>
-<li>实现以“键”命名的访问器，如果属性是可修改的，需要实现<code>setKey:</code>(如果属性是一个布尔值，<code>getter</code>访问起方法有 <code>isKey</code> 有形式。)</li>
-<li>声明 <code>key</code> 或者 <code>_key</code>形式的实例变量。</li>
-</ol>
-
-
-<blockquote><p>PS: 这里我认为 <code>attribute</code>叫做附属值或者值，<code>property</code>称作属性更恰当。一般来说 attrubute 比 property 要轻量级一些。</p></blockquote>
-
-<p>实现对多的 KVC 兼容是一个更复杂的过程。可以参考权关于 KVC 威性的文档来学习实现的过程。</p>
-
-<h3>后话</h3>
-
-<p>KVC 规则就是通过 <code>setValue:forKey:</code> 对 key 所对应的变量或者属性进行赋值操作，举个简单的例子：</p>
-
-<p>类 <code>People</code></p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>@interface People : NSObject
-</span><span class='line'>{
-</span><span class='line'>  NSString *_name;
-</span><span class='line'>}
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>这种情况下你可以通过 <code>[people setValue:@"Nick" forKey:@"name"]</code> 或者 <code>[people setValue:@"Nick" forKey:@"_name"]</code> 为 <code>_name</code> 变量赋值。 就是说 KVC 会为 <code>key</code> 或者 <code>_key</code> 为名称的变量完成操作。</p>
-
-<p>将代码改为：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>@interface People : NSObject
-</span><span class='line'>{
-</span><span class='line'>  NSString *name;
-</span><span class='line'>}
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>依然执行 <code>[people setValue:@"Nick" forKey:@"name"]</code> 或者 <code>[people setValue:@"Nick" forKey:@"_name"]</code> 方法，后者会提示错误 <code>this class is not key value coding-compliant for the key _name."</code></p>
-
-<p>说明 KVC 的逻辑是为名为 <code>_&lt;name&gt;</code> 的变量通过 <code>_&lt;name&gt;</code> 或 <code>&lt;name&gt;</code> 形式的 key 来进行 KVC 操作。除此之外针对 <code>&lt;name&gt;</code> 的变量, 一律通过 <code>&lt;name&gt;</code> 形式的 key 来做 KVC 操作。</p>
-
-<p><a href="/blog/zi-ding-yi-lei-ru-he-ti-gong-kvc-jian-rong-te-xing/">KVC 兼容特性</a></p>
-
-<h3>前提文章</h3>
-
-<p><a href="https://developer.apple.com/library/ios/documentation/General/Conceptual/DevPedia-CocoaCore/ObjectModeling.html#//apple_ref/doc/uid/TP40008195-CH41-SW1">Object modeling</a></p>
-
-<p><a href="https://developer.apple.com/library/ios/documentation/General/Conceptual/DevPedia-CocoaCore/AccessorMethod.html#//apple_ref/doc/uid/TP40008195-CH2-SW1">Accessor method</a></p>
-
-<h3>相关文章</h3>
-
-<p><a href="https://developer.apple.com/library/ios/documentation/General/Conceptual/DevPedia-CocoaCore/DeclaredProperty.html#//apple_ref/doc/uid/TP40008195-CH13-SW1">Declared property</a></p>
-
-<h3>权威论述</h3>
-
-<p><a href="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/KeyValueCoding/Articles/KeyValueCoding.html#//apple_ref/doc/uid/10000107i">Key-value Coding Programming Guide</a></p>
-
-<hr />
-
-<p><a href="https://developer.apple.com/library/ios/documentation/General/Conceptual/DevPedia-CocoaCore/KeyValueCoding.html#//apple_ref/doc/uid/TP40008195-CH25-SW1">Ref</a></p>
-</div> -->
-
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" ><a href="/blog/use-dispatch-source-timer/">Use Dispatch Source Timer</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-08-27T16:58:03+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>27</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>4:58 pm</span></time>
-        
-           | <a href="/blog/use-dispatch-source-timer/#disqus_thread"
-             data-disqus-identifier="http://tech.dehengxu.com/blog/use-dispatch-source-timer/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-
-<!-- <div class="entry-content"><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>
-</span><span class='line'>dispatch_queue_t queue = dispatch_queue_create("com.xxx.timer", DISPATCH_QUEUE_CONCURRENT);
-</span><span class='line'>
-</span><span class='line'>dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
-</span><span class='line'>
-</span><span class='line'>dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC, NSEC_PER_SEC / 10);
-</span><span class='line'>
-</span><span class='line'>// 设置定时器回调 block
-</span><span class='line'>dispatch_source_set_event_handler(timer, ^ {
-</span><span class='line'>  //do something...
-</span><span class='line'>});
-</span><span class='line'>
-</span><span class='line'>dispatch_resume(timer);
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>关键点： timer 一定要被 retain ，防止提前释放，否则 timer 无效。</p>
-
-<p>关闭 timer 可以使用 <code>dispatch_source_cancel</code> 函数。</p>
-</div> -->
-
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" ><a href="/blog/bash-shi-yong-ji-qiao/">Bash 使用技巧</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-08-23T23:11:02+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2015</span></span> <span class='time'>11:11 pm</span></time>
-        
-           | <a href="/blog/bash-shi-yong-ji-qiao/#disqus_thread"
-             data-disqus-identifier="http://tech.dehengxu.com/blog/bash-shi-yong-ji-qiao/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-
-<!-- <div class="entry-content"><h4>递归搜索目录下所有文件内容</h4>
-
-<p>bash</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>ls ./**/*.ext | xargs grep algorit</span></code></pre></td></tr></table></div></figure>
-
-
-<blockquote><p>搜索当前目录下所有的 ext 文件，并且匹配是否包含关键词 <code>algorit</code></p></blockquote>
-
-<h4>查找进程</h4>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>es -ef|grep name</span></code></pre></td></tr></table></div></figure>
-
-
-<blockquote><p>查找进程名包含 <code>name</code> 的进程</p></blockquote>
-
-<h4>查看开启的端口</h4>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>lsof -i:8080</span></code></pre></td></tr></table></div></figure>
-
-
-<blockquote><p>查看使用端口 8080 的进程</p></blockquote>
-</div> -->
-
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" ><a href="/blog/gcd-de-chang-gui-yong-fa/">GCD 的常规用法</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-08-23T15:56:50+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2015</span></span> <span class='time'>3:56 pm</span></time>
-        
-           | <a href="/blog/gcd-de-chang-gui-yong-fa/#disqus_thread"
-             data-disqus-identifier="http://tech.dehengxu.com/blog/gcd-de-chang-gui-yong-fa/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-
-<!-- <div class="entry-content"><p>GCD 通过将多线程抽象为 <code>dispatch_queue_t</code> 类型的对象，以 Block 作为计算单元实现的一套基于 C 语言的开源多线程库 <code>libdispatch</code>。</p>
-
-<p>GCD 让多线程开发变的更加方便，简洁。</p>
-
-<p>首先明确几个 GCD 中的特性:</p>
-
-<ol>
-<li>全局队列都是异步的。</li>
-<li>主队列是同步的。</li>
-<li>串行队列中在当前上下文执行同步计算会产生死锁。</li>
-</ol>
-
-
-<h3>创建并行，串行队列</h3>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>dispatch_queue_create("q1", DISPATCH_QUEUE_CONCURRENT);</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>dispatch_queue_create("q1", DISPATCH_QUEUE_SERIAL);</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>异步执行任务</h3>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>disaptch_async(queue, ^() {
-</span><span class='line'>  //Todo....
-</span><span class='line'>});</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>同步执行任务的方式</h3>
-
-<ol>
-<li><p>dispatch_semaphor_t</p>
-
-<pre><code>dispatch_semaphor_t semaphor = disaptch_semaphor_create(1);
-
-dispatch_async(queue, ^() {
-    dispatch_semaphor_wait(semaphor);
-    //Todo...
-
-    //Finished.
-    dispatch_semaphor_signal(semaphor);
-});
-</code></pre>
-
-<p>创建一个只允许一个线程访问的信号量 <code>disaptch_semaphor_create(1);</code></p>
-
-<p>通知其他访问对象等待 <code>dispatch_semaphor_wait(semaphor);</code></p>
-
-<p>资源访问结束后，退回占用的资源，并通知其他访问对象可以进行访问。 <code>dispatch_semaphor_signal(semaphor);</code></p></li>
-<li><p>dispatch_group_wait</p>
-
-<pre><code>dispatch_group_t group = dispatch_group_create();
-
-dispatch_group_async(group, q1, ^ {
-    //Task 1.
-});
-
-dispatch_group_async(group, q1, ^ {
-    //Task 2.
-});
-
-dispatch_group_async(group, q1, ^ {
-    //Task 3.
-});
-
-dispatch_async(queue, ^() {
-    dispatch_group_wait(group);
-    //Todo....
-
-});
-</code></pre>
-
-<p><code>dispatch_group_async</code>: 添加任务到分组中。</p>
-
-<p><code>dispatch_group_wait(group);</code> 等待 group 里的所有任务完成后方可继续。</p></li>
-<li><p>dispatch_group_notify</p>
-
-<pre><code>dispatch_group_notify(group, q1, ^ {
-    //Todo...
-
-});
-</code></pre>
-
-<p><code>dispatch_group_notify</code>: group中的所有任务完成后，执行 block 中的代码。</p></li>
-<li><p>dispatch_group_enter, dispatch_group_leave</p>
-
-<pre><code>dispatch_group_enter(group);
-
-dispatch_async(q1, ^ {
-    //Todo...
-
-    dispatch_group_leave(group);
-});
-</code></pre>
-
-<p>该代码等价于:</p>
-
-<pre><code>dispatch_group_async(q1, ^ {
-    //Todo...
-});
-</code></pre>
-
-<p>作用也是将任务放入到 q1 队列中，同时也添加到分组中。</p></li>
-</ol>
-
-
-<h3>使用 apply 来提高并行效率</h3>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>dispatch_apply(5000, q1, ^(size_t i) {
-</span><span class='line'>    NSLog(@"%zu",  i);
-</span><span class='line'>});</span></code></pre></td></tr></table></div></figure>
-
-
-<p>你会发现如果 q1 是并发队列，输出的数字是无序的状态。这就是 dispatch_apply 带来的好处，它能快速将当前的迭代任务立刻发送到队列中执行，如果是并发队列，这个效率是很高的。如果你对任务的顺序有要求，或者队列是串行队列，那就不需要使用 dispatch_apply 了。</p>
-
-<h3>dispatch_barrier_async</h3>
-
-<p>阻碍异步，意思是通过 dispatch_barrier_async 提交的任务，不会立刻执行，而是会阻碍它之后提交的任务，直到它之前的任务全部完成，它才会执行，并且它执行完毕后，其后提交的任务才能继续进行。</p>
-
-<p>而在 dispatch_barrier_async 之前或者之后的任务都是并发执行的。</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>dispatch_queue_t q = dispatch_queue_create("test", DISPATCH_QUEUE_CONCURRENT);
-</span><span class='line'>
-</span><span class='line'>dispatch_async(q, ^() {printf("A\n");});
-</span><span class='line'>dispatch_async(q, ^() {printf("B\n");});
-</span><span class='line'>dispatch_async(q, ^() {printf("C\n");});
-</span><span class='line'>dispatch_async(q, ^() {printf("D\n");});
-</span><span class='line'>
-</span><span class='line'>dispatch_barrier_async(q, ^() {printf("barrier\n");});
-</span><span class='line'>
-</span><span class='line'>dispatch_async(q, ^() {printf("E\n");});
-</span><span class='line'>dispatch_async(q, ^() {printf("F\n");});
-</span><span class='line'>dispatch_async(q, ^() {printf("G\n");});
-</span><span class='line'>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>输出结果是:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>A --
-</span><span class='line'>C  |  
-</span><span class='line'>D  |--&gt; //顺序随机产生
-</span><span class='line'>B _|
-</span><span class='line'>barrier //这里的输出位置不会变化
-</span><span class='line'>F --
-</span><span class='line'>E  |--&gt; //顺序随机产生
-</span><span class='line'>G --
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>但是 dispatch_barrier_async 只有提交到自己创建的并发队列时，才有上面的效果。如果是全局队列，或者串行队列，那么 dispatch_barrier_async 和 dispatch_async 是等效的。</p>
-</div> -->
-
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" ><a href="/blog/xian-cheng-he-jin-cheng-jian-de-qu-bie/">线程和进程间的区别</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-08-23T15:13:25+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2015</span></span> <span class='time'>3:13 pm</span></time>
-        
-           | <a href="/blog/xian-cheng-he-jin-cheng-jian-de-qu-bie/#disqus_thread"
-             data-disqus-identifier="http://tech.dehengxu.com/blog/xian-cheng-he-jin-cheng-jian-de-qu-bie/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-
-<!-- <div class="entry-content"><p><a href="http://www.programmerinterview.com/index.php/operating-systems/thread-vs-process/">译自</a></p>
-</div> -->
-
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" ><a href="/blog/timer-hui-diao-shi-jian-bei-uijiao-hu-zu-sai-de-jie-jue-ban-fa/">Timer ⌚回调事件被UI交互阻塞的解决办法</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-08-23T14:59:03+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2015</span></span> <span class='time'>2:59 pm</span></time>
-        
-           | <a href="/blog/timer-hui-diao-shi-jian-bei-uijiao-hu-zu-sai-de-jie-jue-ban-fa/#disqus_thread"
-             data-disqus-identifier="http://tech.dehengxu.com/blog/timer-hui-diao-shi-jian-bei-uijiao-hu-zu-sai-de-jie-jue-ban-fa/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-
-<!-- <div class="entry-content"><p>分析原因：</p>
-
-<p>UI 事件运行在主线程，并且UI 事件的运行模式下 runloop 过滤掉了 timer 事件。</p>
-
-<p>回顾一下 runloop 的运行机制我们知道，runloop 是一个处理事件的循环，为了提高效率和隔离事件，它将事件进行了模式划分，通过 Runloop mode 的方式进行分类，并提供了 <code>runMode:beforeDate:</code> 方法 或者 <code>CFRunLoopRunInMode(CFStringRef mode, CFTimeInterval seconds, Boolean returnAfterSourceHandled)</code> 函数。所以 runloop 在 UI 事件进行中，始终运行在 NSRunLoopCommonModes 模式下。</p>
-
-<h3>Runloop 的模式有这几种：</h3>
-
-<p><a href="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/Multithreading/RunLoopManagement/RunLoopManagement.html" target="_blank">Runloop modes</a></p>
-
-<h4>Default: NSDefaultRunLoopMode(Cocoa), kCFRunLoopDefaultMode(Core Foundation)</h4>
-
-<blockquote><p>The default mode is the one used for most operations. Most of the time, you should use this mode to start your run loop and configure your input sources.</p></blockquote>
-
-<h4>Connection: NSConnectionReplyMode (Cocoa)</h4>
-
-<blockquote><p>Cocoa uses this mode in conjunction with NSConnection objects to monitor replies. You should rarely need to use this mode yourself.</p></blockquote>
-
-<h4>Modal: NSModalPanelRunLoopMode (Cocoa)</h4>
-
-<blockquote><p>Cocoa uses this mode to identify events intended for modal panels.</p></blockquote>
-
-<h4>Event tracking: NSEventTrackingRunLoopMode (Cocoa)</h4>
-
-<blockquote><p>Cocoa uses this mode to restrict incoming events during mouse-dragging loops and other sorts of user interface tracking loops.</p></blockquote>
-
-<h4>Common modes: NSRunLoopCommonModes (Cocoa), kCFRunLoopCommonModes (Core Foundation)</h4>
-
-<blockquote><p>This is a configurable group of commonly used modes. Associating an input source with this mode also associates it with each of the modes in the group. For Cocoa applications, this set includes the default, modal, and event tracking modes by default. Core Foundation includes just the default mode initially. You can add custom modes to the set using the CFRunLoopAddCommonMode function.</p></blockquote>
-
-<h3>解决方案有以下两种：</h3>
-
-<h4>1. 在其他线程上运行 timer，并在需要的时候将操作发送到主线程</h4>
-
-<p>objc:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-</pre></td><td class='code'><pre><code class='Objective-C'><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">startTimer</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="bp">NSThread</span> <span class="o">*</span><span class="n">th</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">NSThread</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithTarget</span><span class="p">:</span><span class="nb">self</span> <span class="nl">selector</span><span class="p">:</span><span class="k">@selector</span><span class="p">(</span><span class="n">threadRun</span><span class="p">)</span> <span class="nl">object</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
-</span><span class='line'>    <span class="p">[</span><span class="n">th</span> <span class="n">start</span><span class="p">];</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">addInfinitTimerToCurrentRunloopWithTarget:</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nv">target</span> <span class="nf">selector:</span><span class="p">(</span><span class="kt">SEL</span><span class="p">)</span><span class="nv">selector</span> <span class="nf">inMode:</span><span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">mode</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="bp">NSTimer</span> <span class="o">*</span><span class="n">timer</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSTimer</span> <span class="nl">timerWithTimeInterval</span><span class="p">:</span><span class="mf">1.0</span> <span class="nl">target</span><span class="p">:</span><span class="nb">self</span> <span class="nl">selector</span><span class="p">:</span><span class="k">@selector</span><span class="p">(</span><span class="nl">timerRun</span><span class="p">:)</span> <span class="nl">userInfo</span><span class="p">:</span><span class="nb">nil</span> <span class="nl">repeats</span><span class="p">:</span><span class="nb">YES</span><span class="p">];</span>
-</span><span class='line'>    <span class="p">[[</span><span class="bp">NSRunLoop</span> <span class="n">currentRunLoop</span><span class="p">]</span> <span class="nl">addTimer</span><span class="p">:</span><span class="n">timer</span> <span class="nl">forMode</span><span class="p">:</span><span class="n">mode</span><span class="p">];</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">threadRun</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="p">[</span><span class="nb">self</span> <span class="nl">addInfinitTimerToCurrentRunloopWithTarget</span><span class="p">:</span><span class="nb">self</span> <span class="nl">selector</span><span class="p">:</span><span class="k">@selector</span><span class="p">(</span><span class="nl">timerRun</span><span class="p">:)</span> <span class="nl">inMode</span><span class="p">:</span><span class="s">@&quot;MyTimerMode&quot;</span><span class="p">];</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">while</span> <span class="p">(</span><span class="nb">YES</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>        <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%s while..&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span><span class="p">);</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="p">[[</span><span class="bp">NSRunLoop</span> <span class="n">currentRunLoop</span><span class="p">]</span> <span class="nl">runMode</span><span class="p">:</span><span class="s">@&quot;MyTimerMode&quot;</span> <span class="nl">beforeDate</span><span class="p">:[</span><span class="bp">NSDate</span> <span class="n">distantFuture</span><span class="p">]];</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">timerRun:</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nv">sender</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;~&quot;</span><span class="p">);</span>
-</span><span class='line'>    <span class="p">[</span><span class="nb">self</span> <span class="nl">performSelectorOnMainThread</span><span class="p">:</span><span class="k">@selector</span><span class="p">(</span><span class="n">someSelector</span><span class="p">)</span> <span class="nl">withObject</span><span class="p">:</span><span class="nb">nil</span> <span class="nl">waitUntilDone</span><span class="p">:</span><span class="nb">YES</span><span class="p">];</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">someSelector</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>  <span class="c1">//....</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>这里用 NSThread 和自定义的计时器模式 <code>@"MyTimerMode"</code> 来实现。</p>
-
-<h4>2.在主线程加入计时器</h4>
-
-<p>objc:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='Objective-C'><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">addInfinitTimerToCurrentRunloopWithTarget:</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nv">target</span> <span class="nf">selector:</span><span class="p">(</span><span class="kt">SEL</span><span class="p">)</span><span class="nv">selector</span> <span class="nf">inMode:</span><span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">mode</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="bp">NSTimer</span> <span class="o">*</span><span class="n">timer</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSTimer</span> <span class="nl">timerWithTimeInterval</span><span class="p">:</span><span class="mf">1.0</span> <span class="nl">target</span><span class="p">:</span><span class="nb">self</span> <span class="nl">selector</span><span class="p">:</span><span class="k">@selector</span><span class="p">(</span><span class="nl">timerRun</span><span class="p">:)</span> <span class="nl">userInfo</span><span class="p">:</span><span class="nb">nil</span> <span class="nl">repeats</span><span class="p">:</span><span class="nb">YES</span><span class="p">];</span>
-</span><span class='line'>    <span class="p">[[</span><span class="bp">NSRunLoop</span> <span class="n">currentRunLoop</span><span class="p">]</span> <span class="nl">addTimer</span><span class="p">:</span><span class="n">timer</span> <span class="nl">forMode</span><span class="p">:</span><span class="n">mode</span><span class="p">];</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">//运行在主线程上</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">[</span><span class="nb">self</span> <span class="nl">addInfinitTimerToCurrentRunloopWithTarget</span><span class="p">:</span><span class="nb">self</span> <span class="nl">selector</span><span class="p">:</span><span class="k">@selector</span><span class="p">(</span><span class="nl">timerRun</span><span class="p">:)</span> <span class="nl">inMode</span><span class="p">:</span><span class="n">NSRunLoopCommonModes</span><span class="p">];</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>让 timer 所运行的 Runloop mode 和UI 滚动事件的 Runloop mode 一致即可。</p>
-</div> -->
-
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/5">&larr; Older</a>
@@ -834,6 +799,30 @@ dispatch_async(q1, ^ {
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/pip-use-china-sources/">Pip 使用国内的源</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/missing-ios-distribution-signing-identity-wen-ti-de-jie-jue-fang-fa/">Missing iOS Distribution Signing Identity 问题的解决方法</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/rang-atom-wen-ben-bian-ji-qi-zhi-chi-yun-xing-swift-yuan-wen-jian-de-fang-fa/">让 Atom 文本编辑器支持运行 Swift 源文件的方法</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/bian-yi-an-zhuang-kotlin-de-fang-fa/">编译安装 Kotlin 的方法</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/bian-yi-an-zhuang-swift-de-fang-fa/">编译安装 Swift 的方法</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/use-launchctl-create-daemon-task-step-by-step/">Use Launchctl Create Daemon Task Step by Step</a>
+      </li>
     
       <li class="post">
         <a href="/blog/testing-in-android/">Testing in Android</a>
@@ -889,30 +878,6 @@ dispatch_async(q1, ^ {
     
       <li class="post">
         <a href="/blog/ios-chang-yong-di-san-fang-ku/">iOS 常用第三方库</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/gitsh-de-an-zhuang-he-shi-yong/">Gitsh 的安装和使用</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/shi-yong-cocoapods-lai-guan-li-ji-yu-svn-de-zi-xiang-mu/">使用 Cocoapods 来管理基于 Svn 的子项目</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/create-a-private-pods/">Create a Private Pods</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/use-cocoapods-publish-your-podspec/">Use Cocoapods Publish Your Podspec</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/objc-msgsend-bian-yi-cuo-wu-de-jie-jue-fang-fa/">Runtime 在新版本 Xcode 中引起的编译错误，及解决方法</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/zi-ding-yi-lei-ru-he-ti-gong-kvc-jian-rong-te-xing/">自定义类如何提供 KVC 兼容特性</a>
       </li>
     
   </ul>

@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://tech.dehengxu.com/blog/pip-use-china-sources/</loc>
+<lastmod>2016-04-02T00:23:47+08:00</lastmod>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/missing-ios-distribution-signing-identity-wen-ti-de-jie-jue-fang-fa/</loc>
+<lastmod>2016-04-01T12:58:55+08:00</lastmod>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/rang-atom-wen-ben-bian-ji-qi-zhi-chi-yun-xing-swift-yuan-wen-jian-de-fang-fa/</loc>
+<lastmod>2016-03-23T23:51:38+08:00</lastmod>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/bian-yi-an-zhuang-kotlin-de-fang-fa/</loc>
+<lastmod>2016-03-23T23:50:49+08:00</lastmod>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/bian-yi-an-zhuang-swift-de-fang-fa/</loc>
+<lastmod>2016-03-23T23:50:33+08:00</lastmod>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/blog/use-launchctl-create-daemon-task-step-by-step/</loc>
+<lastmod>2016-03-16T18:40:33+08:00</lastmod>
+</url>
+<url>
 <loc>http://tech.dehengxu.com/blog/testing-in-android/</loc>
 <lastmod>2016-03-01T18:27:11+08:00</lastmod>
 </url>
@@ -319,5 +343,8 @@
 </url>
 <url>
 <loc>http://tech.dehengxu.com/posts/8/</loc>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/posts/9/</loc>
 </url>
 </urlset>
