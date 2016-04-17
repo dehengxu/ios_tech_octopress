@@ -42,4 +42,4 @@ https://github.com/pwnall/chromeview
 
 http://www.appinn.com/chromer-for-android/
 
-http://www.tuicool.com/articles/RVb2Mr
+http://www.tuicool.com/articles/RVb2Mr2

@@ -11,7 +11,7 @@ categories: scm, git
 
 ### 1.checkout
 
-#### 切换到指定 commit 
+#### 切换到指定 commit
 
 ```
 checkout sha-1
@@ -73,7 +73,7 @@ A---B---D---C---E---F----G  test, master
 
 ### 3. diff
 
-git diff 
+git diff
 
 查看当前未暂存的文件与已暂存的文件中不同的部分。
 
@@ -83,7 +83,7 @@ git diff --cached|--staged
 
 ### 4. rm
 
-git rm --cached 
+git rm --cached
 
 将已暂存的文件从从暂存区中移除，但不删除文件
 
@@ -129,7 +129,7 @@ git reset head <file>   取消暂存到 head 版本
 
 ### 9. diff
 
-git diff 
+git diff
 
 git diff target_branch_name
 
@@ -143,15 +143,6 @@ git bundle create bundle_name HEAD branch_name
 
 git clone bundle_name folder_name
 
+#### Config
 
-
-
-
-
-
-
-
-
-
-
-
+  https://jk.gs/git-config.html
