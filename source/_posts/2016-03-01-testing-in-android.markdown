@@ -61,7 +61,8 @@ dependencies {
 ```
 
 设备测试中还可以细分为两类测试，逻辑测试 和 UI 测试。逻辑测试是在 JUnit3/JUnit4 的基础上通过 Test runner 库来完成的；而UI测试是通过 Espresso 和 uiautomator 来提供支持的。
-<!-- InstrumentationTestRunner   AndroidJUnitRunner  MonitoringInstrumentation -->
+
+`InstrumentationTestRunner   AndroidJUnitRunner  MonitoringInstrumentation`
 
 ### Logic Unit Tests (逻辑测试)
 
@@ -70,7 +71,6 @@ dependencies {
 #### Espresso
 
 ```
-
 androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.1'
 
 ```
