@@ -9,7 +9,7 @@
   <meta name="author" content="Deheng Xu">
 
   
-  <meta name="description" content="Use Rails With Rspec Feb 27th, 2016 11:47 pm | Comments Use Jenkins With "Self-Organizing Swarm Plug-in Modules" Dec 29th, 2015 4:15 pm | Comments &hellip;">
+  <meta name="description" content="Android 常用第三方库 Oct 19th, 2015 7:19 pm | Comments MQTT Resources Oct 12th, 2015 2:05 pm | Comments 使用国内源提高Android SDK Manager 速度 Oct 11th, 2015 9:54 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,423 +78,6 @@
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" ><a href="/blog/use-rails-with-rspec/">Use Rails With Rspec</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2016-02-27T23:47:04+08:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>27</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>11:47 pm</span></time>
-        
-           | <a href="/blog/use-rails-with-rspec/#disqus_thread"
-             data-disqus-identifier="http://tech.dehengxu.com/blog/use-rails-with-rspec/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-
-<!-- <div class="entry-content"><p>First:</p>
-
-<p>Add to <code>Gemfile</code></p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>group :test do
-</span><span class='line'>    gem 'selenium-webdriver'#, '2.0.0'
-</span><span class='line'>    gem 'capybara', '2.1.0'
-</span><span class='line'>    gem 'test-unit'
-</span><span class='line'>end</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Second modify file named <code>spec_helper.rb</code></p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>require 'capybara/rspec'
-</span><span class='line'>require 'capybara/rails'
-</span><span class='line'>
-</span><span class='line'>RSpec.configure do |config|
-</span><span class='line'>    ...
-</span><span class='line'>
-</span><span class='line'>    config.include Capybara::DSL
-</span><span class='line'>
-</span><span class='line'>    ...
-</span><span class='line'>end</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Then create Unit-testing source with this command <code>rails generate integration_test static_pages</code></p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>require 'spec_helper'
-</span><span class='line'>
-</span><span class='line'>describe "Static Pages" do
-</span><span class='line'>  describe "Home pages" do
-</span><span class='line'>    it "shoul be " do
-</span><span class='line'>      # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
-</span><span class='line'>      # These are test-unit framework syntaxs
-</span><span class='line'>    #   get static_pages_index_path
-</span><span class='line'>    #   response.status.should be(200)
-</span><span class='line'>      # These are feature syntaxs supplied by Capybara.
-</span><span class='line'>        visit '/static_pages/help'
-</span><span class='line'>        expect(page).to have_content 'Sample App'
-</span><span class='line'>    end
-</span><span class='line'>  end
-</span><span class='line'>end
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>At last, you could run test</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>bundle exec rspec spec</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>SmallTest: this test doesn't interact with any file system or network.
-</span><span class='line'>MediumTest: Accesses file systems on box which is running tests.
-</span><span class='line'>LargeTest: Accesses external file systems, networks, etc.</span></code></pre></td></tr></table></div></figure>
-
-</div> -->
-
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" ><a href="/blog/use-jenkins-with-self-organizing-swarm-plug-in-modules/">Use Jenkins With "Self-Organizing Swarm Plug-in Modules"</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-12-29T16:15:39+08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>29</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>4:15 pm</span></time>
-        
-           | <a href="/blog/use-jenkins-with-self-organizing-swarm-plug-in-modules/#disqus_thread"
-             data-disqus-identifier="http://tech.dehengxu.com/blog/use-jenkins-with-self-organizing-swarm-plug-in-modules/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-
-<!-- <div class="entry-content"><p>使用 Jenkins 做 ci，如果你的编译服务器和 Jenkins 服务器是分离的，那么你需要通过设置成 从节点 让需要执行 ci 任务的机器被 Jenkins 管理。</p>
-
-<p>Jenkins 自带有一个叫做 Self-Origanzing Swarm Plug-in Modules 的插件，可以完成服务器自管理工作。这和从服务器有区别的地方在于，从服务器的工作方式是 Jenkins 作为主服务器直接登录从服务器进行主动工作；而自管理模式则是在“从”服务器上运行一个服务反向搜寻 Jenkins 的服务，自己登记到 Jenkins 的从节点中。然后 Jenkins 就可以为它分配任务了。</p>
-
-<p>可以到这个地址：<a href="http://maven.jenkins-ci.org/content/repositories/releases/org/jenkins-ci/plugins/swarm-client/">http://maven.jenkins-ci.org/content/repositories/releases/org/jenkins-ci/plugins/swarm-client/</a>  下载对应版本的swarm-client jar 包，如果想独立使用，可以直接下载 with-dependency.jar 的文件（自带所有依赖包）的版本。</p>
-
-<p>启动 swarm-client 的脚本</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>#!/usr/bin/env bash
-</span><span class='line'>java -jar swarm-client-2.0-jar-with-dependencies.jar \
-</span><span class='line'>-name MacMini-compiling-server \
-</span><span class='line'>-username xxx \
-</span><span class='line'>-password xxxxxxx \
-</span><span class='line'>-master http://localhost:8080/</span></code></pre></td></tr></table></div></figure>
-
-
-<p>这里的 <code>http://localhost:8080/</code> 可以改成你的 jenkins 服务器地址。</p>
-</div> -->
-
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" ><a href="/blog/ios-mapping-lib/">iOS Mapping Lib</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-12-03T23:26:40+08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2015</span></span> <span class='time'>11:26 pm</span></time>
-        
-           | <a href="/blog/ios-mapping-lib/#disqus_thread"
-             data-disqus-identifier="http://tech.dehengxu.com/blog/ios-mapping-lib/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-
-<!-- <div class="entry-content"><p><a href="https://github.com/kaizeiyimi/XLYMapping">https://github.com/kaizeiyimi/XLYMapping</a></p>
-
-<p><a href="https://github.com/leverdeterre/SecureMappingKit">https://github.com/leverdeterre/SecureMappingKit</a></p>
-
-<p><a href="http://dev.stanfy.com">http://dev.stanfy.com</a></p>
-
-<p><a href="https://github.com/Ulianko/NSObject-MUJSONMapping">https://github.com/Ulianko/NSObject-MUJSONMapping</a></p>
-
-<p><a href="https://github.com/PlusR/ManagedMappingObject">https://github.com/PlusR/ManagedMappingObject</a></p>
-
-<p><a href="https://github.com/mkko/MOMapping">https://github.com/mkko/MOMapping</a></p>
-
-<p><a href="http://github.com/jamztang/JTObjectMapping">http://github.com/jamztang/JTObjectMapping</a></p>
-
-<p><a href="https://github.com/LoganWright/JSONMapping">https://github.com/LoganWright/JSONMapping</a></p>
-
-<p><a href="https://github.com/jfwork">https://github.com/jfwork</a></p>
-
-<p><a href="https://github.com/GyazSquare/GSFileTypeMappings">https://github.com/GyazSquare/GSFileTypeMappings</a></p>
-
-<p><a href="https://github.com/Yalantis/FastEasyMapping">https://github.com/Yalantis/FastEasyMapping</a></p>
-
-<p><a href="https://github.com/yfben/FOMapping">https://github.com/yfben/FOMapping</a></p>
-
-<p><a href="https://github.com/Krivoblotsky/FMResultsMapping">https://github.com/Krivoblotsky/FMResultsMapping</a></p>
-
-<p><a href="https://github.com/lucasmedeirosleite/EasyMapping">https://github.com/lucasmedeirosleite/EasyMapping</a></p>
-
-<p><a href="https://github.com/Egeniq/EFDataMappingKit">https://github.com/Egeniq/EFDataMappingKit</a></p>
-
-<p><a href="https://github.com/dreyhomedev/NSObject-DHNObjectMapping">https://github.com/dreyhomedev/NSObject-DHNObjectMapping</a></p>
-
-<p><a href="https://github.com/dchohfi/KeyValueObjectMapping">https://github.com/dchohfi/KeyValueObjectMapping</a></p>
-
-<p><a href="https://github.com/111minutes/BWObjectMapping">https://github.com/111minutes/BWObjectMapping</a></p>
-
-<p><a href="https://github.com/kovalskiy/AZMapping">https://github.com/kovalskiy/AZMapping</a></p>
-
-<p><a href="https://github.com/zarochintsev/AZEasyMapping">https://github.com/zarochintsev/AZEasyMapping</a></p>
-
-<p><a href="https://github.com/JeanLebrument/APContact-EasyMapping">https://github.com/JeanLebrument/APContact-EasyMapping</a></p>
-</div> -->
-
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" ><a href="/blog/web-protocol-collection/">Web Protocol Collection</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-12-01T10:42:15+08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>1</span><span class='date-suffix'>st</span>, <span class='date-year'>2015</span></span> <span class='time'>10:42 am</span></time>
-        
-           | <a href="/blog/web-protocol-collection/#disqus_thread"
-             data-disqus-identifier="http://tech.dehengxu.com/blog/web-protocol-collection/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-
-<!-- <div class="entry-content"><p><a href="https://www.ietf.org/rfc/rfc-index">rfc 文档</a></p>
-
-<p><a href="https://www.ietf.org/rfc/rfc1945">HTTP 1.0</a></p>
-
-<p><a href="https://www.ietf.org/rfc/rfc2068">HTTP 1.1</a></p>
-
-<p><a href="https://www.ietf.org/rfc/rfc2069">An Extension to HTTP : Digest Access Authentication</a></p>
-
-<p><a href="https://www.ietf.org/rfc/rfc2070">HTML</a></p>
-
-<p><a href="https://www.ietf.org/rfc/rfc3875">CGI 1.1</a></p>
-
-<p><a href="https://www.ietf.org/rfc/rfc2388">multipart/form-data</a></p>
-</div> -->
-
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" ><a href="/blog/app-transport-security-ji-zhu/">App Transport Security 技术</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-11-05T10:18:25+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>10:18 am</span></time>
-        
-           | <a href="/blog/app-transport-security-ji-zhu/#disqus_thread"
-             data-disqus-identifier="http://tech.dehengxu.com/blog/app-transport-security-ji-zhu/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-
-<!-- <div class="entry-content"><p>App Transport Security is a feature that improves the security of connections between an app and web services. The feature consists of default connection requirements that conform to best practices for secure connections. Apps can override this default behavior and turn off transport security.</p>
-
-<p>Transport security is available in iOS 9.0 or later, and in OS X v10.11 and later.</p>
-
-<h2>Default behavior</h2>
-
-<p>All connections using the NSURLConnection, CFURL, or NSURLSession APIs use App Transport Security default behavior in apps built for iOS 9.0 or later, and OS X v10.11 or later. Connections that do not follow the requirements will fail. For more information on various the connection methods, see NSURLConnection Class Reference, CFURL Reference, or NSURLSession Class Reference.</p>
-
-<p>Info.plist can use <code>NSAppTransportSecurity</code> key to configurate ATS</p>
-
-<ul>
-<li>NSAllowsArbitraryLoads   <code>Yes</code> to disable ATS checking, <code>No</code> to enable ATS checking.</li>
-</ul>
-
-
-<p>The property keys are defined next.</p>
-
-<p>NSAppTransportSecurity
-A dictionary containing the settings for overriding default App Transport Security behaviors. The top level key for the app’s Info.plist file.</p>
-
-<p>NSAllowsArbitraryLoads
-A Boolean value used to disable App Transport Security for any domains not listed in the NSExceptionDomains dictionary. Listed domains use the settings specified for that domain.</p>
-
-<p>The default value of NO requires the default App Transport Security behavior for all connections.</p>
-
-<p>NSExceptionDomains
-A dictionary of App Transport Security exceptions for specific domains. Each key is a string containing the domain name for the exceptions.</p>
-
-<p><domain-name-for-exception-as-string>
-A dictionary of exceptions for the named domain. The name of the key is the name of the domain–for example, www.apple.com.</p>
-
-<h4>NSExceptionMinimumTLSVersion</h4>
-
-<p>A string that specifies a the minimum TLS version for connections. Valid values are:</p>
-
-<pre><code>TLSv1.0
-TLSv1.1
-TLSv1.2
-</code></pre>
-
-<p><code>TLSV1.2</code> is the default value.</p>
-
-<h4>NSExceptionRequiresForwardSecrecy</h4>
-
-<p>A Boolean value for overriding the requirement that the domain support forward secrecy using ciphers.</p>
-
-<p>YES is the default value and limits the ciphers to those shown in Default Behavior.</p>
-
-<p>Setting the value to NO adds the following the list of accepted ciphers:</p>
-
-<ul>
-<li>TLS_RSA_WITH_AES_256_GCM_SHA384</li>
-<li>TLS_RSA_WITH_AES_128_GCM_SHA256</li>
-<li>TLS_RSA_WITH_AES_256_CBC_SHA256</li>
-<li>TLS_RSA_WITH_AES_256_CBC_SHA</li>
-<li>TLS_RSA_WITH_AES_128_CBC_SHA256</li>
-<li>TLS_RSA_WITH_AES_128_CBC_SHA</li>
-</ul>
-
-
-<h4>NSExceptionAllowsInsecureHTTPLoads</h4>
-
-<p>A Boolean value for overriding the requirement that all connections use HTTPS. Use this key to access domains with no certificate, or with an error for a self-signed, expired, or hostname-mismatch certificate.</p>
-
-<p>NO is the default value.</p>
-
-<h4>NSIncludesSubdomains</h4>
-
-<p>A Boolean value for applying the overrides to all subdomains of the top-level domain.</p>
-
-<p>NO is the default value.</p>
-
-<h4>NSThirdPartyExceptionMinimumTLSVersion</h4>
-
-<p>A version of NSExceptionMinimumTLSVersion used when the domain is an app service that is not controlled by the developer.</p>
-
-<h4>NSThirdPartyExceptionRequiresForwardSecrecy</h4>
-
-<p>A version of NSExceptionRequiresForwardSecrecy used when the domain is an app service that is not controlled by the developer.</p>
-
-<h4>NSThirdPartyExceptionAllowsInsecureHTTPLoads</h4>
-
-<p>A version of NSExceptionAllowsInsecureHTTPLoads used when the domain is an app service that is not controlled by the developer.</p>
-
-<p><a href="https://developer.apple.com/library/prerelease/ios/documentation/General/Reference/InfoPlistKeyReference/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009248-SW1">Infomation Property List Key Reference</a></p>
-</div> -->
-
-  
-  
-
-
-    </article>
   
   
     <article>
@@ -586,6 +169,452 @@ TLSv1.2
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" ><a href="/blog/shi-yong-guo-nei-yuan-ti-gao-android-sdk-manager-su-du/">使用国内源提高Android SDK Manager 速度</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-10-11T21:54:10+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>11</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>9:54 pm</span></time>
+        
+           | <a href="/blog/shi-yong-guo-nei-yuan-ti-gao-android-sdk-manager-su-du/#disqus_thread"
+             data-disqus-identifier="http://tech.dehengxu.com/blog/shi-yong-guo-nei-yuan-ti-gao-android-sdk-manager-su-du/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+
+<!-- <div class="entry-content"><h3>/etc/hosts</h3>
+
+<p>mirrors.opencas.cn  dl.google.com
+mirrors.opencas.cn  dl-ssl.google.com</p>
+
+<h1>mirrors.neusoft.edu.cn dl.google.com</h1>
+
+<h1>mirrors.neusoft.edu.cn dl-ssl.google.com</h1>
+
+<h3>Android SDK Manager</h3>
+
+<p>Keep bellow field empty</p>
+
+<ol>
+<li>Tools -> Options -> Http Proxy Server|Http Proxy Port</li>
+<li>Managed Add-on Sites -> Official Add-on Sites (Disable All)</li>
+</ol>
+
+</div> -->
+
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" ><a href="/blog/di-san-fang-xiao-xi-tui-song-fu-wu-dui-bi/">第三方消息推送服务对比</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-10-10T11:15:55+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>10</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>11:15 am</span></time>
+        
+           | <a href="/blog/di-san-fang-xiao-xi-tui-song-fu-wu-dui-bi/#disqus_thread"
+             data-disqus-identifier="http://tech.dehengxu.com/blog/di-san-fang-xiao-xi-tui-song-fu-wu-dui-bi/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+
+<!-- <div class="entry-content"><h3>友盟</h3>
+
+<p>客户端支持: iOS, Android</p>
+
+<p>服务端支持: Java, php, Python</p>
+
+<h3>极光</h3>
+
+<p>客户端支持: iOS, Android, WinPhone</p>
+
+<p>服务端支持: Java, php, python, ruby, C#, nodejs</p>
+
+<h3>百度云推送</h3>
+
+<p>客户端支持: iOS, Android</p>
+
+<p>服务端支持: Java, php</p>
+
+<h3>个推</h3>
+
+<p><a href="http://www.getui.com/">http://www.getui.com/</a></p>
+
+<p>客户端支持: iOS, Android</p>
+
+<p>服务端支持: java, php, c#, python, nodejs, c++</p>
+
+<h3>腾讯飞鸽</h3>
+
+<p><a href="http://xg.qq.com/xg">http://xg.qq.com/xg</a></p>
+
+<p>客户端支持: iOS, Android</p>
+
+<p>服务端支持: Java, php, python, nodejs</p>
+</div> -->
+
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" ><a href="/blog/diagram-of-a-activitys-life-cycle/">Diagram of a Activity's Life Cycle</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-10-05T11:31:52+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>11:31 am</span></time>
+        
+           | <a href="/blog/diagram-of-a-activitys-life-cycle/#disqus_thread"
+             data-disqus-identifier="http://tech.dehengxu.com/blog/diagram-of-a-activitys-life-cycle/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+
+<!-- <div class="entry-content"><p>A diagram present Activity&rsquo;s life cycle</p>
+
+<p>Two Activity class named <code>A</code> and <code>B</code>, <code>A</code> is app entry.</p>
+
+<p>Calling order is A call B , then B back to A.</p>
+
+<p>1) Action: Launch App
+  onCreate(A) -> onStart(A) -> onResume(A)</p>
+
+<p>2) Action: startActivity(B)
+  onPause(A) -> onCreate(B) -> onStart(B) -> onResume(B) -> onStop(A)</p>
+
+<p>3) Action: goBack to Activity A
+  onPause(B) -> onRestart(A) -> onStart(A) -> onResume(A) -> onStop(B) -> onDestory(B)</p>
+
+<blockquote><p>If B has been hold, it would not be onDestory(B)</p></blockquote>
+
+<p><img src="/images/refered/activity_life_cycle.png" alt="lifecycle" /></p>
+</div> -->
+
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" ><a href="/blog/bash-usage/">Bash Usage</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-09-22T09:48:42+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>22</span><span class='date-suffix'>nd</span>, <span class='date-year'>2015</span></span> <span class='time'>9:48 am</span></time>
+        
+           | <a href="/blog/bash-usage/#disqus_thread"
+             data-disqus-identifier="http://tech.dehengxu.com/blog/bash-usage/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+
+<!-- <div class="entry-content"><h2>基础</h2>
+
+<h3>变量定义</h3>
+
+<p><code>var_name=var_value</code>，注意等号两边不能留下空格</p>
+
+<h3>输入参数</h3>
+
+<p>参数以空格分开分别是<code>$1</code>, <code>$2</code>, 到 <code>$9</code></p>
+
+<h2>条件控制处理</h2>
+
+<h3>if 语句</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>if [ condition1 ]; then
+</span><span class='line'>
+</span><span class='line'>elif [ condition2 ]; then
+</span><span class='line'>
+</span><span class='line'>else
+</span><span class='line'>
+</span><span class='line'>fi</span></code></pre></td></tr></table></div></figure>
+
+
+<ol>
+<li>方括号内的条件和方括号之间至少有一个空格的距离</li>
+<li>每个方括号结束后通过<code>;</code>分隔</li>
+<li>不论 <code>if</code>, <code>else</code> 还是 <code>elif</code>，除最后一个条件外，都需要以 <code>then</code> 结尾</li>
+<li>最后以 <code>fi</code> 结尾。<code>fi</code> 是 <code>if</code> 的逆序写法，表示和<code>if</code>对应。</li>
+</ol>
+
+
+<h3>条件表达式</h3>
+
+<ol>
+<li><code>[ -z var_name ]</code>，变量是否为空字符串</li>
+<li><code>[ -n var_name ]</code>，变量是否为空值</li>
+</ol>
+
+
+<h2>字符串处理</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>   -eq   等于
+</span><span class='line'>　　-ne    不等于
+</span><span class='line'>　　-gt    大于
+</span><span class='line'>　　-lt    小于
+</span><span class='line'>　　-le    小于等于
+</span><span class='line'>　　-ge   大于等于
+</span><span class='line'>　　-z    空串
+</span><span class='line'>　　=    两个字符相等
+</span><span class='line'>　　!=    两个字符不等
+</span><span class='line'>　　-n    非空串</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>文件，文件夹处理</h2>
+
+<ol>
+<li><code>if [ -d $path ];</code> 目录是否存在，反之 <code>if [ ! -d path ];</code> 目录是否不存在</li>
+<li><code>if [ -f $file ];</code> 文件是否存在，同上 <code>if [ ! -f file ];</code></li>
+<li><code>if [ -x $path ];</code> 是否有执行权限</li>
+</ol>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>   –b 当file存在并且是块文件时返回真
+</span><span class='line'>　　-c 当file存在并且是字符文件时返回真
+</span><span class='line'>　　-d 当pathname存在并且是一个目录时返回真
+</span><span class='line'>　　-e 当pathname指定的文件或目录存在时返回真
+</span><span class='line'>　　-f 当file存在并且是正规文件时返回真
+</span><span class='line'>　　-g 当由pathname指定的文件或目录存在并且设置了SGID位时返回为真
+</span><span class='line'>　　-h 当file存在并且是符号链接文件时返回真，该选项在一些老系统上无效
+</span><span class='line'>　　-k 当由pathname指定的文件或目录存在并且设置了“粘滞”位时返回真
+</span><span class='line'>　　-p 当file存在并且是命令管道时返回为真
+</span><span class='line'>　　-r 当由pathname指定的文件或目录存在并且可读时返回为真
+</span><span class='line'>　　-s 当file存在文件大小大于0时返回真
+</span><span class='line'>　　-u 当由pathname指定的文件或目录存在并且设置了SUID位时返回真
+</span><span class='line'>　　-w 当由pathname指定的文件或目录存在并且可执行时返回真。一个目录为了它的内容被访问必然是可执行的。
+</span><span class='line'>　　-o 当由pathname指定的文件或目录存在并且被子当前进程的有效用户ID所指定的用户拥有时返回真。</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>循环控制</h2>
+
+<h2>数组</h2>
+
+<ol>
+<li>声明数组: <code>declare -a array_name</code></li>
+<li>定义: <code>array_name=(value1 value2 value3)</code></li>
+<li>内部指令:</li>
+</ol>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>${name[i]}: Use element i of array name. i can be any arithmetic expression as described under let.
+</span><span class='line'>${name}: Use element 0 of array name.
+</span><span class='line'>${name[*]}: Use all elements of array name.
+</span><span class='line'>${name[@]}: Same as previous.
+</span><span class='line'>${#name[*]}: Use the number of elements in array name.
+</span><span class='line'>${#name[@]}: Same as previous.</span></code></pre></td></tr></table></div></figure>
+
+
+<ol>
+<li>关联数组: <code>array_name=([key1]=value1 [key2]=value2 [key3]=value3)</code></li>
+</ol>
+
+
+<h3>使用</h3>
+
+<p>${array_name[0]}</p>
+</div> -->
+
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" ><a href="/blog/useful-tools-for-xcode/">Useful Tools for Xcode</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-09-16T11:15:21+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>16</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>11:15 am</span></time>
+        
+           | <a href="/blog/useful-tools-for-xcode/#disqus_thread"
+             data-disqus-identifier="http://tech.dehengxu.com/blog/useful-tools-for-xcode/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+
+<!-- <div class="entry-content"><h2>Tools</h2>
+
+<h3>Cocoapods</h3>
+
+<p><a href="http://cocoapods.org/">Cocoapods</a></p>
+
+<blockquote><p>说到 iOS 中的以来管理系统就不得不说 Cocoapods 了，它不仅提供了依赖包的管理，更提供了对项目的自动化配置功能。是一个相当好用的工具，据我所知 支付宝，美团等各大公司都在使用之。安装方式为:<code>gem install cocoapods</code> ，使用方式为 <code>pods + 子命令</code>。需要有一定的 ruby 基础，gems 的使用经验。</p></blockquote>
+
+<h3>Carthage</h3>
+
+<p><a href="https://github.com/Carthage/Carthage">Carthage</a></p>
+
+<blockquote><p>一个 Cocoa 上简单，分散的依赖管理工具</p></blockquote>
+
+<h3>xcodeproj</h3>
+
+<p><a href="http://www.rubydoc.info/gems/xcodeproj">xcodeproj</a></p>
+
+<blockquote><p>一个可以编程操作 .xcodeproj 的gem</p></blockquote>
+
+<h3>liftoff</h3>
+
+<p><a href="https://github.com/thoughtbot/liftoff">liftoff</a></p>
+
+<blockquote><p>CLI for creating and configuring new Xcode projects</p></blockquote>
+
+<h3>OCUnit2JUnit</h3>
+
+<p><a href="https://github.com/ciryon/OCUnit2JUnit">OCUnit2JUnit</a></p>
+
+<blockquote><p>A script that converts output from OCUnit in xcodebuild to the XML format used by JUnit. This allows for XCode builds on continuos integration servers like Jenkins, complete with test reports!</p></blockquote>
+
+<h3>cocoapods-repo-svn</h3>
+
+<p><a href="https://github.com/clarkda/cocoapods-repo-svn">cocoapods-repo-svn</a></p>
+
+<blockquote><p>svn support for cocoapods spec-repos</p></blockquote>
+
+<h3>iOS-Framework</h3>
+
+<p><a href="https://github.com/jverkoey/iOS-Framework">iOS-Framework</a></p>
+
+<blockquote><p>How to create, develop, and distribute iOS Static Frameworks quickly and efficiently</p></blockquote>
+
+<h3>Synx</h3>
+
+<blockquote><p>A command line tool used for reform folder hierachy of Xcode, it can make a real folder for &lsquo;Group&rsquo; in Xcode project and make folder hierachy looks pretty.</p></blockquote>
+
+<p>Usage:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>synx SomeProject.xcodeproj
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Dash</h3>
+
+<blockquote><p>一个 OSX 上的开发文档工具，支持多种文档格式。可以到官网去找 <a href="https://kapeli.com/">https://kapeli.com/</a></p></blockquote>
+
+<h3>Alfred</h3>
+
+<blockquote><p>一个 OSX 上的效率工具，不多说了，google 下吧。</p></blockquote>
+
+<p><a href="https://github.com/facebook/xctool">xctool</a></p>
+
+<blockquote><p>A replacement for Apple&rsquo;s xcodebuild that makes it easier to build and test iOS or OSX apps.</p></blockquote>
+
+<p><a href="https://github.com/facebook/origami">origami</a></p>
+
+<blockquote><p>A Quartz Composer framework that enables interactive design prototyping without programming.</p></blockquote>
+</div> -->
+
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
     
       <a class="prev" href="/posts/3">&larr; Older</a>
@@ -604,26 +633,6 @@ TLSv1.2
     
       <li class="post">
         <a href="/blog/pip-use-china-sources/">Pip 使用国内的源</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/missing-ios-distribution-signing-identity-wen-ti-de-jie-jue-fang-fa/">Missing iOS Distribution Signing Identity 问题的解决方法</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/rang-atom-wen-ben-bian-ji-qi-zhi-chi-yun-xing-swift-yuan-wen-jian-de-fang-fa/">让 Atom 文本编辑器支持运行 Swift 源文件的方法</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/bian-yi-an-zhuang-kotlin-de-fang-fa/">编译安装 Kotlin 的方法</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/bian-yi-an-zhuang-swift-de-fang-fa/">编译安装 Swift 的方法</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/use-launchctl-create-daemon-task-step-by-step/">Use Launchctl Create Daemon Task Step by Step</a>
       </li>
     
       <li class="post">
@@ -680,6 +689,26 @@ TLSv1.2
     
       <li class="post">
         <a href="/blog/ios-chang-yong-di-san-fang-ku/">iOS 常用第三方库</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/gitsh-de-an-zhuang-he-shi-yong/">Gitsh 的安装和使用</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/shi-yong-cocoapods-lai-guan-li-ji-yu-svn-de-zi-xiang-mu/">使用 Cocoapods 来管理基于 Svn 的子项目</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/create-a-private-pods/">Create a Private Pods</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/use-cocoapods-publish-your-podspec/">Use Cocoapods Publish Your Podspec</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/objc-msgsend-bian-yi-cuo-wu-de-jie-jue-fang-fa/">Runtime 在新版本 Xcode 中引起的编译错误，及解决方法</a>
       </li>
     
   </ul>
