@@ -4,7 +4,7 @@
   <title><![CDATA[逆风@[iOS,android,nil]]]></title>
   <link href="http://tech.dehengxu.com/atom.xml" rel="self"/>
   <link href="http://tech.dehengxu.com/"/>
-  <updated>2016-06-16T13:29:04+08:00</updated>
+  <updated>2016-06-16T19:41:34+08:00</updated>
   <id>http://tech.dehengxu.com/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
@@ -29,7 +29,7 @@
 <li>通过 <code>vagrant box add name my_own_linux.box</code> 添加到 vagrant 中。</li>
 <li>建立 vagrant 虚拟机环境 <code>vagrant init my_own_linux</code></li>
 <li>启动虚拟机  <code>vagrant up</code></li>
-<li>Done!</li>
+<li><code>sudo -u vagrant wget https://raw.githubusercontent.com/mitchellh/vagrant/master/keys/vagrant.pub -O .ssh/authorized_keys</code>  为你的系统下载公钥，vagrant 才能通过 ssh 自动登录。</li>
 </ol>
 
 ]]></content>
