@@ -4,7 +4,7 @@
   <title><![CDATA[逆风@[iOS,android,nil]]]></title>
   <link href="http://tech.dehengxu.com/atom.xml" rel="self"/>
   <link href="http://tech.dehengxu.com/"/>
-  <updated>2016-06-16T12:42:27+08:00</updated>
+  <updated>2016-06-16T12:53:39+08:00</updated>
   <id>http://tech.dehengxu.com/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
@@ -31,7 +31,7 @@
 </span><span class='line'>Architectures in the fat file: some_static_lib.a are: armv7 arm64</span></code></pre></td></tr></table></div></figure>
 
 
-<p>说明该静态库是针对 armv7 和 arm64 架构的cpu进行的编译。</p>
+<p>  说明该静态库是针对 armv7 和 arm64 架构的cpu进行的编译。</p>
 
 <ol>
 <li>使用  <code>file some_dynamic_lib.so</code> 来查看一个动态库的目标平台类型，结果如下:</li>
@@ -44,7 +44,7 @@
 </span><span class='line'>armeabi/libumeng_opustool.so: ELF 32-bit LSB shared object, ARM, version 1 (SYSV), dynamically linked, stripped</span></code></pre></td></tr></table></div></figure>
 
 
-<p>说明该动态库是 arm 动态链接库，采用了 ELF 规范的 32位动态库。</p>
+<p>  说明该动态库是 arm 动态链接库，采用了 ELF 规范的 32位动态库。</p>
 ]]></content>
   </entry>
   
