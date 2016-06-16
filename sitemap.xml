@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://tech.dehengxu.com/blog/cha-kan-lian-jie-ku-wen-jian-a%257Cso%257Cdylib-ping-tai-lei-xing-de-fang-fa/</loc>
+<lastmod>2016-06-16T12:34:40+08:00</lastmod>
+</url>
+<url>
 <loc>http://tech.dehengxu.com/blog/pip-use-china-sources/</loc>
 <lastmod>2016-04-02T00:23:47+08:00</lastmod>
 </url>
@@ -302,26 +306,5 @@
 </url>
 <url>
 <loc>http://tech.dehengxu.com/blog/categories/ios/</loc>
-</url>
-<url>
-<loc>http://tech.dehengxu.com/posts/2/</loc>
-</url>
-<url>
-<loc>http://tech.dehengxu.com/posts/3/</loc>
-</url>
-<url>
-<loc>http://tech.dehengxu.com/posts/4/</loc>
-</url>
-<url>
-<loc>http://tech.dehengxu.com/posts/5/</loc>
-</url>
-<url>
-<loc>http://tech.dehengxu.com/posts/6/</loc>
-</url>
-<url>
-<loc>http://tech.dehengxu.com/posts/7/</loc>
-</url>
-<url>
-<loc>http://tech.dehengxu.com/posts/8/</loc>
 </url>
 </urlset>

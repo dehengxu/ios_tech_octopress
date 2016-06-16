@@ -9,7 +9,7 @@
   <meta name="author" content="Deheng Xu">
 
   
-  <meta name="description" content="Android 常用第三方库 Oct 19th, 2015 7:19 pm | Comments MQTT Resources Oct 12th, 2015 2:05 pm | Comments 使用国内源提高Android SDK Manager 速度 Oct 11th, 2015 9:54 &hellip;">
+  <meta name="description" content="App Transport Security 技术 Nov 5th, 2015 10:18 am | Comments Android 常用第三方库 Oct 19th, 2015 7:19 pm | Comments MQTT Resources Oct 12th, 2015 2:05 pm &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,124 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" ><a href="/blog/app-transport-security-ji-zhu/">App Transport Security 技术</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-11-05T10:18:25+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>10:18 am</span></time>
+        
+           | <a href="/blog/app-transport-security-ji-zhu/#disqus_thread"
+             data-disqus-identifier="http://tech.dehengxu.com/blog/app-transport-security-ji-zhu/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+
+<!-- <div class="entry-content"><p>App Transport Security is a feature that improves the security of connections between an app and web services. The feature consists of default connection requirements that conform to best practices for secure connections. Apps can override this default behavior and turn off transport security.</p>
+
+<p>Transport security is available in iOS 9.0 or later, and in OS X v10.11 and later.</p>
+
+<h2>Default behavior</h2>
+
+<p>All connections using the NSURLConnection, CFURL, or NSURLSession APIs use App Transport Security default behavior in apps built for iOS 9.0 or later, and OS X v10.11 or later. Connections that do not follow the requirements will fail. For more information on various the connection methods, see NSURLConnection Class Reference, CFURL Reference, or NSURLSession Class Reference.</p>
+
+<p>Info.plist can use <code>NSAppTransportSecurity</code> key to configurate ATS</p>
+
+<ul>
+<li>NSAllowsArbitraryLoads   <code>Yes</code> to disable ATS checking, <code>No</code> to enable ATS checking.</li>
+</ul>
+
+
+<p>The property keys are defined next.</p>
+
+<p>NSAppTransportSecurity
+A dictionary containing the settings for overriding default App Transport Security behaviors. The top level key for the app’s Info.plist file.</p>
+
+<p>NSAllowsArbitraryLoads
+A Boolean value used to disable App Transport Security for any domains not listed in the NSExceptionDomains dictionary. Listed domains use the settings specified for that domain.</p>
+
+<p>The default value of NO requires the default App Transport Security behavior for all connections.</p>
+
+<p>NSExceptionDomains
+A dictionary of App Transport Security exceptions for specific domains. Each key is a string containing the domain name for the exceptions.</p>
+
+<p><domain-name-for-exception-as-string>
+A dictionary of exceptions for the named domain. The name of the key is the name of the domain–for example, www.apple.com.</p>
+
+<h4>NSExceptionMinimumTLSVersion</h4>
+
+<p>A string that specifies a the minimum TLS version for connections. Valid values are:</p>
+
+<pre><code>TLSv1.0
+TLSv1.1
+TLSv1.2
+</code></pre>
+
+<p><code>TLSV1.2</code> is the default value.</p>
+
+<h4>NSExceptionRequiresForwardSecrecy</h4>
+
+<p>A Boolean value for overriding the requirement that the domain support forward secrecy using ciphers.</p>
+
+<p>YES is the default value and limits the ciphers to those shown in Default Behavior.</p>
+
+<p>Setting the value to NO adds the following the list of accepted ciphers:</p>
+
+<ul>
+<li>TLS_RSA_WITH_AES_256_GCM_SHA384</li>
+<li>TLS_RSA_WITH_AES_128_GCM_SHA256</li>
+<li>TLS_RSA_WITH_AES_256_CBC_SHA256</li>
+<li>TLS_RSA_WITH_AES_256_CBC_SHA</li>
+<li>TLS_RSA_WITH_AES_128_CBC_SHA256</li>
+<li>TLS_RSA_WITH_AES_128_CBC_SHA</li>
+</ul>
+
+
+<h4>NSExceptionAllowsInsecureHTTPLoads</h4>
+
+<p>A Boolean value for overriding the requirement that all connections use HTTPS. Use this key to access domains with no certificate, or with an error for a self-signed, expired, or hostname-mismatch certificate.</p>
+
+<p>NO is the default value.</p>
+
+<h4>NSIncludesSubdomains</h4>
+
+<p>A Boolean value for applying the overrides to all subdomains of the top-level domain.</p>
+
+<p>NO is the default value.</p>
+
+<h4>NSThirdPartyExceptionMinimumTLSVersion</h4>
+
+<p>A version of NSExceptionMinimumTLSVersion used when the domain is an app service that is not controlled by the developer.</p>
+
+<h4>NSThirdPartyExceptionRequiresForwardSecrecy</h4>
+
+<p>A version of NSExceptionRequiresForwardSecrecy used when the domain is an app service that is not controlled by the developer.</p>
+
+<h4>NSThirdPartyExceptionAllowsInsecureHTTPLoads</h4>
+
+<p>A version of NSExceptionAllowsInsecureHTTPLoads used when the domain is an app service that is not controlled by the developer.</p>
+
+<p><a href="https://developer.apple.com/library/prerelease/ios/documentation/General/Reference/InfoPlistKeyReference/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009248-SW1">Infomation Property List Key Reference</a></p>
+</div> -->
+
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -512,109 +630,6 @@ mirrors.opencas.cn  dl-ssl.google.com</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" ><a href="/blog/useful-tools-for-xcode/">Useful Tools for Xcode</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-09-16T11:15:21+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>16</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>11:15 am</span></time>
-        
-           | <a href="/blog/useful-tools-for-xcode/#disqus_thread"
-             data-disqus-identifier="http://tech.dehengxu.com/blog/useful-tools-for-xcode/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-
-<!-- <div class="entry-content"><h2>Tools</h2>
-
-<h3>Cocoapods</h3>
-
-<p><a href="http://cocoapods.org/">Cocoapods</a></p>
-
-<blockquote><p>说到 iOS 中的以来管理系统就不得不说 Cocoapods 了，它不仅提供了依赖包的管理，更提供了对项目的自动化配置功能。是一个相当好用的工具，据我所知 支付宝，美团等各大公司都在使用之。安装方式为:<code>gem install cocoapods</code> ，使用方式为 <code>pods + 子命令</code>。需要有一定的 ruby 基础，gems 的使用经验。</p></blockquote>
-
-<h3>Carthage</h3>
-
-<p><a href="https://github.com/Carthage/Carthage">Carthage</a></p>
-
-<blockquote><p>一个 Cocoa 上简单，分散的依赖管理工具</p></blockquote>
-
-<h3>xcodeproj</h3>
-
-<p><a href="http://www.rubydoc.info/gems/xcodeproj">xcodeproj</a></p>
-
-<blockquote><p>一个可以编程操作 .xcodeproj 的gem</p></blockquote>
-
-<h3>liftoff</h3>
-
-<p><a href="https://github.com/thoughtbot/liftoff">liftoff</a></p>
-
-<blockquote><p>CLI for creating and configuring new Xcode projects</p></blockquote>
-
-<h3>OCUnit2JUnit</h3>
-
-<p><a href="https://github.com/ciryon/OCUnit2JUnit">OCUnit2JUnit</a></p>
-
-<blockquote><p>A script that converts output from OCUnit in xcodebuild to the XML format used by JUnit. This allows for XCode builds on continuos integration servers like Jenkins, complete with test reports!</p></blockquote>
-
-<h3>cocoapods-repo-svn</h3>
-
-<p><a href="https://github.com/clarkda/cocoapods-repo-svn">cocoapods-repo-svn</a></p>
-
-<blockquote><p>svn support for cocoapods spec-repos</p></blockquote>
-
-<h3>iOS-Framework</h3>
-
-<p><a href="https://github.com/jverkoey/iOS-Framework">iOS-Framework</a></p>
-
-<blockquote><p>How to create, develop, and distribute iOS Static Frameworks quickly and efficiently</p></blockquote>
-
-<h3>Synx</h3>
-
-<blockquote><p>A command line tool used for reform folder hierachy of Xcode, it can make a real folder for &lsquo;Group&rsquo; in Xcode project and make folder hierachy looks pretty.</p></blockquote>
-
-<p>Usage:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>synx SomeProject.xcodeproj
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Dash</h3>
-
-<blockquote><p>一个 OSX 上的开发文档工具，支持多种文档格式。可以到官网去找 <a href="https://kapeli.com/">https://kapeli.com/</a></p></blockquote>
-
-<h3>Alfred</h3>
-
-<blockquote><p>一个 OSX 上的效率工具，不多说了，google 下吧。</p></blockquote>
-
-<p><a href="https://github.com/facebook/xctool">xctool</a></p>
-
-<blockquote><p>A replacement for Apple&rsquo;s xcodebuild that makes it easier to build and test iOS or OSX apps.</p></blockquote>
-
-<p><a href="https://github.com/facebook/origami">origami</a></p>
-
-<blockquote><p>A Quartz Composer framework that enables interactive design prototyping without programming.</p></blockquote>
-</div> -->
-
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/3">&larr; Older</a>
@@ -630,6 +645,10 @@ mirrors.opencas.cn  dl-ssl.google.com</p>
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/cha-kan-lian-jie-ku-wen-jian-a%7Cso%7Cdylib-ping-tai-lei-xing-de-fang-fa/">查看链接库文件 A|so|dylib 平台类型的方法</a>
+      </li>
     
       <li class="post">
         <a href="/blog/pip-use-china-sources/">Pip 使用国内的源</a>
@@ -705,10 +724,6 @@ mirrors.opencas.cn  dl-ssl.google.com</p>
     
       <li class="post">
         <a href="/blog/use-cocoapods-publish-your-podspec/">Use Cocoapods Publish Your Podspec</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/objc-msgsend-bian-yi-cuo-wu-de-jie-jue-fang-fa/">Runtime 在新版本 Xcode 中引起的编译错误，及解决方法</a>
       </li>
     
   </ul>

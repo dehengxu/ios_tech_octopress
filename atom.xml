@@ -4,7 +4,7 @@
   <title><![CDATA[逆风@[iOS,android,nil]]]></title>
   <link href="http://tech.dehengxu.com/atom.xml" rel="self"/>
   <link href="http://tech.dehengxu.com/"/>
-  <updated>2016-04-20T17:10:28+08:00</updated>
+  <updated>2016-06-16T12:42:27+08:00</updated>
   <id>http://tech.dehengxu.com/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
@@ -12,6 +12,41 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[查看链接库文件 A|so|dylib 平台类型的方法]]></title>
+    <link href="http://tech.dehengxu.com/blog/cha-kan-lian-jie-ku-wen-jian-a%7Cso%7Cdylib-ping-tai-lei-xing-de-fang-fa/"/>
+    <updated>2016-06-16T12:34:40+08:00</updated>
+    <id>http://tech.dehengxu.com/blog/cha-kan-lian-jie-ku-wen-jian-a|so|dylib-ping-tai-lei-xing-de-fang-fa</id>
+    <content type="html"><![CDATA[<p>macOS:</p>
+
+<ol>
+<li>可以使用 <code>lipo -info some_static_lib.a</code> 来查看一个静态库的目标平台类型，一般结果是这样的:</li>
+</ol>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>lipo -info some_static_lib.a
+</span><span class='line'>Architectures in the fat file: some_static_lib.a are: armv7 arm64</span></code></pre></td></tr></table></div></figure>
+
+
+<p>说明该静态库是针对 armv7 和 arm64 架构的cpu进行的编译。</p>
+
+<ol>
+<li>使用  <code>file some_dynamic_lib.so</code> 来查看一个动态库的目标平台类型，结果如下:</li>
+</ol>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>file armeabi/libumeng_opustool.so
+</span><span class='line'>armeabi/libumeng_opustool.so: ELF 32-bit LSB shared object, ARM, version 1 (SYSV), dynamically linked, stripped</span></code></pre></td></tr></table></div></figure>
+
+
+<p>说明该动态库是 arm 动态链接库，采用了 ELF 规范的 32位动态库。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Pip 使用国内的源]]></title>
@@ -1367,49 +1402,6 @@ mirrors.opencas.cn  dl-ssl.google.com</p>
 
 <p><a href="https://guides.cocoapods.org/making/getting-setup-with-trunk.html">Ref</a>
 <a href="https://guides.cocoapods.org/syntax/podspec.html">podspec</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Runtime 在新版本 Xcode 中引起的编译错误，及解决方法]]></title>
-    <link href="http://tech.dehengxu.com/blog/objc-msgsend-bian-yi-cuo-wu-de-jie-jue-fang-fa/"/>
-    <updated>2015-08-30T12:13:22+08:00</updated>
-    <id>http://tech.dehengxu.com/blog/objc-msgsend-bian-yi-cuo-wu-de-jie-jue-fang-fa</id>
-    <content type="html"><![CDATA[<h2>objc_msgSend</h2>
-
-<p>最近在 Xcode6.4 上编译一个老旧的库时，出现了运行时函数 <code>objc_msgSend</code> 的编译错误，提示:</p>
-
-<p><code>Too many arguments to function call, excepted 0, have 7</code>，说函数不需要参数，却传入了7个参数。</p>
-
-<p>原来是预编译指令的问题:</p>
-
-<p>找到编译出错的那个库，选中 target -> Build Settings 搜索框中输入 <code>objc</code></p>
-
-<p>定位到这里:</p>
-
-<p><img src="http://tech.dehengxu.com/images/refered/runtime_msgsend_fix.png" alt="msgSend_fix" /></p>
-
-<p>将 <code>Enable Strict Checking of objc_msgSend Calls</code>  字段设为 <code>NO</code></p>
-
-<p>关闭 <code>objc_msgSend</code> 的严格调用检查。</p>
-
-<h2>object->isa</h2>
-
-<p>最近在 Xcode6.4 上编译依赖 JSONKit 的时候，对于 JSONKit 内部通过指针访问 <code>isa</code> 变量代码，引起编译错误，提示:</p>
-
-<p><code>Assignment to Objective-C's isa is deprecated in favor of object_setClass()</code> 或者 <code>Assignment to Objective-C's isa is deprecated in favor of object_getClass()</code></p>
-
-<p>如图:</p>
-
-<p><img src="http://tech.dehengxu.com/images/refered/runtime_isa_error.png" alt="isa_err" /></p>
-
-<p>解决办法：找到 JSONKit 项目 target -> Build Settings 搜索框中输入 <code>isa</code></p>
-
-<p>定位到:</p>
-
-<p><img src="http://tech.dehengxu.com/images/refered/runtime_isa_fix.png" alt="isa_err" /></p>
-
-<p>修改为 <code>NO</code> 即可。</p>
 ]]></content>
   </entry>
   
