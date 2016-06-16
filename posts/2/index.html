@@ -9,7 +9,7 @@
   <meta name="author" content="Deheng Xu">
 
   
-  <meta name="description" content="App Transport Security 技术 Nov 5th, 2015 10:18 am | Comments Android 常用第三方库 Oct 19th, 2015 7:19 pm | Comments MQTT Resources Oct 12th, 2015 2:05 pm &hellip;">
+  <meta name="description" content="Web Protocol Collection Dec 1st, 2015 10:42 am | Comments App Transport Security 技术 Nov 5th, 2015 10:18 am | Comments Android 常用第三方库 Oct 19th, 2015 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,52 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" ><a href="/blog/web-protocol-collection/">Web Protocol Collection</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-12-01T10:42:15+08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>1</span><span class='date-suffix'>st</span>, <span class='date-year'>2015</span></span> <span class='time'>10:42 am</span></time>
+        
+           | <a href="/blog/web-protocol-collection/#disqus_thread"
+             data-disqus-identifier="http://tech.dehengxu.com/blog/web-protocol-collection/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+
+<!-- <div class="entry-content"><p><a href="https://www.ietf.org/rfc/rfc-index">rfc 文档</a></p>
+
+<p><a href="https://www.ietf.org/rfc/rfc1945">HTTP 1.0</a></p>
+
+<p><a href="https://www.ietf.org/rfc/rfc2068">HTTP 1.1</a></p>
+
+<p><a href="https://www.ietf.org/rfc/rfc2069">An Extension to HTTP : Digest Access Authentication</a></p>
+
+<p><a href="https://www.ietf.org/rfc/rfc2070">HTML</a></p>
+
+<p><a href="https://www.ietf.org/rfc/rfc3875">CGI 1.1</a></p>
+
+<p><a href="https://www.ietf.org/rfc/rfc2388">multipart/form-data</a></p>
+</div> -->
+
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -455,181 +501,6 @@ mirrors.opencas.cn  dl-ssl.google.com</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" ><a href="/blog/bash-usage/">Bash Usage</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-09-22T09:48:42+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>22</span><span class='date-suffix'>nd</span>, <span class='date-year'>2015</span></span> <span class='time'>9:48 am</span></time>
-        
-           | <a href="/blog/bash-usage/#disqus_thread"
-             data-disqus-identifier="http://tech.dehengxu.com/blog/bash-usage/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-
-<!-- <div class="entry-content"><h2>基础</h2>
-
-<h3>变量定义</h3>
-
-<p><code>var_name=var_value</code>，注意等号两边不能留下空格</p>
-
-<h3>输入参数</h3>
-
-<p>参数以空格分开分别是<code>$1</code>, <code>$2</code>, 到 <code>$9</code></p>
-
-<h2>条件控制处理</h2>
-
-<h3>if 语句</h3>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>if [ condition1 ]; then
-</span><span class='line'>
-</span><span class='line'>elif [ condition2 ]; then
-</span><span class='line'>
-</span><span class='line'>else
-</span><span class='line'>
-</span><span class='line'>fi</span></code></pre></td></tr></table></div></figure>
-
-
-<ol>
-<li>方括号内的条件和方括号之间至少有一个空格的距离</li>
-<li>每个方括号结束后通过<code>;</code>分隔</li>
-<li>不论 <code>if</code>, <code>else</code> 还是 <code>elif</code>，除最后一个条件外，都需要以 <code>then</code> 结尾</li>
-<li>最后以 <code>fi</code> 结尾。<code>fi</code> 是 <code>if</code> 的逆序写法，表示和<code>if</code>对应。</li>
-</ol>
-
-
-<h3>条件表达式</h3>
-
-<ol>
-<li><code>[ -z var_name ]</code>，变量是否为空字符串</li>
-<li><code>[ -n var_name ]</code>，变量是否为空值</li>
-</ol>
-
-
-<h2>字符串处理</h2>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>   -eq   等于
-</span><span class='line'>　　-ne    不等于
-</span><span class='line'>　　-gt    大于
-</span><span class='line'>　　-lt    小于
-</span><span class='line'>　　-le    小于等于
-</span><span class='line'>　　-ge   大于等于
-</span><span class='line'>　　-z    空串
-</span><span class='line'>　　=    两个字符相等
-</span><span class='line'>　　!=    两个字符不等
-</span><span class='line'>　　-n    非空串</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>文件，文件夹处理</h2>
-
-<ol>
-<li><code>if [ -d $path ];</code> 目录是否存在，反之 <code>if [ ! -d path ];</code> 目录是否不存在</li>
-<li><code>if [ -f $file ];</code> 文件是否存在，同上 <code>if [ ! -f file ];</code></li>
-<li><code>if [ -x $path ];</code> 是否有执行权限</li>
-</ol>
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>   –b 当file存在并且是块文件时返回真
-</span><span class='line'>　　-c 当file存在并且是字符文件时返回真
-</span><span class='line'>　　-d 当pathname存在并且是一个目录时返回真
-</span><span class='line'>　　-e 当pathname指定的文件或目录存在时返回真
-</span><span class='line'>　　-f 当file存在并且是正规文件时返回真
-</span><span class='line'>　　-g 当由pathname指定的文件或目录存在并且设置了SGID位时返回为真
-</span><span class='line'>　　-h 当file存在并且是符号链接文件时返回真，该选项在一些老系统上无效
-</span><span class='line'>　　-k 当由pathname指定的文件或目录存在并且设置了“粘滞”位时返回真
-</span><span class='line'>　　-p 当file存在并且是命令管道时返回为真
-</span><span class='line'>　　-r 当由pathname指定的文件或目录存在并且可读时返回为真
-</span><span class='line'>　　-s 当file存在文件大小大于0时返回真
-</span><span class='line'>　　-u 当由pathname指定的文件或目录存在并且设置了SUID位时返回真
-</span><span class='line'>　　-w 当由pathname指定的文件或目录存在并且可执行时返回真。一个目录为了它的内容被访问必然是可执行的。
-</span><span class='line'>　　-o 当由pathname指定的文件或目录存在并且被子当前进程的有效用户ID所指定的用户拥有时返回真。</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>循环控制</h2>
-
-<h2>数组</h2>
-
-<ol>
-<li>声明数组: <code>declare -a array_name</code></li>
-<li>定义: <code>array_name=(value1 value2 value3)</code></li>
-<li>内部指令:</li>
-</ol>
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>${name[i]}: Use element i of array name. i can be any arithmetic expression as described under let.
-</span><span class='line'>${name}: Use element 0 of array name.
-</span><span class='line'>${name[*]}: Use all elements of array name.
-</span><span class='line'>${name[@]}: Same as previous.
-</span><span class='line'>${#name[*]}: Use the number of elements in array name.
-</span><span class='line'>${#name[@]}: Same as previous.</span></code></pre></td></tr></table></div></figure>
-
-
-<ol>
-<li>关联数组: <code>array_name=([key1]=value1 [key2]=value2 [key3]=value3)</code></li>
-</ol>
-
-
-<h3>使用</h3>
-
-<p>${array_name[0]}</p>
-</div> -->
-
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/3">&larr; Older</a>
@@ -645,6 +516,10 @@ mirrors.opencas.cn  dl-ssl.google.com</p>
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/wei-vagrant-chuang-jian-ni-zi-ji-de-my-own-linux-box/">为vagrant 创建你自己的 My_own_linux Box</a>
+      </li>
     
       <li class="post">
         <a href="/blog/cha-kan-lian-jie-ku-wen-jian-a%7Cso%7Cdylib-ping-tai-lei-xing-de-fang-fa/">查看链接库文件 A|so|dylib 平台类型的方法</a>
@@ -720,10 +595,6 @@ mirrors.opencas.cn  dl-ssl.google.com</p>
     
       <li class="post">
         <a href="/blog/create-a-private-pods/">Create a Private Pods</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/use-cocoapods-publish-your-podspec/">Use Cocoapods Publish Your Podspec</a>
       </li>
     
   </ul>

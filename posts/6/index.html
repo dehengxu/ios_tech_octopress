@@ -9,7 +9,7 @@
   <meta name="author" content="Deheng Xu">
 
   
-  <meta name="description" content="NSMutableCopying and NSCopying Aug 19th, 2015 11:24 pm | Comments Jekyll Site Class Available Attr Aug 19th, 2015 11:35 am | Comments Jekyll &hellip;">
+  <meta name="description" content="Git常见用法 Aug 21st, 2015 1:52 pm | Comments NSMutableCopying and NSCopying Aug 19th, 2015 11:24 pm | Comments Jekyll Site Class Available Attr Aug &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,192 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" ><a href="/blog/gitchang-jian-yong-fa/">Git常见用法</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-08-21T13:52:39+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>21</span><span class='date-suffix'>st</span>, <span class='date-year'>2015</span></span> <span class='time'>1:52 pm</span></time>
+        
+           | <a href="/blog/gitchang-jian-yong-fa/#disqus_thread"
+             data-disqus-identifier="http://tech.dehengxu.com/blog/gitchang-jian-yong-fa/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+
+<!-- <div class="entry-content"><h3>1.checkout</h3>
+
+<h4>切换到指定 commit</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>checkout sha-1</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>切换到分支</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>checkout branch_name</span></code></pre></td></tr></table></div></figure>
+
+
+<hr />
+
+<h3>2.merge</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>   D--------E
+</span><span class='line'>  /
+</span><span class='line'> /
+</span><span class='line'>A---B---C---F----G master</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git merge test</span></code></pre></td></tr></table></div></figure>
+
+
+<p>合并结果：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>   D-------------E
+</span><span class='line'>  /               \
+</span><span class='line'> /                 \
+</span><span class='line'>A---B---C---F----G test, master</span></code></pre></td></tr></table></div></figure>
+
+
+<hr />
+
+<h3>3.rebase</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>   D--------E
+</span><span class='line'>  /
+</span><span class='line'> /
+</span><span class='line'>A---B---C---F----G master</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git rebase dev</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>A---B---D---C---E---F----G  test, master</span></code></pre></td></tr></table></div></figure>
+
+
+<p>复位基线，将两个分支的提交纪录，合并到一条基线路线上。功能作用上和 merge 类似，但是不会产生新的提交节点，而且不存在多个提交路线。</p>
+
+<p>当出现冲突的时候，先去解决冲突，完成后，使用 <code>rebase --continue</code> 继续 <code>rebase</code> 操作。如果冲突不重要也可以 <code>rebase --skip</code> 忽略冲突。</p>
+
+<h3>3. diff</h3>
+
+<p>git diff</p>
+
+<p>查看当前未暂存的文件与已暂存的文件中不同的部分。</p>
+
+<p>git diff &ndash;cached|&ndash;staged</p>
+
+<p>查看已暂存的文件与已提交的文件中不同的部分。</p>
+
+<h3>4. rm</h3>
+
+<p>git rm &ndash;cached</p>
+
+<p>将已暂存的文件从从暂存区中移除，但不删除文件</p>
+
+<p>git rm</p>
+
+<p>将文件从git 暂存区中移除，并且不再跟踪此文件，最后还需要提交此次删除操作。</p>
+
+<h3>5. mv</h3>
+
+<p>git mv 移动文件&amp;文件改名</p>
+
+<p>git mv name1 name2 相当于执行了三条指令</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mv name1 name2
+</span><span class='line'>git rm name1
+</span><span class='line'>git add name2</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>6. log</h3>
+
+<p>git log 查看提交记录</p>
+
+<p>git log &ndash;graph 按照图形的方式显示日志记录</p>
+
+<p>git log &ndash;oneline 按照单行的简化方案显示日志记录</p>
+
+<p>git log -p  展开显示每次提交的内容变更</p>
+
+<p>git log -p &ndash;word-diff 以单词为目标观察内容变更</p>
+
+<p>git log &ndash;stat  显示增改行数统计</p>
+
+<h3>7. commit</h3>
+
+<p>git commit &ndash;amend 修改并更新最后一次提交内容</p>
+
+<blockquote><p>&ndash;amend 参数相当于给你修改最后一次提交的机会</p></blockquote>
+
+<h3>8. reset</h3>
+
+<p>git reset head <file>   取消暂存到 head 版本</p>
+
+<h3>9. diff</h3>
+
+<p>git diff</p>
+
+<p>git diff target_branch_name</p>
+
+<h3>10. bundle</h3>
+
+<h4>打包</h4>
+
+<p>git bundle create bundle_name HEAD branch_name</p>
+
+<h4>解包</h4>
+
+<p>git clone bundle_name folder_name</p>
+
+<h4>Config</h4>
+
+<p>  <a href="https://jk.gs/git-config.html">https://jk.gs/git-config.html</a></p>
+</div> -->
+
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1282,44 +1468,6 @@ return _dispatch_get_root_queue(qos, flags &amp; DISPATCH_QUEUE_OVERCOMMIT);
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" ><a href="/blog/apple-source-code-&-documents/">Apple Source Code & Documents</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-08-17T10:04:40+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>10:04 am</span></time>
-        
-           | <a href="/blog/apple-source-code-&-documents/#disqus_thread"
-             data-disqus-identifier="http://tech.dehengxu.com/blog/apple-source-code-&-documents/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-
-<!-- <div class="entry-content"><p><a href="http://opensource.apple.com/tarballs/" target="_blank">Apple Open Source</a></p>
-
-<p><a href="https://developer.apple.com/resources/" target="_blank">Apple Developer Resources</a></p>
-
-<p><a href="https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/Collections/Collections.html" target="_blank">Collections Programming Topics</a></p>
-</div> -->
-
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/7">&larr; Older</a>
@@ -1335,6 +1483,10 @@ return _dispatch_get_root_queue(qos, flags &amp; DISPATCH_QUEUE_OVERCOMMIT);
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/wei-vagrant-chuang-jian-ni-zi-ji-de-my-own-linux-box/">为vagrant 创建你自己的 My_own_linux Box</a>
+      </li>
     
       <li class="post">
         <a href="/blog/cha-kan-lian-jie-ku-wen-jian-a%7Cso%7Cdylib-ping-tai-lei-xing-de-fang-fa/">查看链接库文件 A|so|dylib 平台类型的方法</a>
@@ -1410,10 +1562,6 @@ return _dispatch_get_root_queue(qos, flags &amp; DISPATCH_QUEUE_OVERCOMMIT);
     
       <li class="post">
         <a href="/blog/create-a-private-pods/">Create a Private Pods</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/use-cocoapods-publish-your-podspec/">Use Cocoapods Publish Your Podspec</a>
       </li>
     
   </ul>

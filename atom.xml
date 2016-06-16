@@ -4,7 +4,7 @@
   <title><![CDATA[逆风@[iOS,android,nil]]]></title>
   <link href="http://tech.dehengxu.com/atom.xml" rel="self"/>
   <link href="http://tech.dehengxu.com/"/>
-  <updated>2016-06-16T12:53:39+08:00</updated>
+  <updated>2016-06-16T13:29:04+08:00</updated>
   <id>http://tech.dehengxu.com/</id>
   <author>
     <name><![CDATA[Deheng Xu]]></name>
@@ -12,6 +12,28 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[为vagrant 创建你自己的 My_own_linux Box]]></title>
+    <link href="http://tech.dehengxu.com/blog/wei-vagrant-chuang-jian-ni-zi-ji-de-my-own-linux-box/"/>
+    <updated>2016-06-16T13:23:01+08:00</updated>
+    <id>http://tech.dehengxu.com/blog/wei-vagrant-chuang-jian-ni-zi-ji-de-my-own-linux-box</id>
+    <content type="html"><![CDATA[<ol>
+<li>安装 Virtualbox</li>
+<li>安装 vagrant</li>
+<li>Virtualbox 新建本地虚拟机 起名为 my_own_linux</li>
+<li>安装 ubuntu 16.06 server</li>
+<li>系统用户名密码都设置成 <code>vagrant</code></li>
+<li>建立 <code>/home/vagrant/.ssh/authorized_keys</code> 文件</li>
+<li>在宿主系统中执行 <code>vagrant package --base my_own_linux</code>，这时 vagrant 会从 Virtualbox 中寻找该虚拟机，并导出成 box包。</li>
+<li>通过 <code>vagrant box add name my_own_linux.box</code> 添加到 vagrant 中。</li>
+<li>建立 vagrant 虚拟机环境 <code>vagrant init my_own_linux</code></li>
+<li>启动虚拟机  <code>vagrant up</code></li>
+<li>Done!</li>
+</ol>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[查看链接库文件 A|so|dylib 平台类型的方法]]></title>
@@ -1195,213 +1217,6 @@ mirrors.opencas.cn  dl-ssl.google.com</p>
 
 
 <p><a href="https://guides.cocoapods.org/making/private-cocoapods.html">REF</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Use Cocoapods Publish Your Podspec]]></title>
-    <link href="http://tech.dehengxu.com/blog/use-cocoapods-publish-your-podspec/"/>
-    <updated>2015-08-31T22:10:34+08:00</updated>
-    <id>http://tech.dehengxu.com/blog/use-cocoapods-publish-your-podspec</id>
-    <content type="html"><![CDATA[<h3>创建 podspec</h3>
-
-<p>pod spec create NAME</p>
-
-<h3>补完 podspec 文件</h3>
-
-<p>参考例子：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='Ruby'><span class='line'><span class="no">Pod</span><span class="o">::</span><span class="no">Spec</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">spec</span><span class="o">|</span>
-</span><span class='line'>  <span class="n">spec</span><span class="o">.</span><span class="n">name</span>             <span class="o">=</span> <span class="s1">&#39;Reachability&#39;</span>
-</span><span class='line'>  <span class="n">spec</span><span class="o">.</span><span class="n">version</span>          <span class="o">=</span> <span class="s1">&#39;3.1.0&#39;</span>
-</span><span class='line'>  <span class="n">spec</span><span class="o">.</span><span class="n">license</span>          <span class="o">=</span> <span class="p">{</span> <span class="ss">:type</span> <span class="o">=&gt;</span> <span class="s1">&#39;BSD&#39;</span> <span class="p">}</span>
-</span><span class='line'>  <span class="n">spec</span><span class="o">.</span><span class="n">homepage</span>         <span class="o">=</span> <span class="s1">&#39;https://github.com/tonymillion/Reachability&#39;</span>
-</span><span class='line'>  <span class="n">spec</span><span class="o">.</span><span class="n">authors</span>          <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;Tony Million&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;tonymillion@gmail.com&#39;</span> <span class="p">}</span>
-</span><span class='line'>  <span class="n">spec</span><span class="o">.</span><span class="n">summary</span>          <span class="o">=</span> <span class="s1">&#39;ARC and GCD Compatible Reachability Class for iOS and OS X.&#39;</span>
-</span><span class='line'>  <span class="n">spec</span><span class="o">.</span><span class="n">source</span>           <span class="o">=</span> <span class="p">{</span> <span class="ss">:git</span> <span class="o">=&gt;</span> <span class="s1">&#39;https://github.com/tonymillion/Reachability.git&#39;</span><span class="p">,</span> <span class="ss">:tag</span> <span class="o">=&gt;</span> <span class="s1">&#39;v3.1.0&#39;</span> <span class="p">}</span>
-</span><span class='line'>  <span class="n">spec</span><span class="o">.</span><span class="n">source_files</span>     <span class="o">=</span> <span class="s1">&#39;Reachability.h,m&#39;</span>
-</span><span class='line'>  <span class="n">spec</span><span class="o">.</span><span class="n">framework</span>        <span class="o">=</span> <span class="s1">&#39;SystemConfiguration&#39;</span>
-</span><span class='line'>  <span class="n">spec</span><span class="o">.</span><span class="n">requires_arc</span>     <span class="o">=</span> <span class="kp">true</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><a href="https://guides.cocoapods.org/making/specs-and-specs-repo.html">Offical Docs</a></p>
-
-<h3>验证代码</h3>
-
-<p><code>pod lib lint CoreDataEnvir.podspec</code></p>
-
-<p>如果你将 source 路径设置为 git@github.com&hellip;..，会出现这种警告提示：<code>- WARN  | Git SSH URLs will NOT work for people behind firewalls configured to only allow HTTP, therefore HTTPS is preferred.</code>。将 source 地址设置为 <a href="https://github.com....">https://github.com....</a> 的形式，可以解决此问题。</p>
-
-<h3>验证 podspec</h3>
-
-<p><code>pod spec lint CoreDataEnvir.podspec</code></p>
-
-<h3>注册 Cocoapods 会话</h3>
-
-<p>为了保证与 Cocoapods 通信的合法性，需要在你的电脑上注册一个会话，方法如下：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='Bash'><span class='line'>pod trunk register orta@cocoapods.org <span class="s1">&#39;Orta Therox&#39;</span> --description<span class="o">=</span><span class="s1">&#39;macbook air&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>执行完后，你的邮箱会收到一封激活邮件，点击其中的激活链接后，你的会话就算是合法了。</p>
-
-<h3>提交你的 podspec</h3>
-
-<p><code>pod trunk push CoreDataEnvir.podspec</code> 这条命令会把你的 podspec 提交到公共库中。</p>
-
-<p>这个步骤第一次执行，会比较慢，做好相应准备，比如翻好墙，以防长时间无响应。</p>
-
-<p>比如我最近提交的: CoreDataEnvir</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-</pre></td><td class='code'><pre><code class='Bash'><span class='line'>pod trunk push CoreDataEnvir.podspec --verbose
-</span><span class='line'>/usr/bin/git pull --ff-only
-</span><span class='line'>    From https://github.com/CocoaPods/Specs
-</span><span class='line'>        c812aae..c4e2a00  master     -&gt; origin/master
-</span><span class='line'>    Updating c812aae..c4e2a00
-</span><span class='line'>    Fast-forward
-</span><span class='line'>    CocoaPods-version.yml                              <span class="p">|</span>    <span class="m">2</span> +-
-</span><span class='line'>    .../1.5/1PasswordExtension.podspec.json            <span class="p">|</span>   <span class="m">37</span> +
-</span><span class='line'>    .../1.1/ABFRealmMapView.podspec.json               <span class="p">|</span>   <span class="m">31</span> +
-</span><span class='line'>    .../1.1/ABFRealmSearchViewController.podspec.json  <span class="p">|</span>   <span class="m">31</span> +
-</span><span class='line'>...
-</span><span class='line'>    Specs/wpxmlrpc/0.8.1/wpxmlrpc.podspec.json         <span class="p">|</span>   <span class="m">27</span> +
-</span><span class='line'>    .../0.1.4/youtube-ios-player-helper.podspec.json   <span class="p">|</span>   <span class="m">35</span> +
-</span><span class='line'>    .../0.2.2/youtube-parser.podspec.json              <span class="p">|</span>   <span class="m">20</span> +
-</span><span class='line'>    Specs/yuntongxun/0.0.1/yuntongxun.podspec.json     <span class="p">|</span>   <span class="m">36</span> +
-</span><span class='line'>    <span class="m">2832</span> files changed, <span class="m">118838</span> insertions<span class="o">(</span>+<span class="o">)</span>, <span class="m">323</span> deletions<span class="o">(</span>-<span class="o">)</span>
-</span><span class='line'>    create mode <span class="m">100644</span> Specs/1PasswordExtension/1.5/1PasswordExtension
-</span><span class='line'>    create mode <span class="m">100644</span> Specs/ABFRealmMapView/1.1/ABFRealmMapView.podsp
-</span><span class='line'>    create mode <span class="m">100644</span> Specs/ABFRealmSearchViewController/1.1/ABFRealm
-</span><span class='line'>    create mode <span class="m">100644</span> Specs/ABFRealmTableViewController/1.0/ABFRealmT
-</span><span class='line'>    create mode <span class="m">100644</span> Specs/ABLoader/0.0.2/ABLoader.podspec.json
-</span><span class='line'>...
-</span><span class='line'>    create mode <span class="m">100644</span> Specs/tw10n/1.1.1/tw10n.podspec.json
-</span><span class='line'>    create mode <span class="m">100644</span> Specs/twitter-text/1.13.0/twitter-text.podspec.json
-</span><span class='line'>    create mode <span class="m">100644</span> Specs/wpxmlrpc/0.8.1/wpxmlrpc.podspec.json
-</span><span class='line'>    create mode <span class="m">100644</span> Specs/youtube-ios-player-helper/0.1.4/youtube-ios-player-helper.podspec.json
-</span><span class='line'>    create mode <span class="m">100644</span> Specs/youtube-parser/0.2.2/youtube-parser.podspec.json
-</span><span class='line'>    create mode <span class="m">100644</span> Specs/yuntongxun/0.0.1/yuntongxun.podspec.json
-</span><span class='line'>
-</span><span class='line'> CocoaPods 0.39.0.beta.3 is available.
-</span><span class='line'> To update use: <span class="sb">`</span>sudo gem install cocoapods --pre<span class="sb">`</span>
-</span><span class='line'> <span class="o">[</span>!<span class="o">]</span> This is a <span class="nb">test </span>version we<span class="err">&#39;</span>d love you to try.
-</span><span class='line'>
-</span><span class='line'> For more information see http://blog.cocoapods.org
-</span><span class='line'> and the CHANGELOG <span class="k">for</span> this version http://git.io/BaH8pQ.
-</span><span class='line'>
-</span><span class='line'> Validating podspec
-</span><span class='line'>     CoreDataEnvir <span class="o">(</span>0.4<span class="o">)</span> - Analyzing on iOS platform.
-</span><span class='line'>   Preparing
-</span><span class='line'>
-</span><span class='line'> Analyzing dependencies
-</span><span class='line'>
-</span><span class='line'> Fetching external sources
-</span><span class='line'> -&gt; Fetching podspec <span class="k">for</span> <span class="sb">`</span>CoreDataEnvir<span class="sb">`</span> from <span class="sb">`</span>/Users/nicholasxu/Projects/iOS/XFramework/CoreDataEnvir/CoreDataEnvir.podspec<span class="sb">`</span>
-</span><span class='line'>
-</span><span class='line'> Resolving dependencies of
-</span><span class='line'>
-</span><span class='line'> Comparing resolved specification to the sandbox manifest
-</span><span class='line'>   A CoreDataEnvir
-</span><span class='line'>
-</span><span class='line'> Downloading dependencies
-</span><span class='line'>
-</span><span class='line'> -&gt; Installing CoreDataEnvir <span class="o">(</span>0.4<span class="o">)</span>
-</span><span class='line'>   &gt; Copying CoreDataEnvir from
-</span><span class='line'>   <span class="sb">`</span>/Users/nicholasxu/Library/Caches/CocoaPods/Pods/External/CoreDataEnvir/25047baf5458c8928d40aa32eccec759-043e4<span class="sb">`</span> to
-</span><span class='line'>   <span class="sb">`</span>../../../../../../private/var/folders/6r/flwjnj4x4wsb8wcbmjj88_z40000gn/T/CocoaPods/Lint/Pods/CoreDataEnvir<span class="sb">`</span>
-</span><span class='line'>   - Running pre install hooks
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>经过了漫长的 Pods master specs 的下载过程，才开始进行库的验证过程，每一个 tag 都会验证，这个过程也很漫长，好在过去的每一个 tag 我都执行过验证。</p>
-
-<blockquote><p>PS:如果需要提交到私有库，你需要执行 <code>pod trunk push CoreDataEnvir.podspec</code></p></blockquote>
-
-<h3>如果你的验证阶段经常 failed，有两种解决办法：</h3>
-
-<ol>
-<li>解决所有的 warning, 配置好 podspec 文件。</li>
-<li>在lint 后面增加一个参数 <code>--allow-warning</code>，为了看清楚出错的原因你也可以增加  <code>--verbose</code>。</li>
-</ol>
-
-
-<hr />
-
-<p><a href="https://guides.cocoapods.org/making/getting-setup-with-trunk.html">Ref</a>
-<a href="https://guides.cocoapods.org/syntax/podspec.html">podspec</a></p>
 ]]></content>
   </entry>
   

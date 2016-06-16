@@ -9,7 +9,7 @@
   <meta name="author" content="Deheng Xu">
 
   
-  <meta name="description" content="查看链接库文件 A|so|dylib 平台类型的方法 Jun 16th, 2016 12:34 pm | Comments Pip 使用国内的源 Apr 2nd, 2016 12:23 am | Comments Testing in Android Mar 1st, 2016 6:27 pm &hellip;">
+  <meta name="description" content="为vagrant 创建你自己的 My_own_linux Box Jun 16th, 2016 1:23 pm | Comments 查看链接库文件 A|so|dylib 平台类型的方法 Jun 16th, 2016 12:34 pm | Comments Pip 使用国内的源 Apr 2nd &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,53 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" ><a href="/blog/wei-vagrant-chuang-jian-ni-zi-ji-de-my-own-linux-box/">为vagrant 创建你自己的 My_own_linux Box</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2016-06-16T13:23:01+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>16</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>1:23 pm</span></time>
+        
+           | <a href="/blog/wei-vagrant-chuang-jian-ni-zi-ji-de-my-own-linux-box/#disqus_thread"
+             data-disqus-identifier="http://tech.dehengxu.com/blog/wei-vagrant-chuang-jian-ni-zi-ji-de-my-own-linux-box/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+
+<!-- <div class="entry-content"><ol>
+<li>安装 Virtualbox</li>
+<li>安装 vagrant</li>
+<li>Virtualbox 新建本地虚拟机 起名为 my_own_linux</li>
+<li>安装 ubuntu 16.06 server</li>
+<li>系统用户名密码都设置成 <code>vagrant</code></li>
+<li>建立 <code>/home/vagrant/.ssh/authorized_keys</code> 文件</li>
+<li>在宿主系统中执行 <code>vagrant package --base my_own_linux</code>，这时 vagrant 会从 Virtualbox 中寻找该虚拟机，并导出成 box包。</li>
+<li>通过 <code>vagrant box add name my_own_linux.box</code> 添加到 vagrant 中。</li>
+<li>建立 vagrant 虚拟机环境 <code>vagrant init my_own_linux</code></li>
+<li>启动虚拟机  <code>vagrant up</code></li>
+<li>Done!</li>
+</ol>
+
+</div> -->
+
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -574,52 +621,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" ><a href="/blog/web-protocol-collection/">Web Protocol Collection</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-12-01T10:42:15+08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>1</span><span class='date-suffix'>st</span>, <span class='date-year'>2015</span></span> <span class='time'>10:42 am</span></time>
-        
-           | <a href="/blog/web-protocol-collection/#disqus_thread"
-             data-disqus-identifier="http://tech.dehengxu.com/blog/web-protocol-collection/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-
-<!-- <div class="entry-content"><p><a href="https://www.ietf.org/rfc/rfc-index">rfc 文档</a></p>
-
-<p><a href="https://www.ietf.org/rfc/rfc1945">HTTP 1.0</a></p>
-
-<p><a href="https://www.ietf.org/rfc/rfc2068">HTTP 1.1</a></p>
-
-<p><a href="https://www.ietf.org/rfc/rfc2069">An Extension to HTTP : Digest Access Authentication</a></p>
-
-<p><a href="https://www.ietf.org/rfc/rfc2070">HTML</a></p>
-
-<p><a href="https://www.ietf.org/rfc/rfc3875">CGI 1.1</a></p>
-
-<p><a href="https://www.ietf.org/rfc/rfc2388">multipart/form-data</a></p>
-</div> -->
-
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -633,6 +634,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/wei-vagrant-chuang-jian-ni-zi-ji-de-my-own-linux-box/">为vagrant 创建你自己的 My_own_linux Box</a>
+      </li>
     
       <li class="post">
         <a href="/blog/cha-kan-lian-jie-ku-wen-jian-a%7Cso%7Cdylib-ping-tai-lei-xing-de-fang-fa/">查看链接库文件 A|so|dylib 平台类型的方法</a>
@@ -708,10 +713,6 @@
     
       <li class="post">
         <a href="/blog/create-a-private-pods/">Create a Private Pods</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/use-cocoapods-publish-your-podspec/">Use Cocoapods Publish Your Podspec</a>
       </li>
     
   </ul>
