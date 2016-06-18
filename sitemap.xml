@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://tech.dehengxu.com/blog/use-docker-with-aliyuncs/</loc>
+<lastmod>2016-06-18T09:16:00+08:00</lastmod>
+</url>
+<url>
 <loc>http://tech.dehengxu.com/blog/wei-vagrant-chuang-jian-ni-zi-ji-de-my-own-linux-box/</loc>
 <lastmod>2016-06-16T13:23:01+08:00</lastmod>
 </url>
@@ -331,5 +335,8 @@
 </url>
 <url>
 <loc>http://tech.dehengxu.com/posts/8/</loc>
+</url>
+<url>
+<loc>http://tech.dehengxu.com/posts/9/</loc>
 </url>
 </urlset>

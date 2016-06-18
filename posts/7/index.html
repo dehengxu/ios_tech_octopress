@@ -9,7 +9,7 @@
   <meta name="author" content="Deheng Xu">
 
   
-  <meta name="description" content="Apple Source Code & Documents Aug 17th, 2015 10:04 am | Comments 使用现代Objective-C Aug 16th, 2015 3:32 pm | Comments Useful Plugins & Tools for Xcode &hellip;">
+  <meta name="description" content="Libdispatch 源码分析 Aug 18th, 2015 8:57 am | Comments Apple Source Code & Documents Aug 17th, 2015 10:04 am | Comments 使用现代Objective-C Aug 16th, 2015 3 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,332 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" ><a href="/blog/libdispatch-yuan-ma-fen-xi/">Libdispatch 源码分析</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-08-18T08:57:37+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>18</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>8:57 am</span></time>
+        
+           | <a href="/blog/libdispatch-yuan-ma-fen-xi/#disqus_thread"
+             data-disqus-identifier="http://tech.dehengxu.com/blog/libdispatch-yuan-ma-fen-xi/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+
+<!-- <div class="entry-content"><p>GCD 是苹果的多线程框架，提供了大量便捷的特性，允许用户利用多核 cpu 技术 ，使用中，最常接触的是</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>dispatch_queue_t dispatch_get_global_queue()
+</span><span class='line'>
+</span><span class='line'>dispatch_queue_t dispatch_queue_create()
+</span><span class='line'>
+</span><span class='line'>void dispatch_async()
+</span><span class='line'>
+</span><span class='line'>dispatch_semaphore_t dispatch_semaphor_create()
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>关键词</h3>
+
+<p>后面的描述中会用到一下几个关键词:</p>
+
+<p><code>dq</code>: dispatch_queue 的简写</p>
+
+<p><code>qos</code>: quality of service 的简写</p>
+
+<p>GCD 虽然好用，但对于 GCD 的底层实现我们却知之甚少，好在苹果开源了 GCD 的源码项目 libdispatch，我们可以在这里下载目前最新的版本 <a href="http://opensource.apple.com/tarballs/libdispatch/libdispatch-442.1.4.tar.gz">libdispatch</a></p>
+
+<h3>dispatch_queue_create() 函数</h3>
+
+<p>我们来看看 dispatch_queue_create 函数的定义</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>dispatch_queue_t
+</span><span class='line'>dispatch_queue_create(const char *label, dispatch_queue_attr_t attr)
+</span><span class='line'>{
+</span><span class='line'>  return dispatch_queue_create_with_target(label, attr,
+</span><span class='line'>          DISPATCH_TARGET_QUEUE_DEFAULT);
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>可以看到，其实 dispatch_queue_create 调用了私有函数 dispatch_queue_create_with_target ，移步到源码</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>// skip zero
+</span><span class='line'>// 1 - main_q
+</span><span class='line'>// 2 - mgr_q
+</span><span class='line'>// 3 - mgr_root_q
+</span><span class='line'>// 4,5,6,7,8,9,10,11,12,13,14,15 - global queues
+</span><span class='line'>// we use 'xadd' on Intel, so the initial value == next assigned
+</span><span class='line'>unsigned long volatile _dispatch_queue_serial_numbers = 16;
+</span><span class='line'>
+</span><span class='line'>dispatch_queue_t
+</span><span class='line'>dispatch_queue_create_with_target(const char *label, dispatch_queue_attr_t dqa,
+</span><span class='line'>      dispatch_queue_t tq)
+</span><span class='line'>{
+</span><span class='line'>#if DISPATCH_USE_NOQOS_WORKQUEUE_FALLBACK
+</span><span class='line'>  // Be sure the root queue priorities are set
+</span><span class='line'>  dispatch_once_f(&_dispatch_root_queues_pred, NULL,
+</span><span class='line'>          _dispatch_root_queues_init);
+</span><span class='line'>#endif
+</span><span class='line'>  bool disallow_tq = (slowpath(dqa) && dqa != DISPATCH_QUEUE_CONCURRENT);
+</span><span class='line'>  if (!slowpath(dqa)) {
+</span><span class='line'>      dqa = _dispatch_get_queue_attr(0, 0, false, false);
+</span><span class='line'>  } else if (dqa-&gt;do_vtable != DISPATCH_VTABLE(queue_attr)) {
+</span><span class='line'>      DISPATCH_CLIENT_CRASH("Invalid queue attribute");
+</span><span class='line'>  }
+</span><span class='line'>  dispatch_queue_t dq = _dispatch_alloc(DISPATCH_VTABLE(queue),
+</span><span class='line'>          sizeof(struct dispatch_queue_s) - DISPATCH_QUEUE_CACHELINE_PAD);
+</span><span class='line'>  _dispatch_queue_init(dq);
+</span><span class='line'>  if (label) {
+</span><span class='line'>      dq-&gt;dq_label = strdup(label);
+</span><span class='line'>  }
+</span><span class='line'>  qos_class_t qos = dqa-&gt;dqa_qos_class;
+</span><span class='line'>  bool overcommit = dqa-&gt;dqa_overcommit;
+</span><span class='line'>#if HAVE_PTHREAD_WORKQUEUE_QOS
+</span><span class='line'>  dq-&gt;dq_priority = _pthread_qos_class_encode(qos, dqa-&gt;dqa_relative_priority,
+</span><span class='line'>          overcommit);
+</span><span class='line'>#endif
+</span><span class='line'>  if (dqa-&gt;dqa_concurrent) {
+</span><span class='line'>      dq-&gt;dq_width = DISPATCH_QUEUE_WIDTH_MAX;
+</span><span class='line'>  } else {
+</span><span class='line'>      // Default serial queue target queue is overcommit!
+</span><span class='line'>      overcommit = true;
+</span><span class='line'>  }
+</span><span class='line'>  if (!tq) {
+</span><span class='line'>      if (qos == _DISPATCH_QOS_CLASS_UNSPECIFIED) {
+</span><span class='line'>          qos = _DISPATCH_QOS_CLASS_DEFAULT;
+</span><span class='line'>      }
+</span><span class='line'>#if DISPATCH_USE_NOQOS_WORKQUEUE_FALLBACK
+</span><span class='line'>      if (qos == _DISPATCH_QOS_CLASS_USER_INTERACTIVE &&
+</span><span class='line'>              !_dispatch_root_queues[
+</span><span class='line'>              DISPATCH_ROOT_QUEUE_IDX_USER_INTERACTIVE_QOS].dq_priority) {
+</span><span class='line'>          qos = _DISPATCH_QOS_CLASS_USER_INITIATED;
+</span><span class='line'>      }
+</span><span class='line'>#endif
+</span><span class='line'>      bool maintenance_fallback = false;
+</span><span class='line'>#if DISPATCH_USE_NOQOS_WORKQUEUE_FALLBACK
+</span><span class='line'>      maintenance_fallback = true;
+</span><span class='line'>#endif // DISPATCH_USE_NOQOS_WORKQUEUE_FALLBACK
+</span><span class='line'>      if (maintenance_fallback) {
+</span><span class='line'>          if (qos == _DISPATCH_QOS_CLASS_MAINTENANCE &&
+</span><span class='line'>                  !_dispatch_root_queues[
+</span><span class='line'>                  DISPATCH_ROOT_QUEUE_IDX_MAINTENANCE_QOS].dq_priority) {
+</span><span class='line'>              qos = _DISPATCH_QOS_CLASS_BACKGROUND;
+</span><span class='line'>          }
+</span><span class='line'>      }
+</span><span class='line'>
+</span><span class='line'>      tq = _dispatch_get_root_queue(qos, overcommit);
+</span><span class='line'>      if (slowpath(!tq)) {
+</span><span class='line'>          DISPATCH_CLIENT_CRASH("Invalid queue attribute");
+</span><span class='line'>      }
+</span><span class='line'>  } else {
+</span><span class='line'>      _dispatch_retain(tq);
+</span><span class='line'>      if (disallow_tq) {
+</span><span class='line'>          // TODO: override target queue's qos/overcommit ?
+</span><span class='line'>          DISPATCH_CLIENT_CRASH("Invalid combination of target queue & "
+</span><span class='line'>                  "queue attribute");
+</span><span class='line'>      }
+</span><span class='line'>      _dispatch_queue_priority_inherit_from_target(dq, tq);
+</span><span class='line'>  }
+</span><span class='line'>  _dispatch_queue_set_override_priority(dq);
+</span><span class='line'>  dq-&gt;do_targetq = tq;
+</span><span class='line'>  _dispatch_object_debug(dq, "%s", __func__);
+</span><span class='line'>  return _dispatch_introspection_queue_create(dq);
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>看几个关键的地方</p>
+
+<p><code>_dispatch_queue_init(dq);</code></p>
+
+<p><code>dq-&gt;dq_width = DISPATCH_QUEUE_WIDTH_MAX;</code></p>
+
+<h3>dispatch_async()</h3>
+
+<p><code>dispatch_async()</code> 会调用 <code>_dispatch_async_f()</code> 完成真正的异步派发任务的操作。</p>
+
+<p>_dispatch_async_f() 中</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>if (dq-&gt;dq_width == 1 || flags & DISPATCH_BLOCK_BARRIER) {
+</span><span class='line'>  return _dispatch_barrier_async_f(dq, ctxt, func, pp, flags);
+</span><span class='line'>}
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>说明当队列宽度为1 的时候，会自动通过 <code>_dispatch_barrier_async_f</code> 加入到等待队列中。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>dc = fastpath(_dispatch_continuation_alloc_cacheonly());
+</span><span class='line'>if (!dc) {
+</span><span class='line'>  return _dispatch_async_f_slow(dq, ctxt, func, pp, flags);
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>从缓存中获取继续运行的队列如果没有，就通过 _dispatch_async_f_slow 从堆上面创建一个队列</p>
+
+<h3>dispatch_sync</h3>
+
+<h3>dispatch_get_global_queue</h3>
+
+<p><code>
+return _dispatch_get_root_queue(qos, flags &amp; DISPATCH_QUEUE_OVERCOMMIT);
+</code></p>
+
+<p>通过全局 dq 的优先级别设置好 qos 属性，在从队列池 <code>_dispatch_root_queues[]</code> 中，取出一个 dq 出来，类似于这样:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>return &_dispatch_root_queues[
+</span><span class='line'>              DISPATCH_ROOT_QUEUE_IDX_MAINTENANCE_QOS_OVERCOMMIT];</span></code></pre></td></tr></table></div></figure>
+
+
+<p>得到的队列底层代码信息:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>[DISPATCH_ROOT_QUEUE_IDX_MAINTENANCE_QOS_OVERCOMMIT] = {
+</span><span class='line'>      .do_vtable = DISPATCH_VTABLE(queue_root),
+</span><span class='line'>      .do_ref_cnt = DISPATCH_OBJECT_GLOBAL_REFCNT,
+</span><span class='line'>      .do_xref_cnt = DISPATCH_OBJECT_GLOBAL_REFCNT,
+</span><span class='line'>      .do_suspend_cnt = DISPATCH_OBJECT_SUSPEND_LOCK,
+</span><span class='line'>      .do_ctxt = &_dispatch_root_queue_contexts[
+</span><span class='line'>              DISPATCH_ROOT_QUEUE_IDX_MAINTENANCE_QOS_OVERCOMMIT],
+</span><span class='line'>      .dq_label = "com.apple.root.maintenance-qos.overcommit",
+</span><span class='line'>      .dq_running = 2,
+</span><span class='line'>      .dq_width = DISPATCH_QUEUE_WIDTH_MAX,
+</span><span class='line'>      .dq_serialnum = 5,
+</span><span class='line'>  }</span></code></pre></td></tr></table></div></figure>
+
+</div> -->
+
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -365,40 +691,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" ><a href="/blog/design-pattern-observer/">设计模式-观察者模式</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-08-15T23:46:46+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>11:46 pm</span></time>
-        
-           | <a href="/blog/design-pattern-observer/#disqus_thread"
-             data-disqus-identifier="http://tech.dehengxu.com/blog/design-pattern-observer/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-
-<!-- <div class="entry-content">
-</div> -->
-
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/8">&larr; Older</a>
@@ -414,6 +706,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/use-docker-with-aliyuncs/">Use Docker With Aliyuncs</a>
+      </li>
     
       <li class="post">
         <a href="/blog/wei-vagrant-chuang-jian-ni-zi-ji-de-my-own-linux-box/">为vagrant 创建你自己的 My_own_linux Box</a>
@@ -489,10 +785,6 @@
     
       <li class="post">
         <a href="/blog/shi-yong-cocoapods-lai-guan-li-ji-yu-svn-de-zi-xiang-mu/">使用 Cocoapods 来管理基于 Svn 的子项目</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/create-a-private-pods/">Create a Private Pods</a>
       </li>
     
   </ul>

@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>iOS Mapping Lib - 逆风@[iOS,android,nil]</title>
+  <title>Use Docker With Aliyuncs - 逆风@[iOS,android,nil]</title>
   <meta name="author" content="Deheng Xu">
 
   
-  <meta name="description" content="https://github.com/kaizeiyimi/XLYMapping https://github.com/leverdeterre/SecureMappingKit http://dev.stanfy.com https://github.com/Ulianko/NSObject- &hellip;">
+  <meta name="description" content="Docker 基于 LXC，运行docker 必须要提供 linux kernel 支持，所以想要在 Linux 以外的系统使用 docker 就必须通过虚拟机来提供基本的 Linux kernel 支持。因此，在 Windows 和 macOS 上使用 docker 我们需要安装 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://tech.dehengxu.com/blog/ios-mapping-lib/">
+  <link rel="canonical" href="http://tech.dehengxu.com/blog/use-docker-with-aliyuncs/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="逆风@[iOS,android,nil]" type="application/atom+xml">
@@ -81,7 +81,7 @@
   
   <header>
     
-      <h1 class="entry-title">iOS Mapping Lib</h1>
+      <h1 class="entry-title">Use Docker With Aliyuncs</h1>
     
     
       <p class="meta">
@@ -90,7 +90,7 @@
 
 
 
-<time class='entry-date' datetime='2015-12-03T23:26:40+08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2015</span></span> <span class='time'>11:26 pm</span></time>
+<time class='entry-date' datetime='2016-06-18T09:16:00+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>18</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>9:16 am</span></time>
         
            | <a href="#disqus_thread"
              data-disqus-identifier="http://tech.dehengxu.com">Comments</a>
@@ -100,47 +100,45 @@
   </header>
 
 
-<div class="entry-content"><p><a href="https://github.com/kaizeiyimi/XLYMapping">https://github.com/kaizeiyimi/XLYMapping</a></p>
+<div class="entry-content"><p>Docker 基于 LXC，运行docker 必须要提供 linux kernel 支持，所以想要在 Linux 以外的系统使用 docker 就必须通过虚拟机来提供基本的 Linux kernel 支持。因此，在 Windows 和 macOS 上使用 docker 我们需要安装 Virtualbox，然后安装自己心仪的 Linux 发行版虚拟机，由于这个虚拟机只是为了向 docker 提供 Linux 内核，我们可以安装体积尽可能小的发行版。boot2docker 就是这样的一个方案，它其实使用了 TinyCore 发行版提供内核支持，并内置好了 docker 软件。不过同样是小体积的发行版， Alpine linux 提供了一个完整的包管理器 APK 更易于使用，也有较高的安全性，所以我在这里选择了 Alpinelinux 来安装我们的虚拟机。</p>
 
-<p><a href="https://github.com/leverdeterre/SecureMappingKit">https://github.com/leverdeterre/SecureMappingKit</a></p>
+<p>安装好 Alpine 之后，我们通过 apk 安装 docker <code>sudo apk add docker</code>，不过你的系统可能会提示找不到 docker ，因为 docker 只发布在 alpine 的社区源中，根据 <a href="https://wiki.alpinelinux.org/wiki/Docker#How_to_use_docker">官方介绍</a> 我们还需要添加 Alpine 的社区源，编辑 <code>/etc/apk/repostories</code> 文件增加一行 <code>http://dl-6.alpinelinux.org/alpine/edge/community</code>， 执行 <code>apk update</code> 更新软件信息后，就可以安装 docker 了。最后通过 <code>rc-update add docker boot</code> 让 docker 后台能够开机运行。</p>
 
-<p><a href="http://dev.stanfy.com">http://dev.stanfy.com</a></p>
+<p>手动启动 docker 服务，<code>sudo service docker start</code></p>
 
-<p><a href="https://github.com/Ulianko/NSObject-MUJSONMapping">https://github.com/Ulianko/NSObject-MUJSONMapping</a></p>
+<p>下面我们来说说使用阿里云的容器服务吧：</p>
 
-<p><a href="https://github.com/PlusR/ManagedMappingObject">https://github.com/PlusR/ManagedMappingObject</a></p>
+<p>首先开通阿里云容器服务，并设置你的 hub 密码，这个请牢记，后面会用到。</p>
 
-<p><a href="https://github.com/mkko/MOMapping">https://github.com/mkko/MOMapping</a></p>
+<p>然后在我们的 Alpine 虚拟机中通过下面的命令添加阿里云容器服务镜像地址到 docker 参数中</p>
 
-<p><a href="http://github.com/jamztang/JTObjectMapping">http://github.com/jamztang/JTObjectMapping</a></p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>echo "DOCKER_OPTS=\"\$DOCKER_OPTS --registry-mirror=https://hdzyevnp.mirror.aliyuncs.com\"" | sudo tee -a /etc/default/docker
+</span><span class='line'>sudo service docker restart</span></code></pre></td></tr></table></div></figure>
 
-<p><a href="https://github.com/LoganWright/JSONMapping">https://github.com/LoganWright/JSONMapping</a></p>
 
-<p><a href="https://github.com/jfwork">https://github.com/jfwork</a></p>
+<p>当我们想使用阿里云的容器服务时，需要先进行登录:</p>
 
-<p><a href="https://github.com/GyazSquare/GSFileTypeMappings">https://github.com/GyazSquare/GSFileTypeMappings</a></p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo docker login -u 你的阿里云帐号 -p 你的hub密码(不是你的阿里云帐号密码)  registry.aliyuncs.com</span></code></pre></td></tr></table></div></figure>
 
-<p><a href="https://github.com/Yalantis/FastEasyMapping">https://github.com/Yalantis/FastEasyMapping</a></p>
 
-<p><a href="https://github.com/yfben/FOMapping">https://github.com/yfben/FOMapping</a></p>
+<p>然后就可以通过阿里云的容器服务来快速下载或者发布你需要的 docker 镜像了。</p>
 
-<p><a href="https://github.com/Krivoblotsky/FMResultsMapping">https://github.com/Krivoblotsky/FMResultsMapping</a></p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo docker pull debian</span></code></pre></td></tr></table></div></figure>
 
-<p><a href="https://github.com/lucasmedeirosleite/EasyMapping">https://github.com/lucasmedeirosleite/EasyMapping</a></p>
 
-<p><a href="https://github.com/Egeniq/EFDataMappingKit">https://github.com/Egeniq/EFDataMappingKit</a></p>
+<p>这是你可能会得到失败提示 <code>failed to register layer: ApplyLayer exit status 1 stdout:  stderr: chmod /bin/mount: permission denied</code></p>
 
-<p><a href="https://github.com/dreyhomedev/NSObject-DHNObjectMapping">https://github.com/dreyhomedev/NSObject-DHNObjectMapping</a></p>
+<p>你需要关闭内和安全特性来允许你构建内核：
+<code>sysctl -w kernel.grsecurity.chroot_deny_chmod=0</code>
+<code>sysctl -w kernel.grsecurity.chroot_deny_mknod=0</code></p>
 
-<p><a href="https://github.com/dchohfi/KeyValueObjectMapping">https://github.com/dchohfi/KeyValueObjectMapping</a></p>
+<p>总结：Linux 系统提供内核，docker 在内核基础上通过各种镜像组合启动新的容器实例，我们的应用开发，测试，不熟就可以通过镜像的方式安全高效的进行了。</p>
 
-<p><a href="https://github.com/111minutes/BWObjectMapping">https://github.com/111minutes/BWObjectMapping</a></p>
-
-<p><a href="https://github.com/kovalskiy/AZMapping">https://github.com/kovalskiy/AZMapping</a></p>
-
-<p><a href="https://github.com/zarochintsev/AZEasyMapping">https://github.com/zarochintsev/AZEasyMapping</a></p>
-
-<p><a href="https://github.com/JeanLebrument/APContact-EasyMapping">https://github.com/JeanLebrument/APContact-EasyMapping</a></p>
+<p>最后为了提高开发测试阶段创建虚拟机的速度，我们还可以利用 Vagrant 来打包定制过的 Alpine 虚拟机，这一点可以参考这篇文章<a href="/blog/wei-vagrant-chuang-jian-ni-zi-ji-de-my-own-linux-box/">为vagrant 创建你自己的 my_own_linux box</a></p>
 </div>
 
 
@@ -156,7 +154,7 @@
 
 
 
-<time class='entry-date' datetime='2015-12-03T23:26:40+08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2015</span></span> <span class='time'>11:26 pm</span></time>
+<time class='entry-date' datetime='2016-06-18T09:16:00+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>18</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>9:16 am</span></time>
       
 
 
@@ -171,10 +169,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/web-protocol-collection/" title="Previous Post: Web Protocol Collection">&laquo; Web Protocol Collection</a>
+        <a class="basic-alignment left" href="/blog/wei-vagrant-chuang-jian-ni-zi-ji-de-my-own-linux-box/" title="Previous Post: 为vagrant 创建你自己的 my_own_linux box">&laquo; 为vagrant 创建你自己的 my_own_linux box</a>
       
-      
-        <a class="basic-alignment right" href="/blog/use-jenkins-with-self-organizing-swarm-plug-in-modules/" title="Next Post: Use jenkins with "Self-Organizing Swarm Plug-in Modules"">Use jenkins with "Self-Organizing Swarm Plug-in Modules" &raquo;</a>
       
     </p>
   </footer>
@@ -308,8 +304,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://tech.dehengxu.com/blog/ios-mapping-lib/';
-        var disqus_url = 'http://tech.dehengxu.com/blog/ios-mapping-lib/';
+        var disqus_identifier = 'http://tech.dehengxu.com/blog/use-docker-with-aliyuncs/';
+        var disqus_url = 'http://tech.dehengxu.com/blog/use-docker-with-aliyuncs/';
         var disqus_script = 'embed.js';
       
     (function () {
