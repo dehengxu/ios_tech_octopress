@@ -23,9 +23,10 @@ Docker 基于 LXC，运行docker 必须要提供 linux kernel 支持，所以想
 然后在我们的 Alpine 虚拟机中通过下面的命令添加阿里云容器服务镜像地址到 docker 参数中
 
 ```
-echo "DOCKER_OPTS=\"\$DOCKER_OPTS --registry-mirror=https://这个地址是你的加速地址，和你的帐户挂钩.mirror.aliyuncs.com\"" | sudo tee -a /etc/default/docker
+echo "DOCKER_OPTS=\"\$DOCKER_OPTS --registry-mirror=https://hdzyevnp.mirror.aliyuncs.com\"" | sudo tee -a /etc/default/docker
 sudo service docker restart
 ```
+这个地址是我个人的阿里云账户加速地址。
 
 当我们想使用阿里云的容器服务时，需要先进行登录:
 
